@@ -71,6 +71,26 @@ public class IntranetService extends AbstractService {
         return result;
     }
 
+    /*
+    public HTTPResponse<IntranetUsersResult> getUsers()
+            throws Exception {
+
+        HTTPResponse<IntranetUsersResult> result = new HTTPResponse<IntranetUsersResult>();
+        HttpGet request = getRequest("api/presence", null, false);
+        HttpResponse response = executeRequestAndParseError(request, result);
+        HttpEntity entity = response.getEntity();
+        if (result.ok()) {
+            String jsonStub = EntityUtils.toString(entity);
+            IntranetUsersResult users = IntranetUsersResult.fromJsonString(jsonStub,
+                    IntranetUsersResult.class);
+            result.setExpectedResponse(users);
+            saveCookies();
+        }
+        EntityUtils.consume(entity);
+        return result;
+    }
+    */
+    
     public HTTPResponse<IntranetUsersResult> getUsers()
             throws Exception {
 

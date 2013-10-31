@@ -3,8 +3,12 @@ package com.stxnext.management.android.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,7 +27,6 @@ import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
-import com.stxnext.management.android.web.HttpClientProvider;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
 public class MainActivity extends AbstractSimpleActivity {
@@ -35,6 +38,10 @@ public class MainActivity extends AbstractSimpleActivity {
     UserListAdapter adapter;
     TextView progressText;
     ProgressBar progressBar;
+    DrawerLayout drawerLayout;
+    ListView leftDrawerList;
+    ListView rightDrawerList;
+    private String[] titles;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,10 +56,28 @@ public class MainActivity extends AbstractSimpleActivity {
         progressText = (TextView) findViewById(R.id.progressText);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         userList = ptrListViewWrapper.getRefreshableView();
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        leftDrawerList = (ListView) findViewById(R.id.left_drawer);
+        rightDrawerList = (ListView) findViewById(R.id.right_drawer);
+        
+        drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        // set up the drawer's list view with items and click listener
+        //drawerList.setOnItemClickListener(new DrawerItemClickListener());
     }
 
     private boolean reloadingPullToRefresh;
 
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        if(item.getItemId() == R.id.action_absences){
+            drawerLayout.openDrawer(GravityCompat.START);
+        }
+        else if(item.getItemId() == R.id.action_late){
+            drawerLayout.openDrawer(GravityCompat.END);
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+    
     @Override
     protected void setActions() {
         if (!isUserSignedIn()) {
