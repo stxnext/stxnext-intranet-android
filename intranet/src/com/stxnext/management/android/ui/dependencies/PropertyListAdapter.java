@@ -4,6 +4,9 @@ package com.stxnext.management.android.ui.dependencies;
 import java.util.List;
 
 import android.app.Activity;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +78,8 @@ public class PropertyListAdapter extends BaseAdapter {
     private View prepareView(final int position, final UserProperty item,
             final ViewHolder holder) {
         holder.nameView.setText(item.getName());
-        holder.valueView.setText(item.getValue());
+        holder.valueView.setText(Html.fromHtml(item.getValue()));
+        holder.valueView.setMovementMethod(LinkMovementMethod.getInstance());
 
         return holder.parent;
     }

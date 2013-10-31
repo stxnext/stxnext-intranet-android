@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.google.common.base.Strings;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
+import com.stxnext.management.android.ui.controls.RoundedImageView;
 import com.stxnext.management.android.web.api.IntranetApi;
 
 public class UserListAdapter extends BaseAdapter {
@@ -102,8 +103,9 @@ public class UserListAdapter extends BaseAdapter {
 
             TextView nameView = (TextView) convertView
                     .findViewById(R.id.nameView);
-            ImageView imageView = (ImageView) convertView
+            RoundedImageView imageView = (RoundedImageView) convertView
                     .findViewById(R.id.userImageView);
+            imageView.setCornersRadius(12F);
 
             holder.parent = convertView;
             holder.userNameView = nameView;
@@ -148,7 +150,7 @@ public class UserListAdapter extends BaseAdapter {
 
     public class ViewHolder implements Cloneable {
         private TextView userNameView;
-        private ImageView userImageView;
+        private RoundedImageView userImageView;
         private View parent;
         private Integer position;
     }

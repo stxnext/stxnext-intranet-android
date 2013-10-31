@@ -24,6 +24,10 @@ public class IntranetApi extends AbstractApi {
         super(app);
         service = new IntranetService();
     }
+    
+    public void clearCookies(){
+        service.clearCookies();
+    }
 
     public HTTPResponse<IntranetUsersResult> getUsers() {
         HTTPResponse<IntranetUsersResult> result = call(false,

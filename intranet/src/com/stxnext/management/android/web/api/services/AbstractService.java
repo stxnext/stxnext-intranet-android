@@ -55,6 +55,10 @@ public abstract class AbstractService {
         return response;
     }
     
+    public void clearCookies(){
+        serviceState.clearCookies();
+    }
+    
     protected void saveCookies(){
         serviceState.saveCookies();
     }

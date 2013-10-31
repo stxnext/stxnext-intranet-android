@@ -6,13 +6,13 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.UserProperty;
+import com.stxnext.management.android.ui.controls.RoundedImageView;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.PropertyListAdapter;
@@ -21,7 +21,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity{
 
     public static final String EXTRA_USER = "user";
     
-    ImageView userImageView;
+    RoundedImageView userImageView;
     TextView nameView;
     ListView listView;
     PropertyListAdapter adapter;
@@ -33,11 +33,12 @@ public class UserDetailsActivity extends AbstractSimpleActivity{
     
     @Override
     protected void fillViews() {
-        userImageView = (ImageView) findViewById(R.id.userImageView);
+        userImageView = (RoundedImageView) findViewById(R.id.userImageView);
         nameView = (TextView) findViewById(R.id.nameView);
         listView = (ListView) findViewById(R.id.listView);
         loadingView = (ViewGroup) findViewById(R.id.loadingView);
         loadedView = (ViewGroup) findViewById(R.id.loadedView);
+        userImageView.setCornersRadius(12F);
         
         Bundle bundle = getIntent().getExtras();
         user = (IntranetUser) bundle.getSerializable(EXTRA_USER);

@@ -43,10 +43,22 @@ import ch.boye.httpclientandroidlib.protocol.HttpContext;
 public class HttpClientProvider {
 
     private HttpClient providedClient;
+    
+    static HttpClientProvider _instance;
 
     public static final int TIMEOUT_CONNECTION_ESTABLISH = 15000;
     public static final int TIMEOUT_CONNECTION_WAIT_FOR_DATA = 35000;
 
+    private HttpClientProvider(){
+    }
+    
+    public static HttpClientProvider getInstance(){
+        if(_instance==null){
+            _instance = new HttpClientProvider();  
+        }
+        return _instance;
+    }
+    
     public HttpClient get() {
         if (providedClient == null) {
             providedClient = getNewHttpClient();

@@ -138,12 +138,12 @@ public class IntranetUser extends AbstractMessage implements Serializable{
 
     public ArrayList<UserProperty> getProperties(){
         if(this.properties.size()<=0){
-            putProperty("Email", this.email);
+            putProperty("Email", "<a href = \"mailto:"+this.email+"\">"+this.email+"</a>");
             putProperty("IRC", this.irc);
             if(this.location!=null && this.location.size()==3)
-                putProperty("Lokacja", this.location.get(1));
-            putProperty("Telefon", this.phone);
-            putProperty("Telefon stacjonarny", this.phoneDesk);
+                putProperty("Lokalizacja", this.location.get(1));
+            putProperty("Telefon", "<a href = \"tel:"+this.phone+"\">"+this.phone+"</a>");
+            putProperty("Telefon stacjonarny", "<a href = \"tel:"+this.phoneDesk+"\">"+this.phoneDesk+"</a>");
             if(this.roles!=null && this.roles.size()>0){
                 String rolesString="";
                 for(String role : this.roles){

@@ -24,9 +24,7 @@ public class WebServiceState  {
         cookieStore = new BasicCookieStore();
         localContext = new BasicHttpContext();
         localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-        HttpClientProvider provider = new HttpClientProvider();
-        
-        client = provider.get();
+        client = HttpClientProvider.getInstance().get();
         prefs = StoragePrefs.getInstance(AppIntranet.getApp());
         loadCookies();
     }
@@ -36,6 +34,10 @@ public class WebServiceState  {
         for(Cookie c : prefs.getCookies()){
             cookieStore.addCookie(c);
         }
+    }
+    
+    public void clearCookies(){
+        cookieStore.clear();
     }
     
     public void saveCookies(){

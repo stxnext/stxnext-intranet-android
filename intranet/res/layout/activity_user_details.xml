@@ -29,11 +29,11 @@
 
             <LinearLayout
                 android:id="@+id/imageHolder"
-                android:layout_width="220dip"
-                android:layout_height="220dip"
+                android:layout_width="160dip"
+                android:layout_height="160dip"
                 android:orientation="horizontal" >
 
-                <ImageView
+                <com.stxnext.management.android.ui.controls.RoundedImageView
                     android:id="@+id/userImageView"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"

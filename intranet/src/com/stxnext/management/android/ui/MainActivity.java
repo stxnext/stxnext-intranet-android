@@ -23,6 +23,7 @@ import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
+import com.stxnext.management.android.web.HttpClientProvider;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
 public class MainActivity extends AbstractSimpleActivity {
@@ -212,6 +213,7 @@ public class MainActivity extends AbstractSimpleActivity {
             if (result == null) {
                 prefs.setAuthCode(null);
                 prefs.setCookies(null);
+                api.clearCookies();
                 startActivityForResult(new Intent(MainActivity.this, LoginActivity.class),
                         REQUEST_LOGIN);
             }
