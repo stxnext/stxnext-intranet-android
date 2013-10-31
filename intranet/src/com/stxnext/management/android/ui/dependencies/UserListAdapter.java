@@ -43,6 +43,10 @@ public class UserListAdapter extends BaseAdapter {
         }
     }
 
+    public void clearCache(){
+        memoryCache.evictAll();
+    }
+    
     public Bitmap getBitmapFromMemCache(Long key) {
         if (key != null) {
             return (Bitmap) memoryCache.get(key);

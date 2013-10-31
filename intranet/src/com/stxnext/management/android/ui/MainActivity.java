@@ -14,9 +14,15 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.stxnext.management.android.AppIntranet;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
+import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
@@ -24,11 +30,12 @@ public class MainActivity extends AbstractSimpleActivity {
 
     private static int REQUEST_LOGIN = 2;
     ListView userList;
+    PullToRefreshListView ptrListViewWrapper;
     ViewGroup progressView;
     UserListAdapter adapter;
     TextView progressText;
     ProgressBar progressBar;
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -37,67 +44,99 @@ public class MainActivity extends AbstractSimpleActivity {
 
     @Override
     protected void fillViews() {
-        userList = (ListView) findViewById(R.id.listView);
+        ptrListViewWrapper = (PullToRefreshListView) findViewById(R.id.listView);
         progressView = (ViewGroup) findViewById(R.id.progressView);
         progressText = (TextView) findViewById(R.id.progressText);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        userList = ptrListViewWrapper.getRefreshableView();
     }
+
+    private boolean reloadingPullToRefresh;
 
     @Override
     protected void setActions() {
-        if(!isUserSignedIn()){
+        if (!isUserSignedIn()) {
             startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_LOGIN);
             return;
         }
-        
-        new LoadUsersTask().execute();
+
+        ptrListViewWrapper.setOnRefreshListener(new OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(
+                    PullToRefreshBase<ListView> refreshView) {
+                reloadingPullToRefresh = true;
+                if (api.isOnline()) {
+                    new LoadUsersTask(true).execute();
+                } else {
+                    Toast.makeText(MainActivity.this, "Unable to refresh in offline mode",
+                            Toast.LENGTH_SHORT).show();
+                    if (reloadingPullToRefresh) {
+                        ptrListViewWrapper.onRefreshComplete();
+                        reloadingPullToRefresh = false;
+                    }
+                }
+            }
+
+            @Override
+            public void onPullUpToRefresh(
+                    PullToRefreshBase<ListView> refreshView) {
+            }
+        });
+
+        new LoadUsersTask(false).execute();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_LOGIN){
-            if(resultCode == LoginActivity.RESULT_SIGNED_IN){
+        if (requestCode == REQUEST_LOGIN) {
+            if (resultCode == LoginActivity.RESULT_SIGNED_IN) {
                 new AuthUserTask().execute();
             }
-            else if(resultCode == LoginActivity.RESULT_CANCELLED){
+            else if (resultCode == LoginActivity.RESULT_CANCELLED) {
                 finish();
             }
         }
     }
-    
-    
+
     @Override
     protected int getContentResourceId() {
         return R.layout.activity_main;
     }
 
-    private void setViewLoading(boolean loading){
-        userList.setVisibility(loading?View.GONE:View.VISIBLE);
-        progressBar.setVisibility(loading?View.VISIBLE:View.GONE);
+    private void setViewLoading(boolean loading) {
+        ptrListViewWrapper.setVisibility(loading ? View.GONE : View.VISIBLE);
+        progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
         progressText.setText("Wczytuj«...");
-        progressView.setVisibility(loading?View.VISIBLE:View.GONE);
-        
+        progressView.setVisibility(loading ? View.VISIBLE : View.GONE);
+
     }
-    
-    private void setNoResults(){
-        userList.setVisibility(View.GONE);
+
+    private void setNoResults() {
+        ptrListViewWrapper.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         progressText.setText("Brak wynik—w");
         progressView.setVisibility(View.VISIBLE);
     }
-    
-    private void fillListWithData(IntranetUsersResult results){
-        if(results!=null && results.getUsers().size()>0){
-            adapter = new UserListAdapter(this, userList, results.getUsers());
-            userList.setAdapter(adapter);
+
+    private void fillListWithData(IntranetUsersResult results) {
+        if (results != null && results.getUsers().size() > 0) {
+            if(adapter==null){
+                adapter = new UserListAdapter(this, userList, results.getUsers());
+                userList.setAdapter(adapter);
+            }
+            else{
+                adapter.setUsers(results.getUsers());
+                adapter.notifyDataSetChanged();
+            }
+            
             applyListAnimation(userList);
         }
-        else{
+        else {
             setNoResults();
         }
     }
-    
+
     private void applyListAnimation(ViewGroup view) {
         AnimationSet set = new AnimationSet(true);
 
@@ -112,53 +151,74 @@ public class MainActivity extends AbstractSimpleActivity {
         LayoutAnimationController controller = new LayoutAnimationController(set, 0.1f);
         view.setLayoutAnimation(controller);
     }
-    
-    private class AuthUserTask extends AsyncTask<Void, Void, Void>{
+
+    private class AuthUserTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             setViewLoading(true);
             super.onPreExecute();
         }
+
         @Override
         protected Void doInBackground(Void... params) {
             api.loginWithCode(prefs.getAuthCode());
             return null;
         }
-        
+
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            new LoadUsersTask().execute();
+            new LoadUsersTask(false).execute();
         }
     }
-    
-    private class LoadUsersTask extends AsyncTask<Void, Void, HTTPResponse<IntranetUsersResult>>{
+
+    private class LoadUsersTask extends AsyncTask<Void, Void, HTTPResponse<IntranetUsersResult>> {
+
+        private boolean pullToRefreshMode;
+
+        public LoadUsersTask(boolean pullToRefreshMode) {
+            this.pullToRefreshMode = pullToRefreshMode;
+        }
 
         @Override
         protected void onPreExecute() {
-            setViewLoading(true);
+            if (!pullToRefreshMode) {
+                setViewLoading(true);
+            }
             super.onPreExecute();
         }
-        
+
         @Override
         protected HTTPResponse<IntranetUsersResult> doInBackground(Void... params) {
+            if(pullToRefreshMode){
+                if(adapter!=null){
+                    adapter.clearCache();
+                    BitmapUtils.cleanTempDir(AppIntranet.getApp());
+                }
+            }
             return api.getUsers();
         }
-        
+
         @Override
         protected void onPostExecute(HTTPResponse<IntranetUsersResult> result) {
             super.onPostExecute(result);
-            if(isFinishing())
+            if (isFinishing())
                 return;
-                
+
             setViewLoading(false);
-            if(result==null){
+
+            if (reloadingPullToRefresh) {
+                ptrListViewWrapper.onRefreshComplete();
+                reloadingPullToRefresh = false;
+            }
+            if (result == null) {
                 prefs.setAuthCode(null);
                 prefs.setCookies(null);
-                startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_LOGIN);
+                startActivityForResult(new Intent(MainActivity.this, LoginActivity.class),
+                        REQUEST_LOGIN);
             }
-            else{
+            else {
                 fillListWithData(result.getExpectedResponse());
             }
         }
