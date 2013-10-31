@@ -4,12 +4,19 @@ package com.stxnext.management.android.ui;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.Menu;
+import android.widget.ListView;
 
 import com.stxnext.management.android.R;
+import com.stxnext.management.android.dto.local.IntranetUsersResult;
+import com.stxnext.management.android.ui.dependencies.UserListAdapter;
+import com.stxnext.management.android.web.api.HTTPResponse;
 
 public class MainActivity extends AbstractSimpleActivity {
 
     private static int REQUEST_LOGIN = 2;
+    ListView userList;
+    UserListAdapter adapter;
+    
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -19,12 +26,11 @@ public class MainActivity extends AbstractSimpleActivity {
 
     @Override
     protected void fillViews() {
-        
+        userList = (ListView) findViewById(R.id.listView);
     }
 
     @Override
     protected void setActions() {
-        // TODO Auto-generated method stub
         if(!isUserSignedIn()){
             startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_LOGIN);
             return;
@@ -52,12 +58,25 @@ public class MainActivity extends AbstractSimpleActivity {
         return R.layout.activity_main;
     }
 
+    private void setViewLoading(boolean loading){
+        
+    }
+    
+    private void fillListWithData(IntranetUsersResult results){
+        adapter = new UserListAdapter(this, results.getUsers());
+        userList.setAdapter(adapter);
+    }
+    
     private class AuthUserTask extends AsyncTask<Void, Void, Void>{
 
         @Override
+        protected void onPreExecute() {
+            setViewLoading(true);
+            super.onPreExecute();
+        }
+        @Override
         protected Void doInBackground(Void... params) {
             api.loginWithCode(prefs.getAuthCode());
-            // TODO Auto-generated method stub
             return null;
         }
         
@@ -68,13 +87,24 @@ public class MainActivity extends AbstractSimpleActivity {
         }
     }
     
-    private class LoadUsersTask extends AsyncTask<Void, Void, Void>{
+    private class LoadUsersTask extends AsyncTask<Void, Void, HTTPResponse<IntranetUsersResult>>{
 
         @Override
-        protected Void doInBackground(Void... params) {
-            api.getUsers();
-            return null;
+        protected void onPreExecute() {
+            setViewLoading(true);
+            super.onPreExecute();
+        }
+        
+        @Override
+        protected HTTPResponse<IntranetUsersResult> doInBackground(Void... params) {
+            return api.getUsers();
+        }
+        
+        @Override
+        protected void onPostExecute(HTTPResponse<IntranetUsersResult> result) {
+            super.onPostExecute(result);
+            fillListWithData(result.getExpectedResponse());
+            setViewLoading(false);
         }
     }
-    
 }

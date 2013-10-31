@@ -3,6 +3,7 @@ package com.stxnext.management.android.web.api;
 
 import android.app.Application;
 
+import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.web.api.services.IntranetService;
 
 public class IntranetApi extends AbstractApi {
@@ -23,11 +24,11 @@ public class IntranetApi extends AbstractApi {
         service = new IntranetService();
     }
 
-    public HTTPResponse<String> getUsers(){
-        HTTPResponse<String> result = call(false,
-                new ApiExecutable<HTTPResponse<String>>() {
+    public HTTPResponse<IntranetUsersResult> getUsers(){
+        HTTPResponse<IntranetUsersResult> result = call(false,
+                new ApiExecutable<HTTPResponse<IntranetUsersResult>>() {
                     @Override
-                    public HTTPResponse<String> call() throws Exception {
+                    public HTTPResponse<IntranetUsersResult> call() throws Exception {
                         return service.getUsers();
                     }
                 });
