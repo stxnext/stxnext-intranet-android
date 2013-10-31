@@ -38,6 +38,11 @@ public class StoragePrefs {
     }
     
     public void setCookies(List<Cookie> cookies){
+        if(cookies == null){
+            prefs.edit().putString(STRING_WEB_COOKIES, null).commit();
+            return;
+        }
+        
         List<LocalCookie> locals = new ArrayList<LocalCookie>();
         for(Cookie c : cookies){
             locals.add(new LocalCookie(c));

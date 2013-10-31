@@ -2,6 +2,7 @@
 package com.stxnext.management.android.web.api;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.web.api.services.IntranetService;
@@ -24,7 +25,7 @@ public class IntranetApi extends AbstractApi {
         service = new IntranetService();
     }
 
-    public HTTPResponse<IntranetUsersResult> getUsers(){
+    public HTTPResponse<IntranetUsersResult> getUsers() {
         HTTPResponse<IntranetUsersResult> result = call(false,
                 new ApiExecutable<HTTPResponse<IntranetUsersResult>>() {
                     @Override
@@ -34,7 +35,7 @@ public class IntranetApi extends AbstractApi {
                 });
         return result;
     }
-    
+
     public HTTPResponse<String> loginWithCode(final String code) {
         HTTPResponse<String> result = call(false,
                 new ApiExecutable<HTTPResponse<String>>() {
@@ -44,7 +45,18 @@ public class IntranetApi extends AbstractApi {
                     }
                 });
         return result;
-        
+
+    }
+
+    public Bitmap downloadBitmap(final String url) {
+        Bitmap result = call(false,
+                new ApiExecutable<Bitmap>() {
+                    @Override
+                    public Bitmap call() throws Exception {
+                        return service.downloadBitmap(url);
+                    }
+                });
+        return result;
     }
 
 }

@@ -4,7 +4,16 @@ package com.stxnext.management.android.ui;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
@@ -15,8 +24,10 @@ public class MainActivity extends AbstractSimpleActivity {
 
     private static int REQUEST_LOGIN = 2;
     ListView userList;
+    ViewGroup progressView;
     UserListAdapter adapter;
-    
+    TextView progressText;
+    ProgressBar progressBar;
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -27,6 +38,9 @@ public class MainActivity extends AbstractSimpleActivity {
     @Override
     protected void fillViews() {
         userList = (ListView) findViewById(R.id.listView);
+        progressView = (ViewGroup) findViewById(R.id.progressView);
+        progressText = (TextView) findViewById(R.id.progressText);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
@@ -59,12 +73,44 @@ public class MainActivity extends AbstractSimpleActivity {
     }
 
     private void setViewLoading(boolean loading){
+        userList.setVisibility(loading?View.GONE:View.VISIBLE);
+        progressBar.setVisibility(loading?View.VISIBLE:View.GONE);
+        progressText.setText("Wczytuj«...");
+        progressView.setVisibility(loading?View.VISIBLE:View.GONE);
         
     }
     
+    private void setNoResults(){
+        userList.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
+        progressText.setText("Brak wynik—w");
+        progressView.setVisibility(View.VISIBLE);
+    }
+    
     private void fillListWithData(IntranetUsersResult results){
-        adapter = new UserListAdapter(this, results.getUsers());
-        userList.setAdapter(adapter);
+        if(results!=null && results.getUsers().size()>0){
+            adapter = new UserListAdapter(this, userList, results.getUsers());
+            userList.setAdapter(adapter);
+            applyListAnimation(userList);
+        }
+        else{
+            setNoResults();
+        }
+    }
+    
+    private void applyListAnimation(ViewGroup view) {
+        AnimationSet set = new AnimationSet(true);
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(350);
+        set.addAnimation(animation);
+        animation = new AlphaAnimation(0.1f, 1.1f);
+        animation.setDuration(80);
+        animation.setInterpolator(new DecelerateInterpolator());
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.1f);
+        view.setLayoutAnimation(controller);
     }
     
     private class AuthUserTask extends AsyncTask<Void, Void, Void>{
@@ -103,8 +149,18 @@ public class MainActivity extends AbstractSimpleActivity {
         @Override
         protected void onPostExecute(HTTPResponse<IntranetUsersResult> result) {
             super.onPostExecute(result);
-            fillListWithData(result.getExpectedResponse());
+            if(isFinishing())
+                return;
+                
             setViewLoading(false);
+            if(result==null){
+                prefs.setAuthCode(null);
+                prefs.setCookies(null);
+                startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_LOGIN);
+            }
+            else{
+                fillListWithData(result.getExpectedResponse());
+            }
         }
     }
 }
