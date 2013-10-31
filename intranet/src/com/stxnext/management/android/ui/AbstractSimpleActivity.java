@@ -8,6 +8,12 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LayoutAnimationController;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -94,5 +100,20 @@ public abstract class AbstractSimpleActivity extends Activity{
             finish();
         }
     };
+    
+    protected void applyListAnimation(ViewGroup view) {
+        AnimationSet set = new AnimationSet(true);
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(350);
+        set.addAnimation(animation);
+        animation = new AlphaAnimation(0.1f, 1.1f);
+        animation.setDuration(80);
+        animation.setInterpolator(new DecelerateInterpolator());
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.1f);
+        view.setLayoutAnimation(controller);
+    }
     
 }

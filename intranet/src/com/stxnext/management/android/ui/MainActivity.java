@@ -3,14 +3,12 @@ package com.stxnext.management.android.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LayoutAnimationController;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,6 +19,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.stxnext.management.android.AppIntranet;
 import com.stxnext.management.android.R;
+import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
@@ -82,6 +81,18 @@ public class MainActivity extends AbstractSimpleActivity {
                     PullToRefreshBase<ListView> refreshView) {
             }
         });
+        
+        userList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                
+                IntranetUser user = (IntranetUser) adapter.getItem(position-1);
+                Log.e("","tapped user: "+user.getName()+" at position:"+position);
+                Intent intent = new Intent(MainActivity.this, UserDetailsActivity.class);
+                intent.putExtra(UserDetailsActivity.EXTRA_USER, user);
+                startActivity(intent);
+            }
+        });
 
         new LoadUsersTask(false).execute();
     }
@@ -137,20 +148,6 @@ public class MainActivity extends AbstractSimpleActivity {
         }
     }
 
-    private void applyListAnimation(ViewGroup view) {
-        AnimationSet set = new AnimationSet(true);
-
-        Animation animation = new AlphaAnimation(0.0f, 1.0f);
-        animation.setDuration(350);
-        set.addAnimation(animation);
-        animation = new AlphaAnimation(0.1f, 1.1f);
-        animation.setDuration(80);
-        animation.setInterpolator(new DecelerateInterpolator());
-        set.addAnimation(animation);
-
-        LayoutAnimationController controller = new LayoutAnimationController(set, 0.1f);
-        view.setLayoutAnimation(controller);
-    }
 
     private class AuthUserTask extends AsyncTask<Void, Void, Void> {
 
