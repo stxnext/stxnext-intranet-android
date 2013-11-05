@@ -1,0 +1,28 @@
+create table intranet_user(
+
+external_id integer not null,
+name text,
+recipe_context integer not null,
+title text,
+img text,
+avatar_url text,
+location text,
+freelancer integer,
+is_client integer,
+is_active integer,
+start_work integer,
+start_full_time_work integer,
+phone text,
+phone_on_desk text,
+skype text,
+irc text,
+email text,
+tasks_link text,
+availability_link text,
+roles text,
+groups text,
+
+primary key(external_id)
+);
+
+create index intranet_user_id on intranet_user(external_id);

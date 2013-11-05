@@ -1,7 +1,7 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <RelativeLayout
@@ -45,25 +45,36 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <ListView
+    <RelativeLayout
         android:id="@+id/left_drawer"
         android:layout_width="220dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#111"/>
-    
-    <ListView
+         >
+
+        <ListView
+            android:id="@+id/latenessList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#111"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/right_drawer"
         android:layout_width="220dp"
-        android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#111"/>
-    
-    
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/absenceList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            
+            android:background="#111"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+    </RelativeLayout>
+
 </android.support.v4.widget.DrawerLayout>

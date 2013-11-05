@@ -5,6 +5,7 @@ import android.app.Application;
 import android.graphics.Bitmap;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
+import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.web.api.services.IntranetService;
 
 public class IntranetApi extends AbstractApi {
@@ -24,8 +25,8 @@ public class IntranetApi extends AbstractApi {
         super(app);
         service = new IntranetService();
     }
-    
-    public void clearCookies(){
+
+    public void clearCookies() {
         service.clearCookies();
     }
 
@@ -39,8 +40,17 @@ public class IntranetApi extends AbstractApi {
                 });
         return result;
     }
-    
-    
+
+    public HTTPResponse<PresenceResult> getPresences() {
+        HTTPResponse<PresenceResult> result = call(false,
+                new ApiExecutable<HTTPResponse<PresenceResult>>() {
+                    @Override
+                    public HTTPResponse<PresenceResult> call() throws Exception {
+                        return service.getPresences();
+                    }
+                });
+        return result;
+    }
 
     public HTTPResponse<String> loginWithCode(final String code) {
         HTTPResponse<String> result = call(false,

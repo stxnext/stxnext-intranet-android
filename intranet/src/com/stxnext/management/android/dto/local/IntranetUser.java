@@ -8,6 +8,7 @@ import com.google.common.base.Strings;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.stxnext.management.android.dto.AbstractMessage;
+import com.stxnext.management.android.dto.GsonProvider;
 
 public class IntranetUser extends AbstractMessage implements Serializable{
 
@@ -87,6 +88,9 @@ public class IntranetUser extends AbstractMessage implements Serializable{
     public String getAvatarUrl() {
         return avatarUrl;
     }
+    public String getLocationJson(){
+        return GsonProvider.get().toJson(this.location);
+    }
     public List<String> getLocation() {
         return location;
     }
@@ -129,8 +133,14 @@ public class IntranetUser extends AbstractMessage implements Serializable{
     public String getAvailabilityLink() {
         return availabilityLink;
     }
+    public String getRolesJson(){
+        return GsonProvider.get().toJson(this.roles);
+    }
     public List<String> getRoles() {
         return roles;
+    }
+    public String getGroupsJson(){
+        return GsonProvider.get().toJson(this.groups);
     }
     public List<String> getGroups() {
         return groups;
@@ -163,5 +173,80 @@ public class IntranetUser extends AbstractMessage implements Serializable{
             this.properties.add(new UserProperty(name, String.valueOf(value)));
         }
     }
+    public void setProperties(ArrayList<UserProperty> properties) {
+        this.properties = properties;
+    }
+    public void setId(Number id) {
+        this.id = id;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+    public void setLocation(String location) {
+        this.location = GsonProvider.get().fromJson(location, listStringType);
+    }
+    public void setLocation(ArrayList<String> location) {
+        this.location = location;
+    }
+    public void setIsFreelancer(Boolean isFreelancer) {
+        this.isFreelancer = isFreelancer;
+    }
+    public void setIsClient(Boolean isClient) {
+        this.isClient = isClient;
+    }
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+    public void setStartWork(String startWork) {
+        this.startWork = startWork;
+    }
+    public void setStartFullTimeWork(String startFullTimeWork) {
+        this.startFullTimeWork = startFullTimeWork;
+    }
+    public void setStopWork(String stopWork) {
+        this.stopWork = stopWork;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public void setPhoneDesk(String phoneDesk) {
+        this.phoneDesk = phoneDesk;
+    }
+    public void setSkype(String skype) {
+        this.skype = skype;
+    }
+    public void setIrc(String irc) {
+        this.irc = irc;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setTasksLink(String tasksLink) {
+        this.tasksLink = tasksLink;
+    }
+    public void setAvailabilityLink(String availabilityLink) {
+        this.availabilityLink = availabilityLink;
+    }
+    
+    public void setRoles(String roles) {
+        this.roles = GsonProvider.get().fromJson(roles, listStringType);
+    }
+    public void setGroups(String groups) {
+        this.groups = GsonProvider.get().fromJson(groups, listStringType);;
+    }
+    public void setRoles(ArrayList<String> roles) {
+        this.roles = roles;
+    }
+    public void setGroups(ArrayList<String> groups) {
+        this.groups = groups;
+    }
+    
+    
     
 }

@@ -22,7 +22,6 @@ public class StoragePrefs {
     private static StoragePrefs _instance;
     private Context context;
     private SharedPreferences prefs;
-    private Gson gson;
     
     public static final StoragePrefs getInstance(Context context){
         if(_instance==null){
@@ -33,7 +32,6 @@ public class StoragePrefs {
     
     private StoragePrefs(Context context){
         this.context = context.getApplicationContext();
-        this.gson = new Gson();
         this.prefs = this.context.getSharedPreferences(PREFS_LOCATION, Context.MODE_MULTI_PROCESS);
     }
     
@@ -43,7 +41,7 @@ public class StoragePrefs {
             return;
         }
         
-        List<LocalCookie> locals = new ArrayList<LocalCookie>();
+        ArrayList<LocalCookie> locals = new ArrayList<LocalCookie>();
         for(Cookie c : cookies){
             locals.add(new LocalCookie(c));
         }

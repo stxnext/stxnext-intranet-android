@@ -15,6 +15,7 @@ import ch.boye.httpclientandroidlib.entity.BufferedHttpEntity;
 import ch.boye.httpclientandroidlib.util.EntityUtils;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
+import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
@@ -71,25 +72,25 @@ public class IntranetService extends AbstractService {
         return result;
     }
 
-    /*
-    public HTTPResponse<IntranetUsersResult> getUsers()
+    
+    public HTTPResponse<PresenceResult> getPresences()
             throws Exception {
 
-        HTTPResponse<IntranetUsersResult> result = new HTTPResponse<IntranetUsersResult>();
+        HTTPResponse<PresenceResult> result = new HTTPResponse<PresenceResult>();
         HttpGet request = getRequest("api/presence", null, false);
         HttpResponse response = executeRequestAndParseError(request, result);
         HttpEntity entity = response.getEntity();
         if (result.ok()) {
             String jsonStub = EntityUtils.toString(entity);
-            IntranetUsersResult users = IntranetUsersResult.fromJsonString(jsonStub,
-                    IntranetUsersResult.class);
+            PresenceResult users = PresenceResult.fromJsonString(jsonStub,
+                    PresenceResult.class);
             result.setExpectedResponse(users);
             saveCookies();
         }
         EntityUtils.consume(entity);
         return result;
     }
-    */
+    
     
     public HTTPResponse<IntranetUsersResult> getUsers()
             throws Exception {

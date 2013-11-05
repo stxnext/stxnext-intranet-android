@@ -1,12 +1,13 @@
 
 package com.stxnext.management.android.ui;
 
+import java.util.List;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,9 +24,15 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.stxnext.management.android.AppIntranet;
 import com.stxnext.management.android.R;
+import com.stxnext.management.android.dto.local.Absence;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
+import com.stxnext.management.android.dto.local.Lateness;
+import com.stxnext.management.android.dto.local.PresenceResult;
+import com.stxnext.management.android.storage.sqlite.dao.DAO;
+import com.stxnext.management.android.ui.dependencies.AbsenceListAdapter;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
+import com.stxnext.management.android.ui.dependencies.LatenessListAdapter;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
@@ -39,8 +46,12 @@ public class MainActivity extends AbstractSimpleActivity {
     TextView progressText;
     ProgressBar progressBar;
     DrawerLayout drawerLayout;
-    ListView leftDrawerList;
-    ListView rightDrawerList;
+    
+    ViewGroup leftDrawer;
+    ViewGroup rightDrawer;
+    
+    ListView absenceList;
+    ListView latenessList;
     private String[] titles;
 
     @Override
@@ -56,13 +67,31 @@ public class MainActivity extends AbstractSimpleActivity {
         progressText = (TextView) findViewById(R.id.progressText);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         userList = ptrListViewWrapper.getRefreshableView();
+        
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        leftDrawerList = (ListView) findViewById(R.id.left_drawer);
-        rightDrawerList = (ListView) findViewById(R.id.right_drawer);
+        leftDrawer = (ViewGroup) findViewById(R.id.left_drawer);
+        rightDrawer = (ViewGroup) findViewById(R.id.right_drawer);
+        
+        absenceList = (ListView) findViewById(R.id.absenceList);
+        latenessList = (ListView) findViewById(R.id.latenessList);
         
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        //drawerList.setOnItemClickListener(new DrawerItemClickListener());
+//        absenceList.setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Absence item = (Absence) absenceAdapter.getItem(position);
+//                Toast.makeText(MainActivity.this, item.get, Toast.LENGTH_SHORT).
+//            }
+//        });
+        
+        latenessList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Lateness item = (Lateness) latenessAdapter.getItem(position);
+                Toast.makeText(MainActivity.this, item.getExplanation(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private boolean reloadingPullToRefresh;
@@ -80,10 +109,7 @@ public class MainActivity extends AbstractSimpleActivity {
     
     @Override
     protected void setActions() {
-        if (!isUserSignedIn()) {
-            startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_LOGIN);
-            return;
-        }
+        
 
         ptrListViewWrapper.setOnRefreshListener(new OnRefreshListener2<ListView>() {
             @Override
@@ -119,8 +145,14 @@ public class MainActivity extends AbstractSimpleActivity {
                 startActivity(intent);
             }
         });
+        
+        if (!isUserSignedIn()) {
+            startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_LOGIN);
+            return;
+        }
 
         new LoadUsersTask(false).execute();
+        new LoadPresencesTask().execute();
     }
 
     @Override
@@ -196,6 +228,30 @@ public class MainActivity extends AbstractSimpleActivity {
         }
     }
 
+    private AbsenceListAdapter absenceAdapter;
+    private LatenessListAdapter latenessAdapter;
+    
+    private class LoadPresencesTask extends AsyncTask<Void, Void, HTTPResponse<PresenceResult>>{
+
+        @Override
+        protected HTTPResponse<PresenceResult> doInBackground(Void... params) {
+            return api.getPresences();
+        }
+        
+        @Override
+        protected void onPostExecute(HTTPResponse<PresenceResult> result) {
+            super.onPostExecute(result);
+            if(result != null && result.getExpectedResponse()!=null){
+                absenceAdapter = new AbsenceListAdapter(MainActivity.this, result.getExpectedResponse().getAbsences());
+                latenessAdapter = new LatenessListAdapter(MainActivity.this, result.getExpectedResponse().getLates());
+                
+                absenceList.setAdapter(absenceAdapter);
+                latenessList.setAdapter(latenessAdapter);
+            }
+        }
+        
+    }
+    
     private class LoadUsersTask extends AsyncTask<Void, Void, HTTPResponse<IntranetUsersResult>> {
 
         private boolean pullToRefreshMode;
@@ -220,7 +276,14 @@ public class MainActivity extends AbstractSimpleActivity {
                     BitmapUtils.cleanTempDir(AppIntranet.getApp());
                 }
             }
-            return api.getUsers();
+            HTTPResponse<IntranetUsersResult> result = api.getUsers();
+            if(result != null && result.getExpectedResponse()!=null){
+                DAO.getInstance().getIntranetUser().persist(result.getExpectedResponse().getUsers());
+            }
+            
+            List<IntranetUser> dbEntities = DAO.getInstance().getIntranetUser().fetch();
+            
+            return result;
         }
 
         @Override
@@ -247,4 +310,5 @@ public class MainActivity extends AbstractSimpleActivity {
             }
         }
     }
+    
 }
