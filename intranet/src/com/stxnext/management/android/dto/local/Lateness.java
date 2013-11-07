@@ -8,7 +8,7 @@ import com.stxnext.management.android.dto.AbstractMessage;
 public class Lateness extends AbstractMessage {
 
     @Expose
-    @SerializedName("avatar_url")
+    @SerializedName("id")
     Number id;
     @Expose
     @SerializedName("late_id")
@@ -57,4 +57,34 @@ public class Lateness extends AbstractMessage {
         return workFromHome;
     }
 
+    public void setId(Number id) {
+        this.id = id;
+    }
+
+    public void setLateId(Number lateId) {
+        this.lateId = lateId;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
+    public void setWorkFromHome(Boolean workFromHome) {
+        this.workFromHome = workFromHome;
+    }
+
+    
+    
 }

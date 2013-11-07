@@ -2,7 +2,6 @@ create table intranet_user(
 
 external_id integer not null,
 name text,
-recipe_context integer not null,
 title text,
 img text,
 avatar_url text,
@@ -26,3 +25,35 @@ primary key(external_id)
 );
 
 create index intranet_user_id on intranet_user(external_id);
+
+
+create table absence(
+
+absence_id integer not null,
+end text,
+start text,
+name text,
+user_id integer,
+remarks text,
+
+primary key(absence_id)
+);
+
+create index absence_id on absence(absence_id);
+
+
+create table lateness(
+
+late_id integer not null,
+end text,
+start text,
+name text,
+user_id integer,
+explanation text,
+work_from_home integer,
+
+primary key(late_id)
+);
+
+create index late_id on lateness(late_id);
+

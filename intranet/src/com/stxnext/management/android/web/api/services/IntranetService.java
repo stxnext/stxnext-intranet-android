@@ -96,7 +96,7 @@ public class IntranetService extends AbstractService {
             throws Exception {
 
         HTTPResponse<IntranetUsersResult> result = new HTTPResponse<IntranetUsersResult>();
-        HttpGet request = getRequest("api/users?full=1&inactive=1", null, false);
+        HttpGet request = getRequest("api/users?full=1&inactive=0", null, false);
         HttpResponse response = executeRequestAndParseError(request, result);
         HttpEntity entity = response.getEntity();
         if (result.ok()) {

@@ -10,7 +10,7 @@ import com.stxnext.management.android.storage.sqlite.SQLiteHelperProvider;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
-public class AbstractDAO {
+public abstract class AbstractDAO {
 
     protected SQLiteDatabase db;
     
@@ -18,6 +18,12 @@ public class AbstractDAO {
         db = SQLiteHelperProvider.getInstance().get().getWritableDatabase();
     }
 
+    protected abstract String getTableName();
+    
+    public void clear(){
+        db.delete(getTableName(), null, null);
+    }
+    
     protected void insertOrReplace(String table, ContentValues cv) {
 
         StringBuilder keysBuilder = new StringBuilder();

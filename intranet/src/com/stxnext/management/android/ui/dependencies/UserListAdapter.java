@@ -181,7 +181,7 @@ public class UserListAdapter extends BaseAdapter {
             Bitmap result = null;
             result = BitmapUtils.getTempBitmap(context, user.getId().toString());
             if(result == null){
-                Log.e("got saved bitmap",user.getImageUrl());
+                //Log.e("got saved bitmap",user.getImageUrl());
                 result = api.downloadBitmap("https://intranet.stxnext.pl"+user.getImageUrl());
                 if(result!=null){
                     BitmapUtils.saveTempBitmap(context, result, user.getId().toString());

@@ -31,6 +31,7 @@ import com.stxnext.management.android.dto.local.Lateness;
 import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.storage.sqlite.dao.DAO;
 import com.stxnext.management.android.ui.dependencies.AbsenceListAdapter;
+import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.LatenessListAdapter;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
@@ -117,7 +118,7 @@ public class MainActivity extends AbstractSimpleActivity {
                     PullToRefreshBase<ListView> refreshView) {
                 reloadingPullToRefresh = true;
                 if (api.isOnline()) {
-                    new LoadUsersTask(true).execute();
+                    new LoadUsersTask(true,false).execute();
                 } else {
                     Toast.makeText(MainActivity.this, "Unable to refresh in offline mode",
                             Toast.LENGTH_SHORT).show();
@@ -151,8 +152,7 @@ public class MainActivity extends AbstractSimpleActivity {
             return;
         }
 
-        new LoadUsersTask(false).execute();
-        new LoadPresencesTask().execute();
+        loadData();
     }
 
     @Override
@@ -166,6 +166,10 @@ public class MainActivity extends AbstractSimpleActivity {
                 finish();
             }
         }
+    }
+    
+    private void loadData(){
+        new PreloadDataTask(true).execute();
     }
 
     @Override
@@ -188,14 +192,14 @@ public class MainActivity extends AbstractSimpleActivity {
         progressView.setVisibility(View.VISIBLE);
     }
 
-    private void fillListWithData(IntranetUsersResult results) {
-        if (results != null && results.getUsers().size() > 0) {
+    private void fillListWithData(List<IntranetUser> users) {
+        if (users != null && users.size() > 0) {
             if(adapter==null){
-                adapter = new UserListAdapter(this, userList, results.getUsers());
+                adapter = new UserListAdapter(this, userList, users);
                 userList.setAdapter(adapter);
             }
             else{
-                adapter.setUsers(results.getUsers());
+                adapter.setUsers(users);
                 adapter.notifyDataSetChanged();
             }
             
@@ -224,7 +228,7 @@ public class MainActivity extends AbstractSimpleActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            new LoadUsersTask(false).execute();
+            loadData();
         }
     }
 
@@ -235,7 +239,16 @@ public class MainActivity extends AbstractSimpleActivity {
 
         @Override
         protected HTTPResponse<PresenceResult> doInBackground(Void... params) {
-            return api.getPresences();
+            HTTPResponse<PresenceResult> result = api.getPresences();
+            if(result != null && result.getExpectedResponse()!=null){
+                DAO.getInstance().getAbsence().persist(result.getExpectedResponse().getAbsences());
+                DAO.getInstance().getLate().persist(result.getExpectedResponse().getLates());
+            }
+            
+            List<Absence> bdAbsences = DAO.getInstance().getAbsence().fetch();
+            List<Lateness> bdlates = DAO.getInstance().getLate().fetch();
+            
+            return result;
         }
         
         @Override
@@ -252,18 +265,62 @@ public class MainActivity extends AbstractSimpleActivity {
         
     }
     
+    private class PreloadDataTask extends AsyncTaskEx<Void, Void, Void>{
+
+        List<Absence> dbAbsences;
+        List<Lateness> dblates;
+        List<IntranetUser> dbEntities;
+        
+        private boolean completeWithAPIFetch;
+        
+        PreloadDataTask(boolean completeWithAPIFetch){
+            this.completeWithAPIFetch = completeWithAPIFetch;
+        }
+        
+        @Override
+        protected void onPreExecute() {
+            setViewLoading(completeWithAPIFetch);
+            super.onPreExecute();
+        }
+        
+        @Override
+        protected Void doInBackground(Void... params) {
+            dbAbsences = DAO.getInstance().getAbsence().fetch();
+            dblates = DAO.getInstance().getLate().fetch();
+            dbEntities = DAO.getInstance().getIntranetUser().fetch();
+            return null;
+        }
+        
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            fillListWithData(dbEntities);
+            absenceAdapter = new AbsenceListAdapter(MainActivity.this, dbAbsences);
+            latenessAdapter = new LatenessListAdapter(MainActivity.this, dblates);
+            absenceList.setAdapter(absenceAdapter);
+            latenessList.setAdapter(latenessAdapter);
+            setViewLoading(false);
+            if(completeWithAPIFetch){
+                new LoadUsersTask(true, dbEntities.size() <= 0).execute();
+            }
+        }
+        
+    }
+    
     private class LoadUsersTask extends AsyncTask<Void, Void, HTTPResponse<IntranetUsersResult>> {
 
         private boolean pullToRefreshMode;
+        private boolean noDbData;
 
-        public LoadUsersTask(boolean pullToRefreshMode) {
+        public LoadUsersTask(boolean pullToRefreshMode, boolean noDbData) {
             this.pullToRefreshMode = pullToRefreshMode;
+            this.noDbData = noDbData;
         }
 
         @Override
         protected void onPreExecute() {
             if (!pullToRefreshMode) {
-                setViewLoading(true);
+                setViewLoading(noDbData);
             }
             super.onPreExecute();
         }
@@ -280,9 +337,6 @@ public class MainActivity extends AbstractSimpleActivity {
             if(result != null && result.getExpectedResponse()!=null){
                 DAO.getInstance().getIntranetUser().persist(result.getExpectedResponse().getUsers());
             }
-            
-            List<IntranetUser> dbEntities = DAO.getInstance().getIntranetUser().fetch();
-            
             return result;
         }
 
@@ -306,7 +360,7 @@ public class MainActivity extends AbstractSimpleActivity {
                         REQUEST_LOGIN);
             }
             else {
-                fillListWithData(result.getExpectedResponse());
+                new PreloadDataTask(false).execute();
             }
         }
     }

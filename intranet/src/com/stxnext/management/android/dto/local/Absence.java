@@ -24,7 +24,7 @@ public class Absence extends AbstractMessage {
     Number abstenceId;
     @Expose
     @SerializedName("remarks")
-    Number remarks;
+    String remarks;
 
     public Number getId() {
         return id;
@@ -46,8 +46,36 @@ public class Absence extends AbstractMessage {
         return abstenceId;
     }
 
-    public Number getRemarks() {
+    public String getRemarks() {
         return remarks;
     }
+
+    public void setId(Number id) {
+        this.id = id;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAbstenceId(Number abstenceId) {
+        this.abstenceId = abstenceId;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+    
+    
+    
+    
 
 }

@@ -66,5 +66,10 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns{
             db.endTransaction();
         }
     }
+
+    @Override
+    protected String getTableName() {
+        return TABLE;
+    }
     
 }
