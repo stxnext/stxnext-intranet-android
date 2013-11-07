@@ -7,4 +7,10 @@
         android:title="Nieobecności"/>
     <item android:id="@+id/action_late" android:title="Spóźnienia"></item>
 
+    <item android:id="@+id/search"
+          android:title="Szukaj"
+          android:icon="@drawable/search"
+          android:showAsAction="collapseActionView|ifRoom"
+          android:actionViewClass="android.widget.SearchView" />
+    
 </menu>

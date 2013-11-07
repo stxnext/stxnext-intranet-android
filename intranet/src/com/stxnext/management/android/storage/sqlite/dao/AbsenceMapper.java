@@ -31,4 +31,10 @@ public class AbsenceMapper implements EntityMapper<Absence>, AbsenceColumns {
         return result;
     }
 
+    @Override
+    public Absence mapEntity(Cursor c, int position) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

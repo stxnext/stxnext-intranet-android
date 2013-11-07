@@ -11,11 +11,13 @@ import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
 import ch.boye.httpclientandroidlib.client.ClientProtocolException;
 import ch.boye.httpclientandroidlib.client.methods.HttpGet;
+import ch.boye.httpclientandroidlib.client.methods.HttpPost;
 import ch.boye.httpclientandroidlib.entity.BufferedHttpEntity;
 import ch.boye.httpclientandroidlib.util.EntityUtils;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.PresenceResult;
+import com.stxnext.management.android.dto.local.postmessage.LateMessage;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
@@ -109,5 +111,42 @@ public class IntranetService extends AbstractService {
         EntityUtils.consume(entity);
         return result;
     }
+    
+    public HTTPResponse<Boolean> submitLateness(LateMessage messagge)
+            throws Exception {
 
+        HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
+        HttpPost request = postRequest("employees/form/late_application", messagge.toPostParams());
+        
+        HttpResponse response = executeRequestAndParseError(request, result);
+        HttpEntity entity = response.getEntity();
+        if (result.ok()) {
+            String jsonStub = EntityUtils.toString(entity);
+            saveCookies();
+        }
+        EntityUtils.consume(entity);
+        return result;
+    }
+
+    /*https://intranet.stxnext.pl/employees/form/absence_application
+
+csrf_token  ef06052295d4162cb394aee85267641fa700604f
+popup_date_end  
+popup_date_start    04/11/2013
+popup_remarks   
+popup_type  planowany
+
+
+https://intranet.stxnext.pl/employees/form/late_application
+
+csrf_token  ef06052295d4162cb394aee85267641fa700604f
+hour    09
+hour    17
+late_end    17:00
+late_start  09:00
+minute  00
+minute  00
+popup_date  
+popup_explanation*/
+    
 }

@@ -3,6 +3,7 @@ package com.stxnext.management.android.ui;
 
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,13 +25,19 @@ public class LoginActivity extends AbstractSimpleActivity {
     }
 
     @Override
+    protected void applyWindowSettings() {
+        super.applyWindowSettings();
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS); 
+    }
+    
+    @Override
     protected void setActions() {
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                setProgressBarIndeterminateVisibility(true);
                 super.onPageStarted(view, url, favicon);
-                
                 String cookies = CookieManager.getInstance().getCookie("https://intranet.stxnext.pl");
                 Log.e("","url:"+url);
                 if(url.contains("code=")){
@@ -43,8 +50,15 @@ public class LoginActivity extends AbstractSimpleActivity {
                     CookieManager.getInstance().removeAllCookie();
                     
                     setResult(RESULT_SIGNED_IN);
+                    setProgressBarIndeterminateVisibility(false);
                     finish();
                 }
+            }
+            
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                setProgressBarIndeterminateVisibility(false);
             }
         });
 

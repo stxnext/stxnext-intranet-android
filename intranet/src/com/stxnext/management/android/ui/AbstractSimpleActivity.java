@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -35,11 +36,16 @@ public abstract class AbstractSimpleActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applyWindowSettings();
         prefs = StoragePrefs.getInstance(this);
         api = IntranetApi.getInstance(getApplication());
         setContentView(getContentResourceId());
         fillViews();
         setActions();
+    }
+    
+    protected void applyWindowSettings(){
+        
     }
     
     protected boolean isUserSignedIn(){

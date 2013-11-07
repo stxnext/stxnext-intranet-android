@@ -1,15 +1,16 @@
 
 package com.stxnext.management.android.ui.dependencies;
 
+import java.nio.MappedByteBuffer;
 import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,25 +18,27 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.BaseAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.common.base.Strings;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
+import com.stxnext.management.android.storage.sqlite.EntityMapper;
+import com.stxnext.management.android.storage.sqlite.dao.IntranetUserMapper;
 import com.stxnext.management.android.ui.controls.RoundedImageView;
 import com.stxnext.management.android.web.api.IntranetApi;
 
-public class UserListAdapter extends BaseAdapter {
+public class UserListAdapter extends CursorAdapter {
 
     private final Activity context;
-    private List<IntranetUser> users;
+    //private List<IntranetUser> users;
     private LruCache<Long, Bitmap> memoryCache;
     private HashMap<Long, LoadImageTask> taskIdentifiers = new HashMap<Long, LoadImageTask>();
     private ListView listView;
     private IntranetApi api;
+    private EntityMapper<IntranetUser> userMapper;
 
     public void addBitmapToMemoryCache(Long key, Bitmap bitmap) {
         if (key != null && bitmap != null) {
@@ -55,11 +58,12 @@ public class UserListAdapter extends BaseAdapter {
         return null;
     }
 
-    public UserListAdapter(Activity context, ListView listView, List<IntranetUser> users) {
+    public UserListAdapter(Activity context, Cursor c, ListView listView) {
+        super(context, c);
         this.context = context;
-        this.users = users;
-        this.listView = listView;
+        this.listView=listView;
         this.api = IntranetApi.getInstance(context.getApplication());
+        this.userMapper = new IntranetUserMapper();
         
         final int memClass = ((ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
@@ -71,26 +75,52 @@ public class UserListAdapter extends BaseAdapter {
                 }
             };
     }
-
-    public void setUsers(List<IntranetUser> users) {
-        this.users = users;
-    }
-
-    @Override
-    public int getCount() {
-        return users.size();
-    }
-
+    
     @Override
     public Object getItem(int position) {
-        return users.get(position);
+        return userMapper.mapEntity(getCursor(), position);
     }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+    
+    /*
+    public UserListAdapter(Activity context, ListView listView, List<IntranetUser> users) {
+        this.context = context;
+        this.users = users;
+        this.listView = listView;
+        this.api = IntranetApi.getInstance(context.getApplication());
+        this.userMapper = new IntranetUserMapper();
+        
+        final int memClass = ((ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
+            final int cacheSize = 1024 * 1024 * memClass;
+            memoryCache = new LruCache<Long, Bitmap>(cacheSize) {
+                @Override
+                protected int sizeOf(Long key, Bitmap bitmap) {
+                return bitmap.getRowBytes() * bitmap.getHeight();
+                }
+            };
     }
+    */
 
+//    public void setUsers(List<IntranetUser> users) {
+//        this.users = users;
+//    }
+//
+//    @Override
+//    public int getCount() {
+//        return users.size();
+//    }
+//
+//    @Override
+//    public Object getItem(int position) {
+//        return users.get(position);
+//    }
+//
+//    @Override
+//    public long getItemId(int position) {
+//        return position;
+//    }
+
+    /*
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -147,7 +177,7 @@ public class UserListAdapter extends BaseAdapter {
 
         return holder.parent;
     }
-
+*/
     public class ViewHolder implements Cloneable {
         private TextView userNameView;
         private RoundedImageView userImageView;
@@ -224,4 +254,63 @@ public class UserListAdapter extends BaseAdapter {
         }
         view.getAnimation().startNow();
         }
+
+    
+    
+    @Override
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        final ViewHolder holder = new ViewHolder();
+
+        LayoutInflater inflater = LayoutInflater.from(this.context);
+        
+        View parentView = inflater
+            .inflate(R.layout.adapter_users, null);
+        
+        TextView nameView = (TextView) parentView
+                .findViewById(R.id.nameView);
+        RoundedImageView imageView = (RoundedImageView) parentView
+                .findViewById(R.id.userImageView);
+        
+        imageView.setCornersRadius(12F);
+
+        holder.parent = parentView;
+        holder.userNameView = nameView;
+        holder.userImageView = imageView;
+        holder.position = cursor.getPosition();
+        
+        parentView.setTag(holder);
+        
+        return parentView;
+    }
+
+    @Override
+    public void bindView(View view, Context context, Cursor cursor) {
+        
+        final ViewHolder holder = (ViewHolder) view.getTag();
+        int position = cursor.getPosition();
+        final IntranetUser user = userMapper.mapEntity(cursor, position);
+        
+        holder.userNameView.setText(user.getName());
+        boolean taskInProgress = taskIdentifiers.get(user
+                .getId().longValue()) != null;
+
+        holder.userImageView.setImageBitmap(null);
+        holder.userImageView.setVisibility(View.INVISIBLE);
+        if (!taskInProgress) {
+            holder.userImageView.setVisibility(View.INVISIBLE);
+            Bitmap bmp = getBitmapFromMemCache(user.getId()
+                    .longValue());
+            if (bmp != null) {
+                holder.userImageView.setImageBitmap(bmp);
+                holder.userImageView.setVisibility(View.VISIBLE);
+            }
+            else {
+                LoadImageTask imageTask = new LoadImageTask(
+                        holder, user, position);
+                taskIdentifiers.put(user.getId().longValue(),
+                        imageTask);
+                imageTask.execute();
+            }
+        }
+    }
 }

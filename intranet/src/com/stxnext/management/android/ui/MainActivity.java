@@ -3,7 +3,11 @@ package com.stxnext.management.android.ui;
 
 import java.util.List;
 
+import android.app.SearchManager;
+import android.app.SearchManager.OnCancelListener;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
+import android.widget.SearchView.OnCloseListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,19 +53,67 @@ public class MainActivity extends AbstractSimpleActivity {
     TextView progressText;
     ProgressBar progressBar;
     DrawerLayout drawerLayout;
-    
+
     ViewGroup leftDrawer;
     ViewGroup rightDrawer;
-    
+
     ListView absenceList;
     ListView latenessList;
-    private String[] titles;
+
+    Cursor usersCursor;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+        
+        searchManager.setOnCancelListener(new OnCancelListener() {
+            
+            @Override
+            public void onCancel() {
+                if(searchQuery!=null){
+                    Cursor dbEntities = DAO.getInstance().getIntranetUser()
+                            .fetchFilteredCursor(null);
+                    fillListWithData(dbEntities, true);
+                    searchQuery = null;
+                }
+            }
+        });
+
         return true;
     }
+
+    String searchQuery = null;
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            searchQuery = intent.getStringExtra(SearchManager.QUERY);
+            Cursor dbEntities = DAO.getInstance().getIntranetUser()
+                    .fetchFilteredCursor(searchQuery);
+            fillListWithData(dbEntities, true);
+        }
+    }
+    
+    @Override
+    public void onBackPressed() {
+        if(searchQuery!=null){
+            Cursor dbEntities = DAO.getInstance().getIntranetUser()
+                    .fetchFilteredCursor(null);
+            fillListWithData(dbEntities, true);
+            searchQuery = null;
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
+    
 
     @Override
     protected void fillViews() {
@@ -68,24 +122,16 @@ public class MainActivity extends AbstractSimpleActivity {
         progressText = (TextView) findViewById(R.id.progressText);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         userList = ptrListViewWrapper.getRefreshableView();
-        
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         leftDrawer = (ViewGroup) findViewById(R.id.left_drawer);
         rightDrawer = (ViewGroup) findViewById(R.id.right_drawer);
-        
+
         absenceList = (ListView) findViewById(R.id.absenceList);
         latenessList = (ListView) findViewById(R.id.latenessList);
-        
+
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        // set up the drawer's list view with items and click listener
-//        absenceList.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Absence item = (Absence) absenceAdapter.getItem(position);
-//                Toast.makeText(MainActivity.this, item.get, Toast.LENGTH_SHORT).
-//            }
-//        });
-        
+
         latenessList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,18 +145,17 @@ public class MainActivity extends AbstractSimpleActivity {
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        if(item.getItemId() == R.id.action_absences){
+        if (item.getItemId() == R.id.action_absences) {
             drawerLayout.openDrawer(GravityCompat.START);
         }
-        else if(item.getItemId() == R.id.action_late){
+        else if (item.getItemId() == R.id.action_late) {
             drawerLayout.openDrawer(GravityCompat.END);
         }
         return super.onMenuItemSelected(featureId, item);
     }
-    
+
     @Override
     protected void setActions() {
-        
 
         ptrListViewWrapper.setOnRefreshListener(new OnRefreshListener2<ListView>() {
             @Override
@@ -118,7 +163,7 @@ public class MainActivity extends AbstractSimpleActivity {
                     PullToRefreshBase<ListView> refreshView) {
                 reloadingPullToRefresh = true;
                 if (api.isOnline()) {
-                    new LoadUsersTask(true,false).execute();
+                    new LoadUsersTask(true, false).execute();
                 } else {
                     Toast.makeText(MainActivity.this, "Unable to refresh in offline mode",
                             Toast.LENGTH_SHORT).show();
@@ -134,25 +179,27 @@ public class MainActivity extends AbstractSimpleActivity {
                     PullToRefreshBase<ListView> refreshView) {
             }
         });
-        
+
         userList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                
-                IntranetUser user = (IntranetUser) adapter.getItem(position-1);
-                Log.e("","tapped user: "+user.getName()+" at position:"+position);
+
+                IntranetUser user = (IntranetUser) adapter.getItem(position - 1);
+                Log.e("", "tapped user: " + user.getName() + " at position:" + position);
                 Intent intent = new Intent(MainActivity.this, UserDetailsActivity.class);
                 intent.putExtra(UserDetailsActivity.EXTRA_USER, user);
                 startActivity(intent);
             }
         });
-        
+
         if (!isUserSignedIn()) {
             startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_LOGIN);
-            return;
+            new PreloadDataTask(false).execute();
+        }
+        else {
+            loadData();
         }
 
-        loadData();
     }
 
     @Override
@@ -167,10 +214,17 @@ public class MainActivity extends AbstractSimpleActivity {
             }
         }
     }
-    
-    private void loadData(){
+
+    private void loadData() {
         new PreloadDataTask(true).execute();
     }
+
+    //
+    // @Override
+    // protected void onResume() {
+    // super.onResume();
+    // new LoadUsersTask(false, false).execute();
+    // }
 
     @Override
     protected int getContentResourceId() {
@@ -192,24 +246,29 @@ public class MainActivity extends AbstractSimpleActivity {
         progressView.setVisibility(View.VISIBLE);
     }
 
-    private void fillListWithData(List<IntranetUser> users) {
-        if (users != null && users.size() > 0) {
-            if(adapter==null){
-                adapter = new UserListAdapter(this, userList, users);
+    private void fillListWithData(Cursor c, boolean animated) {
+
+        if (c.getCount() > 0) {
+            if (adapter == null) {
+                usersCursor = c;
+                startManagingCursor(c);
+                adapter = new UserListAdapter(this, c, userList);
                 userList.setAdapter(adapter);
             }
-            else{
-                adapter.setUsers(users);
+            else {
+                stopManagingCursor(usersCursor);
+                startManagingCursor(c);
+                usersCursor = c;
+                adapter.changeCursor(c);
                 adapter.notifyDataSetChanged();
             }
-            
-            applyListAnimation(userList);
+            if (animated)
+                applyListAnimation(userList);
         }
         else {
             setNoResults();
         }
     }
-
 
     private class AuthUserTask extends AsyncTask<Void, Void, Void> {
 
@@ -234,79 +293,50 @@ public class MainActivity extends AbstractSimpleActivity {
 
     private AbsenceListAdapter absenceAdapter;
     private LatenessListAdapter latenessAdapter;
-    
-    private class LoadPresencesTask extends AsyncTask<Void, Void, HTTPResponse<PresenceResult>>{
 
-        @Override
-        protected HTTPResponse<PresenceResult> doInBackground(Void... params) {
-            HTTPResponse<PresenceResult> result = api.getPresences();
-            if(result != null && result.getExpectedResponse()!=null){
-                DAO.getInstance().getAbsence().persist(result.getExpectedResponse().getAbsences());
-                DAO.getInstance().getLate().persist(result.getExpectedResponse().getLates());
-            }
-            
-            List<Absence> bdAbsences = DAO.getInstance().getAbsence().fetch();
-            List<Lateness> bdlates = DAO.getInstance().getLate().fetch();
-            
-            return result;
-        }
-        
-        @Override
-        protected void onPostExecute(HTTPResponse<PresenceResult> result) {
-            super.onPostExecute(result);
-            if(result != null && result.getExpectedResponse()!=null){
-                absenceAdapter = new AbsenceListAdapter(MainActivity.this, result.getExpectedResponse().getAbsences());
-                latenessAdapter = new LatenessListAdapter(MainActivity.this, result.getExpectedResponse().getLates());
-                
-                absenceList.setAdapter(absenceAdapter);
-                latenessList.setAdapter(latenessAdapter);
-            }
-        }
-        
-    }
-    
-    private class PreloadDataTask extends AsyncTaskEx<Void, Void, Void>{
+    private class PreloadDataTask extends AsyncTaskEx<Void, Void, Void> {
 
         List<Absence> dbAbsences;
         List<Lateness> dblates;
-        List<IntranetUser> dbEntities;
-        
+        Cursor dbEntities;
+
         private boolean completeWithAPIFetch;
-        
-        PreloadDataTask(boolean completeWithAPIFetch){
+
+        PreloadDataTask(boolean completeWithAPIFetch) {
             this.completeWithAPIFetch = completeWithAPIFetch;
         }
-        
+
         @Override
         protected void onPreExecute() {
             setViewLoading(completeWithAPIFetch);
             super.onPreExecute();
         }
-        
+
         @Override
         protected Void doInBackground(Void... params) {
             dbAbsences = DAO.getInstance().getAbsence().fetch();
             dblates = DAO.getInstance().getLate().fetch();
-            dbEntities = DAO.getInstance().getIntranetUser().fetch();
+            dbEntities = DAO.getInstance().getIntranetUser().fetchFilteredCursor(null);
             return null;
         }
-        
+
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            fillListWithData(dbEntities);
+
+            fillListWithData(dbEntities, completeWithAPIFetch);
             absenceAdapter = new AbsenceListAdapter(MainActivity.this, dbAbsences);
             latenessAdapter = new LatenessListAdapter(MainActivity.this, dblates);
             absenceList.setAdapter(absenceAdapter);
             latenessList.setAdapter(latenessAdapter);
             setViewLoading(false);
-            if(completeWithAPIFetch){
-                new LoadUsersTask(true, dbEntities.size() <= 0).execute();
+            if (completeWithAPIFetch) {
+                new LoadUsersTask(true, dbEntities.getCount() <= 0).execute();
             }
         }
-        
+
     }
-    
+
     private class LoadUsersTask extends AsyncTask<Void, Void, HTTPResponse<IntranetUsersResult>> {
 
         private boolean pullToRefreshMode;
@@ -327,16 +357,26 @@ public class MainActivity extends AbstractSimpleActivity {
 
         @Override
         protected HTTPResponse<IntranetUsersResult> doInBackground(Void... params) {
-            if(pullToRefreshMode){
-                if(adapter!=null){
+            if (pullToRefreshMode) {
+                if (adapter != null) {
                     adapter.clearCache();
                     BitmapUtils.cleanTempDir(AppIntranet.getApp());
                 }
             }
             HTTPResponse<IntranetUsersResult> result = api.getUsers();
-            if(result != null && result.getExpectedResponse()!=null){
-                DAO.getInstance().getIntranetUser().persist(result.getExpectedResponse().getUsers());
+            if (result != null && result.getExpectedResponse() != null) {
+                DAO.getInstance().getIntranetUser()
+                        .persist(result.getExpectedResponse().getUsers());
             }
+
+            HTTPResponse<PresenceResult> presenceResult = api.getPresences();
+            if (presenceResult != null && presenceResult.getExpectedResponse() != null) {
+                DAO.getInstance().getAbsence()
+                        .persist(presenceResult.getExpectedResponse().getAbsences());
+                DAO.getInstance().getLate()
+                        .persist(presenceResult.getExpectedResponse().getLates());
+            }
+
             return result;
         }
 
@@ -364,5 +404,5 @@ public class MainActivity extends AbstractSimpleActivity {
             }
         }
     }
-    
+
 }

@@ -31,4 +31,10 @@ public class LatenessMapper  implements EntityMapper<Lateness>, LatenessColumns 
         return result;
     }
 
+    @Override
+    public Lateness mapEntity(Cursor c, int position) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

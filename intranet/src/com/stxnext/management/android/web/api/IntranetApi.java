@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.PresenceResult;
+import com.stxnext.management.android.dto.local.postmessage.LateMessage;
 import com.stxnext.management.android.web.api.services.IntranetService;
 
 public class IntranetApi extends AbstractApi {
@@ -70,6 +71,17 @@ public class IntranetApi extends AbstractApi {
                     @Override
                     public Bitmap call() throws Exception {
                         return service.downloadBitmap(url);
+                    }
+                });
+        return result;
+    }
+    
+    public HTTPResponse<Boolean> submitLateness(final LateMessage messagge){
+        HTTPResponse<Boolean> result = call(false,
+                new ApiExecutable<HTTPResponse<Boolean>>() {
+                    @Override
+                    public HTTPResponse<Boolean> call() throws Exception {
+                        return service.submitLateness(messagge);
                     }
                 });
         return result;

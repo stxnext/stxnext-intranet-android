@@ -7,4 +7,5 @@ import android.database.Cursor;
 
 public interface EntityMapper<T> {
     public List<T> mapEntity(Cursor c);
+    public T mapEntity(Cursor c, int position);
 }
