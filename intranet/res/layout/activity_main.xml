@@ -18,7 +18,7 @@
             android:divider="#bbbbbb"
             android:dividerHeight="1dp"
             android:fadingEdge="none"
-            android:fastScrollEnabled="false"
+            android:fastScrollEnabled="true"
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false"
             android:smoothScrollbar="true"
@@ -48,15 +48,29 @@
     <RelativeLayout
         android:id="@+id/left_drawer"
         android:layout_width="220dp"
+        android:background="#111"
         android:layout_height="match_parent"
-        android:layout_gravity="end"
-         >
+        android:layout_gravity="start" >
+
+        <TextView
+            android:gravity="center"
+            android:textSize="17sp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+            android:id="@+id/absenceTitleView"
+            android:background="#aaaaaa"
+            android:text="Nieobecności"
+            android:textColor="#000000"
+            android:textStyle="bold" 
+            />
 
         <ListView
-            android:id="@+id/latenessList"
+            android:layout_below="@+id/absenceTitleView"
+            android:id="@+id/absenceList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#111"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp" />
     </RelativeLayout>
@@ -64,14 +78,50 @@
     <RelativeLayout
         android:id="@+id/right_drawer"
         android:layout_width="220dp"
-        android:layout_gravity="start"
-        android:layout_height="match_parent" >
+        android:background="#111"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" >
+
+        <TextView
+            android:gravity="center"
+            android:textSize="17sp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+            android:id="@+id/remoteWorkHeader"
+            android:background="#aaaaaa"
+            android:text="Work From Home"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <ListView
-            android:id="@+id/absenceList"
+            android:layout_below="@+id/remoteWorkHeader"
+            android:id="@+id/remoteWorkList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            
+            android:layout_height="wrap_content"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+        
+        <TextView
+            android:layout_below="@+id/remoteWorkList"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+            android:id="@+id/oooHeader"
+            android:background="#aaaaaa"
+            android:text="Out of Office"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+        
+        <ListView
+            android:layout_below="@+id/oooHeader"
+            android:id="@+id/oooList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="#111"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp" />

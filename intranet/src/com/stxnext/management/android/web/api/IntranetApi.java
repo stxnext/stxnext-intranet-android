@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.dto.local.postmessage.LateMessage;
+import com.stxnext.management.android.storage.sqlite.dao.DAO;
 import com.stxnext.management.android.web.api.services.IntranetService;
 
 public class IntranetApi extends AbstractApi {
@@ -14,6 +15,7 @@ public class IntranetApi extends AbstractApi {
     private static IntranetApi _instance;
 
     IntranetService service;
+    DAO dao;
 
     public static IntranetApi getInstance(Application app) {
         if (_instance == null) {
@@ -25,10 +27,16 @@ public class IntranetApi extends AbstractApi {
     private IntranetApi(Application app) {
         super(app);
         service = new IntranetService();
+        dao = DAO.getInstance();
     }
 
     public void clearCookies() {
         service.clearCookies();
+    }
+    
+    public void signOut(){
+        service.clearCookies();
+        dao.clearAll();
     }
 
     public HTTPResponse<IntranetUsersResult> getUsers() {

@@ -4,17 +4,20 @@ package com.stxnext.management.android.ui;
 import java.util.List;
 
 import android.app.SearchManager;
-import android.app.SearchManager.OnCancelListener;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,9 +25,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.base.Strings;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -58,7 +63,8 @@ public class MainActivity extends AbstractSimpleActivity {
     ViewGroup rightDrawer;
 
     ListView absenceList;
-    ListView latenessList;
+    ListView remoteWorkList;
+    ListView outOfOfficeList;
 
     Cursor usersCursor;
 
@@ -66,26 +72,48 @@ public class MainActivity extends AbstractSimpleActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
 
-        SearchManager searchManager =
+        final SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
-        
-        searchManager.setOnCancelListener(new OnCancelListener() {
-            
+
+        searchView.setOnKeyListener(new OnKeyListener() {
             @Override
-            public void onCancel() {
-                if(searchQuery!=null){
-                    Cursor dbEntities = DAO.getInstance().getIntranetUser()
-                            .fetchFilteredCursor(null);
-                    fillListWithData(dbEntities, true);
-                    searchQuery = null;
-                }
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Log.e("","on search key presssed");
+                return false;
             }
         });
-
+        
+        searchView.setOnCloseListener(new OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                Log.e("","on search close");
+                return false;
+            }
+        });
+        
+        searchView.setOnQueryTextListener(new OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.e("","onQueryTextSubmit");
+                return false;
+            }
+            
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText != null){
+                    searchQuery = new String(newText);
+                    Cursor dbEntities = DAO.getInstance().getIntranetUser()
+                            .fetchFilteredCursor(searchQuery);
+                    fillListWithData(dbEntities, false);
+                }
+                return false;
+            }
+        });
+      
         return true;
     }
 
@@ -97,23 +125,22 @@ public class MainActivity extends AbstractSimpleActivity {
             searchQuery = intent.getStringExtra(SearchManager.QUERY);
             Cursor dbEntities = DAO.getInstance().getIntranetUser()
                     .fetchFilteredCursor(searchQuery);
-            fillListWithData(dbEntities, true);
+            fillListWithData(dbEntities, false);
         }
     }
-    
+
     @Override
     public void onBackPressed() {
-        if(searchQuery!=null){
+        if (searchQuery != null) {
             Cursor dbEntities = DAO.getInstance().getIntranetUser()
                     .fetchFilteredCursor(null);
             fillListWithData(dbEntities, true);
             searchQuery = null;
         }
-        else{
+        else {
             super.onBackPressed();
         }
     }
-    
 
     @Override
     protected void fillViews() {
@@ -122,26 +149,42 @@ public class MainActivity extends AbstractSimpleActivity {
         progressText = (TextView) findViewById(R.id.progressText);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         userList = ptrListViewWrapper.getRefreshableView();
-
+        userList.setFastScrollAlwaysVisible(true);
+        
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         leftDrawer = (ViewGroup) findViewById(R.id.left_drawer);
         rightDrawer = (ViewGroup) findViewById(R.id.right_drawer);
 
+        remoteWorkList = (ListView) findViewById(R.id.remoteWorkList);
+        outOfOfficeList = (ListView) findViewById(R.id.oooList);
+        
         absenceList = (ListView) findViewById(R.id.absenceList);
-        latenessList = (ListView) findViewById(R.id.latenessList);
+        //latenessList = (ListView) findViewById(R.id.latenessList);
 
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        latenessList.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Lateness item = (Lateness) latenessAdapter.getItem(position);
-                Toast.makeText(MainActivity.this, item.getExplanation(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        
+        remoteWorkList.setOnItemClickListener(latenessClickAdapter);
+        outOfOfficeList.setOnItemClickListener(latenessClickAdapter);
     }
+    
+    private OnItemClickListener latenessClickAdapter = new OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Lateness item = (Lateness) parent.getAdapter().getItem(position);
+            Toast.makeText(MainActivity.this, item.getExplanation(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     private boolean reloadingPullToRefresh;
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(!isUserSignedIn()){
+            menu.removeItem(R.id.action_signout);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
@@ -151,9 +194,19 @@ public class MainActivity extends AbstractSimpleActivity {
         else if (item.getItemId() == R.id.action_late) {
             drawerLayout.openDrawer(GravityCompat.END);
         }
+        else if(item.getItemId() == R.id.action_signout){
+            displayDialogBox("Logowanie", "Czy na pewno chcesz się wylogować?",signOutAction );
+        }
         return super.onMenuItemSelected(featureId, item);
     }
 
+    private Runnable signOutAction = new Runnable() {
+        public void run() {
+            api.signOut();
+            onSignInAction();
+        }
+    };
+    
     @Override
     protected void setActions() {
 
@@ -193,13 +246,17 @@ public class MainActivity extends AbstractSimpleActivity {
         });
 
         if (!isUserSignedIn()) {
-            startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_LOGIN);
-            new PreloadDataTask(false).execute();
+            onSignInAction();
         }
         else {
             loadData();
         }
 
+    }
+    
+    private void onSignInAction(){
+        startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_LOGIN);
+        new PreloadDataTask(false).execute();
     }
 
     @Override
@@ -234,7 +291,7 @@ public class MainActivity extends AbstractSimpleActivity {
     private void setViewLoading(boolean loading) {
         ptrListViewWrapper.setVisibility(loading ? View.GONE : View.VISIBLE);
         progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
-        progressText.setText("Wczytuj�...");
+        progressText.setText("Wczytuję...");
         progressView.setVisibility(loading ? View.VISIBLE : View.GONE);
 
     }
@@ -242,7 +299,7 @@ public class MainActivity extends AbstractSimpleActivity {
     private void setNoResults() {
         ptrListViewWrapper.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
-        progressText.setText("Brak wynik�w");
+        progressText.setText("Brak wyników");
         progressView.setVisibility(View.VISIBLE);
     }
 
@@ -264,6 +321,8 @@ public class MainActivity extends AbstractSimpleActivity {
             }
             if (animated)
                 applyListAnimation(userList);
+            else
+                setViewLoading(false);
         }
         else {
             setNoResults();
@@ -292,30 +351,36 @@ public class MainActivity extends AbstractSimpleActivity {
     }
 
     private AbsenceListAdapter absenceAdapter;
-    private LatenessListAdapter latenessAdapter;
+    private LatenessListAdapter outOfOfficeAdapter;
+    private LatenessListAdapter workFromHomeAdapter;
 
     private class PreloadDataTask extends AsyncTaskEx<Void, Void, Void> {
 
         List<Absence> dbAbsences;
-        List<Lateness> dblates;
+        List<Lateness> dbOutOfOffice;
+        List<Lateness> dbWorkFromHome;
         Cursor dbEntities;
-
+        boolean anythingInDb;
+        
         private boolean completeWithAPIFetch;
 
         PreloadDataTask(boolean completeWithAPIFetch) {
             this.completeWithAPIFetch = completeWithAPIFetch;
+            anythingInDb = DAO.getInstance().getIntranetUser().getEntityCount()>0;
         }
 
         @Override
         protected void onPreExecute() {
-            setViewLoading(completeWithAPIFetch);
+            
+            setViewLoading(!anythingInDb);
             super.onPreExecute();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             dbAbsences = DAO.getInstance().getAbsence().fetch();
-            dblates = DAO.getInstance().getLate().fetch();
+            dbOutOfOffice = DAO.getInstance().getLate().fetch(false);
+            dbWorkFromHome = DAO.getInstance().getLate().fetch(true);
             dbEntities = DAO.getInstance().getIntranetUser().fetchFilteredCursor(null);
             return null;
         }
@@ -326,10 +391,15 @@ public class MainActivity extends AbstractSimpleActivity {
 
             fillListWithData(dbEntities, completeWithAPIFetch);
             absenceAdapter = new AbsenceListAdapter(MainActivity.this, dbAbsences);
-            latenessAdapter = new LatenessListAdapter(MainActivity.this, dblates);
+            
+            outOfOfficeAdapter = new LatenessListAdapter(MainActivity.this, dbOutOfOffice);
+            workFromHomeAdapter = new LatenessListAdapter(MainActivity.this, dbWorkFromHome);
+            
+            outOfOfficeList.setAdapter(outOfOfficeAdapter);
+            remoteWorkList.setAdapter(workFromHomeAdapter);
             absenceList.setAdapter(absenceAdapter);
-            latenessList.setAdapter(latenessAdapter);
-            setViewLoading(false);
+            
+            setViewLoading(!anythingInDb);
             if (completeWithAPIFetch) {
                 new LoadUsersTask(true, dbEntities.getCount() <= 0).execute();
             }
@@ -365,12 +435,17 @@ public class MainActivity extends AbstractSimpleActivity {
             }
             HTTPResponse<IntranetUsersResult> result = api.getUsers();
             if (result != null && result.getExpectedResponse() != null) {
+                DAO.getInstance().getIntranetUser().clear();
                 DAO.getInstance().getIntranetUser()
                         .persist(result.getExpectedResponse().getUsers());
             }
 
             HTTPResponse<PresenceResult> presenceResult = api.getPresences();
             if (presenceResult != null && presenceResult.getExpectedResponse() != null) {
+                
+                DAO.getInstance().getAbsence().clear();
+                DAO.getInstance().getLate().clear();
+                
                 DAO.getInstance().getAbsence()
                         .persist(presenceResult.getExpectedResponse().getAbsences());
                 DAO.getInstance().getLate()

@@ -1,3 +1,4 @@
+
 package com.stxnext.management.android.ui;
 
 import android.app.Activity;
@@ -9,7 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -22,17 +22,20 @@ import com.stxnext.management.android.dependencies.googleplay.GooglePlayServiceE
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.web.api.IntranetApi;
 
-public abstract class AbstractSimpleActivity extends Activity{
-    //common tools
+public abstract class AbstractSimpleActivity extends Activity {
+    // common tools
     protected StoragePrefs prefs;
     protected IntranetApi api;
-    
-    //required methods
+
+    // required methods
     protected abstract void fillViews();
+
     protected abstract void setActions();
+
     protected abstract int getContentResourceId();
-    //the rest
-    
+
+    // the rest
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +46,15 @@ public abstract class AbstractSimpleActivity extends Activity{
         fillViews();
         setActions();
     }
-    
-    protected void applyWindowSettings(){
-        
+
+    protected void applyWindowSettings() {
+
     }
-    
-    protected boolean isUserSignedIn(){
+
+    protected boolean isUserSignedIn() {
         return api.isUserSignedIn();
     }
-    
+
     protected boolean servicesConnected() {
 
         // Check that Google Play services is available
@@ -64,49 +67,67 @@ public abstract class AbstractSimpleActivity extends Activity{
 
             // Continue
             return true;
-        // Google Play services was not available for some reason
+            // Google Play services was not available for some reason
         } else {
             showErrorDialog(resultCode);
             return false;
         }
     }
-    
-    
+
+    protected void displayDialogBox(String title, String message, final Runnable onOkClicked) {
+        Builder builder = new android.app.AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        onOkClicked.run();
+                    }
+                });
+        builder.setOnCancelListener(cancelListener);
+        builder.show();
+    }
+
     private void showErrorDialog(int errorCode) {
 
         // Get the error dialog from Google Play services
         Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-            errorCode,
-            this,
-            GooglePlayServiceErrorMessages.CONNECTION_FAILURE_RESOLUTION_REQUEST);
+                errorCode,
+                this,
+                GooglePlayServiceErrorMessages.CONNECTION_FAILURE_RESOLUTION_REQUEST);
 
         if (errorDialog != null) {
             errorDialog.setOnCancelListener(cancelListener);
             errorDialog.show();
         }
-        else{
+        else {
             Builder builder = new android.app.AlertDialog.Builder(this)
-            .setTitle("Update Google Play")
-            .setMessage(GooglePlayServiceErrorMessages.getErrorString(this, errorCode))
-            .setNegativeButton("Update", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) { 
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+GooglePlayServicesUtil.GOOGLE_PLAY_SERVICES_PACKAGE)));
-                    finish();
-                }
-             });
+                    .setTitle("Update Google Play")
+                    .setMessage(GooglePlayServiceErrorMessages.getErrorString(this, errorCode))
+                    .setNegativeButton("Update", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                                    .parse("http://play.google.com/store/apps/details?id="
+                                            + GooglePlayServicesUtil.GOOGLE_PLAY_SERVICES_PACKAGE)));
+                            finish();
+                        }
+                    });
             builder.setOnCancelListener(cancelListener);
             builder.show();
-             //.show();
+            // .show();
         }
     }
-    
+
     private OnCancelListener cancelListener = new OnCancelListener() {
         @Override
         public void onCancel(DialogInterface dialog) {
             finish();
         }
     };
-    
+
     protected void applyListAnimation(ViewGroup view) {
         AnimationSet set = new AnimationSet(true);
 
@@ -121,5 +142,5 @@ public abstract class AbstractSimpleActivity extends Activity{
         LayoutAnimationController controller = new LayoutAnimationController(set, 0.1f);
         view.setLayoutAnimation(controller);
     }
-    
+
 }

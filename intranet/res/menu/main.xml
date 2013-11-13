@@ -13,4 +13,8 @@
           android:showAsAction="collapseActionView|ifRoom"
           android:actionViewClass="android.widget.SearchView" />
     
+    <item android:id="@+id/action_signout"
+          android:showAsAction="never"
+          android:title="Wyloguj" />
+    
 </menu>

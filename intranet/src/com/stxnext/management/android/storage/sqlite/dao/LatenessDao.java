@@ -19,9 +19,11 @@ public class LatenessDao extends AbstractDAO implements LatenessColumns {
         this.mapper = new LatenessMapper();
     }
 
-    public List<Lateness> fetch() {
+    public List<Lateness> fetch(boolean workFromHome) {
+        String selection = WORK_FROM_HOME+"=? ";
+        String[] selectionArgs = new String[]{workFromHome?"1":"0"};
         List<Lateness> result = new ArrayList<Lateness>();
-        Cursor c = db.query(TABLE, null, null, null, null, null, null);
+        Cursor c = db.query(TABLE, null, selection, selectionArgs, null, null, null);
         result = mapper.mapEntity(c);
         c.close();
         return result;

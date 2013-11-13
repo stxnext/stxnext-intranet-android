@@ -36,17 +36,37 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
         return result;
     }
 
+    private static final String BASE_USER_QUERY = "select u."+EXTERNAL_ID+" as _id,u.* from "+TABLE+" u where u."+IS_CLIENT+"=? AND u."+IS_ACTIVE+"=? ";
+    
     public Cursor fetchFilteredCursor(String query) {
+        String[] queryParams = new String[] {
+                "0", "1"
+        };
         String queryFilter = "";
         if(!Strings.isNullOrEmpty(query)){
-            queryFilter = " AND u."+NAME+" like '%"+query+"%' ";
+            queryFilter = " AND u."+NAME+" like ? ";
+            queryParams = new String[] {
+                    "0", "1","%"+query+"%"
+            };
         }
-        Cursor cursor = db.rawQuery("select u."+EXTERNAL_ID+" as _id,u.* from "+TABLE+" u where u."+IS_CLIENT+"=? AND u."+IS_ACTIVE+"=? "+queryFilter+" order by u."+NAME+" asc", new String[] {
-                "0", "1"
-        });
+        Cursor cursor = db.rawQuery(BASE_USER_QUERY+queryFilter+" order by u."+NAME+" asc", queryParams);
 
+        
+        //'%"+query+"%'
         return cursor;
     }
+    
+    
+    public int getEntityCount(){
+        Cursor cursor = db.rawQuery("select count (_id) from ("+BASE_USER_QUERY+")", new String[] {
+                "0", "1"
+        });
+        cursor.moveToFirst();
+        int result = cursor.getInt(0);
+        cursor.close();
+        return result;
+    }
+    
 
     public void persist(List<IntranetUser> users) {
         db.beginTransaction();
