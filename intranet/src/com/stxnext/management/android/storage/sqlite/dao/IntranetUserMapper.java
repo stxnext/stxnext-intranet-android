@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.database.Cursor;
 
+import com.stxnext.management.android.dto.local.AbsenceDisplayData;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.storage.sqlite.EntityMapper;
 
@@ -55,6 +56,34 @@ public class IntranetUserMapper implements EntityMapper<IntranetUser>, IntranetU
         //u.setStopWork(c.getString(c.getColumnIndex(START_FULLTIME_WORK)));
         //u.setStartWork(startWork)
         u.setTasksLink(c.getString(c.getColumnIndex(TASKS_LINK)));
+        
+        
+        //here goes the join... unfortunately we need to be able to fastload sqldata 
+        //(cursor, quicksearch) and be able to display lateness/absence at the same time
+        int absenceStartColumn = c.getColumnIndex(JOIN_ABSENCE_START);
+        int absenceEndColumn = c.getColumnIndex(JOIN_ABSENCE_END);
+        int absenceExplanationColumn = c.getColumnIndex(JOIN_ABSENCE_REMARKS);
+        
+        int latenessStartColumn = c.getColumnIndex(JOIN_LATENESS_START);
+        int latenessEndColumn = c.getColumnIndex(JOIN_LATENESS_END);
+        int latenessExplanationColumn = c.getColumnIndex(JOIN_LATENESS_EXPLANATION);
+        
+        if(!c.isNull(absenceStartColumn)||!c.isNull(absenceEndColumn)||!c.isNull(absenceExplanationColumn)){
+            AbsenceDisplayData data = new AbsenceDisplayData();
+            data.start = c.getString(absenceStartColumn);
+            data.end = c.getString(absenceEndColumn);
+            data.explanation = c.getString(absenceExplanationColumn);
+            u.setAbsenceDisplayData(data);
+        }
+        
+        if(!c.isNull(latenessStartColumn)||!c.isNull(latenessEndColumn)||!c.isNull(latenessExplanationColumn)){
+            AbsenceDisplayData data = new AbsenceDisplayData();
+            data.start = c.getString(latenessStartColumn);
+            data.end = c.getString(latenessEndColumn);
+            data.explanation = c.getString(latenessExplanationColumn);
+            u.setLatenessDisplayData(data);
+        }
+        
         return u;
     }
 

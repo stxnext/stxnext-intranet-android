@@ -430,7 +430,7 @@ public class MainActivity extends AbstractSimpleActivity {
             if (pullToRefreshMode) {
                 if (adapter != null) {
                     adapter.clearCache();
-                    BitmapUtils.cleanTempDir(AppIntranet.getApp());
+                    //BitmapUtils.cleanTempDir(AppIntranet.getApp());
                 }
             }
             HTTPResponse<IntranetUsersResult> result = api.getUsers();

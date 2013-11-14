@@ -75,7 +75,26 @@ public class IntranetUser extends AbstractMessage implements Serializable{
     @SerializedName("groups")
     ArrayList<String> groups = new ArrayList<String>();
     
+    private AbsenceDisplayData absenceDisplayData;
     
+    private AbsenceDisplayData latenessDisplayData;
+
+    public AbsenceDisplayData getAbsenceDisplayData() {
+        return absenceDisplayData;
+    }
+    
+    public void setAbsenceDisplayData(AbsenceDisplayData absenceDisplayData) {
+        this.absenceDisplayData = absenceDisplayData;
+    }
+    
+    public AbsenceDisplayData getLatenessDisplayData() {
+        return latenessDisplayData;
+    }
+
+    public void setLatenessDisplayData(AbsenceDisplayData latenessDisplayData) {
+        this.latenessDisplayData = latenessDisplayData;
+    }
+
     public Number getId() {
         return id;
     }
@@ -148,28 +167,28 @@ public class IntranetUser extends AbstractMessage implements Serializable{
 
     public ArrayList<UserProperty> getProperties(){
         if(this.properties.size()<=0){
-            putProperty("Email", "<a href = \"mailto:"+this.email+"\">"+this.email+"</a>");
-            putProperty("IRC", this.irc);
+            putProperty("Email", "<a href = \"mailto:"+this.email+"\">"+this.email+"</a>",email);
+            putProperty("IRC", this.irc,this.irc);
             if(this.location!=null && this.location.size()==3)
-                putProperty("Lokalizacja", this.location.get(1));
-            putProperty("Telefon", "<a href = \"tel:"+this.phone+"\">"+this.phone+"</a>");
-            putProperty("Telefon stacjonarny", "<a href = \"tel:"+this.phoneDesk+"\">"+this.phoneDesk+"</a>");
+                putProperty("Lokalizacja", this.location.get(1),this.location.get(1));
+            putProperty("Telefon", "<a href = \"tel:"+this.phone+"\">"+this.phone+"</a>",this.phone);
+            putProperty("Telefon stacjonarny", "<a href = \"tel:"+this.phoneDesk+"\">"+this.phoneDesk+"</a>",this.phoneDesk);
             if(this.roles!=null && this.roles.size()>0){
                 String rolesString="";
                 for(String role : this.roles){
                     rolesString+=role+"\n";
                 }
-                putProperty("Role", rolesString);
+                putProperty("Role", rolesString,rolesString);
             }
             
-            putProperty("Skype", this.skype);
+            putProperty("Skype", this.skype,this.skype);
         }
         return this.properties;
     }
     
     
-    private void putProperty(String name, Object value){
-        if(value!=null && !Strings.isNullOrEmpty(String.valueOf(value))){
+    private void putProperty(String name, Object value, Object originalValue){
+        if(originalValue!=null && !Strings.isNullOrEmpty(String.valueOf(originalValue))){
             this.properties.add(new UserProperty(name, String.valueOf(value)));
         }
     }

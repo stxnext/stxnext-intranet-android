@@ -2,10 +2,12 @@
 
     <item
         android:id="@+id/action_absences"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:showAsAction="never"
         android:title="Nieobecności"/>
-    <item android:id="@+id/action_late" android:title="Spóźnienia"></item>
+    <item android:id="@+id/action_late"
+        android:orderInCategory="2"
+         android:title="Spóźnienia"></item>
 
     <item android:id="@+id/search"
           android:title="Szukaj"
@@ -15,6 +17,7 @@
     
     <item android:id="@+id/action_signout"
           android:showAsAction="never"
+          android:orderInCategory="3"
           android:title="Wyloguj" />
     
 </menu>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
@@ -7,31 +7,159 @@
     android:paddingBottom="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="2dp"
-    android:paddingTop="10dp"
-    android:weightSum="1" >
-
-    <LinearLayout
-        android:id="@+id/imageHolder"
-        android:layout_width="80dip"
-        android:layout_height="80dip"
-        android:orientation="horizontal" >
-
-        <com.stxnext.management.android.ui.controls.RoundedImageView
-            android:id="@+id/userImageView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scaleType="centerCrop"
-            android:visibility="gone" />
-    </LinearLayout>
+    android:paddingTop="10dp" >
 
     <TextView
-        android:id="@+id/nameView"
+        android:id="@+id/lateView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginLeft="12dp"
-        android:text="user name"
-        android:textColor="#000000"
-        android:textSize="17dp" />
+        android:gravity="center"
+        android:rotation="11"
+        android:text="Spóźnienie"
+        android:textColor="#22000000"
+        android:textSize="42dp"
+        android:visibility="gone"
+        android:textStyle="bold" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/imageHolder"
+            android:layout_width="88dip"
+            android:layout_height="88dip"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal" >
+
+            <com.stxnext.management.android.ui.controls.RoundedImageView
+                android:id="@+id/userImageView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageHolder"
+            android:layout_gravity="left|top"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@+id/imageHolder"
+            android:text="user name"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_marginLeft="12dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageHolder"
+            android:layout_below="@+id/nameView"
+            android:layout_toRightOf="@+id/imageHolder"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:orientation="horizontal" >
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:orientation="vertical"
+                    android:stretchColumns="*" >
+
+                    <TableRow android:id="@+id/phoneRow" 
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|bottom"
+                            android:text="Phone:"
+                            android:textColor="#000000"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/phoneView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|bottom"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="666666666 234 234 23 424 32 4"
+                            android:textColor="#000000"
+                            android:textSize="13dp" />
+                    </TableRow>
+
+                    <TableRow 
+                        android:visibility="gone"
+                        android:id="@+id/ircRow" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|bottom"
+                            android:text="IRC:"
+                            android:textColor="#000000"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/ircView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|bottom"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="zziomalski"
+                            android:textColor="#000000"
+                            android:textSize="13dp" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/roleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="P2"
+                    android:visibility="gone"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/groupView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="admin"
+                    android:visibility="gone"
+                    android:textColor="#000000"
+                    android:textSize="14dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

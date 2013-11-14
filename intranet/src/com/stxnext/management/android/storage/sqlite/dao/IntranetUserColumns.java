@@ -22,4 +22,12 @@ public interface IntranetUserColumns {
         public static final String AVAILABILITY_LINK = "availability_link";
         public static final String ROLES = "roles";
         public static final String GROUPS = "groups";
+        
+        public static final String JOIN_ABSENCE_START = "absence_start";
+        public static final String JOIN_ABSENCE_END = "absence_end";
+        public static final String JOIN_ABSENCE_REMARKS = "absence_remarks";
+        
+        public static final String JOIN_LATENESS_START = "lateness_start";
+        public static final String JOIN_LATENESS_END = "lateness_end";
+        public static final String JOIN_LATENESS_EXPLANATION = "lateness_explanation";
     }

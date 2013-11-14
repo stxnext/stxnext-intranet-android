@@ -36,7 +36,13 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
         return result;
     }
 
-    private static final String BASE_USER_QUERY = "select u."+EXTERNAL_ID+" as _id,u.* from "+TABLE+" u where u."+IS_CLIENT+"=? AND u."+IS_ACTIVE+"=? ";
+    private static final String BASE_USER_QUERY = "select u."+EXTERNAL_ID+" as _id," +
+    		"ab."+AbsenceColumns.END+" as "+JOIN_ABSENCE_END+", " +"ab."+AbsenceColumns.START+" as "+JOIN_ABSENCE_START+", " +"ab."+AbsenceColumns.REMARKS+" as "+JOIN_ABSENCE_REMARKS+", " +
+    		"la."+LatenessColumns.END+" as "+JOIN_LATENESS_END+", " +"la."+LatenessColumns.START+" as "+JOIN_LATENESS_START+", " +"la."+LatenessColumns.EXPLANATION+" as "+JOIN_LATENESS_EXPLANATION +","+
+    		" u.* from "+TABLE+" u" +
+    		" left join "+AbsenceColumns.TABLE+" ab on ab."+AbsenceColumns.USER_ID+"=u."+EXTERNAL_ID+"" +
+            " left join "+LatenessColumns.TABLE+" la on la."+LatenessColumns.USER_ID+"=u."+EXTERNAL_ID+
+    				" where u."+IS_CLIENT+"=? AND u."+IS_ACTIVE+"=? ";
     
     public Cursor fetchFilteredCursor(String query) {
         String[] queryParams = new String[] {
@@ -49,10 +55,8 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
                     "0", "1","%"+query+"%"
             };
         }
-        Cursor cursor = db.rawQuery(BASE_USER_QUERY+queryFilter+" order by u."+NAME+" asc", queryParams);
+        Cursor cursor = db.rawQuery(BASE_USER_QUERY+queryFilter+" group by u."+EXTERNAL_ID+" order by u."+NAME+" asc", queryParams);
 
-        
-        //'%"+query+"%'
         return cursor;
     }
     

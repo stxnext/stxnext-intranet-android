@@ -1,9 +1,7 @@
 
 package com.stxnext.management.android.ui.dependencies;
 
-import java.nio.MappedByteBuffer;
 import java.util.HashMap;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -21,8 +19,10 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.common.base.Strings;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.storage.sqlite.EntityMapper;
@@ -33,7 +33,6 @@ import com.stxnext.management.android.web.api.IntranetApi;
 public class UserListAdapter extends CursorAdapter {
 
     private final Activity context;
-    //private List<IntranetUser> users;
     private LruCache<Long, Bitmap> memoryCache;
     private HashMap<Long, LoadImageTask> taskIdentifiers = new HashMap<Long, LoadImageTask>();
     private ListView listView;
@@ -81,106 +80,18 @@ public class UserListAdapter extends CursorAdapter {
         return userMapper.mapEntity(getCursor(), position);
     }
     
-    /*
-    public UserListAdapter(Activity context, ListView listView, List<IntranetUser> users) {
-        this.context = context;
-        this.users = users;
-        this.listView = listView;
-        this.api = IntranetApi.getInstance(context.getApplication());
-        this.userMapper = new IntranetUserMapper();
-        
-        final int memClass = ((ActivityManager) context
-                .getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
-            final int cacheSize = 1024 * 1024 * memClass;
-            memoryCache = new LruCache<Long, Bitmap>(cacheSize) {
-                @Override
-                protected int sizeOf(Long key, Bitmap bitmap) {
-                return bitmap.getRowBytes() * bitmap.getHeight();
-                }
-            };
-    }
-    */
-
-//    public void setUsers(List<IntranetUser> users) {
-//        this.users = users;
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return users.size();
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        return users.get(position);
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        return position;
-//    }
-
-    /*
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-
-        final IntranetUser item = users.get(position);
-        if (convertView == null) {
-            holder = new ViewHolder();
-            LayoutInflater inflater = LayoutInflater.from(this.context);
-            convertView = inflater.inflate(R.layout.adapter_users, parent, false);
-
-            TextView nameView = (TextView) convertView
-                    .findViewById(R.id.nameView);
-            RoundedImageView imageView = (RoundedImageView) convertView
-                    .findViewById(R.id.userImageView);
-            imageView.setCornersRadius(12F);
-
-            holder.parent = convertView;
-            holder.userNameView = nameView;
-            holder.userImageView = imageView;
-            holder.position = position;
-            convertView.setTag(holder);
-        }
-        else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        return prepareView(position, item, holder);
-    }
-
-    private View prepareView(final int position, final IntranetUser item,
-            final ViewHolder holder) {
-        holder.userNameView.setText(item.getName());
-        boolean taskInProgress = taskIdentifiers.get(item
-                .getId().longValue()) != null;
-
-        holder.userImageView.setImageBitmap(null);
-        holder.userImageView.setVisibility(View.INVISIBLE);
-        if (!taskInProgress) {
-            holder.userImageView.setVisibility(View.INVISIBLE);
-            Bitmap bmp = getBitmapFromMemCache(item.getId()
-                    .longValue());
-            if (bmp != null) {
-                holder.userImageView.setImageBitmap(bmp);
-                holder.userImageView.setVisibility(View.VISIBLE);
-            }
-            else {
-                LoadImageTask imageTask = new LoadImageTask(
-                        holder, item, position);
-                taskIdentifiers.put(item.getId().longValue(),
-                        imageTask);
-                imageTask.execute();
-            }
-        }
-
-        return holder.parent;
-    }
-*/
+   
     public class ViewHolder implements Cloneable {
         private TextView userNameView;
         private RoundedImageView userImageView;
+        private TableRow phoneRow;
+        private TableRow ircRow;
+        private TextView roleView;
+        private TextView groupView;
+        private TextView lateView;
+        private TextView phoneView;
+        private TextView ircView;
+        
         private View parent;
         private Integer position;
     }
@@ -211,7 +122,6 @@ public class UserListAdapter extends CursorAdapter {
             Bitmap result = null;
             result = BitmapUtils.getTempBitmap(context, user.getId().toString());
             if(result == null){
-                //Log.e("got saved bitmap",user.getImageUrl());
                 result = api.downloadBitmap("https://intranet.stxnext.pl"+user.getImageUrl());
                 if(result!=null){
                     BitmapUtils.saveTempBitmap(context, result, user.getId().toString());
@@ -270,9 +180,25 @@ public class UserListAdapter extends CursorAdapter {
                 .findViewById(R.id.nameView);
         RoundedImageView imageView = (RoundedImageView) parentView
                 .findViewById(R.id.userImageView);
+        holder.phoneRow = (TableRow) parentView.findViewById(R.id.phoneRow);
+        holder.ircRow = (TableRow) parentView
+                .findViewById(R.id.ircRow);
+        holder.roleView =  (TextView) parentView
+                .findViewById(R.id.roleView);
+        holder.groupView =  (TextView) parentView
+                .findViewById(R.id.groupView);
+        holder.lateView =  (TextView) parentView
+                .findViewById(R.id.lateView);
+        
+        holder.phoneView =  (TextView) parentView
+                .findViewById(R.id.phoneView);
+        holder.ircView =  (TextView) parentView
+                .findViewById(R.id.ircView);        
         
         imageView.setCornersRadius(12F);
 
+      
+        
         holder.parent = parentView;
         holder.userNameView = nameView;
         holder.userImageView = imageView;
@@ -294,6 +220,53 @@ public class UserListAdapter extends CursorAdapter {
         boolean taskInProgress = taskIdentifiers.get(user
                 .getId().longValue()) != null;
 
+        if(!Strings.isNullOrEmpty(user.getPhone())){
+            holder.phoneView.setText(user.getPhone());
+            holder.phoneRow.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.phoneRow.setVisibility(View.GONE);
+        }
+        
+        
+        if(!Strings.isNullOrEmpty(user.getIrc())){
+            holder.ircView.setText(user.getIrc());
+            holder.ircRow.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.ircRow.setVisibility(View.GONE);
+        }
+        
+        boolean absenceDataPresent = false;
+        if(user.getAbsenceDisplayData()!=null){
+            holder.lateView.setText("Nieobecność");
+            absenceDataPresent = true;
+        }
+        
+        else if(user.getLatenessDisplayData()!=null){
+            holder.lateView.setText("Spóźnienie");
+            absenceDataPresent= true;
+        }
+        
+        holder.lateView.setVisibility(absenceDataPresent?View.VISIBLE:View.GONE);
+        
+        if(user.getRoles().size()>0){
+            holder.roleView.setText(user.getRoles().get(0));
+            holder.roleView.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.roleView.setVisibility(View.GONE);
+        }
+        
+        
+        if(user.getGroups().size()>0){
+            holder.groupView.setText(user.getGroups().get(0));
+            holder.groupView.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.groupView.setVisibility(View.GONE);
+        }
+        
         holder.userImageView.setImageBitmap(null);
         holder.userImageView.setVisibility(View.INVISIBLE);
         if (!taskInProgress) {
