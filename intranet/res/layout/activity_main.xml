@@ -22,14 +22,41 @@
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false"
             android:smoothScrollbar="true"
-            ptr:ptrMode="pullDownFromTop" />
-
+            ptr:ptrMode="pullDownFromTop"
+            android:visibility="visible"
+             />
+        
+        <LinearLayout 
+            android:id="@+id/noresultView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" 
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:text="Brak wyników" />
+            
+            <Button 
+                android:id="@+id/reloadButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Przeładuj"
+                />
+            
+        </LinearLayout>
+        
         <LinearLayout
             android:id="@+id/progressView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+            android:visibility="visible"
+            >
 
             <ProgressBar
                 android:id="@+id/progressBar"

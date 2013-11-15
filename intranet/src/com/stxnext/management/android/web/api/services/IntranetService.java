@@ -19,6 +19,7 @@ import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.dto.local.postmessage.LateMessage;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
+import com.stxnext.management.android.web.api.HTTPError;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
 public class IntranetService extends AbstractService {
@@ -32,20 +33,21 @@ public class IntranetService extends AbstractService {
         super();
     }
 
-    public Bitmap downloadBitmap(String url) {
+    public HTTPResponse<Bitmap> downloadBitmap(String url) {
         HttpGet request = new HttpGet(url);
-        Bitmap result = null;
+        HTTPResponse<Bitmap> result = new HTTPResponse<Bitmap>();
         try {
             serviceState.getClient().getConnectionManager().closeExpiredConnections();
             HttpResponse response;
             response = serviceState.getClient().execute(request, serviceState.getLocalContext());
 
             if (response.getStatusLine().getStatusCode() != 200) {
-                return null;
+        	result.setError(new HTTPError(response.getStatusLine().getStatusCode(), response.getStatusLine().toString()));
+                return result;
             }
             BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(response.getEntity());
             InputStream instream = bufHttpEntity.getContent();
-            result = BitmapUtils.decodeSampledBitmapFromResource(instream, 0, 0);
+            result.setExpectedResponse(BitmapUtils.decodeSampledBitmapFromResource(instream, 0, 0));
             instream.close();
         } catch (ClientProtocolException e) {
             // TODO Auto-generated catch block

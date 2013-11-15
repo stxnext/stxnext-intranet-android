@@ -17,9 +17,9 @@
         android:gravity="center"
         android:rotation="11"
         android:text="Spóźnienie"
-        android:textColor="#22000000"
+        android:textColor="#220000ff"
         android:textSize="42dp"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -38,7 +38,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:scaleType="centerCrop"
-                android:visibility="gone" />
+                android:visibility="invisible" />
         </LinearLayout>
 
         <TextView
@@ -78,7 +78,7 @@
                     android:stretchColumns="*" >
 
                     <TableRow android:id="@+id/phoneRow" 
-                        android:visibility="gone"
+                        android:visibility="invisible"
                         >
 
                         <TextView
@@ -103,7 +103,7 @@
                     </TableRow>
 
                     <TableRow 
-                        android:visibility="gone"
+                        android:visibility="invisible"
                         android:id="@+id/ircRow" >
 
                         <TextView
@@ -143,7 +143,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="P2"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     android:textColor="#000000"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -155,7 +155,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="admin"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     android:textColor="#000000"
                     android:textSize="14dp" />
             </LinearLayout>

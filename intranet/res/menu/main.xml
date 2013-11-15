@@ -20,4 +20,9 @@
           android:orderInCategory="3"
           android:title="Wyloguj" />
     
+    <item android:id="@+id/action_signin"
+          android:showAsAction="never"
+          android:orderInCategory="4"
+          android:title="Zaloguj" />
+    
 </menu>

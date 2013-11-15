@@ -14,9 +14,6 @@ public class IntranetApi extends AbstractApi {
 
     private static IntranetApi _instance;
 
-    IntranetService service;
-    DAO dao;
-
     public static IntranetApi getInstance(Application app) {
         if (_instance == null) {
             _instance = new IntranetApi(app);
@@ -26,22 +23,15 @@ public class IntranetApi extends AbstractApi {
 
     private IntranetApi(Application app) {
         super(app);
-        service = new IntranetService();
-        dao = DAO.getInstance();
     }
 
     public void clearCookies() {
         service.clearCookies();
     }
     
-    public void signOut(){
-        service.clearCookies();
-        dao.clearAll();
-    }
-
     public HTTPResponse<IntranetUsersResult> getUsers() {
         HTTPResponse<IntranetUsersResult> result = call(false,
-                new ApiExecutable<HTTPResponse<IntranetUsersResult>>() {
+                new ApiExecutable<IntranetUsersResult>() {
                     @Override
                     public HTTPResponse<IntranetUsersResult> call() throws Exception {
                         return service.getUsers();
@@ -52,7 +42,7 @@ public class IntranetApi extends AbstractApi {
 
     public HTTPResponse<PresenceResult> getPresences() {
         HTTPResponse<PresenceResult> result = call(false,
-                new ApiExecutable<HTTPResponse<PresenceResult>>() {
+                new ApiExecutable<PresenceResult>() {
                     @Override
                     public HTTPResponse<PresenceResult> call() throws Exception {
                         return service.getPresences();
@@ -63,7 +53,7 @@ public class IntranetApi extends AbstractApi {
 
     public HTTPResponse<String> loginWithCode(final String code) {
         HTTPResponse<String> result = call(false,
-                new ApiExecutable<HTTPResponse<String>>() {
+                new ApiExecutable<String>() {
                     @Override
                     public HTTPResponse<String> call() throws Exception {
                         return service.loginWithCode(code);
@@ -73,11 +63,11 @@ public class IntranetApi extends AbstractApi {
 
     }
 
-    public Bitmap downloadBitmap(final String url) {
-        Bitmap result = call(false,
+    public HTTPResponse<Bitmap> downloadBitmap(final String url) {
+	HTTPResponse<Bitmap> result = call(false,
                 new ApiExecutable<Bitmap>() {
                     @Override
-                    public Bitmap call() throws Exception {
+                    public HTTPResponse<Bitmap> call() throws Exception {
                         return service.downloadBitmap(url);
                     }
                 });
@@ -86,7 +76,7 @@ public class IntranetApi extends AbstractApi {
     
     public HTTPResponse<Boolean> submitLateness(final LateMessage messagge){
         HTTPResponse<Boolean> result = call(false,
-                new ApiExecutable<HTTPResponse<Boolean>>() {
+                new ApiExecutable<Boolean>() {
                     @Override
                     public HTTPResponse<Boolean> call() throws Exception {
                         return service.submitLateness(messagge);

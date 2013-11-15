@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 
 import android.util.Log;
+import ch.boye.httpclientandroidlib.Header;
 import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
 import ch.boye.httpclientandroidlib.NameValuePair;
@@ -49,6 +50,13 @@ public abstract class AbstractService {
         serviceState.getClient().getConnectionManager().closeExpiredConnections();
         HttpResponse response = serviceState.getClient().execute(request, serviceState.getLocalContext());
         if (result != null) {
+//            if (response.containsHeader("Location")) {
+//                Header[] locations = response.getAllHeaders();
+//                if (locations.length > 0){
+//                    Log.e("redirect to",locations[0].getValue());
+//                }
+//                    //context.setAttribute(LAST_REDIRECT_URL, locations[0].getValue());
+//            }
             result.setError(errorResolver.resolve(response));
         }
 

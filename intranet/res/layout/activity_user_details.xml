@@ -5,9 +5,10 @@
 
     <LinearLayout
         android:id="@+id/loadingView"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" >
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -17,40 +18,67 @@
     <LinearLayout
         android:id="@+id/loadedView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:visibility="gone"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
-        >
+        android:visibility="gone" >
 
         <LinearLayout
             android:id="@+id/headerView"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:padding="12dp">
+            android:layout_height="wrap_content"
+            android:padding="12dp" >
 
             <LinearLayout
                 android:id="@+id/imageHolder"
-                android:layout_width="160dip"
-                android:layout_height="160dip"
+                android:layout_width="150dip"
+                android:layout_height="150dip"
                 android:orientation="horizontal" >
 
                 <com.stxnext.management.android.ui.controls.RoundedImageView
                     android:id="@+id/userImageView"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:scaleType="centerCrop"
-                     />
+                    android:scaleType="centerCrop" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/nameView"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="12dp"
-                android:text="user name"
-                android:textColor="#000000"
-                android:textSize="17dp" />
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/nameView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="12dp"
+                    android:text="user name"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/lateTimeView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="#ff0000"
+                    android:text="12.12.2012 - 13.12.2012"
+                    android:textSize="16dp" 
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:textColor="#ff0000"
+                    android:id="@+id/lateDescriptionView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="Jade na Malediwy"
+                    android:textSize="15dp" 
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <ListView
