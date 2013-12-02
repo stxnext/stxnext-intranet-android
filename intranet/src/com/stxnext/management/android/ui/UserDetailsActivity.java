@@ -44,7 +44,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity {
 	lateTimeView = (TextView) findViewById(R.id.lateTimeView);
 	lateDescriptionView = (TextView) findViewById(R.id.lateDescriptionView);
 
-	userImageView.setCornersRadius(12F);
+	//userImageView.setCornersRadius(12F);
 
 	Bundle bundle = getIntent().getExtras();
 	user = (IntranetUser) bundle.getSerializable(EXTRA_USER);

@@ -47,7 +47,7 @@ public class IntranetService extends AbstractService {
             }
             BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(response.getEntity());
             InputStream instream = bufHttpEntity.getContent();
-            result.setExpectedResponse(BitmapUtils.decodeSampledBitmapFromResource(instream, 0, 0));
+            result.setExpectedResponse(BitmapUtils.getRoundedCornerBitmap(BitmapUtils.decodeSampledBitmapFromResource(instream, 0, 0), 18F));
             instream.close();
         } catch (ClientProtocolException e) {
             // TODO Auto-generated catch block
@@ -129,26 +129,5 @@ public class IntranetService extends AbstractService {
         EntityUtils.consume(entity);
         return result;
     }
-
-    /*https://intranet.stxnext.pl/employees/form/absence_application
-
-csrf_token  ef06052295d4162cb394aee85267641fa700604f
-popup_date_end  
-popup_date_start    04/11/2013
-popup_remarks   
-popup_type  planowany
-
-
-https://intranet.stxnext.pl/employees/form/late_application
-
-csrf_token  ef06052295d4162cb394aee85267641fa700604f
-hour    09
-hour    17
-late_end    17:00
-late_start  09:00
-minute  00
-minute  00
-popup_date  
-popup_explanation*/
     
 }

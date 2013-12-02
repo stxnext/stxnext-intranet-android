@@ -32,7 +32,7 @@ public class TestAPI  extends ApplicationTestCase<AppIntranet>{
     public void testUsersList(){
         String code = prefs.getAuthCode();
         api.loginWithCode(code);
-        api.getUsers("");
+        //api.getUsers("");
     }
     
 }

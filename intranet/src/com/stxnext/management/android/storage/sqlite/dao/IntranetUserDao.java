@@ -17,7 +17,7 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
     private EntityMapper<IntranetUser> mapper;
 
     public IntranetUserDao() {
-        this.mapper = new IntranetUserMapper();
+        this.mapper = new IntranetUserMapper(true);
     }
 
     public List<IntranetUser> fetch() {

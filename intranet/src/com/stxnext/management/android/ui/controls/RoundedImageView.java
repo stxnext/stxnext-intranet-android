@@ -34,13 +34,13 @@ public class RoundedImageView  extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (cornersRadius != null && !this.isHWAcceleratedSafe(canvas)) {
-            pathRect.right = this.getWidth();
-            pathRect.bottom = this.getHeight()+pathOffset;
-            clipPath.addRoundRect(pathRect, this.cornersRadius,
-                    this.cornersRadius, Path.Direction.CW);
-            canvas.clipPath(this.clipPath);
-        }
+//        if (cornersRadius != null && !this.isHWAcceleratedSafe(canvas)) {
+//            pathRect.right = this.getWidth();
+//            pathRect.bottom = this.getHeight()+pathOffset;
+//            clipPath.addRoundRect(pathRect, this.cornersRadius,
+//                    this.cornersRadius, Path.Direction.CW);
+//            canvas.clipPath(this.clipPath);
+//        }
 
         super.onDraw(canvas);
     }
@@ -53,11 +53,11 @@ public class RoundedImageView  extends ImageView {
     }
 
     public void setCornersRadius(Float cornersRadius) {
-        if (cornersRadius != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-            }
-        }
+//        if (cornersRadius != null) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//                setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+//            }
+//        }
         this.cornersRadius = cornersRadius;
     }
 
