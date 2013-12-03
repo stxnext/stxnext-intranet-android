@@ -18,7 +18,7 @@
             android:layout_marginLeft="12dp"
             android:text="key"
             android:textColor="#0000ff"
-            android:textSize="18dp"
+            android:textSize="@dimen/details_standard_text_size"
             android:textStyle="bold" />
 
         <TextView
@@ -27,10 +27,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/details_item_margin"
             android:text="value"
             android:textColor="#000000"
-            android:textSize="17dp" />
+            android:textSize="@dimen/details_standard_text_size" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -28,7 +28,6 @@ import android.util.Log;
 
 public class BitmapUtils {
 
-    
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth,
             int reqHeight) {
         final int height = options.outHeight;
@@ -37,17 +36,20 @@ public class BitmapUtils {
 
         if (height > reqHeight || width > reqWidth) {
             if (width > height) {
-                inSampleSize = Math.round((float)height / (float)reqHeight);
+                inSampleSize = Math.round((float) height / (float) reqHeight);
             } else {
-                inSampleSize = Math.round((float)width / (float)reqWidth);
+                inSampleSize = Math.round((float) width / (float) reqWidth);
             }
         }
         return inSampleSize;
     }
 
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float radius) {
+        if (bitmap == null)
+            return null;
+
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-            bitmap.getHeight(), Config.ARGB_8888);
+                bitmap.getHeight(), Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
         final int color = 0xff424242;
@@ -64,13 +66,13 @@ public class BitmapUtils {
         canvas.drawBitmap(bitmap, rect, rect, paint);
 
         return output;
-        }
+    }
 
     public static Drawable scaleDrawable(Resources res, Drawable original, float percentage) {
-        Bitmap bitmap = ((BitmapDrawable)original).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) original).getBitmap();
 
-        int newWidth = (int)(bitmap.getWidth() * percentage);
-        int newHeight = (int)(bitmap.getHeight() * percentage);
+        int newWidth = (int) (bitmap.getWidth() * percentage);
+        int newHeight = (int) (bitmap.getHeight() * percentage);
 
         Drawable result = new BitmapDrawable(res, Bitmap.createScaledBitmap(bitmap, newWidth,
                 newHeight, true));
@@ -85,21 +87,19 @@ public class BitmapUtils {
 
         if (height > width) {
             if (height > maxHeight) {
-                scale = (float)maxHeight / (float)height;
+                scale = (float) maxHeight / (float) height;
             }
         } else {
             if (width > maxWidth) {
-                scale = (float)maxWidth / (float)width;
+                scale = (float) maxWidth / (float) width;
             }
         }
 
-        width = (int)(width * scale);
-        height = (int)(height * scale);
+        width = (int) (width * scale);
+        height = (int) (height * scale);
 
         return Bitmap.createScaledBitmap(bitmap, width, height, false);
     }
-
-    
 
     public static synchronized Bitmap decodeSampledBitmapFromFile(String path) {
 
@@ -131,7 +131,7 @@ public class BitmapUtils {
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable)drawable).getBitmap();
+            return ((BitmapDrawable) drawable).getBitmap();
         }
 
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
@@ -172,7 +172,7 @@ public class BitmapUtils {
     public static byte[] bitmapToBytes(Bitmap bitmap, Bitmap.CompressFormat format) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         if (format == null) {
-            format = Bitmap.CompressFormat.JPEG;
+            format = Bitmap.CompressFormat.PNG;
         }
 
         bitmap.compress(format, 100, stream);
@@ -193,14 +193,14 @@ public class BitmapUtils {
         FileOutputStream out;
         try {
             out = new FileOutputStream(file);
-            bitmap.compress(CompressFormat.JPEG, 100, out);
+            bitmap.compress(CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
 
         } catch (FileNotFoundException e) {
-            Log.e(BitmapUtils.class.getName(),"",e);
+            Log.e(BitmapUtils.class.getName(), "", e);
         } catch (IOException e) {
-            Log.e(BitmapUtils.class.getName(),"",e);
+            Log.e(BitmapUtils.class.getName(), "", e);
         }
     }
 

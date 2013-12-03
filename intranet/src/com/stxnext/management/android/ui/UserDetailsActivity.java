@@ -3,33 +3,32 @@ package com.stxnext.management.android.ui;
 
 import java.util.List;
 
-import android.annotation.SuppressLint;
-import android.app.LoaderManager;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract.Contacts;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.AbsenceDisplayData;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.UserProperty;
+import com.stxnext.management.android.sync.ContactSyncManager;
+import com.stxnext.management.android.sync.ContactSyncManager.ProviderPhone;
+import com.stxnext.management.android.sync.ContactSyncManager.SyncManagerListener;
 import com.stxnext.management.android.ui.controls.RoundedImageView;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.PropertyListAdapter;
 
-public class UserDetailsActivity extends AbstractSimpleActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class UserDetailsActivity extends AbstractSimpleActivity implements SyncManagerListener{
 
     public static final String EXTRA_USER = "user";
 
@@ -44,6 +43,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements Loade
     ViewGroup loadedView;
 
     IntranetUser user;
+    ContactSyncManager syncManager;
 
     @Override
     protected void fillViews() {
@@ -60,8 +60,9 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements Loade
         Bundle bundle = getIntent().getExtras();
         user = (IntranetUser) bundle.getSerializable(EXTRA_USER);
 
+        syncManager = new ContactSyncManager(this);
+        
         nameView.setText(user.getName());
-
         if (user.getAbsenceDisplayData() != null)
             insertAbsenceData(user.getAbsenceDisplayData(), lateTimeView,
                     lateDescriptionView);
@@ -85,10 +86,8 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements Loade
         return super.onOptionsItemSelected(item);
     }
     
-    
     private void addContactAction(){
-        getLoaderManager().initLoader(0, null, this);
-        
+        syncManager.launchQuery(getLoaderManager(), user.getPhone(), user.getName());
     }
 
     private void insertAbsenceData(AbsenceDisplayData data,
@@ -160,63 +159,65 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements Loade
             setViewLoading(false);
             applyListAnimation(listView);
         }
-
     }
 
+    private void prepareAndMergePhones(List<ProviderPhone> phones){
+        for(ProviderPhone phone : phones){
+            phone.setNumberToUpdate(user.getPhone());
+        }
+        syncManager.mergeContacts(phones, user);
+    }
+    
     // Content provider related
-
-    @SuppressLint("InlinedApi")
-    private static final String[] PROJECTION =
-    {
-            Contacts._ID,
-            Contacts.LOOKUP_KEY,
-            Build.VERSION.SDK_INT
-            >= Build.VERSION_CODES.HONEYCOMB ?
-                    Contacts.DISPLAY_NAME_PRIMARY :
-                    Contacts.DISPLAY_NAME
-
-    };
-
-    private static final String SELECTION =
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                    Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?" :
-                    Contacts.DISPLAY_NAME + " LIKE ?";
-    private String mSearchString;
-    private String[] mSelectionArgs = {
-        mSearchString
-    };
-
-    public Cursor mCursor;
-    public int mLookupKeyIndex;
-    public int mIdIndex;
-    public String mCurrentLookupKey;
-    public long mCurrentId;
-    Uri mSelectedContactUri;
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-        mSelectionArgs[0] = "%" + mSearchString + "%";
-        // Starts the query
-        return new CursorLoader(
-                this,
-                Contacts.CONTENT_URI,
-                PROJECTION,
-                SELECTION,
-                mSelectionArgs,
-                null
-        );
+    private void showImportDialog(String content, final List<ProviderPhone> phones){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                this);
+        alertDialog.setTitle("Import");
+        alertDialog.setMessage(content);
+         
+        alertDialog.setPositiveButton("Tak",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        prepareAndMergePhones(phones);
+                        Toast.makeText(getApplicationContext(),
+                                "You clicked on YES", Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                });
+        alertDialog.setNegativeButton("Nie",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),
+                                "You clicked on NO", Toast.LENGTH_SHORT)
+                                .show();
+                        dialog.cancel();
+                    }
+                });
+         
+        alertDialog.show();
     }
-
+    
     @Override
-    public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
-        // TODO Auto-generated method stub
+    public void onPhoneQueryComplete(List<ProviderPhone> phones) {
+        if(isFinishing())
+            return;
         
+        StringBuilder content = new StringBuilder();
+        if(phones.size()>0){
+            content.append("Znaleziono następujące kontakty pasujące do osoby:\n");
+            for(ProviderPhone phone : phones){
+                content.append(phone.getDisplayName()).append("\n").append(phone.getPhoneNumber());
+                content.append("\n\n");
+            }
+        }
+        else{
+            ProviderPhone phone = syncManager.new ProviderPhone();
+            phone.setDisplayName(user.getName());
+            phone.setNumberToUpdate(user.getPhone());
+            phones.add(phone);
+        }
+        content.append("Czy dodać nowy numer jako numer STXNext i oraz dodać kontakt do grupy STX?\n(Kontakt pozostanie w dotychczasowych grupach)");
+        Log.e("","cursor loading finished");
+        showImportDialog(content.toString(),phones);
     }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> arg0) {
-        // TODO Auto-generated method stub
-        
-    }
-
 }

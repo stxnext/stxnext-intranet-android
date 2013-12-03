@@ -124,7 +124,7 @@ public class UserListAdapter extends CursorAdapter {
         private Integer position;
     }
 
-    private class LoadImageTask extends AsyncTaskEx<Void, Void, Bitmap> {
+    private class LoadImageTask extends AsyncTaskExAggressive<Void, Void, Bitmap> {
 
         private ViewHolder viewHolder;
         private IntranetUser user;
@@ -147,19 +147,7 @@ public class UserListAdapter extends CursorAdapter {
 
         @Override
         protected Bitmap doInBackground(Void... params) {
-            Bitmap result = null;
-            result = BitmapUtils
-                    .getTempBitmap(context, user.getId().toString());
-            if (result == null) {
-                HTTPResponse<Bitmap> reponse = api.downloadBitmap("https://intranet.stxnext.pl"
-                        + user.getImageUrl());
-                if (reponse != null && reponse.getExpectedResponse() != null) {
-                    BitmapUtils.saveTempBitmap(context, reponse.getExpectedResponse(), user.getId()
-                            .toString());
-                    result = reponse.getExpectedResponse();
-                }
-            }
-            return result;
+            return getImageSync(user);
         }
 
         @Override
@@ -178,6 +166,22 @@ public class UserListAdapter extends CursorAdapter {
             }
             taskIdentifiers.remove(user.getId().longValue());
         }
+    }
+    
+    private synchronized Bitmap getImageSync(IntranetUser user){
+        Bitmap result = null;
+        result = BitmapUtils
+                .getTempBitmap(context, user.getId().toString());
+        if (result == null) {
+            HTTPResponse<Bitmap> reponse = api.downloadBitmap("https://intranet.stxnext.pl"
+                    + user.getImageUrl());
+            if (reponse != null && reponse.getExpectedResponse() != null) {
+                BitmapUtils.saveTempBitmap(context, reponse.getExpectedResponse(), user.getId()
+                        .toString());
+                result = reponse.getExpectedResponse();
+            }
+        }
+        return result;
     }
 
     private void applyAnimation(final ImageView view) {

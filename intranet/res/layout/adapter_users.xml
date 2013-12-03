@@ -18,19 +18,20 @@
         android:rotation="11"
         android:text="Spóźnienie"
         android:textColor="#220000ff"
-        android:textSize="42dp"
+        android:textSize="@dimen/list_background_indicator_text_size"
         android:textStyle="bold"
         android:visibility="invisible" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1" >
 
         <LinearLayout
             android:id="@+id/imageHolder"
-            android:layout_width="88dip"
-            android:layout_height="88dip"
-            android:layout_alignParentLeft="true"
+            android:layout_width="@dimen/list_image_size"
+            android:layout_height="@dimen/list_image_size"
             android:orientation="horizontal" >
 
             <com.stxnext.management.android.ui.controls.RoundedImageView
@@ -41,139 +42,140 @@
                 android:visibility="invisible" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/nameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imageHolder"
-            android:layout_gravity="left|top"
-            android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@+id/imageHolder"
-            android:text="user name"
-            android:textColor="#000000"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imageHolder"
-            android:layout_below="@+id/nameView"
-            android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@+id/imageHolder"
-            android:orientation="horizontal"
-            android:weightSum="1" >
+            android:layout_weight="0.7"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                android:layout_marginLeft="12dp"
+                android:text="user name"
+                android:textColor="#000000"
+                android:textSize="@dimen/list_name_text_size"
+                android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="0.6"
-                android:orientation="horizontal" >
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:orientation="horizontal"
+                android:weightSum="1" >
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left|center_vertical"
-                    android:orientation="vertical" >
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:id="@+id/phoneRow"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="left"
-                        android:weightSum="1"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.35"
-                            android:layout_gravity="left"
-                            android:gravity="left"
-                            android:text="Phone:"
-                            android:textColor="#000000"
-                            android:textSize="13dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/phoneView"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.65"
-                            android:layout_gravity="left"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="666666666 234 234 23 424 32 4"
-                            android:textColor="#000000"
-                            android:textSize="13dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ircRow"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
-                        android:weightSum="1"
-                        android:orientation="horizontal" >
+                        android:orientation="vertical" >
 
-                        <TextView
-                            android:layout_width="0dip"
+                        <LinearLayout
+                            android:id="@+id/phoneRow"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.35"
-                            android:layout_gravity="left|bottom"
-                            android:text="IRC:"
-                            android:textColor="#000000"
-                            android:textSize="13dp"
-                            android:textStyle="bold" />
+                            android:layout_gravity="center_vertical"
+                            android:gravity="left"
+                            android:orientation="horizontal"
+                            android:weightSum="1" >
 
-                        <TextView
-                            android:id="@+id/ircView"
-                            android:layout_width="0dip"
+                            <TextView
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="0.39"
+                                android:gravity="left"
+                                android:text="Phone:"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/list_standard_text_size"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/phoneView"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="0.61"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="666666666 234 234 23 424 32 4"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/list_standard_text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ircRow"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.65"
-                            android:layout_gravity="left|bottom"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="zziomalski"
-                            android:textColor="#000000"
-                            android:textSize="13dp" />
+                            android:layout_gravity="left|center_vertical"
+                            android:orientation="horizontal"
+                            android:weightSum="1" >
 
+                            <TextView
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|bottom"
+                                android:layout_weight="0.39"
+                                android:text="IRC:"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/list_standard_text_size"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/ircView"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|bottom"
+                                android:layout_weight="0.61"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="zziomalski"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/list_standard_text_size" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="0.4"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/roleView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="P2"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:visibility="invisible" />
-
-                <TextView
-                    android:id="@+id/groupView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="admin"
-                    android:textColor="#000000"
-                    android:textSize="14dp"
-                    android:visibility="invisible" />
-            </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/roleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="P2"
+                android:textColor="#000000"
+                android:textSize="@dimen/list_name_text_size"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/groupView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="admin"
+                android:textColor="#000000"
+                android:textSize="@dimen/list_standard_text_size"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

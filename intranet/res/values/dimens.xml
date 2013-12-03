@@ -9,4 +9,13 @@
     <dimen name="indicator_internal_padding">4dp</dimen>
     <dimen name="header_footer_left_right_padding">24dp</dimen>
     <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    
+    
+    <dimen name="list_image_size">55dip</dimen>
+    <dimen name="list_background_indicator_text_size">25dp</dimen>
+    <dimen name="list_name_text_size">14dp</dimen>
+    <dimen name="list_standard_text_size">11.8dp</dimen>
+    
+    <dimen name="details_standard_text_size">14dp</dimen>
+    <dimen name="details_item_margin">6dp</dimen>
 </resources>

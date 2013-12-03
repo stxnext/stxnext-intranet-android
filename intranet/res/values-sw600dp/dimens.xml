@@ -5,4 +5,12 @@
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
     -->
 
+
+    <dimen name="list_image_size">88dip</dimen>
+    <dimen name="list_background_indicator_text_size">42dp</dimen>
+    <dimen name="list_name_text_size">17dp</dimen>
+    <dimen name="list_standard_text_size">15dp</dimen>
+    
+    <dimen name="details_standard_text_size">17dp</dimen>
+    <dimen name="details_item_margin">10dp</dimen>
 </resources>
