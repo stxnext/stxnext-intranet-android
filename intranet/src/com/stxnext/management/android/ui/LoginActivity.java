@@ -40,6 +40,7 @@ public class LoginActivity extends AbstractSimpleActivity {
                 super.onPageStarted(view, url, favicon);
                 String cookies = CookieManager.getInstance().getCookie("https://intranet.stxnext.pl");
                 Log.e("","url:"+url);
+                
                 if(url.contains("code=")){
                     webView.stopLoading();
                     Log.e("","GOT CODE:");
