@@ -78,7 +78,7 @@ public class IntranetUser extends AbstractMessage implements Serializable{
     private AbsenceDisplayData absenceDisplayData;
     
     private AbsenceDisplayData latenessDisplayData;
-
+    
     public AbsenceDisplayData getAbsenceDisplayData() {
         return absenceDisplayData;
     }

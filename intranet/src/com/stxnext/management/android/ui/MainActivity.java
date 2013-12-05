@@ -43,6 +43,7 @@ import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.receivers.CommandReceiver;
 import com.stxnext.management.android.receivers.CommandReceiver.CommandReceiverListener;
 import com.stxnext.management.android.storage.sqlite.dao.DAO;
+import com.stxnext.management.android.sync.BackgroundSyncService;
 import com.stxnext.management.android.ui.dependencies.AbsenceListAdapter;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
@@ -218,6 +219,22 @@ public class MainActivity extends AbstractSimpleActivity implements
                     signOutAction);
         } else if (item.getItemId() == R.id.action_signin) {
             onSignInAction();
+        }
+        else if(item.getItemId() == R.id.sync_all){
+            if(prefs.isSyncing()){
+                Toast.makeText(this, "Synchronizacja aktualnie jest w toku", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                displayDialogBox("Synchronizacja kontaktów", "Czy chcesz zsynchronizować wszystkie dostępne w intranecie kontakty z danymi na telefonie?\nPrzeniesione zostaną numery telefonów oraz maile.Aktualne, ręcznie zapisane numery nie zostaną zmodyfikowane.", new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intentContinueLoading = new Intent(getApplicationContext(), BackgroundSyncService.class);
+                        intentContinueLoading.putExtra(BackgroundSyncService.ACTION,
+                                BackgroundSyncService.ACTION_SYNC);
+                        getApplicationContext().startService(intentContinueLoading);
+                    }
+                });
+            }
         }
         return super.onMenuItemSelected(featureId, item);
     }
@@ -451,7 +468,7 @@ public class MainActivity extends AbstractSimpleActivity implements
         @Override
         protected HTTPResponse<IntranetUsersResult> doInBackground(
                 Void... params) {
-            if (pullToRefreshMode) {
+            if (reloadingPullToRefresh) {
                 if (adapter != null) {
                     adapter.clearCache();
                     BitmapUtils.cleanTempDir(AppIntranet.getApp());
@@ -508,12 +525,12 @@ public class MainActivity extends AbstractSimpleActivity implements
 
     @Override
     public void onOffline() {
-        Toast.makeText(this, "onOffline", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "onOffline", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onOnline() {
-        Toast.makeText(this, "onOnline", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "onOnline", Toast.LENGTH_SHORT).show();
         if (!isUserSignedIn()) {
             onSignInAction();
         } else {
@@ -526,6 +543,12 @@ public class MainActivity extends AbstractSimpleActivity implements
         api.signOut();
         onSignInAction();
         // Toast.makeText(this, "onLostSession", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSyncStateChanged(boolean started) {
+        // TODO Auto-generated method stub
+
     }
 
 }

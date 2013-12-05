@@ -5,14 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.IntentService;
 import android.app.LoaderManager;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +28,7 @@ import android.util.Log;
 
 import com.google.common.base.Strings;
 import com.stxnext.management.android.dto.local.IntranetUser;
+import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 
 public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -39,14 +45,16 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
         this.listeners.add(listeners);
     }
 
-    private ContactSyncManager() {
+    private  ContactSyncManager(){};
+    public ContactSyncManager(IntentService service) {
+        this.context = service;
     };
 
     public <T extends Context & SyncManagerListener> ContactSyncManager(T context) {
         this.context = context;
         this.listeners.add(context);
     }
-
+    
     public boolean removeListener(SyncManagerListener listener) {
         boolean hasObject = this.listeners.contains(listener);
         if (hasObject)
@@ -58,6 +66,13 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
         // TODO:
     }
 
+    
+    /**
+     * This should be done only in thread if you want the app to be responsive
+     * @param phones
+     * @param user
+     * @return
+     */
     public boolean mergeContacts(List<ProviderPhone> phones, IntranetUser user) {
         ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
         for (ProviderPhone phone : phones) {
@@ -85,23 +100,12 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
                             .newInsert(ContactsContract.Data.CONTENT_URI)
                             .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
                             .withValue(ContactsContract.Data.MIMETYPE,
-                                    ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-                            .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER,
-                                    phone.getNumberToUpdate())
-                            .withValue(Phone.LABEL, CONTACT_LABEL + " Mobile")
-                            .withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
-                                    ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM)
-                            .build());
-                    ops.add(ContentProviderOperation
-                            .newInsert(ContactsContract.Data.CONTENT_URI)
-                            .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
-                            .withValue(ContactsContract.Data.MIMETYPE,
                                     ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)
                             .withValue(ContactsContract.CommonDataKinds.Email.DATA, user.getEmail())
                             .withValue(ContactsContract.CommonDataKinds.Email.TYPE,
                                     ContactsContract.CommonDataKinds.Email.TYPE_CUSTOM)
                             .build());
-
+                    
                     ContentProviderResult[] result = context.getContentResolver().applyBatch(
                             ContactsContract.AUTHORITY, ops);
                     ops.clear();
@@ -111,7 +115,7 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
                     Long id = Long.parseLong(stringId);
                     phone.setContactId(id);
                 }
-                else {
+                //else {
                     ops.add(ContentProviderOperation
                             .newDelete(ContactsContract.Data.CONTENT_URI)
                             .withSelection(
@@ -135,8 +139,24 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
                             .withValue(Phone.LABEL, CONTACT_LABEL + " Mobile");
 
                     ops.add(operation.build());
+                    
+                    Bitmap bmp = BitmapUtils.getTempBitmap(context, user.getId().toString());
+                    if(bmp!=null){
+                        byte[] imageBytes = BitmapUtils.bitmapToBytes(bmp, CompressFormat.PNG);
+                        
+                        ContentValues values = new ContentValues();
+                        values.put(ContactsContract.Data.RAW_CONTACT_ID, phone.getContactId().intValue()); 
+                        values.put(ContactsContract.Data.IS_SUPER_PRIMARY, 1); 
+                        values.put(ContactsContract.CommonDataKinds.Photo.PHOTO, imageBytes); 
+                        values.put(ContactsContract.Data.MIMETYPE, 
+                                ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE); 
+                        context.getContentResolver().insert(
+                                ContactsContract.Data.CONTENT_URI, 
+                                values); 
+                    }
+                    
                     context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
-                }
+                //}
 
             } catch (RemoteException e) {
                 Log.e("", "SAVING ERROR", e);
@@ -150,7 +170,13 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
     boolean loaderInitialized;
     boolean activeQuery;
 
-    public void launchQuery(LoaderManager loader, String phoneTerm, String nameTerm) {
+    public List<ProviderPhone> query(String phoneTerm, String nameTerm){
+        SqlArgs args = resolveSqlParams(phoneTerm, nameTerm);
+        Cursor c = context.getContentResolver().query(Phone.CONTENT_URI, PROJECTION, args.selection, args.params, null);
+        return resolvePhonesFromCursor(c);
+    }
+    
+    public void launchQueryAsync(LoaderManager loader, String phoneTerm, String nameTerm) {
         activeQuery = true;
         mNameSearchQuery = nameTerm;
         mPhoneSearchQuery = phoneTerm;
@@ -184,52 +210,47 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
 
     private String mNameSearchQuery;
     private String mPhoneSearchQuery;
-
-    public Cursor mCursor;
-    public int mLookupKeyIndex;
-    public int mIdIndex;
-    public String mCurrentLookupKey;
-    public long mCurrentId;
     Uri mSelectedContactUri;
 
     @Override
     public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+        SqlArgs args = resolveSqlParams(mPhoneSearchQuery, mNameSearchQuery);
+        return new CursorLoader(
+                context,
+                Phone.CONTENT_URI,
+                PROJECTION,
+                args.selection,
+                args.params,
+                null);
+    }
+
+    private SqlArgs resolveSqlParams(String phone, String name){
         List<String> selectionArgs = new ArrayList<String>();
 
         String SELECTION = "";
-        if (!Strings.isNullOrEmpty(mNameSearchQuery)) {
+        if (!Strings.isNullOrEmpty(name)) {
             SELECTION += PhoneNameColumn + " LIKE ?";
-            selectionArgs.add("%" + mNameSearchQuery + "%");
+            selectionArgs.add("%" + name + "%");
         }
 
-        if (!Strings.isNullOrEmpty(mPhoneSearchQuery)) {
+        if (!Strings.isNullOrEmpty(phone)) {
             if (selectionArgs.size() > 0) {
                 SELECTION = SELECTION + " OR ";
             }
 
             SELECTION += "(" + Phone.NUMBER + " LIKE ? AND " + Phone.LABEL + " LIKE ?)";
-            selectionArgs.add("%" + mPhoneSearchQuery + "%");
+            selectionArgs.add("%" + phone + "%");
             selectionArgs.add("%" + CONTACT_LABEL + "%");
         }
 
         String[] array = new String[selectionArgs.size()];
         selectionArgs.toArray(array);
-
-        // Starts the query
-        return new CursorLoader(
-                context,
-                Phone.CONTENT_URI,
-                PROJECTION,
-                SELECTION,
-                array,
-                null);
+        
+        SqlArgs args = new SqlArgs(SELECTION, array);
+        return args;
     }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        if (!activeQuery)
-            return;
-
+    
+    List<ProviderPhone> resolvePhonesFromCursor(Cursor cursor){
         List<ProviderPhone> phones = new ArrayList<ProviderPhone>();
         if (cursor.getCount() > 0) {
             int columnName = cursor.getColumnIndex(PhoneNameColumn);
@@ -242,21 +263,30 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
             while (cursor.moveToNext()) {
                 ProviderPhone phone = new ProviderPhone();
                 if (!cursor.isNull(columnName))
-                    phone.displayName = cursor.getString(columnName);
+                    phone.setDisplayName(cursor.getString(columnName));
                 if (!cursor.isNull(columnNumber))
-                    phone.phoneNumber = cursor.getString(columnNumber);
+                    phone.setPhoneNumber(cursor.getString(columnNumber));
                 if (!cursor.isNull(columnId))
-                    phone.id = cursor.getLong(columnId);
+                    phone.setId(cursor.getLong(columnId));
                 if (!cursor.isNull(columnContactId))
-                    phone.contactId = cursor.getLong(columnContactId);
+                    phone.setContactId(cursor.getLong(columnContactId));
                 if (!cursor.isNull(columnType))
-                    phone.type = cursor.getString(columnContactId);
+                    phone.setType(cursor.getString(columnContactId));
                 if (!cursor.isNull(columnLabel))
-                    phone.label = cursor.getString(columnLabel);
+                    phone.setLabel(cursor.getString(columnLabel));
 
                 phones.add(phone);
             }
         }
+        return phones;
+    }
+    
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        if (!activeQuery)
+            return;
+
+        List<ProviderPhone> phones = resolvePhonesFromCursor(cursor);
 
         for (SyncManagerListener listener : listeners) {
             listener.onPhoneQueryComplete(phones);
@@ -271,71 +301,12 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
 
     }
 
-    public class ProviderPhone {
-        private String displayName;
-        private String phoneNumber;
-        private Long id;
-        private Long contactId;
-        private String type;
-        private String label;
-
-        private String numberToUpdate;
-
-        public void setDisplayName(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public void setPhoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public void setContactId(Long contactId) {
-            this.contactId = contactId;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public void setLabel(String label) {
-            this.label = label;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-
-        public String getPhoneNumber() {
-            return phoneNumber;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-        public Long getContactId() {
-            return contactId;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
-        public String getNumberToUpdate() {
-            return numberToUpdate;
-        }
-
-        public void setNumberToUpdate(String numberToUpdate) {
-            this.numberToUpdate = numberToUpdate;
-        }
-
+    private class SqlArgs{
+         public String selection;
+         public String[] params;
+         public SqlArgs(String selection, String[] params){
+             this.selection = selection;
+             this.params = params;
+         }
     }
 }

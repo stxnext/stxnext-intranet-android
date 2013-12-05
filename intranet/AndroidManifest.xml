@@ -62,6 +62,11 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+        <service
+            android:name=".sync.BackgroundSyncService"
+            android:enabled="true"
+            >
+        </service>
     </application>
 
 </manifest>

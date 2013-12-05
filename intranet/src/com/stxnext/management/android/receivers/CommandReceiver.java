@@ -14,6 +14,8 @@ public class CommandReceiver extends BroadcastReceiver {
     public static final int EVENT_ONLINE = 1;
     public static final int EVENT_OFFLINE = 2;
     public static final int EVENT_LOST_SESSION = 3;
+    public static final int EVENT_STARTED_SYNC = 4;
+    public static final int EVENT_FINISHED_SYNC = 5;
     public static final String EXTRA_EVENT_TYPE = "eventType";
 
     private CommandReceiverListener listener;
@@ -37,6 +39,12 @@ public class CommandReceiver extends BroadcastReceiver {
         if (eventType == EVENT_LOST_SESSION) {
             this.listener.onLostSession();
         }
+        if(eventType == EVENT_STARTED_SYNC){
+            this.listener.onSyncStateChanged(true);
+        }
+        if(eventType == EVENT_FINISHED_SYNC){
+            this.listener.onSyncStateChanged(false);
+        }
     }
 
     private void validateInput(Bundle extras) {
@@ -50,6 +58,7 @@ public class CommandReceiver extends BroadcastReceiver {
         public void onOffline();
         public void onOnline();
         public void onLostSession();
+        public void onSyncStateChanged(boolean started);
     }
 
 }
