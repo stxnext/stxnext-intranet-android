@@ -8,12 +8,6 @@
     <item android:id="@+id/action_late"
         android:orderInCategory="2"
          android:title="Spóźnienia"></item>
-    
-    <item android:id="@+id/action_irc"
-          android:title="IRC"
-          android:icon="@drawable/irc_icon"
-          android:showAsAction="always"
-           />
 
     <item android:id="@+id/search"
           android:title="Szukaj"

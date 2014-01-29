@@ -50,7 +50,6 @@ import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.LatenessListAdapter;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
 import com.stxnext.management.android.web.api.HTTPResponse;
-import com.stxnext.management.android.yaaic.YaaicConnector;
 
 public class MainActivity extends AbstractSimpleActivity implements
         CommandReceiverListener {
@@ -220,9 +219,6 @@ public class MainActivity extends AbstractSimpleActivity implements
                     signOutAction);
         } else if (item.getItemId() == R.id.action_signin) {
             onSignInAction();
-        }
-        else if (item.getItemId() == R.id.action_irc) {
-            YaaicConnector.getInstance().launchIRC(this);
         }
         else if(item.getItemId() == R.id.sync_all){
             if(prefs.isSyncing()){
