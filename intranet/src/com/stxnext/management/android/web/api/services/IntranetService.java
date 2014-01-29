@@ -47,7 +47,7 @@ public class IntranetService extends AbstractService {
             }
             BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(response.getEntity());
             InputStream instream = bufHttpEntity.getContent();
-            result.setExpectedResponse(BitmapUtils.getRoundedCornerBitmap(BitmapUtils.decodeSampledBitmapFromResource(instream, 0, 0), 15F));
+            result.setExpectedResponse(BitmapUtils.decodeSampledBitmapFromResource(instream, 0, 0));
             instream.close();
         } catch (ClientProtocolException e) {
             // TODO Auto-generated catch block

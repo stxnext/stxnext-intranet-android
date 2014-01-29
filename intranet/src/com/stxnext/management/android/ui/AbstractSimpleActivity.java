@@ -9,6 +9,7 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -16,13 +17,14 @@ import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LayoutAnimationController;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.stxnext.management.android.dependencies.googleplay.GooglePlayServiceErrorMessages;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.web.api.IntranetApi;
 
-public abstract class AbstractSimpleActivity extends Activity {
+public abstract class AbstractSimpleActivity extends SherlockActivity {
     // common tools
     protected StoragePrefs prefs;
     protected IntranetApi api;

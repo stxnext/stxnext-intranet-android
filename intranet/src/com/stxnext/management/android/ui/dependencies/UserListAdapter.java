@@ -28,14 +28,13 @@ import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.storage.sqlite.EntityMapper;
 import com.stxnext.management.android.storage.sqlite.dao.IntranetUserMapper;
-import com.stxnext.management.android.ui.controls.RoundedImageView;
 import com.stxnext.management.android.web.api.HTTPResponse;
 import com.stxnext.management.android.web.api.IntranetApi;
 
 public class UserListAdapter extends CursorAdapter {
 
     private final Activity context;
-    private LruCache<Long, Bitmap> memoryCache;
+    private LruCache<Long, RoundedDrawable> memoryCache;
     private LruCache<Integer, IntranetUser> cursorObjectMemoryCache;
     private HashMap<Long, LoadImageTask> taskIdentifiers = new HashMap<Long, LoadImageTask>();
     private ListView listView;
@@ -48,15 +47,15 @@ public class UserListAdapter extends CursorAdapter {
         this.dontUseCursorCache = dontUseCursorCache;
     }
 
-    public void addBitmapToMemoryCache(Long key, Bitmap bitmap) {
+    public void addBitmapToMemoryCache(Long key, RoundedDrawable bitmap) {
         if (key != null && bitmap != null) {
             memoryCache.put(key, bitmap);
         }
     }
 
-    public Bitmap getBitmapFromMemCache(Long key) {
+    public RoundedDrawable getBitmapFromMemCache(Long key) {
         if (key != null) {
-            return (Bitmap) memoryCache.get(key);
+            return (RoundedDrawable) memoryCache.get(key);
         }
         return null;
     }
@@ -94,10 +93,10 @@ public class UserListAdapter extends CursorAdapter {
         final int memClass = ((ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
         final int cacheSize = 1024 * 1024 * memClass;
-        memoryCache = new LruCache<Long, Bitmap>((int) (cacheSize * 0.7)) {
+        memoryCache = new LruCache<Long, RoundedDrawable>((int) (cacheSize * 0.7)) {
             @Override
-            protected int sizeOf(Long key, Bitmap bitmap) {
-                return bitmap.getRowBytes() * bitmap.getHeight();
+            protected int sizeOf(Long key, RoundedDrawable bitmap) {
+                return (int) bitmap.getSize();
             }
         };
         cursorObjectMemoryCache = new LruCache<Integer, IntranetUser>(
@@ -111,7 +110,7 @@ public class UserListAdapter extends CursorAdapter {
 
     public class ViewHolder implements Cloneable {
         private TextView userNameView;
-        private RoundedImageView userImageView;
+        private ImageView userImageView;
         private View phoneRow;
         private View ircRow;
         private TextView roleView;
@@ -124,7 +123,7 @@ public class UserListAdapter extends CursorAdapter {
         private Integer position;
     }
 
-    private class LoadImageTask extends AsyncTaskExAggressive<Void, Void, Bitmap> {
+    private class LoadImageTask extends AsyncTaskExAggressive<Void, Void, RoundedDrawable> {
 
         private ViewHolder viewHolder;
         private IntranetUser user;
@@ -146,19 +145,19 @@ public class UserListAdapter extends CursorAdapter {
         }
 
         @Override
-        protected Bitmap doInBackground(Void... params) {
+        protected RoundedDrawable doInBackground(Void... params) {
             return getImageSync(user);
         }
 
         @Override
-        protected void onPostExecute(Bitmap result) {
+        protected void onPostExecute(RoundedDrawable result) {
             super.onPostExecute(result);
             if (result != null && !context.isFinishing()) {
                 addBitmapToMemoryCache(user.getId().longValue(), result);
                 if (!isCancelled()) {
                     if (position >= listView.getFirstVisiblePosition()
                             && position <= listView.getLastVisiblePosition()) {
-                        viewHolder.userImageView.setImageBitmap(result);
+                        viewHolder.userImageView.setImageDrawable(result);
                         viewHolder.userImageView.setVisibility(View.VISIBLE);
                         applyAnimation(viewHolder.userImageView);
                     }
@@ -168,18 +167,23 @@ public class UserListAdapter extends CursorAdapter {
         }
     }
     
-    private synchronized Bitmap getImageSync(IntranetUser user){
-        Bitmap result = null;
-        result = BitmapUtils
+    private synchronized RoundedDrawable getImageSync(IntranetUser user){
+        Bitmap resultBitmap = null;
+        RoundedDrawable result = null;
+        resultBitmap = BitmapUtils
                 .getTempBitmap(context, user.getId().toString());
-        if (result == null) {
+        if (resultBitmap == null) {
             HTTPResponse<Bitmap> reponse = api.downloadBitmap("https://intranet.stxnext.pl"
                     + user.getImageUrl());
             if (reponse != null && reponse.getExpectedResponse() != null) {
                 BitmapUtils.saveTempBitmap(context, reponse.getExpectedResponse(), user.getId()
                         .toString());
-                result = reponse.getExpectedResponse();
+                resultBitmap = reponse.getExpectedResponse();
             }
+        }
+        if(resultBitmap!=null){
+            result = new RoundedDrawable(resultBitmap);
+            result.setCornerRadius(15F);
         }
         return result;
     }
@@ -209,7 +213,7 @@ public class UserListAdapter extends CursorAdapter {
         View parentView = inflater.inflate(R.layout.adapter_users, null);
 
         TextView nameView = (TextView) parentView.findViewById(R.id.nameView);
-        RoundedImageView imageView = (RoundedImageView) parentView
+        ImageView imageView = (ImageView) parentView
                 .findViewById(R.id.userImageView);
         holder.phoneRow = parentView.findViewById(R.id.phoneRow);
         holder.ircRow = parentView.findViewById(R.id.ircRow);
@@ -295,9 +299,9 @@ public class UserListAdapter extends CursorAdapter {
         holder.userImageView.setVisibility(View.INVISIBLE);
         if (!taskInProgress) {
             holder.userImageView.setVisibility(View.INVISIBLE);
-            Bitmap bmp = getBitmapFromMemCache(user.getId().longValue());
+            RoundedDrawable bmp = getBitmapFromMemCache(user.getId().longValue());
             if (bmp != null) {
-                holder.userImageView.setImageBitmap(bmp);
+                holder.userImageView.setImageDrawable(bmp);
                 holder.userImageView.setVisibility(View.VISIBLE);
             } else {
                 LoadImageTask imageTask = new LoadImageTask(holder, user,

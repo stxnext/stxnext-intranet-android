@@ -1,6 +1,7 @@
 package com.stxnext.management.android;
 
 import android.app.Application;
+import android.webkit.CookieManager;
 
 public class AppIntranet extends Application{
 

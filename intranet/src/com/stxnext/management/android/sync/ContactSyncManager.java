@@ -6,14 +6,11 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
-import android.app.LoaderManager;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -24,7 +21,10 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
+import android.support.v4.app.LoaderManager;
 
 import com.google.common.base.Strings;
 import com.stxnext.management.android.dto.local.IntranetUser;
@@ -155,9 +155,10 @@ public class ContactSyncManager implements LoaderManager.LoaderCallbacks<Cursor>
                                 values); 
                     }
                     
-                    context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
+                    ContentProviderResult[] results = context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
                 //}
 
+                    String b="";
             } catch (RemoteException e) {
                 Log.e("", "SAVING ERROR", e);
             } catch (OperationApplicationException e) {

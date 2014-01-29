@@ -9,14 +9,17 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.content.Loader;
+import android.support.v4.app.LoaderManager;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.AbsenceDisplayData;
 import com.stxnext.management.android.dto.local.IntranetUser;
@@ -26,17 +29,17 @@ import com.stxnext.management.android.receivers.CommandReceiver.CommandReceiverL
 import com.stxnext.management.android.sync.ContactSyncManager;
 import com.stxnext.management.android.sync.ContactSyncManager.SyncManagerListener;
 import com.stxnext.management.android.sync.ProviderPhone;
-import com.stxnext.management.android.ui.controls.RoundedImageView;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.PropertyListAdapter;
+import com.stxnext.management.android.ui.dependencies.RoundedDrawable;
 
 public class UserDetailsActivity extends AbstractSimpleActivity implements SyncManagerListener,
         CommandReceiverListener {
 
     public static final String EXTRA_USER = "user";
 
-    RoundedImageView userImageView;
+    ImageView userImageView;
     TextView nameView;
     ListView listView;
     TextView lateTimeView;
@@ -66,7 +69,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
 
     @Override
     protected void fillViews() {
-        userImageView = (RoundedImageView) findViewById(R.id.userImageView);
+        userImageView = (ImageView) findViewById(R.id.userImageView);
         nameView = (TextView) findViewById(R.id.nameView);
         listView = (ListView) findViewById(R.id.listView);
         loadingView = (ViewGroup) findViewById(R.id.loadingView);
@@ -94,7 +97,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.details, menu);
+        getSupportMenuInflater().inflate(R.menu.details, menu);
         return true;
     }
 
@@ -111,7 +114,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
             Toast.makeText(this, "Synchronizacja aktualnie jest w toku", Toast.LENGTH_SHORT).show();
             return;
         }
-        syncManager.launchQueryAsync(getLoaderManager(), user.getPhone(), user.getName());
+        syncManager.launchQueryAsync(getSupportLoaderManager(), user.getPhone(), user.getName());
     }
 
     private void insertAbsenceData(AbsenceDisplayData data,
@@ -177,7 +180,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
     private class LoadDataTask extends
             AsyncTaskEx<Void, Void, List<UserProperty>> {
 
-        Bitmap bmp;
+        RoundedDrawable drawable;
 
         @Override
         protected void onPreExecute() {
@@ -187,7 +190,11 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
 
         @Override
         protected List<UserProperty> doInBackground(Void... params) {
-            bmp = BitmapUtils.getTempBitmap(UserDetailsActivity.this, user.getId().toString());
+            Bitmap bitmap = BitmapUtils.getTempBitmap(UserDetailsActivity.this, user.getId().toString());
+            if(bitmap!=null){
+        	drawable = new RoundedDrawable(bitmap);
+        	drawable.setCornerRadius(15F);
+            }
             return user.getProperties();
         }
 
@@ -197,8 +204,8 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
             if (isFinishing())
                 return;
 
-            if (bmp != null) {
-                userImageView.setImageBitmap(bmp);
+            if (drawable != null) {
+                userImageView.setImageDrawable(drawable);
             }
             adapter = new PropertyListAdapter(UserDetailsActivity.this,
                     listView, result);

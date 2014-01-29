@@ -34,7 +34,7 @@
                 android:layout_height="150dip"
                 android:orientation="horizontal" >
 
-                <com.stxnext.management.android.ui.controls.RoundedImageView
+                <ImageView
                     android:id="@+id/userImageView"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"

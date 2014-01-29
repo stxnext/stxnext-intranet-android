@@ -13,7 +13,7 @@
           android:title="Szukaj"
           android:icon="@drawable/search"
           android:showAsAction="collapseActionView|ifRoom"
-          android:actionViewClass="android.widget.SearchView" />
+          android:actionViewClass="com.actionbarsherlock.widget.SearchView" />
     <item 
         android:id="@+id/sync_all"
         android:title="Synchronizuj kontakty"

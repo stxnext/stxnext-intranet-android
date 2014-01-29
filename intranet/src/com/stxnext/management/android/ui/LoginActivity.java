@@ -2,6 +2,7 @@
 package com.stxnext.management.android.ui;
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.webkit.CookieManager;
@@ -22,6 +23,7 @@ public class LoginActivity extends AbstractSimpleActivity {
     @Override
     protected void fillViews() {
         this.webView = (WebView) findViewById(R.id.webView);
+        this.webView.getSettings().setJavaScriptEnabled(true);
     }
 
     @Override
@@ -31,9 +33,15 @@ public class LoginActivity extends AbstractSimpleActivity {
     }
     
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        CookieManager.getInstance().setAcceptCookie(true);
+    }
+    
+    @Override
     protected void setActions() {
 
-        webView.setWebViewClient(new WebViewClient() {
+	WebViewClient client = new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 setProgressBarIndeterminateVisibility(true);
@@ -60,7 +68,9 @@ public class LoginActivity extends AbstractSimpleActivity {
                 super.onPageFinished(view, url);
                 setProgressBarIndeterminateVisibility(false);
             }
-        });
+        };
+	
+        webView.setWebViewClient(client);
 
         webView.loadUrl(LOGIN_URL);
     }
