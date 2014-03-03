@@ -1,10 +1,5 @@
 package com.stxnext.management.android.dto.local.postmessage;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import ch.boye.httpclientandroidlib.NameValuePair;
-import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
 public class LateMessage {
 
@@ -16,21 +11,6 @@ public class LateMessage {
     String lateStart;
     String lateEnd;
     
-    public List<NameValuePair> toPostParams(){
-        List<NameValuePair> params = new LinkedList<NameValuePair>();
-        params.add(new BasicNameValuePair("csrf_token", token));
-        
-        params.add(new BasicNameValuePair("hour", token));
-        params.add(new BasicNameValuePair("minute", token));
-        params.add(new BasicNameValuePair("late_start", token));
-        
-        params.add(new BasicNameValuePair("hour", token));
-        params.add(new BasicNameValuePair("minute", token));
-        params.add(new BasicNameValuePair("late_end", token));
-
-        return toPostParams();
-    }
-
     public void setToken(String token) {
         this.token = token;
     }

@@ -13,6 +13,7 @@ import ch.boye.httpclientandroidlib.client.ClientProtocolException;
 import ch.boye.httpclientandroidlib.client.methods.HttpGet;
 import ch.boye.httpclientandroidlib.client.methods.HttpPost;
 import ch.boye.httpclientandroidlib.entity.BufferedHttpEntity;
+import ch.boye.httpclientandroidlib.entity.StringEntity;
 import ch.boye.httpclientandroidlib.util.EntityUtils;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
@@ -118,7 +119,10 @@ public class IntranetService extends AbstractService {
             throws Exception {
 
         HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
-        HttpPost request = postRequest("employees/form/late_application", messagge.toPostParams());
+        HttpPost request = postRequest("api/lateness", null);
+        
+        StringEntity postEntity = new StringEntity(messagge.toString());
+        request.setEntity(postEntity);
         
         HttpResponse response = executeRequestAndParseError(request, result);
         HttpEntity entity = response.getEntity();

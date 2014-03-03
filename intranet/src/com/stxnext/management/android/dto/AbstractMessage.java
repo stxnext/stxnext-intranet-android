@@ -2,6 +2,7 @@
 package com.stxnext.management.android.dto;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -9,6 +10,8 @@ import com.google.gson.reflect.TypeToken;
 
 public class AbstractMessage {
 
+    protected static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    
     protected Type listStringType = new TypeToken<ArrayList<String>>() {
     }.getType();
     
