@@ -5,10 +5,10 @@ import android.app.Application;
 import android.graphics.Bitmap;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
+import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
-import com.stxnext.management.android.dto.local.postmessage.LateMessage;
-import com.stxnext.management.android.storage.sqlite.dao.DAO;
-import com.stxnext.management.android.web.api.services.IntranetService;
+import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
+import com.stxnext.management.android.dto.postmessage.LatenessMessage;
 
 public class IntranetApi extends AbstractApi {
 
@@ -28,7 +28,7 @@ public class IntranetApi extends AbstractApi {
     public void clearCookies() {
         service.clearCookies();
     }
-    
+
     public HTTPResponse<IntranetUsersResult> getUsers() {
         HTTPResponse<IntranetUsersResult> result = call(false,
                 new ApiExecutable<IntranetUsersResult>() {
@@ -64,7 +64,7 @@ public class IntranetApi extends AbstractApi {
     }
 
     public HTTPResponse<Bitmap> downloadBitmap(final String url) {
-	HTTPResponse<Bitmap> result = call(false,
+        HTTPResponse<Bitmap> result = call(false,
                 new ApiExecutable<Bitmap>() {
                     @Override
                     public HTTPResponse<Bitmap> call() throws Exception {
@@ -73,13 +73,35 @@ public class IntranetApi extends AbstractApi {
                 });
         return result;
     }
-    
-    public HTTPResponse<Boolean> submitLateness(final LateMessage messagge){
+
+    public HTTPResponse<Boolean> submitLateness(final LatenessMessage messagge) {
         HTTPResponse<Boolean> result = call(false,
                 new ApiExecutable<Boolean>() {
                     @Override
                     public HTTPResponse<Boolean> call() throws Exception {
                         return service.submitLateness(messagge);
+                    }
+                });
+        return result;
+    }
+
+    public HTTPResponse<Boolean> submitAbsence(final AbsenceMessage messagge) {
+        HTTPResponse<Boolean> result = call(false,
+                new ApiExecutable<Boolean>() {
+                    @Override
+                    public HTTPResponse<Boolean> call() throws Exception {
+                        return service.submitAbsence(messagge);
+                    }
+                });
+        return result;
+    }
+
+    public HTTPResponse<MandatedTime> getDaysOffToTake() {
+        HTTPResponse<MandatedTime> result = call(false,
+                new ApiExecutable<MandatedTime>() {
+                    @Override
+                    public HTTPResponse<MandatedTime> call() throws Exception {
+                        return service.getDaysOffToTake();
                     }
                 });
         return result;

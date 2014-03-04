@@ -3,9 +3,9 @@ package com.stxnext.management.android.web.api.services;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
@@ -17,8 +17,12 @@ import ch.boye.httpclientandroidlib.entity.StringEntity;
 import ch.boye.httpclientandroidlib.util.EntityUtils;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
+import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
-import com.stxnext.management.android.dto.local.postmessage.LateMessage;
+import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
+import com.stxnext.management.android.dto.postmessage.AbstractMessage;
+import com.stxnext.management.android.dto.postmessage.GsonProvider;
+import com.stxnext.management.android.dto.postmessage.LatenessMessage;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.web.api.HTTPError;
 import com.stxnext.management.android.web.api.HTTPResponse;
@@ -43,7 +47,8 @@ public class IntranetService extends AbstractService {
             response = serviceState.getClient().execute(request, serviceState.getLocalContext());
 
             if (response.getStatusLine().getStatusCode() != 200) {
-        	result.setError(new HTTPError(response.getStatusLine().getStatusCode(), response.getStatusLine().toString()));
+                result.setError(new HTTPError(response.getStatusLine().getStatusCode(), response
+                        .getStatusLine().toString()));
                 return result;
             }
             BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(response.getEntity());
@@ -77,7 +82,6 @@ public class IntranetService extends AbstractService {
         return result;
     }
 
-    
     public HTTPResponse<PresenceResult> getPresences()
             throws Exception {
 
@@ -95,8 +99,7 @@ public class IntranetService extends AbstractService {
         EntityUtils.consume(entity);
         return result;
     }
-    
-    
+
     public HTTPResponse<IntranetUsersResult> getUsers()
             throws Exception {
 
@@ -114,24 +117,61 @@ public class IntranetService extends AbstractService {
         EntityUtils.consume(entity);
         return result;
     }
-    
-    public HTTPResponse<Boolean> submitLateness(LateMessage messagge)
+
+    public HTTPResponse<MandatedTime> getDaysOffToTake()
             throws Exception {
 
-        HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
-        HttpPost request = postRequest("api/lateness", null);
-        
-        StringEntity postEntity = new StringEntity(messagge.toString());
-        request.setEntity(postEntity);
-        
+        String methodToCall = String.format("api/absence_days?date_start=%s&type=planowany",
+                AbstractMessage.defaultDateFormat.format(new Date()));
+
+        HTTPResponse<MandatedTime> result = new HTTPResponse<MandatedTime>();
+        HttpGet request = getRequest(methodToCall, null, false);
         HttpResponse response = executeRequestAndParseError(request, result);
         HttpEntity entity = response.getEntity();
         if (result.ok()) {
             String jsonStub = EntityUtils.toString(entity);
-            saveCookies();
+            result.setExpectedResponse(GsonProvider.get().fromJson(jsonStub, MandatedTime.class));
         }
         EntityUtils.consume(entity);
         return result;
     }
-    
+
+    public HTTPResponse<Boolean> submitLateness(LatenessMessage messagge)
+            throws Exception {
+
+        HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
+        HttpPost request = postRequest("api/lateness", null);
+
+        StringEntity postEntity = new StringEntity(messagge.toString());
+        request.setEntity(postEntity);
+
+        HttpResponse response = executeRequestAndParseError(request, result);
+        HttpEntity entity = response.getEntity();
+        if (result.ok()) {
+            String jsonStub = EntityUtils.toString(entity);
+            Log.e("submit lateness response",jsonStub);
+        }
+        EntityUtils.consume(entity);
+        return result;
+    }
+
+    public HTTPResponse<Boolean> submitAbsence(AbsenceMessage messagge)
+            throws Exception {
+
+        HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
+        HttpPost request = postRequest("api/absence", null);
+
+        StringEntity postEntity = new StringEntity(messagge.toString());
+        request.setEntity(postEntity);
+
+        HttpResponse response = executeRequestAndParseError(request, result);
+        HttpEntity entity = response.getEntity();
+        if (result.ok()) {
+            String jsonStub = EntityUtils.toString(entity);
+            Log.e("getDaysOffToTake",jsonStub);
+        }
+        EntityUtils.consume(entity);
+        return result;
+    }
+
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.stxnext.management.android.dto.AbstractMessage;
+import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 
 public class IntranetUsersResult extends AbstractMessage{
 

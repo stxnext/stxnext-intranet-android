@@ -8,6 +8,11 @@
     <item android:id="@+id/action_late"
         android:orderInCategory="2"
          android:title="Spóźnienia"></item>
+    
+    <item android:id="@+id/addform"
+          android:icon="@drawable/add"
+          android:showAsAction="always"
+           />
 
     <item android:id="@+id/search"
           android:title="Szukaj"

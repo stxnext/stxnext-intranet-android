@@ -3,7 +3,7 @@ package com.stxnext.management.android.dto.local;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.stxnext.management.android.dto.AbstractMessage;
+import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 
 public class Lateness extends AbstractMessage {
 

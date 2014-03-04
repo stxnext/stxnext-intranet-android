@@ -7,8 +7,8 @@ import java.util.List;
 import com.google.common.base.Strings;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.stxnext.management.android.dto.AbstractMessage;
-import com.stxnext.management.android.dto.GsonProvider;
+import com.stxnext.management.android.dto.postmessage.AbstractMessage;
+import com.stxnext.management.android.dto.postmessage.GsonProvider;
 
 public class IntranetUser extends AbstractMessage implements Serializable{
 

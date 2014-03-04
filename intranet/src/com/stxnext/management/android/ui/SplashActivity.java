@@ -13,8 +13,11 @@ import android.view.Surface;
 import android.widget.ImageView;
 
 import com.stxnext.management.android.R;
+import com.stxnext.management.android.dto.local.MandatedTime;
+import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.storage.sqlite.dao.DAO;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
+import com.stxnext.management.android.web.api.HTTPResponse;
 import com.stxnext.management.android.web.api.IntranetApi;
 
 public class SplashActivity extends Activity {
@@ -23,6 +26,10 @@ public class SplashActivity extends Activity {
 
     ImageView splashImageView;
     long timeStart;
+    
+    IntranetApi api;
+    DAO dao;
+    StoragePrefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +96,18 @@ public class SplashActivity extends Activity {
     }
 
     private void prepareAppInMain() {
-        DAO.getInstance();
-        IntranetApi.getInstance(getApplication());
+        dao = DAO.getInstance();
+        api = IntranetApi.getInstance(getApplication());
+        prefs = StoragePrefs.getInstance(getApplicationContext());
     }
 
     private void prepareAppInBackground() {
-
+        if(api.isUserSignedIn()){
+            HTTPResponse<MandatedTime> response = api.getDaysOffToTake();
+            if(response.ok() && response.getExpectedResponse() != null){
+                prefs.setDaysOffToTake(response.getExpectedResponse().getLeft().intValue());
+            }
+        }
     }
 
     @Override

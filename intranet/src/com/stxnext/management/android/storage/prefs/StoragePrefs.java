@@ -19,6 +19,7 @@ public class StoragePrefs {
     private static final String STRING_WEB_COOKIES = "stringWebCookies";
     private static final String AUTH_CODE = "authCode";
     private static final String SYNC_IS_ON = "syncIsOn";
+    private static final String DAYS_OFF_TO_TAKE = "daysOffToTake";
 
     private static StoragePrefs _instance;
     private Context context;
@@ -73,6 +74,16 @@ public class StoragePrefs {
 
     public String getAuthCode() {
         return prefs.getString(AUTH_CODE, null);
+    }
+    
+    public void setDaysOffToTake(Integer days) {
+        prefs.edit().putInt(DAYS_OFF_TO_TAKE, days).commit();
+    }
+
+    public Integer getDaysOffToTake() {
+        int daysOff = prefs.getInt(DAYS_OFF_TO_TAKE, -1);
+        //we like nulls, nulls are legit
+        return daysOff!=-1?daysOff:null;
     }
 
     public void setSyncing(boolean syncing) {
