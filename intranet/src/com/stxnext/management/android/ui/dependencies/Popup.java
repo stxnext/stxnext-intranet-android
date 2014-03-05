@@ -1,13 +1,13 @@
 
 package com.stxnext.management.android.ui.dependencies;
 
+import java.util.List;
+
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -21,7 +21,7 @@ public class Popup {
     private LinearLayout rootView;
     private LayoutInflater lInf;
     private TextView anchorView;
-    private PopupItem[] items;
+    private List<PopupItem> items;
 
     public Popup(Context context, TextView anchor) {
         super();
@@ -33,7 +33,7 @@ public class Popup {
         rootView = (LinearLayout) lInf.inflate(R.layout.popup_view, null);
     }
 
-    public void addItems(final PopupItem... items) {
+    public void addItems(List<PopupItem> items) {
         this.items = items;
         int count = 0;
         for (PopupItem item : items) {
@@ -41,7 +41,6 @@ public class Popup {
             count++;
         }
     }
-
 
     public void setSelected(Object content) {
         String langFound = null;
@@ -53,6 +52,14 @@ public class Popup {
         }
         anchorView.setHint(null);
         anchorView.setText(langFound);
+    }
+    
+    public Object getSelected(){
+        for (PopupItem item : items) {
+            if(item.isSelected())
+                return item;
+        }
+        return null;
     }
 
     private void addItem(final PopupItem item, int position) {

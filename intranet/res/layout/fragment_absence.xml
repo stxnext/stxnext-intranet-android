@@ -25,10 +25,12 @@
                     android:textStyle="bold"
                     android:text="Days left" />
 
-                <TextView
+                <EditText
                     android:id="@+id/daysLeftView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:background="@null"
                     android:layout_weight="0.6"
                     android:gravity="right"
                     android:textStyle="bold"
@@ -68,11 +70,13 @@
                     android:gravity="left"
                     android:text="Date" />
 
-                <TextView
+                <EditText
                     android:id="@+id/absenceEndDateView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
+                    android:editable="false"
+                    android:background="@null"
                     android:gravity="right"
                     android:text="05/03/2014" />
             </TableRow>
@@ -89,11 +93,13 @@
                     android:gravity="left"
                     android:text="Type" />
 
-                <TextView
+                <EditText
                     android:id="@+id/absenceTypeView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
+                    android:editable="false"
+                    android:background="@null"
                     android:gravity="right"
                     android:text="Planned leave" />
             </TableRow>
@@ -124,6 +130,7 @@
                 android:weightSum="1" >
 
                 <Button
+                    android:id="@+id/submitButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"

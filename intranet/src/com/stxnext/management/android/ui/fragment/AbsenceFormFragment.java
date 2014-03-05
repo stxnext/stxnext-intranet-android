@@ -9,7 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,10 +20,13 @@ import com.actionbarsherlock.ActionBarSherlock;
 import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.MandatedTime;
+import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
+import com.stxnext.management.android.dto.postmessage.AbsenceMessage.AbsenceType;
 import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.Popup;
+import com.stxnext.management.android.ui.dependencies.Popup.OnPopupItemClickListener;
 import com.stxnext.management.android.ui.dependencies.PopupItem;
 import com.stxnext.management.android.web.api.HTTPResponse;
 import com.stxnext.management.android.web.api.IntranetApi;
@@ -36,10 +41,11 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
     private TableRow typeRow;
     
     private EditText absenceExplanationView;
-    private TextView absenceTypeView;
-    private TextView absenceEndDateView;
+    private EditText absenceTypeView;
+    private EditText absenceEndDateView;
     private TextView absenceStartDateView;
-    private TextView daysLeftView;
+    private EditText daysLeftView;
+    private Button submitButton;
     
     private View view;
     private Popup typePopup;
@@ -53,6 +59,8 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
     StoragePrefs prefs;
     IntranetApi api;
     ActionBarSherlock sherlock;
+    Integer daysLeft;
+    FormActionReceiver formReceiver;
 
     
     @Override
@@ -61,6 +69,7 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
         this.setRetainInstance(true);
         prefs = StoragePrefs.getInstance(getActivity());
         api = IntranetApi.getInstance(getActivity().getApplication());
+        formReceiver = (FormActionReceiver) getActivity();
     }
 
     @Override
@@ -73,10 +82,11 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
         endDateRow = (TableRow) view.findViewById(R.id.endDateRow);
         typeRow = (TableRow) view.findViewById(R.id.typeRow);
         absenceExplanationView = (EditText) view.findViewById(R.id.absenceExplanationView);
-        absenceTypeView = (TextView) view.findViewById(R.id.absenceTypeView);
-        absenceEndDateView = (TextView) view.findViewById(R.id.absenceEndDateView);
+        absenceTypeView = (EditText) view.findViewById(R.id.absenceTypeView);
+        absenceEndDateView = (EditText) view.findViewById(R.id.absenceEndDateView);
         absenceStartDateView = (TextView) view.findViewById(R.id.absenceStartDateView);
-        daysLeftView = (TextView) view.findViewById(R.id.daysLeftView);
+        daysLeftView = (EditText) view.findViewById(R.id.daysLeftView);
+        submitButton = (Button) view.findViewById(R.id.submitButton);
         
         startDatePickerDialog = CalendarDatePickerDialog
                 .newInstance(AbsenceFormFragment.this, startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH)-1,
@@ -87,9 +97,9 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
         
         absenceStartDateView.setText(AbstractMessage.defaultDateFormat.format(startDate.getTime()));
         absenceEndDateView.setText(AbstractMessage.defaultDateFormat.format(endDate.getTime()));
-        Integer daysOff = prefs.getDaysOffToTake();
-        if(daysOff != null){
-            daysLeftView.setText(String.valueOf(daysOff));
+        daysLeft = prefs.getDaysOffToTake();
+        if(daysLeft != null){
+            daysLeftView.setText(String.valueOf(daysLeft));
         }
         
         configureTypeSelector();
@@ -100,8 +110,57 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
     
     private void configureTypeSelector(){
         List<PopupItem> items = new ArrayList<PopupItem>();
+        for(AbsenceType type : AbsenceType.values()){
+            items.add(new PopupItem(type.getAbsenceName(), type));
+        }
         typePopup = new Popup(getActivity(), absenceTypeView);
-        //typePopup.addItems(item1,item2);
+        typePopup.addItems(items);
+        typePopup.setSelected(AbsenceType.PLANNED);
+        
+        typePopup.setOnItemClickListener(new OnPopupItemClickListener() {
+            @Override
+            public void onItemClick(Object content) {
+                typePopup.setSelected(content);
+            }
+        });
+        typeRow.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                typePopup.toggle();
+            }
+        });
+    }
+    
+    private void setActions(){
+        startDateRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                startDatePickerDialog.show(fm,START_PICKER_TAG);
+            }
+        });
+        
+        endDateRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                endDatePickerDialog.show(fm,END_PICKER_TAG);
+            }
+        });
+        
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validateForm()){
+                    AbsenceMessage message = new AbsenceMessage();
+                    message.setAbsenceType((AbsenceType) typePopup.getSelected());
+                    message.setEndDate(endDate.getTime());
+                    message.setStartDate(startDate.getTime());
+                    message.setRemarks(absenceExplanationView.getText().toString().trim());
+                    formReceiver.onSubmitFormWithMessage(message);
+                }
+            }
+        });
     }
 
     private class UpdateTimeLeft extends AsyncTaskEx<Void, Void, Void>{
@@ -111,7 +170,6 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
             setLoading(true, false);
         };
         
-        Integer daysLeft;
         @Override
         protected Void doInBackground(Void... params) {
             HTTPResponse<MandatedTime> response = api.getDaysOffToTake();
@@ -132,23 +190,6 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
         }
     }
     
-    private void setActions(){
-        startDateRow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                startDatePickerDialog.show(fm,START_PICKER_TAG);
-            }
-        });
-        
-        endDateRow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                endDatePickerDialog.show(fm,END_PICKER_TAG);
-            }
-        });
-    }
     
     private String updateCalendarAndGetFormat(Calendar cal, int year, int monthOfYear, int dayOfMonth ){
         cal.set(Calendar.YEAR, year);
@@ -159,14 +200,39 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
     
     @Override
     public void onDateSet(CalendarDatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
-        
         if(dialog.getTag().equals(START_PICKER_TAG)){
             absenceStartDateView.setText(updateCalendarAndGetFormat(startDate, year, monthOfYear, dayOfMonth));
         }
         else if(dialog.getTag().equals(END_PICKER_TAG)){
-            absenceEndDateView.setText(updateCalendarAndGetFormat(endDate, year, monthOfYear, dayOfMonth));
+            String format = updateCalendarAndGetFormat(endDate, year, monthOfYear, dayOfMonth);
+            if(updateDaysLeft()){
+                absenceEndDateView.setText(format);
+            }
+        }
+    }
+    
+    private boolean updateDaysLeft(){
+        int startDay = startDate.get(Calendar.DAY_OF_YEAR);
+        int endDay = endDate.get(Calendar.DAY_OF_YEAR);
+        if((daysLeft - (startDay+endDay)) < 0){
+            daysLeftView.setError("Brak dni do wykorzystania");
+            return false;
+        }
+        daysLeftView.setError(null);
+        return true;
+    }
+    
+    private boolean validateForm(){
+        boolean result = true;
+        if(startDate.after(endDate)){
+            absenceEndDateView.setError("Data początku nieobecności nie może być późniejsza niż data zakończenia");
+            result = false;
+        }
+        if(!updateDaysLeft()){
+            result = false;
         }
         
+        return result;
     }
     
     private void setLoading(boolean loading, boolean affectForm){
