@@ -5,22 +5,18 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class AbstractMessage {
 
-    public static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    
     protected Type listStringType = new TypeToken<ArrayList<String>>() {
     }.getType();
-    
-    
+
     public String serialize() {
         return GsonProvider.get().toJson(this);
     }
 
-    public static <T> T fromJsonString(String jsonString,Type type) {
+    public static <T> T fromJsonString(String jsonString, Type type) {
         return GsonProvider.get().fromJson(
                 jsonString,
                 type);

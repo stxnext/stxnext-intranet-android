@@ -81,6 +81,7 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
 
         @Override
         protected void onPreExecute() {
+            getSherlock().setProgressBarIndeterminateVisibility(true);
             setFormsEnabled(false);
             super.onPreExecute();
         }
@@ -108,6 +109,8 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
                 finish();
             }
             else {
+                getSherlock().setProgressBarIndeterminateVisibility(false);
+                setFormsEnabled(true);
                 Toast.makeText(SubmitFormActivity.this,
                         "Błąd wysyłania formularza. Spróbuj ponownie.", Toast.LENGTH_SHORT).show();
             }

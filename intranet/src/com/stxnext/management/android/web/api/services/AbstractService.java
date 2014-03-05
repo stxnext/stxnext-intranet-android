@@ -10,7 +10,6 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 
 import android.util.Log;
-import ch.boye.httpclientandroidlib.Header;
 import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
 import ch.boye.httpclientandroidlib.NameValuePair;
@@ -21,12 +20,13 @@ import ch.boye.httpclientandroidlib.client.methods.HttpPost;
 import ch.boye.httpclientandroidlib.client.methods.HttpPut;
 import ch.boye.httpclientandroidlib.client.methods.HttpUriRequest;
 import ch.boye.httpclientandroidlib.client.utils.URLEncodedUtils;
+import ch.boye.httpclientandroidlib.cookie.Cookie;
 import ch.boye.httpclientandroidlib.message.AbstractHttpMessage;
 
 import com.stxnext.management.android.AppIntranet;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
-import com.stxnext.management.android.web.api.HttpErrorResolver;
 import com.stxnext.management.android.web.api.HTTPResponse;
+import com.stxnext.management.android.web.api.HttpErrorResolver;
 
 public abstract class AbstractService {
 
@@ -76,7 +76,7 @@ public abstract class AbstractService {
     }
 
     public enum RequestHeader {
-        JSON("application/json; charset=UTF-8");
+        JSON("application/json");
 
         public static final String HEADER_ACCEPT = "Accept";
         public static final String HEADER_CONTENT_TYPE = "Content-Type";
@@ -114,11 +114,25 @@ public abstract class AbstractService {
         message.setHeader(RequestHeader.HEADER_CONTENT_TYPE, header.getAcceptHeader());
     }
     
+    protected void setAuthHeaders(AbstractHttpMessage message){
+        StringBuilder sb = new StringBuilder();
+        for(Cookie cookie : prefs.getCookies()){
+            sb.append(cookie.getName()).append("=");
+            sb.append(cookie.getValue());
+            sb.append(";");
+        }
+        message.addHeader("Cookie", sb.toString());
+    }
+    
+    protected void setRequiredExtraHeaders(AbstractHttpMessage message){
+        message.setHeader("X-Requested-With","XMLHttpRequest");
+    }
 
     protected HttpPost postRequest(String path,
             List<NameValuePair> dictionary) {
         String url = resolveUrl(path);
         HttpPost request = new HttpPost(url);
+        setRequiredExtraHeaders(request);
         if (dictionary != null) {
             try {
                 request.setEntity(new UrlEncodedFormEntity(dictionary));
@@ -136,6 +150,7 @@ public abstract class AbstractService {
         String url = resolveUrl(path);
 
         HttpPut request = new HttpPut(url);
+        setRequiredExtraHeaders(request);
         if (dictionary != null) {
             try {
                 request.setEntity(new UrlEncodedFormEntity(dictionary));
@@ -157,6 +172,7 @@ public abstract class AbstractService {
         }
 
         HttpDelete request = new HttpDelete(url);
+        setRequiredExtraHeaders(request);
         request.setParams(serviceState.getClient().getParams());
         return request;
     }
@@ -170,6 +186,7 @@ public abstract class AbstractService {
         }
 
         HttpGet request = new HttpGet(url);
+        setRequiredExtraHeaders(request);
         request.setParams(serviceState.getClient().getParams());
         return request;
     }

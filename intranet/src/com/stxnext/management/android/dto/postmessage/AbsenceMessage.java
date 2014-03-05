@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.stxnext.management.android.ui.dependencies.TimeUtil;
 
 public class AbsenceMessage extends AbstractMessage{
 
@@ -43,11 +44,11 @@ public class AbsenceMessage extends AbstractMessage{
     
     
     public void setStartDate(Date startDate) {
-        this.startDate = defaultDateFormat.format(startDate);
+        this.startDate = TimeUtil.defaultDateFormat.format(startDate);
     }
 
     public void setEndDate(Date endDate) {
-        this.endDate = defaultDateFormat.format(endDate);
+        this.endDate = TimeUtil.defaultDateFormat.format(endDate);
     }
 
     public void setAbsenceType(AbsenceType type) {

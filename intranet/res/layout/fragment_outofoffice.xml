@@ -22,12 +22,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
+                    android:textSize="15dp"
                     android:text="Date" />
 
-                <TextView
+                <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
+                    android:id="@+id/oooDateView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
+                    android:editable="false"
+                    android:textSize="15dp"
+                    android:background="@null"
                     android:gravity="right"
                     android:text="05/03/2014" />
             </TableRow>
@@ -42,12 +47,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
+                    android:textSize="15dp"
                     android:text="From" />
 
-                <TextView
+                <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
+                    android:id="@+id/startTimeView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
+                    android:editable="false"
+                    android:textSize="15dp"
+                    android:background="@null"
                     android:gravity="right"
                     android:text="09:00" />
             </TableRow>
@@ -62,12 +72,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
+                    android:textSize="15dp"
                     android:text="To" />
 
-                <TextView
+                <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
+                    android:id="@+id/endTimeView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
+                    android:editable="false"
+                    android:textSize="15dp"
+                    android:background="@null"
                     android:gravity="right"
                     android:text="10:00" />
             </TableRow>
@@ -86,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
+                    android:textSize="15dp"
                     android:text="Work from home" />
 
                 <LinearLayout
@@ -95,11 +111,12 @@
                     android:gravity="right" >
 
                     <ImageView
+                        android:id="@+id/workFromHomeCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:gravity="right"
-                        android:src="@drawable/box_checked" />
+                        android:src="@drawable/checkbox_levels" />
                 </LinearLayout>
             </TableRow>
 
@@ -109,6 +126,7 @@
                 android:weightSum="1" >
 
                 <EditText
+                    android:id="@+id/oooExplanationView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -118,8 +136,22 @@
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:minLines="8"
+                    android:textSize="15dp"
                     android:padding="15dp"
                     android:singleLine="false" />
+            </TableRow>
+            <TableRow
+                android:gravity="right"
+                android:padding="12dp"
+                android:weightSum="1" >
+
+                <Button
+                    android:id="@+id/oooSubmitButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="SUBMIT"
+                    android:textStyle="bold" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

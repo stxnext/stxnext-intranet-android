@@ -57,7 +57,7 @@ public class Popup {
     public Object getSelected(){
         for (PopupItem item : items) {
             if(item.isSelected())
-                return item;
+                return item.getContent();
         }
         return null;
     }

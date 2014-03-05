@@ -4,16 +4,17 @@ import java.util.Date;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.stxnext.management.android.ui.dependencies.TimeUtil;
 
 public class LatenessMessage extends AbstractMessage{
 
     @Expose
     @SerializedName("late_start")
-    String startDate;
+    String startHour;
     
     @Expose
     @SerializedName("late_end")
-    String endDate;
+    String endHour;
     
     @Expose
     @SerializedName("popup_date")
@@ -27,16 +28,16 @@ public class LatenessMessage extends AbstractMessage{
     @SerializedName("popup_explanation")
     String explanation;
 
-    public void setStartDate(Date startDate) {
-        this.startDate = defaultDateFormat.format(startDate);
+    public void setStartHour(Date startHour) {
+        this.startHour = TimeUtil.defaultTimeFormat.format(startHour);
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = defaultDateFormat.format(endDate);
+    public void setEndHour(Date endHour) {
+        this.endHour = TimeUtil.defaultTimeFormat.format(endHour);
     }
 
     public void setSubmissionDate(Date submissionDate) {
-        this.submissionDate = defaultDateFormat.format(submissionDate);
+        this.submissionDate = TimeUtil.defaultDateFormat.format(submissionDate);
     }
 
     public void setWorkFromHome(Boolean workFromHome) {

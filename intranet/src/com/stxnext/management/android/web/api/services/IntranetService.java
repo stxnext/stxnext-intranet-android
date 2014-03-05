@@ -3,9 +3,11 @@ package com.stxnext.management.android.web.api.services;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.Date;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
@@ -24,6 +26,7 @@ import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.dto.postmessage.GsonProvider;
 import com.stxnext.management.android.dto.postmessage.LatenessMessage;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
+import com.stxnext.management.android.ui.dependencies.TimeUtil;
 import com.stxnext.management.android.web.api.HTTPError;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
@@ -122,7 +125,7 @@ public class IntranetService extends AbstractService {
             throws Exception {
 
         String methodToCall = String.format("api/absence_days?date_start=%s&type=planowany",
-                AbstractMessage.defaultDateFormat.format(new Date()));
+                TimeUtil.defaultDateFormat.format(new Date()));
 
         HTTPResponse<MandatedTime> result = new HTTPResponse<MandatedTime>();
         HttpGet request = getRequest(methodToCall, null, false);
@@ -141,8 +144,10 @@ public class IntranetService extends AbstractService {
 
         HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
         HttpPost request = postRequest("api/lateness", null);
-
-        StringEntity postEntity = new StringEntity(messagge.toString());
+        //request.setURI(URI.create("http://httpbin.org/post"));
+        setContentType(request, RequestHeader.JSON);
+        
+        StringEntity postEntity = new StringEntity(messagge.serialize());
         request.setEntity(postEntity);
 
         HttpResponse response = executeRequestAndParseError(request, result);
@@ -160,16 +165,20 @@ public class IntranetService extends AbstractService {
 
         HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
         HttpPost request = postRequest("api/absence", null);
-
-        StringEntity postEntity = new StringEntity(messagge.toString());
+        setContentType(request, RequestHeader.JSON);
+        StringEntity postEntity = new StringEntity(messagge.serialize());
         request.setEntity(postEntity);
 
         HttpResponse response = executeRequestAndParseError(request, result);
         HttpEntity entity = response.getEntity();
         if (result.ok()) {
+            
+        }
+        if(entity!=null){
             String jsonStub = EntityUtils.toString(entity);
             Log.e("getDaysOffToTake",jsonStub);
         }
+        
         EntityUtils.consume(entity);
         return result;
     }
