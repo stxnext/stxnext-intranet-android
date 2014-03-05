@@ -28,6 +28,7 @@ import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.Popup;
 import com.stxnext.management.android.ui.dependencies.Popup.OnPopupItemClickListener;
 import com.stxnext.management.android.ui.dependencies.PopupItem;
+import com.stxnext.management.android.ui.dependencies.TouchResistantEditText;
 import com.stxnext.management.android.web.api.HTTPResponse;
 import com.stxnext.management.android.web.api.IntranetApi;
 
@@ -41,10 +42,10 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
     private TableRow typeRow;
     
     private EditText absenceExplanationView;
-    private EditText absenceTypeView;
-    private EditText absenceEndDateView;
+    private TouchResistantEditText absenceTypeView;
+    private TouchResistantEditText absenceEndDateView;
     private TextView absenceStartDateView;
-    private EditText daysLeftView;
+    private TouchResistantEditText daysLeftView;
     private Button submitButton;
     
     private View view;
@@ -82,10 +83,10 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
         endDateRow = (TableRow) view.findViewById(R.id.endDateRow);
         typeRow = (TableRow) view.findViewById(R.id.typeRow);
         absenceExplanationView = (EditText) view.findViewById(R.id.absenceExplanationView);
-        absenceTypeView = (EditText) view.findViewById(R.id.absenceTypeView);
-        absenceEndDateView = (EditText) view.findViewById(R.id.absenceEndDateView);
+        absenceTypeView = (TouchResistantEditText) view.findViewById(R.id.absenceTypeView);
+        absenceEndDateView = (TouchResistantEditText) view.findViewById(R.id.absenceEndDateView);
         absenceStartDateView = (TextView) view.findViewById(R.id.absenceStartDateView);
-        daysLeftView = (EditText) view.findViewById(R.id.daysLeftView);
+        daysLeftView = (TouchResistantEditText) view.findViewById(R.id.daysLeftView);
         submitButton = (Button) view.findViewById(R.id.submitButton);
         
         startDatePickerDialog = CalendarDatePickerDialog

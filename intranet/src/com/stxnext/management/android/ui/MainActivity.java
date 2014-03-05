@@ -382,6 +382,7 @@ public class MainActivity extends AbstractSimpleActivity implements
                 usersCursor = c;
                 adapter.changeCursor(c);
                 adapter.notifyDataSetChanged();
+                userList.invalidateViews();
             }
             if (animated)
                 applyListAnimation(userList);
@@ -496,12 +497,12 @@ public class MainActivity extends AbstractSimpleActivity implements
         @Override
         protected HTTPResponse<IntranetUsersResult> doInBackground(
                 Void... params) {
-            if (reloadingPullToRefresh) {
+            //if (reloadingPullToRefresh) {
                 if (adapter != null) {
-                    adapter.clearCache();
                     BitmapUtils.cleanTempDir(AppIntranet.getApp());
+                    adapter.clearCache();
                 }
-            }
+            //}
             HTTPResponse<IntranetUsersResult> result = api.getUsers();
             if (result != null && result.getExpectedResponse() != null) {
                 DAO.getInstance().getIntranetUser().clear();

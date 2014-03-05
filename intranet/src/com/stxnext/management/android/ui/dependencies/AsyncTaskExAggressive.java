@@ -145,8 +145,8 @@ import android.os.Message;
 public abstract class AsyncTaskExAggressive<Params, Progress, Result> {
     private static final String LOG_TAG = "AsyncTaskEx";
 
-    private static final int CORE_POOL_SIZE = 1;
-    private static final int MAXIMUM_POOL_SIZE = 1;
+    private static final int CORE_POOL_SIZE = 2;
+    private static final int MAXIMUM_POOL_SIZE = 2;
     private static final int KEEP_ALIVE = 10;
 
     private static final LinkedBlockingQueue<Runnable> aggressiveWorkQueue =

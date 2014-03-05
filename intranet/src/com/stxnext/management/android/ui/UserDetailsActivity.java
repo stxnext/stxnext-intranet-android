@@ -15,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.content.Loader;
-import android.support.v4.app.LoaderManager;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -157,8 +155,8 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
             AsyncTaskEx<Void, Void, Void> {
 
         List<ProviderPhone> phones;
-        
-        public MergeTask(List<ProviderPhone> phones){
+
+        public MergeTask(List<ProviderPhone> phones) {
             this.phones = phones;
         }
 
@@ -173,7 +171,8 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
             super.onPostExecute(result);
             if (isFinishing())
                 return;
-            Toast.makeText(UserDetailsActivity.this, "Kontakt został zaktualizowany", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserDetailsActivity.this, "Kontakt został zaktualizowany",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -190,10 +189,11 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
 
         @Override
         protected List<UserProperty> doInBackground(Void... params) {
-            Bitmap bitmap = BitmapUtils.getTempBitmap(UserDetailsActivity.this, user.getId().toString());
-            if(bitmap!=null){
-        	drawable = new RoundedDrawable(bitmap);
-        	drawable.setCornerRadius(15F);
+            Bitmap bitmap = BitmapUtils.getTempBitmap(UserDetailsActivity.this, user.getId()
+                    .toString());
+            if (bitmap != null) {
+                drawable = new RoundedDrawable(bitmap);
+                drawable.setCornerRadius(15F);
             }
             return user.getProperties();
         }
