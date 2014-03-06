@@ -27,6 +27,7 @@ import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
 import com.stxnext.management.android.dto.postmessage.AbsenceMessage.AbsenceType;
+import com.stxnext.management.android.dto.postmessage.AbsencePayload;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.Popup;
@@ -163,7 +164,7 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
                     message.setEndDate(endDate.getTime());
                     message.setStartDate(startDate.getTime());
                     message.setRemarks(absenceExplanationView.getText().toString().trim());
-                    formReceiver.onSubmitFormWithMessage(message);
+                    formReceiver.onSubmitFormWithMessage(new AbsencePayload(message));
                 }
             }
         });

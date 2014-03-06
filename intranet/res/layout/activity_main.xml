@@ -75,7 +75,7 @@
     <RelativeLayout
         android:id="@+id/left_drawer"
         android:layout_width="220dp"
-        android:background="#111"
+        android:background="@drawable/dark_texture_repeat"
         android:layout_height="match_parent"
         android:layout_gravity="start" >
 
@@ -105,7 +105,7 @@
     <RelativeLayout
         android:id="@+id/right_drawer"
         android:layout_width="220dp"
-        android:background="#111"
+        android:background="@drawable/dark_texture_repeat"
         android:layout_height="match_parent"
         android:layout_gravity="end" >
 
@@ -149,7 +149,7 @@
             android:id="@+id/oooList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#111"
+            android:background="@drawable/dark_texture_repeat"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp" />
     </RelativeLayout>

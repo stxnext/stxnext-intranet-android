@@ -7,8 +7,8 @@ import android.graphics.Bitmap;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
-import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
-import com.stxnext.management.android.dto.postmessage.LatenessMessage;
+import com.stxnext.management.android.dto.postmessage.AbsencePayload;
+import com.stxnext.management.android.dto.postmessage.LatenessPayload;
 
 public class IntranetApi extends AbstractApi {
 
@@ -74,7 +74,7 @@ public class IntranetApi extends AbstractApi {
         return result;
     }
 
-    public HTTPResponse<Boolean> submitLateness(final LatenessMessage messagge) {
+    public HTTPResponse<Boolean> submitLateness(final LatenessPayload messagge) {
         HTTPResponse<Boolean> result = call(false,
                 new ApiExecutable<Boolean>() {
                     @Override
@@ -85,7 +85,7 @@ public class IntranetApi extends AbstractApi {
         return result;
     }
 
-    public HTTPResponse<Boolean> submitAbsence(final AbsenceMessage messagge) {
+    public HTTPResponse<Boolean> submitAbsence(final AbsencePayload messagge) {
         HTTPResponse<Boolean> result = call(false,
                 new ApiExecutable<Boolean>() {
                     @Override

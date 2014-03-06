@@ -22,9 +22,11 @@ import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
+import com.stxnext.management.android.dto.postmessage.AbsencePayload;
 import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.dto.postmessage.GsonProvider;
 import com.stxnext.management.android.dto.postmessage.LatenessMessage;
+import com.stxnext.management.android.dto.postmessage.LatenessPayload;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.TimeUtil;
 import com.stxnext.management.android.web.api.HTTPError;
@@ -139,15 +141,17 @@ public class IntranetService extends AbstractService {
         return result;
     }
 
-    public HTTPResponse<Boolean> submitLateness(LatenessMessage messagge)
+    public HTTPResponse<Boolean> submitLateness(LatenessPayload messagge)
             throws Exception {
 
+        messagge.getLateness().setExplanation("Intranet test");
         HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
         HttpPost request = postRequest("api/lateness", null);
         //request.setURI(URI.create("http://httpbin.org/post"));
         setContentType(request, RequestHeader.JSON);
         
-        StringEntity postEntity = new StringEntity(messagge.serialize());
+        String jsonString = messagge.serialize();
+        StringEntity postEntity = new StringEntity(jsonString);
         request.setEntity(postEntity);
 
         HttpResponse response = executeRequestAndParseError(request, result);
@@ -160,13 +164,15 @@ public class IntranetService extends AbstractService {
         return result;
     }
 
-    public HTTPResponse<Boolean> submitAbsence(AbsenceMessage messagge)
+    public HTTPResponse<Boolean> submitAbsence(AbsencePayload messagge)
             throws Exception {
 
+        messagge.getAbsence().setRemarks("Intranet test");
         HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
         HttpPost request = postRequest("api/absence", null);
         setContentType(request, RequestHeader.JSON);
-        StringEntity postEntity = new StringEntity(messagge.serialize());
+        String jsonString = messagge.serialize();
+        StringEntity postEntity = new StringEntity(jsonString);
         request.setEntity(postEntity);
 
         HttpResponse response = executeRequestAndParseError(request, result);

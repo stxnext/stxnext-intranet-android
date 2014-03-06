@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.viewpagerindicator.IconPagerAdapter;
 
 public class FormFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
-    protected static final String[] CONTENT = new String[] { "Absence", "Out Of Office" };
+    protected static final String[] CONTENT = new String[] { "Nieobecność", "Poza biurem" };
     private ArrayList<Fragment> fragments;
 
     public FormFragmentAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {

@@ -24,6 +24,7 @@ public class AbstractApi {
     protected StoragePrefs prefs;
     protected IntranetService service;
     protected DAO dao;
+    protected Handler serviceHandler;
 
     private boolean connected;
 
@@ -32,6 +33,7 @@ public class AbstractApi {
         prefs = StoragePrefs.getInstance(app);
         this.connected = checkConnetivityManagerConnectionAndUpdateServiceState();
         service = new IntranetService();
+        serviceHandler = new Handler();
         dao = DAO.getInstance();
     }
 
@@ -69,14 +71,11 @@ public class AbstractApi {
         return this.connected;
     }
 
-    final Handler messageHandler = new Handler();
-
     protected <T> HTTPResponse<T> call(boolean requiresAuth,
             ApiExecutable<T> exe) {
         HTTPResponse<T> result = new HTTPResponse<T>();
         if(!isOnline()){
-            Handler handler = new Handler();
-            handler.post(new Runnable() {
+            serviceHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     Toast.makeText(app, "Brak połączenia z siecią", Toast.LENGTH_SHORT).show();
@@ -105,7 +104,7 @@ public class AbstractApi {
 
             if (!result.ok() && result.getError().getCode() != 403) {
                 final HTTPResponse<T> messageResult = result;
-                messageHandler.post(new Runnable() {
+                serviceHandler.post(new Runnable() {
 
                     @Override
                     public void run() {

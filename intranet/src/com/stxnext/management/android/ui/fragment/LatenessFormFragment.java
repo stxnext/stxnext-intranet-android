@@ -21,6 +21,7 @@ import com.doomonafireball.betterpickers.radialtimepicker.RadialTimePickerDialog
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.dto.postmessage.LatenessMessage;
+import com.stxnext.management.android.dto.postmessage.LatenessPayload;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.ui.dependencies.TimeUtil;
 import com.stxnext.management.android.ui.dependencies.TouchResistantEditText;
@@ -115,6 +116,9 @@ public class LatenessFormFragment   extends Fragment implements CalendarDatePick
                 .newInstance(null, initial_end_hour, initial_minute,
                         true);
         
+        startTimeView.setText(TimeUtil.updateCalendarTimeAndGetFormat(startTime, initial_start_hour, initial_minute));
+        endTimeView.setText(TimeUtil.updateCalendarTimeAndGetFormat(endTime, initial_end_hour, initial_minute));
+        
         startTimePicker.setOnTimeSetListener(new OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
@@ -176,8 +180,7 @@ public class LatenessFormFragment   extends Fragment implements CalendarDatePick
                     message.setEndHour(endTime.getTime());
                     message.setExplanation(oooExplanationView.getText().toString().trim());
                     message.setWorkFromHome((Boolean) workFromHomeCheck.getTag());
-                    
-                    formReceiver.onSubmitFormWithMessage(message);
+                    formReceiver.onSubmitFormWithMessage(new LatenessPayload(message));
                 }
             }
         });

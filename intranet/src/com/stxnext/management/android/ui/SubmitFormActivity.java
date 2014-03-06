@@ -11,8 +11,10 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Window;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
+import com.stxnext.management.android.dto.postmessage.AbsencePayload;
 import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.dto.postmessage.LatenessMessage;
+import com.stxnext.management.android.dto.postmessage.LatenessPayload;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.ExtendedViewPager;
 import com.stxnext.management.android.ui.fragment.AbsenceFormFragment;
@@ -25,6 +27,8 @@ import com.viewpagerindicator.PageIndicator;
 
 public class SubmitFormActivity extends SherlockFragmentActivity implements FormActionReceiver {
 
+    public static final int REQUEST_SEND_FORM = 2;
+    
     FormFragmentAdapter mAdapter;
     ExtendedViewPager mPager;
     PageIndicator mIndicator;
@@ -88,11 +92,11 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
 
         @Override
         protected HTTPResponse<Boolean> doInBackground(Void... params) {
-            if (message instanceof LatenessMessage) {
-                return api.submitLateness((LatenessMessage) message);
+            if (message instanceof LatenessPayload) {
+                return api.submitLateness((LatenessPayload) message);
             }
-            else if (message instanceof AbsenceMessage) {
-                return api.submitAbsence((AbsenceMessage) message);
+            else if (message instanceof AbsencePayload) {
+                return api.submitAbsence((AbsencePayload) message);
             }
             return null;
         }
@@ -106,6 +110,8 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
 
             if (result.ok()) {
                 setResult(RESULT_OK);
+                Toast.makeText(SubmitFormActivity.this,
+                        "Formylarz wysłano, dziękujemy", Toast.LENGTH_SHORT).show();
                 finish();
             }
             else {

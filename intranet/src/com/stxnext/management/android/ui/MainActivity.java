@@ -264,10 +264,11 @@ public class MainActivity extends AbstractSimpleActivity implements
                         });
             }
         } else if (item.getItemId() == R.id.addform) {
-            startActivity(new Intent(this, SubmitFormActivity.class));
+            startActivityForResult(new Intent(this, SubmitFormActivity.class),SubmitFormActivity.REQUEST_SEND_FORM);
         }
         return super.onMenuItemSelected(featureId, item);
     }
+    
 
     private Runnable signOutAction = new Runnable() {
         public void run() {
@@ -340,6 +341,14 @@ public class MainActivity extends AbstractSimpleActivity implements
                 new AuthUserTask().execute();
             } else if (resultCode == LoginActivity.RESULT_CANCELLED) {
                 finish();
+            }
+        }
+        else if(requestCode == SubmitFormActivity.REQUEST_SEND_FORM){
+            if(resultCode == RESULT_OK){
+                reloadingPullToRefresh = true;
+                if (api.isOnline()) {
+                    new LoadUsersTask(true, false).execute();
+                }
             }
         }
     }

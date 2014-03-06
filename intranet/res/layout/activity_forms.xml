@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:background="#000000"
         android:textColor="#77ffffff"
-        app:footerColor="#44ff44"
+        app:footerColor="#ffffff"
         app:footerLineHeight="2dp"
         app:footerIndicatorHeight="4dp"
         app:footerIndicatorStyle="underline"
