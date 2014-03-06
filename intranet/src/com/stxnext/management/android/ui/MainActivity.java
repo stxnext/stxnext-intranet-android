@@ -402,7 +402,7 @@ public class MainActivity extends AbstractSimpleActivity implements
         }
     }
 
-    private class AuthUserTask extends AsyncTask<Void, Void, Void> {
+    private class AuthUserTask extends AsyncTask<Void, Void, HTTPResponse<String>> {
 
         @Override
         protected void onPreExecute() {
@@ -411,15 +411,20 @@ public class MainActivity extends AbstractSimpleActivity implements
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
-            api.loginWithCode(prefs.getAuthCode());
-            return null;
+        protected HTTPResponse<String> doInBackground(Void... params) {
+            return api.loginWithCode(prefs.getAuthCode());
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(HTTPResponse<String> result) {
             super.onPostExecute(result);
-            loadData();
+            if(result.ok()){
+                loadData();
+            }
+            else{
+                startActivity(new Intent(MainActivity.this,PresentationActivity.class));
+                finish();
+            }
         }
     }
 

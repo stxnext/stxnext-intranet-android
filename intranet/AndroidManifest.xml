@@ -69,6 +69,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".ui.PresentationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name" >
+        </activity>
         
         <receiver
             android:name="com.stxnext.management.android.receivers.NetworkStateChangeReceiver"
