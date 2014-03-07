@@ -4,9 +4,10 @@ package com.stxnext.management.android.storage.prefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.cookie.Cookie;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import ch.boye.httpclientandroidlib.cookie.Cookie;
 
 import com.google.common.base.Strings;
 import com.stxnext.management.android.dto.local.CookiesHolder;

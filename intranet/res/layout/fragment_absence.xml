@@ -14,17 +14,17 @@
 
             <TableRow
                 android:id="@+id/daysLeftRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
                     android:textStyle="bold"
-                    android:text="Days left" />
+                    android:text="Dni do wykorzystania" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/daysLeftView"
@@ -33,47 +33,47 @@
                     android:editable="false"
                     android:background="@null"
                     android:layout_weight="0.6"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:gravity="right"
                     android:textStyle="bold"
-                    android:text="loading..." />
+                    android:text="wczytuję..." />
             </TableRow>
             
             <TableRow
                 android:id="@+id/startDateRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
-                    android:text="Start date" />
+                    android:text="Data rozpoczęcia" />
 
                 <TextView
                     android:id="@+id/absenceStartDateView"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:gravity="right"
                     android:text="05/03/2014" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/endDateRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
-                    android:text="End date" />
+                    android:text="Data zakończenia" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/absenceEndDateView"
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:editable="false"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:background="@null"
                     android:gravity="right"
                     android:text="05/03/2014" />
@@ -89,16 +89,16 @@
 
             <TableRow
                 android:id="@+id/typeRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
-                    android:text="Type" />
+                    android:text="Rodzaj" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/absenceTypeView"
@@ -108,13 +108,13 @@
                     android:editable="false"
                     android:background="@null"
                     android:gravity="right"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:text="Planned leave" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/absenceExplanationRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <EditText
@@ -125,7 +125,7 @@
                     android:background="@drawable/text_filed_bkg"
                     android:gravity="top|left"
                     android:hint="Explanation..."
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:minLines="8"
@@ -135,7 +135,7 @@
 
             <TableRow
                 android:gravity="right"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <Button
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SUBMIT"
+                    android:text="WYŚLIJ"
                     android:textStyle="bold" />
             </TableRow>
         </TableLayout>

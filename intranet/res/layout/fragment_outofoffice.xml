@@ -14,7 +14,7 @@
 
             <TableRow
                 android:id="@+id/dateRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <TextView
@@ -22,8 +22,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
-                    android:textSize="15dp"
-                    android:text="Date" />
+                    android:textSize="@dimen/form_label_text_size"
+                    android:text="Data" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/oooDateView"
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:editable="false"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:background="@null"
                     android:gravity="right"
                     android:text="05/03/2014" />
@@ -39,7 +39,7 @@
 
             <TableRow
                 android:id="@+id/startTimeRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <TextView
@@ -47,8 +47,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
-                    android:textSize="15dp"
-                    android:text="From" />
+                    android:textSize="@dimen/form_label_text_size"
+                    android:text="Początek" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/startTimeView"
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:editable="false"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:background="@null"
                     android:gravity="right"
                     android:text="09:00" />
@@ -64,7 +64,7 @@
 
             <TableRow
                 android:id="@+id/endTimeRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <TextView
@@ -72,8 +72,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
-                    android:textSize="15dp"
-                    android:text="To" />
+                    android:textSize="@dimen/form_label_text_size"
+                    android:text="Koniec" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/endTimeView"
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:editable="false"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:background="@null"
                     android:gravity="right"
                     android:text="10:00" />
@@ -91,8 +91,8 @@
                 android:id="@+id/workFromHomeRow"
                 android:gravity="center_vertical"
                 android:paddingBottom="5dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
+                android:paddingLeft="@dimen/form_row_padding"
+                android:paddingRight="@dimen/form_row_padding"
                 android:paddingTop="5dp"
                 android:weightSum="1" >
 
@@ -101,8 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="left"
-                    android:textSize="15dp"
-                    android:text="Work from home" />
+                    android:textSize="@dimen/form_label_text_size"
+                    android:text="Praca zdalna" />
 
                 <LinearLayout
                     android:layout_width="0dip"
@@ -122,7 +122,7 @@
 
             <TableRow
                 android:id="@+id/oooExplanationRow"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <EditText
@@ -136,13 +136,13 @@
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:minLines="8"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/form_label_text_size"
                     android:padding="15dp"
                     android:singleLine="false" />
             </TableRow>
             <TableRow
                 android:gravity="right"
-                android:padding="12dp"
+                android:padding="@dimen/form_row_padding"
                 android:weightSum="1" >
 
                 <Button
@@ -150,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SUBMIT"
+                    android:text="WYŚLIJ"
                     android:textStyle="bold" />
             </TableRow>
         </TableLayout>

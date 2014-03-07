@@ -1,20 +1,169 @@
-# To enable ProGuard in your project, edit project.properties
-# to define the proguard.config property as described in that file.
-#
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in ${sdk.dir}/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the ProGuard
-# include property in project.properties.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+-injars      bin/classes
+-injars      libs
+-outjars     bin/classes-processed.jar
+#-libraryjars /libs/android-support-v4.jar
+#-libraryjars /libs/activation.jar
+#-libraryjars /libs/additionnal.jar
+#-libraryjars /libs/commons-io-2.4.jar
+#-libraryjars /libs/guava-12.0.1.jar
+#-libraryjars /libs/guice-2.0-no_aop.jar
+#-libraryjars /libs/mail.jar
+#-libraryjars /libs/protobuf-java-2.4.1.jar
+#-libraryjars /libs/roboguice-2.0.jar
+#-libraryjars /libs/twitter4j-core-2.1.11.jar
+#-libraryjars /libs/signpost-core-1.2.1.1.jar
+#-libraryjars /libs/libGoogleAnalyticsV2.jar
+#-libraryjars /libs/GoogleAdMobAdsSdk-6.4.1.jar
+#-libraryjars /libs/httpclientandroidlib-1.1.2.jar
+#-libraryjars /libs/httpmime-4.2.5.jar
+#-libraryjars /libs/gson-2.2.4.jar
+#-libraryjars /libs/joda-time-2.3.jar
 
-# Add any project specific keep options here:
+-dontwarn android.support.**
+-dontwarn com.google.common.**
+-dontwarn com.google.ads.**
+-dontwarn ch.boye.**
+-dontwarn org.apache.**
+-dontwarn com.google.gson.**
+-dontwarn roboguice.**
+-dontwarn twitter4j.**
+-dontwarn oauth.**
+-dontwarn org.joda.**
+-dontwarn com.tapjoy.**
+#-dontwarn com.sun.mail.**
+#-dontwarn javax.activation.**
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+
+-keep public class com.handmark.**
+-keep public class com.doomonafireball.**
+-keep public class com.actionbarsherlock.**
+-keep public class com.google.android.gms.**
+-keep public class org.joda.**
+
+
+-keep class * implements java.io.Serializable
+
+-keep class com.doomonafireball.**{*;}
+-keep class com.viewpagerindicator.**{*;}
+-keep class com.actionbarsherlock.**{*;}
+-keep class com.google.android.gms.**{*;}
+
+
+-keep class roboguice.**
+{
+    *;
+}
+
+-keep class java.util.**
+{ 
+	*; 
+}
+-keep class com.stxnext.management.android.ui.dependencies.**
+{ 
+	*; 
+}
+
+-keepclassmembers class * implements java.lang.annotation.Annotation {
+static final long serialVersionUID;
+java.lang.Object writeReplace();
+java.lang.Object readResolve();
+private static final java.io.ObjectStreamField[] serialPersistentFields;
+}
+
+
+-dontpreverify
+#-repackageclasses ''
+-allowaccessmodification
+-optimizations !code/simplification/arithmetic
+
+-keep public class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+    public void set*(...);
+}
+
+-keepattributes *Annotation*
+-keepattributes Signature
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgent
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends android.app.Fragment
+-keep public class com.android.vending.licensing.ILicensingService
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclassmembers class * extends android.content.Context {
+   public void *(android.view.View);
+   public void *(android.view.MenuItem);
+}
+
+-keepclassmembers class * implements android.os.Parcelable {
+    static android.os.Parcelable$Creator CREATOR;
+}
+
+
+
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+
+-keep,allowshrinking public class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+    public void set*(...);
+}
+
+##############
+-target 1.6
+#-dontobfuscate
+-dontoptimize
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses 
+#-dontpreverify 
+-verbose 
+-dump ../bin/class_files.txt
+-printseeds ../bin/seeds.txt
+-printusage ../bin/unused.txt
+-printmapping ../bin/mapping.txt 
+
+# The -optimizations option disables some arithmetic simplifications that Dalvik 1.0 and 1.5 can't handle. 
+-optimizations !code/simplification/arithmetic 
+
+
+-keep class com.google.inject.Binder
+-keepclassmembers class * {
+    @com.google.inject.Inject <init>(...);
+}
+# There's no way to keep all @Observes methods, so use the On*Event convention to identify event handlers
+-keepclassmembers class * { 
+    void *(**On*Event); 
+    @roboguice.event.Observes <methods>;
+    @javax.injext.** <fields>;
+    @com.google.inject.** <fields>;
+    @roboguice.** <fields>;
+}
+
+-keepclassmembers class * implements java.lang.annotation.Annotation { 
+    ** *(); 
+}
+
+-keep class com.google.inject.** { *; } 
+-keep class javax.inject.** { *; } 
+-keep class javax.annotation.** { *; } 
+-keep class roboguice.** { *; } 
+-keep class ki.services.messages.** { *; } 
+-keep class android.support.** { *; } 

@@ -91,6 +91,22 @@ public class SimpleMonthAdapter extends BaseAdapter implements SimpleMonthView.O
             year = calendar.get(Calendar.YEAR);
             day = calendar.get(Calendar.DAY_OF_MONTH);
         }
+
+        public Calendar getCalendar() {
+            return calendar;
+        }
+
+        public int getYear() {
+            return year;
+        }
+
+        public int getMonth() {
+            return month;
+        }
+
+        public int getDay() {
+            return day;
+        }
     }
 
     public SimpleMonthAdapter(Context context,

@@ -19,4 +19,7 @@
     <dimen name="details_image_size">110dip</dimen>
     <dimen name="details_standard_text_size">14dp</dimen>
     <dimen name="details_item_margin">6dp</dimen>
+    
+    <dimen name="form_label_text_size">15dp</dimen>
+    <dimen name="form_row_padding">15dp</dimen>
 </resources>

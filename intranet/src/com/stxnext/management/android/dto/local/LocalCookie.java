@@ -3,8 +3,8 @@ package com.stxnext.management.android.dto.local;
 
 import java.util.Date;
 
-import ch.boye.httpclientandroidlib.cookie.Cookie;
-import ch.boye.httpclientandroidlib.impl.cookie.BasicClientCookie;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.cookie.BasicClientCookie;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

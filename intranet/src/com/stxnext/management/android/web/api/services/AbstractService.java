@@ -8,20 +8,20 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.message.AbstractHttpMessage;
 
 import android.util.Log;
-import ch.boye.httpclientandroidlib.HttpEntity;
-import ch.boye.httpclientandroidlib.HttpResponse;
-import ch.boye.httpclientandroidlib.NameValuePair;
-import ch.boye.httpclientandroidlib.client.entity.UrlEncodedFormEntity;
-import ch.boye.httpclientandroidlib.client.methods.HttpDelete;
-import ch.boye.httpclientandroidlib.client.methods.HttpGet;
-import ch.boye.httpclientandroidlib.client.methods.HttpPost;
-import ch.boye.httpclientandroidlib.client.methods.HttpPut;
-import ch.boye.httpclientandroidlib.client.methods.HttpUriRequest;
-import ch.boye.httpclientandroidlib.client.utils.URLEncodedUtils;
-import ch.boye.httpclientandroidlib.cookie.Cookie;
-import ch.boye.httpclientandroidlib.message.AbstractHttpMessage;
 
 import com.stxnext.management.android.AppIntranet;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
@@ -208,6 +208,16 @@ public abstract class AbstractService {
         }
 
         return paramString;
+    }
+    
+    protected void consume(HttpEntity entity) {
+        if (entity != null) {
+            try {
+                entity.consumeContent();
+            } catch (Exception e) {
+                Log.e("service","entity consumption issues",e);
+            }
+        }
     }
 
 }

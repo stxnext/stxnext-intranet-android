@@ -137,11 +137,10 @@ public class UserListAdapter extends CursorAdapter {
         if(taskIdentifiers.size()==0 || (cleaningThread!= null && cleaningThread.isAlive()))
             return;
         
+        final List<LoadImageTask> tasks = new ArrayList<UserListAdapter.LoadImageTask>(taskIdentifiers.values());
         cleaningThread = new Thread(new Runnable() {
-            
             @Override
             public void run() {
-                List<LoadImageTask> tasks = new ArrayList<UserListAdapter.LoadImageTask>(taskIdentifiers.values());
                 final List<Long> toRemove = new ArrayList<Long>();
                 for(LoadImageTask task : tasks){
                     if(!(isVisible(task.position))){

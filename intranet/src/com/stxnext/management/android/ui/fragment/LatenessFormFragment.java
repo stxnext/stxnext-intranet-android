@@ -15,6 +15,8 @@ import android.widget.TableRow;
 
 import com.actionbarsherlock.ActionBarSherlock;
 import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog;
+import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog.OnDateChangedListener;
+import com.doomonafireball.betterpickers.calendardatepicker.SimpleMonthAdapter.CalendarDay;
 import com.doomonafireball.betterpickers.radialtimepicker.RadialPickerLayout;
 import com.doomonafireball.betterpickers.radialtimepicker.RadialTimePickerDialog;
 import com.doomonafireball.betterpickers.radialtimepicker.RadialTimePickerDialog.OnTimeSetListener;
@@ -27,7 +29,7 @@ import com.stxnext.management.android.ui.dependencies.TimeUtil;
 import com.stxnext.management.android.ui.dependencies.TouchResistantEditText;
 import com.stxnext.management.android.web.api.IntranetApi;
 
-public class LatenessFormFragment   extends Fragment implements CalendarDatePickerDialog.OnDateSetListener {
+public class LatenessFormFragment   extends Fragment {
 
     private static final String DATE_PICKER_TAG = "datePicker";
     private static final String START_TIME_PICKER_TAG = "startTimePicker";
@@ -102,7 +104,7 @@ public class LatenessFormFragment   extends Fragment implements CalendarDatePick
     
     private void setupTimeAndPickers(){
         datePickerDialog = CalendarDatePickerDialog
-                .newInstance(this, submitDate.get(Calendar.YEAR), submitDate.get(Calendar.MONTH),
+                .newInstance(null, submitDate.get(Calendar.YEAR), submitDate.get(Calendar.MONTH),
                         submitDate.get(Calendar.DAY_OF_MONTH));
         startTime.set(Calendar.HOUR_OF_DAY, initial_start_hour);
         startTime.set(Calendar.MINUTE, initial_minute);
@@ -122,7 +124,6 @@ public class LatenessFormFragment   extends Fragment implements CalendarDatePick
         startTimePicker.setOnTimeSetListener(new OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-                //TimeUtil.updateCalendarTimeAndGetFormat(startTime, hourOfDay, minute);
                 startTimeView.setText(TimeUtil.updateCalendarTimeAndGetFormat(startTime, hourOfDay, minute));
             }
         });
@@ -130,8 +131,16 @@ public class LatenessFormFragment   extends Fragment implements CalendarDatePick
         endTimePicker.setOnTimeSetListener(new OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-                //TimeUtil.updateCalendarTimeAndGetFormat(endTime, hourOfDay, minute);
                 endTimeView.setText(TimeUtil.updateCalendarTimeAndGetFormat(endTime, hourOfDay, minute));
+            }
+        });
+        
+        datePickerDialog.registerOnDateChangedListener(new OnDateChangedListener() {
+            @Override
+            public void onDateChanged() {
+               CalendarDay day = datePickerDialog.getSelectedDay();
+               oooDateView.setText(TimeUtil.updateCalendarAndGetFormat(submitDate, day.getYear(), day.getMonth(), day.getDay()));
+               datePickerDialog.dismiss();
             }
         });
     }
@@ -202,12 +211,6 @@ public class LatenessFormFragment   extends Fragment implements CalendarDatePick
         workFromHomeCheck.setImageLevel(selected?1:0);
     }
     
-    @Override
-    public void onDateSet(CalendarDatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
-        if(dialog.getTag().equals(DATE_PICKER_TAG)){
-            oooDateView.setText(TimeUtil.updateCalendarAndGetFormat(submitDate, year, monthOfYear, dayOfMonth));
-        }
-    }
     
     public void setFormEnabled(boolean enabled){
         dateRow.setEnabled(enabled);

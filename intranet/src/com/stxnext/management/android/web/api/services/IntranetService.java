@@ -3,29 +3,25 @@ package com.stxnext.management.android.web.api.services;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.Date;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.util.EntityUtils;
+
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.util.Log;
-import ch.boye.httpclientandroidlib.HttpEntity;
-import ch.boye.httpclientandroidlib.HttpResponse;
-import ch.boye.httpclientandroidlib.client.ClientProtocolException;
-import ch.boye.httpclientandroidlib.client.methods.HttpGet;
-import ch.boye.httpclientandroidlib.client.methods.HttpPost;
-import ch.boye.httpclientandroidlib.entity.BufferedHttpEntity;
-import ch.boye.httpclientandroidlib.entity.StringEntity;
-import ch.boye.httpclientandroidlib.util.EntityUtils;
 
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
-import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
 import com.stxnext.management.android.dto.postmessage.AbsencePayload;
-import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.dto.postmessage.GsonProvider;
-import com.stxnext.management.android.dto.postmessage.LatenessMessage;
 import com.stxnext.management.android.dto.postmessage.LatenessPayload;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.TimeUtil;
@@ -83,7 +79,7 @@ public class IntranetService extends AbstractService {
             String jsonStub = EntityUtils.toString(entity);
             Log.e("", "ok");
         }
-        EntityUtils.consume(entity);
+        consume(entity);
         return result;
     }
 
@@ -101,7 +97,7 @@ public class IntranetService extends AbstractService {
             result.setExpectedResponse(users);
             saveCookies();
         }
-        EntityUtils.consume(entity);
+        consume(entity);
         return result;
     }
 
@@ -119,7 +115,7 @@ public class IntranetService extends AbstractService {
             result.setExpectedResponse(users);
             saveCookies();
         }
-        EntityUtils.consume(entity);
+        consume(entity);
         return result;
     }
 
@@ -137,17 +133,15 @@ public class IntranetService extends AbstractService {
             String jsonStub = EntityUtils.toString(entity);
             result.setExpectedResponse(GsonProvider.get().fromJson(jsonStub, MandatedTime.class));
         }
-        EntityUtils.consume(entity);
+        consume(entity);
         return result;
     }
 
     public HTTPResponse<Boolean> submitLateness(LatenessPayload messagge)
             throws Exception {
 
-        messagge.getLateness().setExplanation("Intranet test");
         HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
         HttpPost request = postRequest("api/lateness", null);
-        //request.setURI(URI.create("http://httpbin.org/post"));
         setContentType(request, RequestHeader.JSON);
         
         String jsonString = messagge.serialize();
@@ -160,14 +154,13 @@ public class IntranetService extends AbstractService {
             String jsonStub = EntityUtils.toString(entity);
             Log.e("submit lateness response",jsonStub);
         }
-        EntityUtils.consume(entity);
+        consume(entity);
         return result;
     }
 
     public HTTPResponse<Boolean> submitAbsence(AbsencePayload messagge)
             throws Exception {
 
-        messagge.getAbsence().setRemarks("Intranet test");
         HTTPResponse<Boolean> result = new HTTPResponse<Boolean>();
         HttpPost request = postRequest("api/absence", null);
         setContentType(request, RequestHeader.JSON);
@@ -185,7 +178,7 @@ public class IntranetService extends AbstractService {
             Log.e("getDaysOffToTake",jsonStub);
         }
         
-        EntityUtils.consume(entity);
+        consume(entity);
         return result;
     }
 

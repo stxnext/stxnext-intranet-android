@@ -3,8 +3,10 @@ package com.stxnext.management.android.ui;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -158,7 +160,16 @@ public class MainActivity extends AbstractSimpleActivity implements
             setSearchQuery(null);
             updateList();
         } else {
-            super.onBackPressed();
+            new AlertDialog.Builder(this)
+                    .setTitle("Wyjście")
+                    .setMessage("Czy na pewno chcesz wyjść z aplikacji?")
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            MainActivity.super.onBackPressed();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show();
         }
     }
 
@@ -216,6 +227,7 @@ public class MainActivity extends AbstractSimpleActivity implements
 
         remoteWorkList.setOnItemClickListener(latenessClickAdapter);
         outOfOfficeList.setOnItemClickListener(latenessClickAdapter);
+        absenceList.setOnItemClickListener(absenceClickAdapter);
     }
 
     private OnItemClickListener latenessClickAdapter = new OnItemClickListener() {
@@ -224,6 +236,16 @@ public class MainActivity extends AbstractSimpleActivity implements
                 long id) {
             Lateness item = (Lateness) parent.getAdapter().getItem(position);
             Toast.makeText(MainActivity.this, item.getExplanation(),
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+    
+    private OnItemClickListener absenceClickAdapter = new OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                long id) {
+            Absence item = (Absence) parent.getAdapter().getItem(position);
+            Toast.makeText(MainActivity.this, item.getRemarks(),
                     Toast.LENGTH_SHORT).show();
         }
     };
@@ -264,11 +286,11 @@ public class MainActivity extends AbstractSimpleActivity implements
                         });
             }
         } else if (item.getItemId() == R.id.addform) {
-            startActivityForResult(new Intent(this, SubmitFormActivity.class),SubmitFormActivity.REQUEST_SEND_FORM);
+            startActivityForResult(new Intent(this, SubmitFormActivity.class),
+                    SubmitFormActivity.REQUEST_SEND_FORM);
         }
         return super.onMenuItemSelected(featureId, item);
     }
-    
 
     private Runnable signOutAction = new Runnable() {
         public void run() {
@@ -327,9 +349,14 @@ public class MainActivity extends AbstractSimpleActivity implements
 
     }
 
+    private boolean launchedSignin;
+
     private void onSignInAction() {
-        startActivityForResult(new Intent(this, LoginActivity.class),
-                REQUEST_LOGIN);
+        if (!launchedSignin) {
+            startActivityForResult(new Intent(this, LoginActivity.class),
+                    REQUEST_LOGIN);
+            launchedSignin = true;
+        }
         new PreloadDataTask(false).execute();
     }
 
@@ -337,14 +364,15 @@ public class MainActivity extends AbstractSimpleActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_LOGIN) {
+            launchedSignin = false;
             if (resultCode == LoginActivity.RESULT_SIGNED_IN) {
                 new AuthUserTask().execute();
             } else if (resultCode == LoginActivity.RESULT_CANCELLED) {
                 finish();
             }
         }
-        else if(requestCode == SubmitFormActivity.REQUEST_SEND_FORM){
-            if(resultCode == RESULT_OK){
+        else if (requestCode == SubmitFormActivity.REQUEST_SEND_FORM) {
+            if (resultCode == RESULT_OK) {
                 reloadingPullToRefresh = true;
                 if (api.isOnline()) {
                     new LoadUsersTask(true, false).execute();
@@ -382,6 +410,7 @@ public class MainActivity extends AbstractSimpleActivity implements
         if (c.getCount() > 0) {
             if (adapter == null) {
                 usersCursor = c;
+                // use loaders next time
                 startManagingCursor(c);
                 adapter = new UserListAdapter(this, c, userList);
                 userList.setAdapter(adapter);
@@ -418,11 +447,11 @@ public class MainActivity extends AbstractSimpleActivity implements
         @Override
         protected void onPostExecute(HTTPResponse<String> result) {
             super.onPostExecute(result);
-            if(result.ok()){
+            if (result.ok()) {
                 loadData();
             }
-            else{
-                startActivity(new Intent(MainActivity.this,PresentationActivity.class));
+            else {
+                startActivity(new Intent(MainActivity.this, PresentationActivity.class));
                 finish();
             }
         }
@@ -511,12 +540,12 @@ public class MainActivity extends AbstractSimpleActivity implements
         @Override
         protected HTTPResponse<IntranetUsersResult> doInBackground(
                 Void... params) {
-            //if (reloadingPullToRefresh) {
+            if (reloadingPullToRefresh) {
                 if (adapter != null) {
                     BitmapUtils.cleanTempDir(AppIntranet.getApp());
                     adapter.clearCache();
                 }
-            //}
+            }
             HTTPResponse<IntranetUsersResult> result = api.getUsers();
             if (result != null && result.getExpectedResponse() != null) {
                 DAO.getInstance().getIntranetUser().clear();
@@ -558,8 +587,11 @@ public class MainActivity extends AbstractSimpleActivity implements
                 reloadingPullToRefresh = false;
             }
             if (result == null) {
-                startActivityForResult(new Intent(MainActivity.this,
-                        LoginActivity.class), REQUEST_LOGIN);
+                if (!launchedSignin) {
+                    startActivityForResult(new Intent(MainActivity.this,
+                            LoginActivity.class), REQUEST_LOGIN);
+                    launchedSignin = true;
+                }
             } else {
                 new PreloadDataTask(false).execute();
             }

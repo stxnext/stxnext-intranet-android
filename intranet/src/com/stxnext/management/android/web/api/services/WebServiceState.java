@@ -1,13 +1,13 @@
 
 package com.stxnext.management.android.web.api.services;
 
-import ch.boye.httpclientandroidlib.client.CookieStore;
-import ch.boye.httpclientandroidlib.client.HttpClient;
-import ch.boye.httpclientandroidlib.client.protocol.ClientContext;
-import ch.boye.httpclientandroidlib.cookie.Cookie;
-import ch.boye.httpclientandroidlib.impl.client.BasicCookieStore;
-import ch.boye.httpclientandroidlib.protocol.BasicHttpContext;
-import ch.boye.httpclientandroidlib.protocol.HttpContext;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 
 import com.stxnext.management.android.AppIntranet;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;

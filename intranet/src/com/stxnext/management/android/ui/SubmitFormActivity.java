@@ -3,6 +3,8 @@ package com.stxnext.management.android.ui;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -10,10 +12,8 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Window;
 import com.stxnext.management.android.R;
-import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
 import com.stxnext.management.android.dto.postmessage.AbsencePayload;
 import com.stxnext.management.android.dto.postmessage.AbstractMessage;
-import com.stxnext.management.android.dto.postmessage.LatenessMessage;
 import com.stxnext.management.android.dto.postmessage.LatenessPayload;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.ExtendedViewPager;
@@ -28,7 +28,7 @@ import com.viewpagerindicator.PageIndicator;
 public class SubmitFormActivity extends SherlockFragmentActivity implements FormActionReceiver {
 
     public static final int REQUEST_SEND_FORM = 2;
-    
+
     FormFragmentAdapter mAdapter;
     ExtendedViewPager mPager;
     PageIndicator mIndicator;
@@ -72,8 +72,17 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
     }
 
     @Override
-    public void onSubmitFormWithMessage(AbstractMessage message) {
-        new SubmitTask(message).execute();
+    public void onSubmitFormWithMessage(final AbstractMessage message) {
+        new AlertDialog.Builder(this)
+                .setTitle("Potwierdzenie")
+                .setMessage("Czy na pewno chcesz wysłać to zgłoszenie?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        new SubmitTask(message).execute();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null).show();
     }
 
     private class SubmitTask extends AsyncTaskEx<Void, Void, HTTPResponse<Boolean>> {
@@ -111,7 +120,7 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
             if (result.ok()) {
                 setResult(RESULT_OK);
                 Toast.makeText(SubmitFormActivity.this,
-                        "Formylarz wysłano, dziękujemy", Toast.LENGTH_SHORT).show();
+                        "Formularz wysłano, dziękujemy", Toast.LENGTH_LONG).show();
                 finish();
             }
             else {

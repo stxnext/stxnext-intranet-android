@@ -22,7 +22,8 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.ActionBarSherlock;
 import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog;
-import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog.OnDateSetListener;
+import com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog.OnDateChangedListener;
+import com.doomonafireball.betterpickers.calendardatepicker.SimpleMonthAdapter.CalendarDay;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.postmessage.AbsenceMessage;
@@ -38,7 +39,7 @@ import com.stxnext.management.android.ui.dependencies.TouchResistantEditText;
 import com.stxnext.management.android.web.api.HTTPResponse;
 import com.stxnext.management.android.web.api.IntranetApi;
 
-public class AbsenceFormFragment  extends Fragment implements CalendarDatePickerDialog.OnDateSetListener {
+public class AbsenceFormFragment  extends Fragment {
 
     private static final String START_PICKER_TAG = "startPicker";
     private static final String END_PICKER_TAG = "endPicker";
@@ -96,11 +97,27 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
         submitButton = (Button) view.findViewById(R.id.submitButton);
         
         startDatePickerDialog = CalendarDatePickerDialog
-                .newInstance(AbsenceFormFragment.this, startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
+                .newInstance(null, startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
                         startDate.get(Calendar.DAY_OF_MONTH));
         endDatePickerDialog = CalendarDatePickerDialog
-                .newInstance(AbsenceFormFragment.this, endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH),
+                .newInstance(null, endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH),
                         endDate.get(Calendar.DAY_OF_MONTH));
+        startDatePickerDialog.registerOnDateChangedListener(new OnDateChangedListener() {
+            @Override
+            public void onDateChanged() {
+               CalendarDay day = startDatePickerDialog.getSelectedDay();
+               absenceStartDateView.setText(TimeUtil.updateCalendarAndGetFormat(startDate, day.getYear(), day.getMonth(), day.getDay()));
+               startDatePickerDialog.dismiss();
+            }
+        });
+        endDatePickerDialog.registerOnDateChangedListener(new OnDateChangedListener() {
+            @Override
+            public void onDateChanged() {
+                CalendarDay day = endDatePickerDialog.getSelectedDay();
+                absenceEndDateView.setText(TimeUtil.updateCalendarAndGetFormat(endDate, day.getYear(), day.getMonth(), day.getDay()));
+                endDatePickerDialog.dismiss();
+            }
+        });
         
         absenceStartDateView.setText(TimeUtil.defaultDateFormat.format(startDate.getTime()));
         absenceEndDateView.setText(TimeUtil.defaultDateFormat.format(endDate.getTime()));
@@ -198,16 +215,16 @@ public class AbsenceFormFragment  extends Fragment implements CalendarDatePicker
     }
     
     
-    @Override
-    public void onDateSet(CalendarDatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
-        if(dialog.getTag().equals(START_PICKER_TAG)){
-            absenceStartDateView.setText(TimeUtil.updateCalendarAndGetFormat(startDate, year, monthOfYear, dayOfMonth));
-        }
-        else if(dialog.getTag().equals(END_PICKER_TAG)){
-            absenceEndDateView.setText(TimeUtil.updateCalendarAndGetFormat(endDate, year, monthOfYear, dayOfMonth));
-        }
-        //updateDaysLeft();
-    }
+//    @Override
+//    public void onDateSet(CalendarDatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
+//        if(dialog.getTag().equals(START_PICKER_TAG)){
+//            absenceStartDateView.setText(TimeUtil.updateCalendarAndGetFormat(startDate, year, monthOfYear, dayOfMonth));
+//        }
+//        else if(dialog.getTag().equals(END_PICKER_TAG)){
+//            absenceEndDateView.setText(TimeUtil.updateCalendarAndGetFormat(endDate, year, monthOfYear, dayOfMonth));
+//        }
+//        //updateDaysLeft();
+//    }
     
     private boolean updateDaysLeft(){
         Days daysBetween = Days.daysBetween(new DateTime(startDate.getTime()), new DateTime(endDate.getTime()));
