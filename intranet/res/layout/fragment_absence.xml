@@ -124,7 +124,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/text_filed_bkg"
                     android:gravity="top|left"
-                    android:hint="Explanation..."
+                    android:hint="Wyjaśnienie..."
                     android:textSize="@dimen/form_label_text_size"
                     android:inputType="textMultiLine"
                     android:lines="8"
