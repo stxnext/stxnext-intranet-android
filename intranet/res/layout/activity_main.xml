@@ -16,6 +16,8 @@
             android:layout_height="fill_parent"
             android:cacheColorHint="#00000000"
             android:divider="#bbbbbb"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:dividerHeight="1dp"
             android:fadingEdge="none"
             android:fastScrollEnabled="true"

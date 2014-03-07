@@ -26608,7 +26608,7 @@ com.stxnext.management.android.dto.local.IntranetUser -> com.stxnext.management.
     java.util.List getRoles() -> s
     java.lang.String getGroupsJson() -> t
     java.util.List getGroups() -> u
-    java.util.ArrayList getProperties() -> v
+    java.util.ArrayList getProperties(android.content.res.Resources) -> a
     void putProperty(java.lang.String,java.lang.Object,java.lang.Object) -> a
     void setId(java.lang.Number) -> a
     void setName(java.lang.String) -> a
@@ -26690,14 +26690,16 @@ com.stxnext.management.android.dto.postmessage.AbsenceMessage$AbsenceType -> com
     com.stxnext.management.android.dto.postmessage.AbsenceMessage$AbsenceType COMPASSIONATE -> d
     com.stxnext.management.android.dto.postmessage.AbsenceMessage$AbsenceType OTHER -> e
     java.lang.String absenceName -> f
-    com.stxnext.management.android.dto.postmessage.AbsenceMessage$AbsenceType[] ENUM$VALUES -> g
+    int resourceId -> g
+    com.stxnext.management.android.dto.postmessage.AbsenceMessage$AbsenceType[] ENUM$VALUES -> h
     java.lang.String getAbsenceName() -> a
-    com.stxnext.management.android.dto.postmessage.AbsenceMessage$AbsenceType[] values() -> b
+    int getResourceId() -> b
+    com.stxnext.management.android.dto.postmessage.AbsenceMessage$AbsenceType[] values() -> c
 com.stxnext.management.android.dto.postmessage.AbsencePayload -> com.stxnext.management.android.dto.postmessage.a:
     com.stxnext.management.android.dto.postmessage.AbsenceMessage absence -> a
 com.stxnext.management.android.dto.postmessage.AbstractMessage -> com.stxnext.management.android.dto.postmessage.b:
     java.lang.reflect.Type listStringType -> r
-    java.lang.String serialize() -> w
+    java.lang.String serialize() -> v
     java.lang.Object fromJsonString(java.lang.String,java.lang.reflect.Type) -> a
 com.stxnext.management.android.dto.postmessage.AbstractMessage$1 -> com.stxnext.management.android.dto.postmessage.c:
     com.stxnext.management.android.dto.postmessage.AbstractMessage this$0 -> d
@@ -27135,7 +27137,8 @@ com.stxnext.management.android.ui.UserDetailsActivity$2 -> com.stxnext.managemen
     void onClick(android.content.DialogInterface,int) -> onClick
 com.stxnext.management.android.ui.UserDetailsActivity$LoadDataTask -> com.stxnext.management.android.ui.x:
     com.stxnext.management.android.ui.dependencies.RoundedDrawable drawable -> a
-    com.stxnext.management.android.ui.UserDetailsActivity this$0 -> b
+    android.content.res.Resources res -> b
+    com.stxnext.management.android.ui.UserDetailsActivity this$0 -> c
     void onPreExecute() -> onPreExecute
     java.util.List doInBackground(java.lang.Void[]) -> a
     void onPostExecute(java.util.List) -> a
@@ -27637,7 +27640,7 @@ com.stxnext.management.android.ui.fragment.AbsenceFormFragment$UpdateTimeLeft ->
 com.stxnext.management.android.ui.fragment.FormActionReceiver -> com.stxnext.management.android.ui.fragment.i:
     void onSubmitFormWithMessage(com.stxnext.management.android.dto.postmessage.AbstractMessage) -> a
 com.stxnext.management.android.ui.fragment.FormFragmentAdapter -> com.stxnext.management.android.ui.fragment.j:
-    java.lang.String[] CONTENT -> a
+    java.lang.String[] contentTitles -> a
     java.util.ArrayList fragments -> b
     android.support.v4.app.Fragment getItem(int) -> getItem
     int getCount() -> getCount

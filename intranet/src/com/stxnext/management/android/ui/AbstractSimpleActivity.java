@@ -127,7 +127,7 @@ public abstract class AbstractSimpleActivity extends SherlockActivity {
     private OnCancelListener cancelListener = new OnCancelListener() {
         @Override
         public void onCancel(DialogInterface dialog) {
-            finish();
+            dialog.dismiss();
         }
     };
 

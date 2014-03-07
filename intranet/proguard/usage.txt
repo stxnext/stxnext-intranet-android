@@ -4154,24 +4154,24 @@ com.stxnext.management.android.R$plurals
 com.stxnext.management.android.R$string
 com.stxnext.management.android.R$style
 com.stxnext.management.android.R$styleable:
-    2772:2772:public R$styleable()
+    2828:2828:public R$styleable()
 com.stxnext.management.android.R$xml
 com.stxnext.management.android.dependencies.googleplay.GooglePlayServiceErrorMessages
 com.stxnext.management.android.dto.local.IntranetUser:
     java.lang.String startWork
     java.lang.String startFullTimeWork
     java.lang.String stopWork
-    114:114:public java.util.List getLocation()
-    126:126:public java.lang.String getStartWork()
-    129:129:public java.lang.String getStartFullTimeWork()
-    132:132:public java.lang.String getStopWork()
-    196:197:public void setProperties(java.util.ArrayList)
-    214:215:public void setLocation(java.util.ArrayList)
-    226:227:public void setStartWork(java.lang.String)
-    229:230:public void setStartFullTimeWork(java.lang.String)
-    232:233:public void setStopWork(java.lang.String)
-    263:264:public void setRoles(java.util.ArrayList)
-    266:267:public void setGroups(java.util.ArrayList)
+    117:117:public java.util.List getLocation()
+    129:129:public java.lang.String getStartWork()
+    132:132:public java.lang.String getStartFullTimeWork()
+    135:135:public java.lang.String getStopWork()
+    202:203:public void setProperties(java.util.ArrayList)
+    220:221:public void setLocation(java.util.ArrayList)
+    232:233:public void setStartWork(java.lang.String)
+    235:236:public void setStartFullTimeWork(java.lang.String)
+    238:239:public void setStopWork(java.lang.String)
+    269:270:public void setRoles(java.util.ArrayList)
+    272:273:public void setGroups(java.util.ArrayList)
 com.stxnext.management.android.dto.local.LocalCookie:
     57:57:public java.lang.String getDomain()
     61:61:public java.lang.Long getExpiryDate()
@@ -4239,8 +4239,8 @@ com.stxnext.management.android.sync.ProviderPhone:
     53:53:public java.lang.String getType()
     57:57:public java.lang.String getLabel()
 com.stxnext.management.android.ui.AbstractSimpleActivity:
-    64:75:protected boolean servicesConnected()
-    100:124:private void showErrorDialog(int)
+    65:76:protected boolean servicesConnected()
+    101:125:private void showErrorDialog(int)
 com.stxnext.management.android.ui.AbstractSimpleActivity$4
 com.stxnext.management.android.ui.LoginActivity:
     private static final java.lang.String LOGIN_URL
@@ -4270,7 +4270,7 @@ com.stxnext.management.android.web.HttpClientProvider:
     public static final int TIMEOUT_CONNECTION_WAIT_FOR_DATA
 com.stxnext.management.android.web.api.AbstractApi:
     private static final java.lang.String TAG
-    123:130:protected java.lang.Object releaseResultOrReactToError(com.stxnext.management.android.web.api.HTTPResponse)
+    124:131:protected java.lang.Object releaseResultOrReactToError(com.stxnext.management.android.web.api.HTTPResponse)
 com.stxnext.management.android.web.api.HttpErrorResolver:
     private static final java.lang.String JSON_ERROR_MESSAGE_KEY
     private static final java.lang.String TAG

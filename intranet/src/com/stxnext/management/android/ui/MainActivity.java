@@ -256,8 +256,10 @@ public class MainActivity extends AbstractSimpleActivity implements
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (item.getItemId() == R.id.action_absences) {
             drawerLayout.openDrawer(GravityCompat.START);
+            drawerLayout.closeDrawer(GravityCompat.END);
         } else if (item.getItemId() == R.id.action_late) {
             drawerLayout.openDrawer(GravityCompat.END);
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else if (item.getItemId() == R.id.action_signout) {
             displayDialogBox(getString(R.string.common_signing_in), getString(R.string.notification_confirm_signout),
                     signOutAction);

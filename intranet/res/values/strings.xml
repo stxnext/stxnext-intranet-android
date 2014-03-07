@@ -16,7 +16,8 @@
 	<string name ="label_lateness">Lateness</string>
 	<string name ="label_phone">Phone</string>
 	<string name ="label_landline">Landline number</string>
-	<string name ="label_role">Roles</string>
+	<string name ="label_role">Role</string>
+	<string name ="label_roles">Roles</string>
 	
 	<string name ="label_days_left">Days left</string>
 	<string name ="label_start_date">Start date</string>

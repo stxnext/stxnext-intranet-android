@@ -178,10 +178,13 @@ public class IntranetUser extends AbstractMessage implements Serializable{
             putProperty(res.getString(R.string.label_landline), "<a href = \"tel:"+this.phoneDesk+"\">"+this.phoneDesk+"</a>",this.phoneDesk);
             if(this.roles!=null && this.roles.size()>0){
                 String rolesString="";
+                int cnt = 0;
                 for(String role : this.roles){
-                    rolesString+=role+"\n";
+                    rolesString+=role+(cnt < this.roles.size()-1 ? "<br />":"");
+                    cnt++;
                 }
-                putProperty(res.getString(R.string.label_role), rolesString,rolesString);
+                
+                putProperty(res.getString(this.roles.size()>1?R.string.label_roles:R.string.label_role), rolesString,rolesString);
             }
             
             putProperty("Skype", this.skype,this.skype);
