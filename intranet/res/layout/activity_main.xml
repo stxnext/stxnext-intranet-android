@@ -38,13 +38,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"
-                android:text="Brak wyników" />
+                android:text="@string/label_no_results" />
             
             <Button 
                 android:id="@+id/reloadButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Przeładuj"
+                android:text="@string/label_reload"
                 />
             
         </LinearLayout>
@@ -68,7 +68,7 @@
                 android:id="@+id/progressText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wczytuję..." />
+                android:text="@string/label_loading" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -88,7 +88,7 @@
         	android:layout_height="wrap_content"
             android:id="@+id/absenceTitleView"
             android:background="#aaaaaa"
-            android:text="Nieobecności"
+            android:text="@string/label_absences"
             android:textColor="#000000"
             android:textStyle="bold" 
             />
@@ -118,7 +118,7 @@
         	android:layout_height="wrap_content"
             android:id="@+id/remoteWorkHeader"
             android:background="#aaaaaa"
-            android:text="Work From Home"
+            android:text="@string/label_work_from_home"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -140,7 +140,7 @@
         	android:layout_height="wrap_content"
             android:id="@+id/oooHeader"
             android:background="#aaaaaa"
-            android:text="Out of Office"
+            android:text="@string/label_out_of_office"
             android:textColor="#000000"
             android:textStyle="bold" />
         

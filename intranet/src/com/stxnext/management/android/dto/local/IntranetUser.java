@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.res.Resources;
+
 import com.google.common.base.Strings;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.dto.postmessage.GsonProvider;
 
@@ -165,20 +168,20 @@ public class IntranetUser extends AbstractMessage implements Serializable{
         return groups;
     }
 
-    public ArrayList<UserProperty> getProperties(){
+    public ArrayList<UserProperty> getProperties(Resources res){
         if(this.properties.size()<=0){
             putProperty("Email", "<a href = \"mailto:"+this.email+"\">"+this.email+"</a>",email);
             putProperty("IRC", this.irc,this.irc);
             if(this.location!=null && this.location.size()==3)
-                putProperty("Lokalizacja", this.location.get(1),this.location.get(1));
-            putProperty("Telefon", "<a href = \"tel:"+this.phone+"\">"+this.phone+"</a>",this.phone);
-            putProperty("Telefon stacjonarny", "<a href = \"tel:"+this.phoneDesk+"\">"+this.phoneDesk+"</a>",this.phoneDesk);
+                putProperty(res.getString(R.string.label_localisation), this.location.get(1),this.location.get(1));
+            putProperty(res.getString(R.string.label_phone), "<a href = \"tel:"+this.phone+"\">"+this.phone+"</a>",this.phone);
+            putProperty(res.getString(R.string.label_landline), "<a href = \"tel:"+this.phoneDesk+"\">"+this.phoneDesk+"</a>",this.phoneDesk);
             if(this.roles!=null && this.roles.size()>0){
                 String rolesString="";
                 for(String role : this.roles){
                     rolesString+=role+"\n";
                 }
-                putProperty("Role", rolesString,rolesString);
+                putProperty(res.getString(R.string.label_role), rolesString,rolesString);
             }
             
             putProperty("Skype", this.skype,this.skype);

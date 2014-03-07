@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -109,7 +110,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
 
     private void addContactAction() {
         if (prefs.isSyncing()) {
-            Toast.makeText(this, "Synchronizacja aktualnie jest w toku", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.notification_sync_in_progress, Toast.LENGTH_SHORT).show();
             return;
         }
         syncManager.launchQueryAsync(getSupportLoaderManager(), user.getPhone(), user.getName());
@@ -171,7 +172,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
             super.onPostExecute(result);
             if (isFinishing())
                 return;
-            Toast.makeText(UserDetailsActivity.this, "Kontakt został zaktualizowany",
+            Toast.makeText(UserDetailsActivity.this, R.string.notification_contact_updated,
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -180,7 +181,12 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
             AsyncTaskEx<Void, Void, List<UserProperty>> {
 
         RoundedDrawable drawable;
+        Resources res;
 
+        LoadDataTask(){
+            res = getResources();
+        }
+        
         @Override
         protected void onPreExecute() {
             setViewLoading(true);
@@ -195,7 +201,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
                 drawable = new RoundedDrawable(bitmap);
                 drawable.setCornerRadius(15F);
             }
-            return user.getProperties();
+            return user.getProperties(res);
         }
 
         @Override
@@ -229,13 +235,13 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
         alertDialog.setTitle("Import");
         alertDialog.setMessage(content);
 
-        alertDialog.setPositiveButton("Tak",
+        alertDialog.setPositiveButton(R.string.common_yes,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         prepareAndMergePhones(phones);
                     }
                 });
-        alertDialog.setNegativeButton("Nie",
+        alertDialog.setNegativeButton(R.string.common_no,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -252,7 +258,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
 
         StringBuilder content = new StringBuilder();
         if (phones.size() > 0) {
-            content.append("Znaleziono następujące kontakty pasujące do osoby:\n");
+            content.append(getString(R.string.notification_sync_contacts_found));
             for (ProviderPhone phone : phones) {
                 content.append(phone.getDisplayName()).append("\n").append(phone.getPhoneNumber());
                 content.append("\n\n");
@@ -264,8 +270,7 @@ public class UserDetailsActivity extends AbstractSimpleActivity implements SyncM
             phone.setNumberToUpdate(user.getPhone());
             phones.add(phone);
         }
-        content.append("Czy dodać nowy numer jako numer STXNext i oraz dodać kontakt do grupy STX?\n(Kontakt pozostanie w dotychczasowych grupach)");
-        Log.e("", "cursor loading finished");
+        content.append(getString(R.string.notification_sync_contacts_found_confirmation));
         showImportDialog(content.toString(), phones);
     }
 

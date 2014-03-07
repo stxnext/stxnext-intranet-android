@@ -3,6 +3,68 @@
 
     <string name="app_name">Intranet</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    
+	<string name ="label_no_results">No results</string>
+	<string name ="label_reload">Reload</string>
+	<string name ="label_loading">Loading...</string>
+    
+	<string name ="label_absences">Absences</string>
+	<string name ="label_absence">Absence</string>
+	<string name ="label_work_from_home">Work from home</string>
+	<string name ="label_out_of_office">Out Of Office</string>
+	
+	<string name ="label_lateness">Lateness</string>
+	<string name ="label_phone">Phone</string>
+	<string name ="label_landline">Landline number</string>
+	<string name ="label_role">Roles</string>
+	
+	<string name ="label_days_left">Days left</string>
+	<string name ="label_start_date">Start date</string>
+	<string name ="label_end_date">End date</string>
+	<string name ="label_absence_type">Type</string>
+	
+	<string name ="absence_planned">Planned</string>
+	<string name ="absence_leave_at_request">At request</string>
+	<string name ="absence_illness">Illness</string>
+	<string name ="absence_compassionate">Compassionate</string>
+	<string name ="absence_other">Other</string>
+	
+	<string name ="label_submit_capital">SUBMIT</string>
+	<string name ="label_date">Date</string>
+	<string name ="label_start_time">Start time</string>
+	<string name ="label_end_time">End time</string>
+	
+	<string name ="label_work_from_home">Work from home</string>
+	<string name ="label_explanation">Explanation...</string>
+	
+	<string name ="label_localisation">Localisation</string>
+	
+	<string name ="notification_sync_started">Sync has been started</string>
+	<string name ="notification_sync_finished">Sync finished</string>
+	<string name ="notification_confirm_exit">Are you sure you want to quit the app?</string>
+	<string name ="notification_confirm_signout">Are you sure you want to sign out?</string>
+	<string name ="notification_sync_in_progress">Sync is in progress</string>
+	<string name ="notification_sync_confirmation">Are you sure you want to sync all contacts available on the intranet with the contacts on the phone?\nPhone numbers and emails will be transferred. All numbers entered by user will not be modified.</string>
+	<string name ="notification_sync_in_progress">Sync is currently in progress</string>  
+	<string name ="label_submission_confirmation">Confirm</string> 
+	<string name ="notification_submission_confirmation">Are you sure you want to submit this request?</string>  
+	<string name ="notification_contact_updated">Contact has been updated</string>
+	
+	<string name ="notification_form_sent">Form has been submitted, thank you</string>
+	<string name ="notification_form_sent_fail">Couldn\'t submit the form. Please try again later</string>
+	<string name ="notification_sync_contacts_found">Found the following contacts matching current person:\n</string>
+	<string name ="notification_sync_contacts_found_confirmation">Would you like to add the number as STXNext number and add contact to STX group?\n(Contact will remain associated with groups it currently belongs to)</string>
+	
+	<string name ="validation_no_days_left">No days left</string>
+	<string name ="validation_start_date_after_end_date">Start date cannot be after the end date</string>
+	<string name ="validation_start_time_after_end_time">Start time cannot be after end time</string>
+	
+	<string name="common_yes">Yes</string>
+	<string name="common_no">No</string>
+	<string name="common_update_google_play">Update Google Play</string>
+	<string name="common_exit_app">Exit</string>
+	<string name="common_signing_in">Signing In</string>
+	<string name="common_sync_contacts">Contacts sync</string>
+	<string name="common_no_connection">No internet connection</string>
+	
 </resources>

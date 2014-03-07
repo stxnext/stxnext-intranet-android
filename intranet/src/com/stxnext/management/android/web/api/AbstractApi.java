@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.JsonSyntaxException;
+import com.stxnext.management.android.R;
 import com.stxnext.management.android.receivers.CommandReceiver;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.storage.sqlite.dao.DAO;
@@ -78,7 +79,7 @@ public class AbstractApi {
             serviceHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(app, "Brak połączenia z siecią", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(app, R.string.common_no_connection, Toast.LENGTH_SHORT).show();
                 }
             });
             return result;

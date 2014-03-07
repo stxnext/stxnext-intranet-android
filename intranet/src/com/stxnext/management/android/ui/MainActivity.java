@@ -161,8 +161,8 @@ public class MainActivity extends AbstractSimpleActivity implements
             updateList();
         } else {
             new AlertDialog.Builder(this)
-                    .setTitle("Wyjście")
-                    .setMessage("Czy na pewno chcesz wyjść z aplikacji?")
+                    .setTitle(R.string.common_exit_app)
+                    .setMessage(R.string.notification_confirm_exit)
                     .setIcon(android.R.drawable.ic_dialog_info)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
@@ -259,18 +259,18 @@ public class MainActivity extends AbstractSimpleActivity implements
         } else if (item.getItemId() == R.id.action_late) {
             drawerLayout.openDrawer(GravityCompat.END);
         } else if (item.getItemId() == R.id.action_signout) {
-            displayDialogBox("Logowanie", "Czy na pewno chcesz się wylogować?",
+            displayDialogBox(getString(R.string.common_signing_in), getString(R.string.notification_confirm_signout),
                     signOutAction);
         } else if (item.getItemId() == R.id.action_signin) {
             onSignInAction();
         } else if (item.getItemId() == R.id.sync_all) {
             if (prefs.isSyncing()) {
-                Toast.makeText(this, "Synchronizacja aktualnie jest w toku",
+                Toast.makeText(this, getString(R.string.notification_sync_in_progress),
                         Toast.LENGTH_SHORT).show();
             } else {
                 displayDialogBox(
-                        "Synchronizacja kontaktów",
-                        "Czy chcesz zsynchronizować wszystkie dostępne w intranecie kontakty z danymi na telefonie?\nPrzeniesione zostaną numery telefonów oraz maile.Aktualne, ręcznie zapisane numery nie zostaną zmodyfikowane.",
+                        getString(R.string.common_sync_contacts),
+                        getString(R.string.notification_sync_confirmation),
                         new Runnable() {
                             @Override
                             public void run() {
@@ -312,7 +312,7 @@ public class MainActivity extends AbstractSimpleActivity implements
                             new LoadUsersTask(true, false).execute();
                         } else {
                             Toast.makeText(MainActivity.this,
-                                    "Brak połączenia", Toast.LENGTH_SHORT)
+                                    getString(R.string.common_no_connection), Toast.LENGTH_SHORT)
                                     .show();
                             ptrListViewWrapper.onRefreshComplete();
                             reloadingPullToRefresh = false;
@@ -332,8 +332,6 @@ public class MainActivity extends AbstractSimpleActivity implements
 
                 IntranetUser user = (IntranetUser) adapter
                         .getItem(position - 1);
-                Log.e("", "tapped user: " + user.getName() + " at position:"
-                        + position);
                 Intent intent = new Intent(MainActivity.this,
                         UserDetailsActivity.class);
                 intent.putExtra(UserDetailsActivity.EXTRA_USER, user);
@@ -393,7 +391,7 @@ public class MainActivity extends AbstractSimpleActivity implements
     private void setViewLoading(boolean loading) {
         ptrListViewWrapper.setVisibility(loading ? View.GONE : View.VISIBLE);
         progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
-        progressText.setText("Wczytuję...");
+        progressText.setText(R.string.label_loading);
         progressView.setVisibility(loading ? View.VISIBLE : View.GONE);
 
     }
@@ -401,7 +399,7 @@ public class MainActivity extends AbstractSimpleActivity implements
     private void setNoResults() {
         ptrListViewWrapper.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
-        progressText.setText("Brak wyników");
+        progressText.setText(R.string.label_no_results);
         progressView.setVisibility(View.VISIBLE);
     }
 

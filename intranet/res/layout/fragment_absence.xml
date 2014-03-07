@@ -24,7 +24,7 @@
                     android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
                     android:textStyle="bold"
-                    android:text="Dni do wykorzystania" />
+                    android:text="@string/label_days_left" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/daysLeftView"
@@ -36,7 +36,7 @@
                     android:textSize="@dimen/form_label_text_size"
                     android:gravity="right"
                     android:textStyle="bold"
-                    android:text="wczytuję..." />
+                    android:text="@string/label_loading" />
             </TableRow>
             
             <TableRow
@@ -50,7 +50,7 @@
                     android:layout_weight="0.4"
                     android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
-                    android:text="Data rozpoczęcia" />
+                    android:text="@string/label_start_date" />
 
                 <TextView
                     android:id="@+id/absenceStartDateView"
@@ -73,7 +73,7 @@
                     android:layout_weight="0.4"
                     android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
-                    android:text="Data zakończenia" />
+                    android:text="@string/label_end_date" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/absenceEndDateView"
@@ -98,7 +98,7 @@
                     android:layout_weight="0.4"
                     android:textSize="@dimen/form_label_text_size"
                     android:gravity="left"
-                    android:text="Rodzaj" />
+                    android:text="@string/label_absence_type" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/absenceTypeView"
@@ -109,7 +109,7 @@
                     android:background="@null"
                     android:gravity="right"
                     android:textSize="@dimen/form_label_text_size"
-                    android:text="Planned leave" />
+                    android:text="@string/absence_planned" />
             </TableRow>
 
             <TableRow
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="WYŚLIJ"
+                    android:text="@string/label_submit_capital"
                     android:textStyle="bold" />
             </TableRow>
         </TableLayout>

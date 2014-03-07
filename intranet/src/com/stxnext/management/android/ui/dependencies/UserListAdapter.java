@@ -338,13 +338,13 @@ public class UserListAdapter extends CursorAdapter {
 
         boolean absenceDataPresent = false;
         if (user.getAbsenceDisplayData() != null) {
-            holder.lateView.setText("Nieobecność");
+            holder.lateView.setText(context.getString(R.string.label_absence));
             holder.lateView.setTextColor(Color.parseColor("#22ff0000"));
             absenceDataPresent = true;
         }
 
         else if (user.getLatenessDisplayData() != null) {
-            holder.lateView.setText("Spóźnienie");
+            holder.lateView.setText(context.getString(R.string.label_lateness));
             holder.lateView.setTextColor(Color.parseColor("#220000ff"));
             absenceDataPresent = true;
         }

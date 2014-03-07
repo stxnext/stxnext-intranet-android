@@ -23,7 +23,7 @@
                     android:layout_weight="0.4"
                     android:gravity="left"
                     android:textSize="@dimen/form_label_text_size"
-                    android:text="Data" />
+                    android:text="@string/label_date" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/oooDateView"
@@ -48,7 +48,7 @@
                     android:layout_weight="0.4"
                     android:gravity="left"
                     android:textSize="@dimen/form_label_text_size"
-                    android:text="Początek" />
+                    android:text="@string/label_start_time" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/startTimeView"
@@ -73,7 +73,7 @@
                     android:layout_weight="0.4"
                     android:gravity="left"
                     android:textSize="@dimen/form_label_text_size"
-                    android:text="Koniec" />
+                    android:text="@string/label_end_time" />
 
                 <com.stxnext.management.android.ui.dependencies.TouchResistantEditText
                     android:id="@+id/endTimeView"
@@ -102,7 +102,7 @@
                     android:layout_weight="0.4"
                     android:gravity="left"
                     android:textSize="@dimen/form_label_text_size"
-                    android:text="Praca zdalna" />
+                    android:text="@string/label_work_from_home" />
 
                 <LinearLayout
                     android:layout_width="0dip"
@@ -132,7 +132,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/text_filed_bkg"
                     android:gravity="top|left"
-                    android:hint="Wyjaśnienie..."
+                    android:hint="@string/label_explanation"
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:minLines="8"
@@ -150,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="WYŚLIJ"
+                    android:text="@string/label_submit_capital"
                     android:textStyle="bold" />
             </TableRow>
         </TableLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name ="label_no_results">Brak wyników</string>
+	<string name ="label_reload">Przeładuj</string>
+	<string name ="label_loading">Wczytuję...</string>
+    
+	<string name ="label_absences">Nieobecności</string>
+	<string name ="label_absence">Nieobecność</string>
+	<string name ="label_work_from_home">Praca zdalna</string>
+	<string name ="label_out_of_office">Poza biurem</string>
+	
+	<string name ="label_lateness">Spóźnienie</string>
+	<string name ="label_phone">Telefon</string>
+	<string name ="label_landline">Telefon stacjonarny</string>
+	<string name ="label_role">Role</string>
+	
+	<string name ="label_days_left">Dni do wykorzystania</string>
+	<string name ="label_start_date">Data rozpoczęcia</string>
+	<string name ="label_end_date">Data zakończenia</string>
+	<string name ="label_absence_type">Rodzaj</string>
+	
+	<string name ="absence_planned">Planowany</string>
+	<string name ="absence_leave_at_request">Zadanie</string>
+	<string name ="absence_illness">L4</string>
+	<string name ="absence_compassionate">Okolicznościowy</string>
+	<string name ="absence_other">Inne</string>
+	
+	<string name ="label_submit_capital">WYŚLIJ</string>
+	<string name ="label_date">Data</string>
+	<string name ="label_start_time">Początek</string>
+	<string name ="label_end_time">Koniec</string>
+	
+	<string name ="label_work_from_home">Praca zdalna</string>
+	<string name ="label_explanation">Wyjaśnienie...</string>
+	
+	<string name ="label_localisation">Lokalizacja</string>
+	
+	<string name ="notification_sync_started">Rozpoczęto synchronizację</string>
+	<string name ="notification_sync_finished">Synchronizacja zakończona</string>
+	<string name ="notification_confirm_exit">Czy na pewno chcesz wyjść z aplikacji?</string>
+	<string name ="notification_confirm_signout">Czy na pewno chcesz się wylogować?</string>
+	<string name ="notification_sync_in_progress">Synchronizacja aktualnie jest w toku</string>
+	<string name ="notification_sync_confirmation">Czy chcesz zsynchronizować wszystkie dostępne w intranecie kontakty z danymi na telefonie?\nPrzeniesione zostaną numery telefonów oraz maile.Aktualne, ręcznie zapisane numery nie zostaną zmodyfikowane.</string>
+	<string name ="notification_sync_in_progress">Synchronizacja aktualnie jest w toku</string>  
+	<string name ="label_submission_confirmation">Potwierdzenie</string> 
+	<string name ="notification_submission_confirmation">Czy na pewno chcesz wysłać to zgłoszenie?</string>  
+	<string name ="notification_contact_updated">Kontakt został zaktualizowany</string>
+	
+	<string name ="notification_form_sent">Formularz wysłano, dziękujemy</string>
+	<string name ="notification_form_sent_fail">Błąd wysyłania formularza. Spróbuj ponownie.</string>
+	<string name ="notification_sync_contacts_found">Znaleziono następujące kontakty pasujące do osoby:\n</string>
+	<string name ="notification_sync_contacts_found_confirmation">Czy dodać nowy numer jako numer STXNext i oraz dodać kontakt do grupy STX?\n(Kontakt pozostanie w dotychczasowych grupach)</string>
+	
+	<string name ="validation_no_days_left">Brak dni do wykorzystania</string>
+	<string name ="validation_start_date_after_end_date">Data początku nieobecności nie może być późniejsza niż data zakończenia</string>
+	<string name ="validation_start_time_after_end_time">Czas rozpoczęnia nie może być późniejszy niż czas zakończenia.</string>
+	
+	<string name="common_yes">Tak</string>
+	<string name="common_no">Nie</string>
+	<string name="common_update_google_play">Aktualizuj Google Play</string>
+	<string name="common_exit_app">Wyjście</string>
+	<string name="common_signing_in">Logowanie</string>
+	<string name="common_sync_contacts">Synchronizacja kontaktów</string>
+	<string name="common_no_connection">Brak połączenia</string>
+	
+</resources>

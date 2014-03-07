@@ -55,7 +55,7 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
         fragments.add(absenceFragment);
         fragments.add(latenessFragment);
 
-        mAdapter = new FormFragmentAdapter(getSupportFragmentManager(), fragments);
+        mAdapter = new FormFragmentAdapter(this,getSupportFragmentManager(), fragments);
 
         mPager = (ExtendedViewPager) findViewById(R.id.pager);
         mPager.setOffscreenPageLimit(3);
@@ -74,8 +74,8 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
     @Override
     public void onSubmitFormWithMessage(final AbstractMessage message) {
         new AlertDialog.Builder(this)
-                .setTitle("Potwierdzenie")
-                .setMessage("Czy na pewno chcesz wysłać to zgłoszenie?")
+                .setTitle(R.string.label_submission_confirmation)
+                .setMessage(R.string.notification_submission_confirmation)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -120,14 +120,14 @@ public class SubmitFormActivity extends SherlockFragmentActivity implements Form
             if (result.ok()) {
                 setResult(RESULT_OK);
                 Toast.makeText(SubmitFormActivity.this,
-                        "Formularz wysłano, dziękujemy", Toast.LENGTH_LONG).show();
+                        R.string.notification_form_sent, Toast.LENGTH_LONG).show();
                 finish();
             }
             else {
                 getSherlock().setProgressBarIndeterminateVisibility(false);
                 setFormsEnabled(true);
                 Toast.makeText(SubmitFormActivity.this,
-                        "Błąd wysyłania formularza. Spróbuj ponownie.", Toast.LENGTH_SHORT).show();
+                        R.string.notification_form_sent_fail, Toast.LENGTH_SHORT).show();
             }
             super.onPostExecute(result);
         }

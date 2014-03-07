@@ -197,7 +197,7 @@ public class LatenessFormFragment   extends Fragment {
     
     private boolean validateForm(){
         if(startTime.after(endTime)){
-            startTimeView.setError("Czas rozpoczęnia nie może być późniejszy niż czas zakończenia.");
+            startTimeView.setError(getString(R.string.validation_start_time_after_end_time));
             startTimeView.requestFocus();
             return false;
         }

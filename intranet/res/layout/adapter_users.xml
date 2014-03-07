@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:rotation="11"
-        android:text="Spóźnienie"
+        android:text="@string/label_lateness"
         android:textColor="#220000ff"
         android:textSize="@dimen/list_background_indicator_text_size"
         android:textStyle="bold"
@@ -92,7 +92,7 @@
                                 android:layout_gravity="left"
                                 android:layout_weight="0.39"
                                 android:gravity="left"
-                                android:text="Phone:"
+                                android:text="@string/label_phone"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/list_standard_text_size"
                                 android:textStyle="bold" />

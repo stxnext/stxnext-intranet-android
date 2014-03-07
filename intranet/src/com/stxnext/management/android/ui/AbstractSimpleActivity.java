@@ -20,6 +20,7 @@ import android.view.animation.LayoutAnimationController;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.stxnext.management.android.R;
 import com.stxnext.management.android.dependencies.googleplay.GooglePlayServiceErrorMessages;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.web.api.IntranetApi;
@@ -80,11 +81,11 @@ public abstract class AbstractSimpleActivity extends SherlockActivity {
         Builder builder = new android.app.AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
-                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.common_no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
-                }).setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                }).setPositiveButton(getString(R.string.common_yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         onOkClicked.run();
                     }

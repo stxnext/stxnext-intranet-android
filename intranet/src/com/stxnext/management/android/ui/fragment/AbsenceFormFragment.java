@@ -232,12 +232,12 @@ public class AbsenceFormFragment  extends Fragment {
         int left = (daysLeft - days);
         daysLeftView.setText(String.valueOf(left));
         if(left < 0){
-            daysLeftView.setError("Brak dni do wykorzystania");
+            daysLeftView.setError(getString(R.string.validation_no_days_left));
             daysLeftView.requestFocus();
             return false;
         }
         else if(startDate.after(endDate)){
-            absenceEndDateView.setError("Data początku nieobecności nie może być późniejsza niż data zakończenia");
+            absenceEndDateView.setError(getString(R.string.validation_start_date_after_end_date));
             absenceEndDateView.requestFocus();
             return false;
         }

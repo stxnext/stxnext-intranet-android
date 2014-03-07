@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.google.common.base.Strings;
+import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.receivers.CommandReceiver;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
@@ -78,9 +79,9 @@ public class BackgroundSyncService extends IntentService {
     }
 
     private void setFinished(boolean finished) {
-
-        String message = finished ? "Synchronizacja zakończona" : "Rozpoczęto synchronizację";
-        toastMessage(message);
+        int toastResource = finished?R.string.notification_sync_finished:R.string.notification_sync_started;
+        String msg = getString(toastResource);
+        toastMessage(msg);
 
         prefs.setSyncing(!finished);
         int event = finished ? CommandReceiver.EVENT_FINISHED_SYNC
