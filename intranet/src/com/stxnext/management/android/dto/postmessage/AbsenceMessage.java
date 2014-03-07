@@ -4,25 +4,33 @@ import java.util.Date;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.stxnext.management.android.R;
 import com.stxnext.management.android.ui.dependencies.TimeUtil;
 
 public class AbsenceMessage extends AbstractMessage{
 
     public enum AbsenceType{
-        PLANNED("planowany"),
-        LEAVE_AT_REQUEST("zadanie"),
-        ILLNESS("l4"),
-        COMPASSIONATE("okolicznosciowy"),
-        OTHER("inne");
+        PLANNED("planowany", R.string.absence_planned),
+        LEAVE_AT_REQUEST("zadanie",R.string.absence_leave_at_request),
+        ILLNESS("l4",R.string.absence_illness),
+        COMPASSIONATE("okolicznosciowy",R.string.absence_compassionate),
+        OTHER("inne",R.string.absence_compassionate);
         
         private String absenceName;
-        AbsenceType(String absenceName){
+        private int resourceId;
+        AbsenceType(String absenceName, int resourceId){
             this.absenceName = absenceName;
+            this.resourceId = resourceId;
         }
         
         public String getAbsenceName(){
             return this.absenceName;
         }
+
+        public int getResourceId() {
+            return resourceId;
+        }
+        
     }
     
     @Expose

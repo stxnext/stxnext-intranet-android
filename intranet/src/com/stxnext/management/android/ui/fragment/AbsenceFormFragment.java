@@ -135,7 +135,7 @@ public class AbsenceFormFragment  extends Fragment {
     private void configureTypeSelector(){
         List<PopupItem> items = new ArrayList<PopupItem>();
         for(AbsenceType type : AbsenceType.values()){
-            items.add(new PopupItem(type.getAbsenceName(), type));
+            items.add(new PopupItem(getString(type.getResourceId()), type));
         }
         typePopup = new Popup(getActivity(), absenceTypeView);
         typePopup.addItems(items);

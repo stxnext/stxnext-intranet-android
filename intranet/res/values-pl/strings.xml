@@ -64,4 +64,12 @@
 	<string name="common_sync_contacts">Synchronizacja kontaktów</string>
 	<string name="common_no_connection">Brak połączenia</string>
 	
+	
+	<string name="menu_details_sync">Synchronizuj kontakt</string>
+	<string name="menu_main_absences">Nieobecności</string>
+	<string name="menu_main_lates">Spóźnienia</string>
+	<string name="menu_main_search">Szukaj</string>
+	<string name="menu_main_sync">Synchronizuj kontakty</string>
+	<string name="menu_main_signout">Wyloguj</string>
+	<string name="menu_main_signin">Zaloguj</string>
 </resources>

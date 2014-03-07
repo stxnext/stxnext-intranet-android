@@ -67,4 +67,12 @@
 	<string name="common_sync_contacts">Contacts sync</string>
 	<string name="common_no_connection">No internet connection</string>
 	
+	<string name="menu_details_sync">Sync contact</string>
+	<string name="menu_main_absences">Absences</string>
+	<string name="menu_main_lates">Lates</string>
+	<string name="menu_main_search">Search</string>
+	<string name="menu_main_sync">Sync contacts</string>
+	<string name="menu_main_signout">Sign out</string>
+	<string name="menu_main_signin">Sign in</string>
+	
 </resources>

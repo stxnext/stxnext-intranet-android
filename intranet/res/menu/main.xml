@@ -4,10 +4,10 @@
         android:id="@+id/action_absences"
         android:orderInCategory="1"
         android:showAsAction="never"
-        android:title="Nieobecności"/>
+        android:title="@string/menu_main_absences"/>
     <item android:id="@+id/action_late"
         android:orderInCategory="2"
-         android:title="Spóźnienia"></item>
+         android:title="@string/menu_main_lates"></item>
     
     <item android:id="@+id/addform"
           android:icon="@drawable/add"
@@ -15,13 +15,13 @@
            />
 
     <item android:id="@+id/search"
-          android:title="Szukaj"
+          android:title="@string/menu_main_search"
           android:icon="@drawable/search"
           android:showAsAction="collapseActionView|ifRoom"
           android:actionViewClass="com.actionbarsherlock.widget.SearchView" />
     <item 
         android:id="@+id/sync_all"
-        android:title="Synchronizuj kontakty"
+        android:title="@string/menu_main_sync"
           android:icon="@drawable/default_ptr_rotate"
           android:showAsAction="never"
         />
@@ -29,11 +29,11 @@
     <item android:id="@+id/action_signout"
           android:showAsAction="never"
           android:orderInCategory="3"
-          android:title="Wyloguj" />
+          android:title="@string/menu_main_signout" />
     
     <item android:id="@+id/action_signin"
           android:showAsAction="never"
           android:orderInCategory="4"
-          android:title="Zaloguj" />
+          android:title="@string/menu_main_signin" />
     
 </menu>
