@@ -73,6 +73,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".games.poker.BoardGameActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".ui.SubmitFormActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:configChanges="keyboardHidden|orientation|screenSize"

@@ -44,6 +44,7 @@ import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.Lateness;
 import com.stxnext.management.android.dto.local.PresenceResult;
+import com.stxnext.management.android.games.poker.BoardGameActivity;
 import com.stxnext.management.android.receivers.CommandReceiver;
 import com.stxnext.management.android.receivers.CommandReceiver.CommandReceiverListener;
 import com.stxnext.management.android.storage.sqlite.dao.DAO;
@@ -290,6 +291,9 @@ public class MainActivity extends AbstractSimpleActivity implements
         } else if (item.getItemId() == R.id.addform) {
             startActivityForResult(new Intent(this, SubmitFormActivity.class),
                     SubmitFormActivity.REQUEST_SEND_FORM);
+        }
+        else if (item.getItemId() == R.id.play_poker) {
+            startActivity(new Intent(this, BoardGameActivity.class));
         }
         return super.onMenuItemSelected(featureId, item);
     }
