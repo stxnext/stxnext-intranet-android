@@ -107,6 +107,7 @@ public class CardSprite extends Sprite {
                 gameActivity.clearCardsZIndex();
                 this.setZIndex(this.getZIndex() + 1);
                 getParent().sortChildren();
+                gameActivity.setActiveCardSprite(this);
                 break;
             case TouchEvent.ACTION_MOVE:
                 if (this.mGrabbed) {
@@ -121,6 +122,7 @@ public class CardSprite extends Sprite {
                     this.mGrabbed = false;
                     this.scaleModifier.reset(0.2f, 1.5f, 1f,1.5f,1f);
                     this.registerEntityModifier(scaleModifier);
+                    gameActivity.setActiveCardSprite(null);
                     //this.setScale(1.0f);
                 }
                 break;

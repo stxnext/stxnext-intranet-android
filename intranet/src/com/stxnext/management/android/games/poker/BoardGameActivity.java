@@ -8,13 +8,15 @@ import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
+import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.modifier.MoveModifier;
+import org.andengine.entity.modifier.ScaleModifier;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
@@ -25,8 +27,7 @@ import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasS
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.debug.Debug;
-import org.andengine.util.modifier.ease.EaseStrongIn;
-import org.andengine.util.modifier.ease.EaseStrongOut;
+import org.andengine.util.modifier.ease.EaseCubicInOut;
 
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -52,12 +53,15 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     private Scene mScene;
     // private HashMap<Card, ITextureRegion> mCardTotextureRegionMap;
     private BitmapTextureAtlas mBitmapTextureAtlas;
-    private TextureRegion mFaceTextureRegion;
+    private TextureRegion mCardTextureRegion;
+    private TextureRegion mDeskTextureRegion;
+    private Sprite deskSprite;
     private Font mFont;
     private Sound cardPickSound;
     private Sound cardPutSound;
     private RepeatingSpriteBackground tableTexture;
     private OSDMenu osdMenu;
+    private CardSprite activeCardSprite;
 
     // ===========================================================
     // Constructors
@@ -93,6 +97,45 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         return engineOptions;
     }
 
+    CardSprite previouslyActiveCardSprite;
+
+    // kind of complicated and not encapsulated, please refactor that later
+    public void setActiveCardSprite(CardSprite activeCardSprite) {
+
+        if (activeCardSprite == null && this.activeCardSprite != null) {
+
+            if (this.activeCardSprite.collidesWith(deskSprite)) {
+                
+                if (previouslyActiveCardSprite != null
+                        && previouslyActiveCardSprite.collidesWith(deskSprite)) {
+                    previouslyActiveCardSprite.backToOrigilanPosition(cards
+                            .indexOf(previouslyActiveCardSprite));
+                }
+                
+                float movetoX = deskSprite.getX() + (deskSprite.getWidth() / 2)
+                        - (this.activeCardSprite.getWidth() / 2);
+                float movetoY = deskSprite.getY() + (deskSprite.getHeight() / 4)
+                        - (this.activeCardSprite.getHeight() / 2);
+                this.activeCardSprite.registerEntityModifier(new MoveModifier(0.6f,
+                        this.activeCardSprite.getX(), movetoX, this.activeCardSprite.getY(),
+                        movetoY, EaseCubicInOut.getInstance()));
+            }
+            previouslyActiveCardSprite = this.activeCardSprite;
+        }
+
+        // if(activeCardSprite!=null){
+        // float movetoX =
+        // deskSprite.getX()+(deskSprite.getWidth()/2)-(activeCardSprite.getWidth()/2);
+        // float movetoY =
+        // deskSprite.getY()+(deskSprite.getHeight()/4)-(activeCardSprite.getHeight()/2);
+        // activeCardSprite.registerEntityModifier(new MoveModifier(0.6f,
+        // activeCardSprite.getX(),movetoX , activeCardSprite.getY(), movetoY,
+        // EaseCubicInOut.getInstance()));
+        // }
+
+        this.activeCardSprite = activeCardSprite;
+    }
+
     public Engine getEngine() {
         return mEngine;
     }
@@ -104,24 +147,33 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         this.mBitmapTextureAtlas = new BitmapTextureAtlas(this.getTextureManager(),
                 CardSprite.CARD_WIDTH, CardSprite.CARD_HEIGHT,
                 TextureOptions.BILINEAR);
-        
-        this.mFaceTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+
+        this.mCardTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
                 this.mBitmapTextureAtlas, this, "card_blank.png", 0, 0);
         this.mBitmapTextureAtlas.load();
-        
+
+        this.mBitmapTextureAtlas = new BitmapTextureAtlas(this.getTextureManager(),
+                256, 256,
+                TextureOptions.BILINEAR);
+
+        this.mDeskTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+                this.mBitmapTextureAtlas, this, "desk.png", 0, 0);
+        this.mBitmapTextureAtlas.load();
+
         this.mBitmapTextureAtlas = new BitmapTextureAtlas(this.getTextureManager(),
                 200, 200,
                 TextureOptions.BILINEAR);
-        this.tableTexture = new RepeatingSpriteBackground(CAMERA_WIDTH, CAMERA_HEIGHT, this.getTextureManager(), AssetBitmapTextureAtlasSource.create(this.getAssets(), "gfx/dark_texture.png"), this.getVertexBufferObjectManager());
+        this.tableTexture = new RepeatingSpriteBackground(CAMERA_WIDTH, CAMERA_HEIGHT,
+                this.getTextureManager(), AssetBitmapTextureAtlasSource.create(this.getAssets(),
+                        "gfx/dark_texture.png"), this.getVertexBufferObjectManager());
         mBitmapTextureAtlas.load();
-        
-        
+
         this.mBitmapTextureAtlas = new BitmapTextureAtlas(this.getTextureManager(),
-                32, 32,
+                128, 128,
                 TextureOptions.BILINEAR);
         TextureRegion alignMenu = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
-                this.mBitmapTextureAtlas, this, "arrow_refresh.png", 0, 0);
-        this.osdMenu = new OSDMenu(this,this,alignMenu);
+                this.mBitmapTextureAtlas, this, "view_refresh.png", 0, 0);
+        this.osdMenu = new OSDMenu(this, this, alignMenu);
         this.mBitmapTextureAtlas.load();
 
         this.mFont = FontFactory.create(getFontManager(),
@@ -129,7 +181,7 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
                 Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 22);
         mFont.load();
         osdMenu.prepareTextures();
-        
+
         SoundFactory.setAssetBasePath("mfx/");
         try {
             this.cardPickSound = SoundFactory.createSoundFromAsset(getEngine()
@@ -139,7 +191,7 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         } catch (final IOException e) {
             Debug.e(e);
         }
-        
+
         CardSprite.setCardPickSound(cardPickSound);
         CardSprite.setCardPutSound(cardPutSound);
         CardSprite.setFont(mFont);
@@ -154,19 +206,58 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         this.mScene.setOnAreaTouchTraversalFrontToBack();
         // this.mScene.setScale(CardSprite.cardGlobalScale);
 
-        this.cards = DeckFactory.produce(DeckType.DEFAULT, mFaceTextureRegion, this);
+        this.cards = DeckFactory.produce(DeckType.DEFAULT, mCardTextureRegion, this);
         for (CardSprite sprite : this.cards) {
             addCard(sprite);
         }
-        
-        this.osdMenu.prepareScene(mScene);
 
-        //new Background(0.09804f, 0.6274f, 0.8784f)
+        this.osdMenu.prepareScene(mScene);
+        deskSprite = new Sprite(CAMERA_WIDTH / 2 - 128, 0, mDeskTextureRegion,
+                getVertexBufferObjectManager()) {
+
+        };
+        deskSprite.setY(CAMERA_HEIGHT / 2 - deskSprite.getHeight());
+        this.mScene.attachChild(deskSprite);
+        this.mScene.registerTouchArea(deskSprite);
+
+        // new Background(0.09804f, 0.6274f, 0.8784f)
         this.mScene.setBackground(this.tableTexture);
         this.mScene.setTouchAreaBindingOnActionDownEnabled(true);
 
+        mScene.registerUpdateHandler(sceneUpdateHandler);
+
         return this.mScene;
     }
+
+    IUpdateHandler sceneUpdateHandler = new IUpdateHandler() {
+        boolean colloding = false;
+
+        private void setColliding(boolean colliding) {
+            if (this.colloding != colliding) {
+                if (colliding) {
+                    deskSprite.registerEntityModifier(new ScaleModifier(0.5f, 1f, 1.5f,
+                            EaseCubicInOut.getInstance()));
+                }
+                else {
+                    deskSprite.registerEntityModifier(new ScaleModifier(0.5f, 1.5f, 1f,
+                            EaseCubicInOut.getInstance()));
+                }
+            }
+            this.colloding = colliding;
+        }
+
+        @Override
+        public void reset() {
+            setColliding(false);
+        }
+
+        @Override
+        public void onUpdate(final float pSecondsElapsed) {
+            if (activeCardSprite == null)
+                return;
+            setColliding(activeCardSprite.collidesWith(deskSprite));
+        }
+    };
 
     // ===========================================================
     // Methods
@@ -187,10 +278,11 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
     @Override
     public void onAlignDeck() {
-        for(int i=0;i<cards.size();i++){
+        for (int i = 0; i < cards.size(); i++) {
             cards.get(i).backToOrigilanPosition(i);
         }
         mScene.sortChildren();
+        sceneUpdateHandler.reset();
     }
 
     // ===========================================================
