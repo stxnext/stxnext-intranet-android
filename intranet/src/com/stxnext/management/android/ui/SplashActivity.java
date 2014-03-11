@@ -103,6 +103,9 @@ public class SplashActivity extends Activity {
 
     private void prepareAppInBackground() {
         if(api.isUserSignedIn()){
+            HTTPResponse<Long> userId = api.getCurrentUserId();
+            prefs.setCurrentUserId(userId.getExpectedResponse());
+            
             HTTPResponse<MandatedTime> response = api.getDaysOffToTake();
             if(response.ok() && response.getExpectedResponse() != null){
                 prefs.setDaysOffToTake(response.getExpectedResponse().getLeft().intValue());

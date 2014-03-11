@@ -21,6 +21,7 @@ public class StoragePrefs {
     private static final String AUTH_CODE = "authCode";
     private static final String SYNC_IS_ON = "syncIsOn";
     private static final String DAYS_OFF_TO_TAKE = "daysOffToTake";
+    private static final String CURRENT_USER_ID = "currentUserId";
 
     private static StoragePrefs _instance;
     private Context context;
@@ -79,6 +80,15 @@ public class StoragePrefs {
     
     public void setDaysOffToTake(Integer days) {
         prefs.edit().putInt(DAYS_OFF_TO_TAKE, days).commit();
+    }
+    
+    public Long getCurrentUserId() {
+        Long result = prefs.getLong(CURRENT_USER_ID,-1);
+        return result!=-1?result:null;
+    }
+    
+    public void setCurrentUserId(Long userId) {
+        prefs.edit().putLong(CURRENT_USER_ID, userId).commit();
     }
 
     public Integer getDaysOffToTake() {

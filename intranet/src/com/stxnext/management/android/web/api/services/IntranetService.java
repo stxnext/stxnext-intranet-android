@@ -4,6 +4,8 @@ package com.stxnext.management.android.web.api.services;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -114,6 +116,43 @@ public class IntranetService extends AbstractService {
                     IntranetUsersResult.class);
             result.setExpectedResponse(users);
             saveCookies();
+        }
+        consume(entity);
+        return result;
+    }
+    
+    private Long parseUserId(String content){
+        Pattern pattern = Pattern.compile("id: [0-9]+,", Pattern.CASE_INSENSITIVE);
+        Long userId = null;
+        Matcher matcher = pattern.matcher(content);
+        if(matcher.find()){
+            try{
+                String match = matcher.group();
+                String[] split = match.split(" ");
+                if(split.length==2){
+                    String result = split[1].replace(",", "");
+                    userId = Long.parseLong(result.trim());
+                }
+            }
+            catch(IllegalStateException se){
+                Log.e("","",se);
+            }
+            catch(NumberFormatException nfe){
+                Log.e("","",nfe);
+            }
+        }
+        
+        return userId;
+    }
+    
+    public HTTPResponse<Long> getCurrentUserId() throws Exception{
+        HTTPResponse<Long> result = new HTTPResponse<Long>();
+        HttpGet request = getRequest("user/edit", null, false);
+        HttpResponse response = executeRequestAndParseError(request, result);
+        HttpEntity entity = response.getEntity();
+        if (result.ok()) {
+            String plainContent = EntityUtils.toString(entity);
+            result.setExpectedResponse(parseUserId(plainContent));
         }
         consume(entity);
         return result;

@@ -9,11 +9,14 @@ import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
 import com.stxnext.management.android.dto.postmessage.AbsencePayload;
 import com.stxnext.management.android.dto.postmessage.LatenessPayload;
+import com.stxnext.management.android.storage.prefs.StoragePrefs;
 
 public class IntranetApi extends AbstractApi {
 
     private static IntranetApi _instance;
 
+    private StoragePrefs prefs;
+    
     public static IntranetApi getInstance(Application app) {
         if (_instance == null) {
             _instance = new IntranetApi(app);
@@ -23,6 +26,7 @@ public class IntranetApi extends AbstractApi {
 
     private IntranetApi(Application app) {
         super(app);
+        this.prefs = StoragePrefs.getInstance(app);
     }
 
     public void clearCookies() {
@@ -59,6 +63,9 @@ public class IntranetApi extends AbstractApi {
                         return service.loginWithCode(code);
                     }
                 });
+        
+        HTTPResponse<Long> userId = getCurrentUserId();
+        prefs.setCurrentUserId(userId.getExpectedResponse());
         return result;
 
     }
@@ -107,4 +114,15 @@ public class IntranetApi extends AbstractApi {
         return result;
     }
 
+    public HTTPResponse<Long> getCurrentUserId(){
+        HTTPResponse<Long> result = call(false,
+                new ApiExecutable<Long>() {
+                    @Override
+                    public HTTPResponse<Long> call() throws Exception {
+                        return service.getCurrentUserId();
+                    }
+                });
+        return result;
+    }
+    
 }
