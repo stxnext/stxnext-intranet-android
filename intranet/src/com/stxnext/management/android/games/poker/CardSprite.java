@@ -25,13 +25,21 @@ public class CardSprite extends Sprite {
     boolean mGrabbed = false;
     Float value;
     String displayValue;
+    
+    float originalX;
+    float originalY;
 
     public CardSprite(float pX, float pY, TextureRegion pTiledTextureRegion,
             VertexBufferObjectManager pVertexBufferObjectManager, BoardGameActivity gameActivity) {
         super(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager);
+        originalX = pX;
+        originalY = pY;
         this.gameActivity = gameActivity;
     }
 
+    public void backToOrigilanPosition(){
+        
+    }
 
     public void prepare(String displayValue, Float value) {
         final VertexBufferObjectManager vertexBufferObjectManager = gameActivity
@@ -123,5 +131,15 @@ public class CardSprite extends Sprite {
     public Float getValue() {
         return value;
     }
+
+    public float getOriginalX() {
+        return originalX;
+    }
+
+    public float getOriginalY() {
+        return originalY;
+    }
+    
+    
 
 }
