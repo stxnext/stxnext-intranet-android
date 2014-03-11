@@ -1,43 +1,55 @@
 
 package com.stxnext.management.android.games.poker;
 
-import java.util.HashMap;
+import java.io.IOException;
+import java.util.List;
 
+import org.andengine.audio.sound.Sound;
+import org.andengine.audio.sound.SoundFactory;
+import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.util.FPSLogger;
-import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.texture.region.TextureRegionFactory;
+import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
+import org.andengine.util.debug.Debug;
 
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.view.Display;
+
+import com.stxnext.management.android.games.poker.DeckFactory.DeckType;
 
 public class BoardGameActivity extends SimpleBaseGameActivity {
     // ===========================================================
     // Constants
     // ===========================================================
 
-    private static int CAMERA_HEIGHT  = 720;
-    private static int CAMERA_WIDTH = 480;
+    public static int CAMERA_HEIGHT = 720;
+    public static int CAMERA_WIDTH = 480;
 
     // ===========================================================
     // Fields
     // ===========================================================
 
     private Camera mCamera;
-    private BitmapTextureAtlas mCardDeckTexture;
+    // private BitmapTextureAtlas mCardDeckTexture;
     private Scene mScene;
-    private HashMap<Card, ITextureRegion> mCardTotextureRegionMap;
+    // private HashMap<Card, ITextureRegion> mCardTotextureRegionMap;
+    private BitmapTextureAtlas mBitmapTextureAtlas;
+    private TextureRegion mFaceTextureRegion;
+    private Font mFont;
+    private Sound cardPickSound;
+    private Sound cardPutSound;
 
     // ===========================================================
     // Constructors
@@ -53,59 +65,59 @@ public class BoardGameActivity extends SimpleBaseGameActivity {
 
     @Override
     public EngineOptions onCreateEngineOptions() {
-        
+
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         CAMERA_WIDTH = size.x;
         CAMERA_HEIGHT = size.y;
-        
+
         this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 
         final EngineOptions engineOptions = new EngineOptions(true,
                 ScreenOrientation.PORTRAIT_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH,
                         CAMERA_HEIGHT), this.mCamera);
+        engineOptions.getRenderOptions().setMultiSampling(true);
+        engineOptions.getAudioOptions().setNeedsSound(true);
+        engineOptions.getRenderOptions().setDithering(true);
         engineOptions.getTouchOptions().setNeedsMultiTouch(true);
 
-//        if (MultiTouch.isSupported(this)) {
-//            if (MultiTouch.isSupportedDistinct(this)) {
-//                Toast.makeText(this, "MultiTouch detected --> Both controls will work properly!",
-//                        Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(
-//                        this,
-//                        "MultiTouch detected, but your device has problems distinguishing between fingers.\n\nControls are placed at different vertical locations.",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        } else {
-//            Toast.makeText(
-//                    this,
-//                    "Sorry your device does NOT support MultiTouch!\n\n(Falling back to SingleTouch.)\n\nControls are placed at different vertical locations.",
-//                    Toast.LENGTH_LONG).show();
-//        }
-
         return engineOptions;
+    }
+
+    public Engine getEngine() {
+        return mEngine;
     }
 
     @Override
     public void onCreateResources() {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
 
-        this.mCardDeckTexture = new BitmapTextureAtlas(this.getTextureManager(), 1024, 512,
-                TextureOptions.BILINEAR);
-        BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mCardDeckTexture, this,
-                "carddeck_tiled.png", 0, 0);
-        this.mCardDeckTexture.load();
+        this.mBitmapTextureAtlas = new BitmapTextureAtlas(this.getTextureManager(),
+                CardSprite.CARD_WIDTH, CardSprite.CARD_HEIGHT,
+                TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+        this.mFaceTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+                this.mBitmapTextureAtlas, this, "card_blank.png", 0, 0);
+        this.mBitmapTextureAtlas.load();
 
-        this.mCardTotextureRegionMap = new HashMap<Card, ITextureRegion>();
-
-        /* Extract the TextureRegion of each card in the whole deck. */
-        for (final Card card : Card.values()) {
-            final ITextureRegion cardTextureRegion = TextureRegionFactory.extractFromTexture(
-                    this.mCardDeckTexture, card.getTexturePositionX(), card.getTexturePositionY(),
-                    Card.CARD_WIDTH, Card.CARD_HEIGHT);
-            this.mCardTotextureRegionMap.put(card, cardTextureRegion);
+        this.mFont = FontFactory.create(getFontManager(),
+                getTextureManager(), 256, 256,
+                Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 22);
+        mFont.load();
+        SoundFactory.setAssetBasePath("mfx/");
+        try {
+            this.cardPickSound = SoundFactory.createSoundFromAsset(getEngine()
+                    .getSoundManager(), this, "card_pick.wav");
+            this.cardPutSound = SoundFactory.createSoundFromAsset(getEngine()
+                    .getSoundManager(), this, "card_put.wav");
+        } catch (final IOException e) {
+            Debug.e(e);
         }
+        
+        CardSprite.setCardPickSound(cardPickSound);
+        CardSprite.setCardPutSound(cardPutSound);
+        CardSprite.setFont(mFont);
+
     }
 
     @Override
@@ -114,14 +126,14 @@ public class BoardGameActivity extends SimpleBaseGameActivity {
 
         this.mScene = new Scene();
         this.mScene.setOnAreaTouchTraversalFrontToBack();
+        // this.mScene.setScale(CardSprite.cardGlobalScale);
 
-        this.addCard(Card.CLUB_ACE, 200, 100);
-        this.addCard(Card.HEART_ACE, 200, 260);
-        this.addCard(Card.DIAMOND_ACE, 440, 100);
-        this.addCard(Card.SPADE_ACE, 440, 260);
+        this.cards = DeckFactory.produce(DeckType.DEFAULT, mFaceTextureRegion, this);
+        for (CardSprite sprite : this.cards) {
+            addCard(sprite);
+        }
 
         this.mScene.setBackground(new Background(0.09804f, 0.6274f, 0.8784f));
-
         this.mScene.setTouchAreaBindingOnActionDownEnabled(true);
 
         return this.mScene;
@@ -131,38 +143,17 @@ public class BoardGameActivity extends SimpleBaseGameActivity {
     // Methods
     // ===========================================================
 
-    private void addCard(final Card pCard, final int pX, final int pY) {
-        final Sprite sprite = new Sprite(pX, pY, this.mCardTotextureRegionMap.get(pCard),
-                this.getVertexBufferObjectManager()) {
-            boolean mGrabbed = false;
+    private List<CardSprite> cards;
 
-            @Override
-            public boolean onAreaTouched(final TouchEvent pSceneTouchEvent,
-                    final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
-                switch (pSceneTouchEvent.getAction()) {
-                    case TouchEvent.ACTION_DOWN:
-                        this.setScale(1.25f);
-                        this.mGrabbed = true;
-                        break;
-                    case TouchEvent.ACTION_MOVE:
-                        if (this.mGrabbed) {
-                            this.setPosition(pSceneTouchEvent.getX() - Card.CARD_WIDTH / 2,
-                                    pSceneTouchEvent.getY() - Card.CARD_HEIGHT / 2);
-                        }
-                        break;
-                    case TouchEvent.ACTION_UP:
-                        if (this.mGrabbed) {
-                            this.mGrabbed = false;
-                            this.setScale(1.0f);
-                        }
-                        break;
-                }
-                return true;
-            }
-        };
-
+    private void addCard(CardSprite sprite) {
         this.mScene.attachChild(sprite);
         this.mScene.registerTouchArea(sprite);
+    }
+
+    public void clearCardsZIndex() {
+        for (CardSprite card : cards) {
+            card.setZIndex(0);
+        }
     }
 
     // ===========================================================
