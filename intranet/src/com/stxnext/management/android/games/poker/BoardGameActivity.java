@@ -188,8 +188,7 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     @Override
     public void onAlignDeck() {
         for(int i=0;i<cards.size();i++){
-            cards.get(i).registerEntityModifier(new MoveModifier(1f, cards.get(i).getX(), cards.get(i).getOriginalX(), cards.get(i).getY(), cards.get(i).getOriginalY(), EaseStrongOut.getInstance()));
-            cards.get(i).setZIndex(i);
+            cards.get(i).backToOrigilanPosition(i);
         }
         mScene.sortChildren();
     }
