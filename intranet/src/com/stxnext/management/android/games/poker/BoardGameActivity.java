@@ -49,9 +49,7 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     // ===========================================================
 
     private Camera mCamera;
-    // private BitmapTextureAtlas mCardDeckTexture;
     private Scene mScene;
-    // private HashMap<Card, ITextureRegion> mCardTotextureRegionMap;
     private BitmapTextureAtlas mBitmapTextureAtlas;
     private TextureRegion mCardTextureRegion;
     private TextureRegion mDeskTextureRegion;
@@ -77,6 +75,7 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     // ===========================================================
 
     
+    @SuppressWarnings("deprecation")//need to support gingerbread
     @Override
     public EngineOptions onCreateEngineOptions() {
 
@@ -103,8 +102,9 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         if(draggedSprite == null && this.draggedCardSprite != null){
             if (this.draggedCardSprite.collidesWith(deskSprite)) {
                 if(this.cardOnTheTable != null){
-                    this.cardOnTheTable.backToOrigilanPosition(cards
-                            .indexOf(this.cardOnTheTable));
+                    this.cardOnTheTable.backToOriginalPosition(false);
+                    resetZIndexes();
+                    //mScene.sortChildren();
                 }
                 this.cardOnTheTable = this.draggedCardSprite;
                 float movetoX = deskSprite.getX() + (deskSprite.getWidth() / 2)
@@ -255,6 +255,13 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         this.mScene.registerTouchArea(sprite);
     }
 
+    private void resetZIndexes(){
+        for (CardSprite card : cards) {
+            card.resetZIndex();
+        }
+        mScene.sortChildren();
+    }
+    
     public void clearCardsZIndex() {
         for (CardSprite card : cards) {
             card.setZIndex(0);
@@ -263,8 +270,8 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
     @Override
     public void onAlignDeck() {
-        for (int i = 0; i < cards.size(); i++) {
-            cards.get(i).backToOrigilanPosition(i);
+        for(CardSprite card : cards){
+            card.backToOriginalPosition(false);
         }
         mScene.sortChildren();
         sceneUpdateHandler.reset();

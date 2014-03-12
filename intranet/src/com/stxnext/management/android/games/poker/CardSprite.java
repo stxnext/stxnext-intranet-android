@@ -35,23 +35,31 @@ public class CardSprite extends Sprite {
     boolean mGrabbed = false;
     Float value;
     String displayValue;
+    int originalZIndex;
 
     float originalX;
     float originalY;
 
     public CardSprite(float pX, float pY, TextureRegion pTiledTextureRegion,
-            VertexBufferObjectManager pVertexBufferObjectManager, BoardGameActivity gameActivity) {
+            VertexBufferObjectManager pVertexBufferObjectManager, BoardGameActivity gameActivity, int zIndex) {
         super(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager);
         originalX = pX;
         originalY = pY;
+        originalZIndex = zIndex;
         this.gameActivity = gameActivity;
         this.moveModifier = new MoveModifier(0.1f, pX, pX, pY, pY, EaseLinear.getInstance());
         this.scaleModifier = new ScaleModifier(0.1f, 1f, 1f, EaseCubicInOut.getInstance());
     }
 
-    public void backToOrigilanPosition(int index) {
+    public void backToOriginalPosition(boolean updateParent) {
         registerEntityModifier(new MoveModifier(1f, getX(), getOriginalX(), getY(), getOriginalY(), EaseStrongOut.getInstance()));
-        setZIndex(index);
+        resetZIndex();
+        if(updateParent)
+            getParent().sortChildren();
+    }
+    
+    public void resetZIndex(){
+        setZIndex(originalZIndex);
     }
 
     public void prepare(String displayValue, Float value) {
