@@ -88,6 +88,8 @@ public class StoragePrefs {
     }
     
     public void setCurrentUserId(Long userId) {
+        if(userId == null)
+            userId = -1l;
         prefs.edit().putLong(CURRENT_USER_ID, userId).commit();
     }
 
