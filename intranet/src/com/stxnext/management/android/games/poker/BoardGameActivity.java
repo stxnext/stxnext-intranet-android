@@ -61,7 +61,8 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     private Sound cardPutSound;
     private RepeatingSpriteBackground tableTexture;
     private OSDMenu osdMenu;
-    private CardSprite activeCardSprite;
+    private CardSprite draggedCardSprite;
+    private CardSprite cardOnTheTable;
 
     // ===========================================================
     // Constructors
@@ -75,14 +76,13 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     // Methods for/from SuperClass/Interfaces
     // ===========================================================
 
+    
     @Override
     public EngineOptions onCreateEngineOptions() {
 
         Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        CAMERA_WIDTH = size.x;
-        CAMERA_HEIGHT = size.y;
+        CAMERA_WIDTH = display.getWidth();
+        CAMERA_HEIGHT = display.getHeight();
 
         this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 
@@ -92,48 +92,35 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         engineOptions.getRenderOptions().setMultiSampling(true);
         engineOptions.getAudioOptions().setNeedsSound(true);
         engineOptions.getRenderOptions().setDithering(true);
-        engineOptions.getTouchOptions().setNeedsMultiTouch(true);
+        engineOptions.getTouchOptions().setNeedsMultiTouch(false);
 
         return engineOptions;
     }
 
-    CardSprite previouslyActiveCardSprite;
-
     // kind of complicated and not encapsulated, please refactor that later
-    public void setActiveCardSprite(CardSprite activeCardSprite) {
+    public void setDraggedCardSprite(CardSprite draggedSprite) {
 
-        if (activeCardSprite == null && this.activeCardSprite != null) {
-
-            if (this.activeCardSprite.collidesWith(deskSprite)) {
-                
-                if (previouslyActiveCardSprite != null
-                        && previouslyActiveCardSprite.collidesWith(deskSprite)) {
-                    previouslyActiveCardSprite.backToOrigilanPosition(cards
-                            .indexOf(previouslyActiveCardSprite));
+        if(draggedSprite == null && this.draggedCardSprite != null){
+            if (this.draggedCardSprite.collidesWith(deskSprite)) {
+                if(this.cardOnTheTable != null){
+                    this.cardOnTheTable.backToOrigilanPosition(cards
+                            .indexOf(this.cardOnTheTable));
                 }
-                
+                this.cardOnTheTable = this.draggedCardSprite;
                 float movetoX = deskSprite.getX() + (deskSprite.getWidth() / 2)
-                        - (this.activeCardSprite.getWidth() / 2);
+                        - (this.draggedCardSprite.getWidth() / 2);
                 float movetoY = deskSprite.getY() + (deskSprite.getHeight() / 4)
-                        - (this.activeCardSprite.getHeight() / 2);
-                this.activeCardSprite.registerEntityModifier(new MoveModifier(0.6f,
-                        this.activeCardSprite.getX(), movetoX, this.activeCardSprite.getY(),
+                        - (this.draggedCardSprite.getHeight() / 2);
+                this.draggedCardSprite.registerEntityModifier(new MoveModifier(0.6f,
+                        this.draggedCardSprite.getX(), movetoX, this.draggedCardSprite.getY(),
                         movetoY, EaseCubicInOut.getInstance()));
             }
-            previouslyActiveCardSprite = this.activeCardSprite;
         }
-
-        // if(activeCardSprite!=null){
-        // float movetoX =
-        // deskSprite.getX()+(deskSprite.getWidth()/2)-(activeCardSprite.getWidth()/2);
-        // float movetoY =
-        // deskSprite.getY()+(deskSprite.getHeight()/4)-(activeCardSprite.getHeight()/2);
-        // activeCardSprite.registerEntityModifier(new MoveModifier(0.6f,
-        // activeCardSprite.getX(),movetoX , activeCardSprite.getY(), movetoY,
-        // EaseCubicInOut.getInstance()));
-        // }
-
-        this.activeCardSprite = activeCardSprite;
+        else if(draggedSprite!=null && draggedSprite.equals(this.cardOnTheTable)){
+            this.cardOnTheTable = null;
+        }
+        
+        this.draggedCardSprite = draggedSprite;
     }
 
     public Engine getEngine() {
@@ -204,7 +191,6 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
         this.mScene = new Scene();
         this.mScene.setOnAreaTouchTraversalFrontToBack();
-        // this.mScene.setScale(CardSprite.cardGlobalScale);
 
         this.cards = DeckFactory.produce(DeckType.DEFAULT, mCardTextureRegion, this);
         for (CardSprite sprite : this.cards) {
@@ -220,7 +206,6 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         this.mScene.attachChild(deskSprite);
         this.mScene.registerTouchArea(deskSprite);
 
-        // new Background(0.09804f, 0.6274f, 0.8784f)
         this.mScene.setBackground(this.tableTexture);
         this.mScene.setTouchAreaBindingOnActionDownEnabled(true);
 
@@ -253,9 +238,9 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
         @Override
         public void onUpdate(final float pSecondsElapsed) {
-            if (activeCardSprite == null)
+            if (draggedCardSprite == null)
                 return;
-            setColliding(activeCardSprite.collidesWith(deskSprite));
+            setColliding(draggedCardSprite.collidesWith(deskSprite));
         }
     };
 
