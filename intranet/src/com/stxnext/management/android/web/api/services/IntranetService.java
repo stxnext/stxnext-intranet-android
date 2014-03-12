@@ -22,6 +22,8 @@ import android.util.Log;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
+import com.stxnext.management.android.dto.local.Team;
+import com.stxnext.management.android.dto.local.TeamResult;
 import com.stxnext.management.android.dto.postmessage.AbsencePayload;
 import com.stxnext.management.android.dto.postmessage.GsonProvider;
 import com.stxnext.management.android.dto.postmessage.LatenessPayload;
@@ -171,6 +173,36 @@ public class IntranetService extends AbstractService {
         if (result.ok()) {
             String jsonStub = EntityUtils.toString(entity);
             result.setExpectedResponse(GsonProvider.get().fromJson(jsonStub, MandatedTime.class));
+        }
+        consume(entity);
+        return result;
+    }
+    
+    public HTTPResponse<TeamResult> getTeams(Long teamId)
+            throws Exception {
+        
+        HTTPResponse<TeamResult> result = new HTTPResponse<TeamResult>();
+        
+        String method = "/api/teams";
+        if(teamId != null){
+            method+="/"+String.valueOf(teamId);
+        }
+        
+        HttpGet request = getRequest(method, null, false);
+        HttpResponse response = executeRequestAndParseError(request, result);
+        HttpEntity entity = response.getEntity();
+        if (result.ok()) {
+            String jsonStub = EntityUtils.toString(entity);
+            if(teamId != null){
+                Team team = GsonProvider.get().fromJson(jsonStub, Team.class);
+                TeamResult teamResult = new TeamResult();
+                teamResult.addTeam(team);
+                result.setExpectedResponse(teamResult);
+            }
+            else{
+                TeamResult teamResult = GsonProvider.get().fromJson(jsonStub, TeamResult.class);
+                result.setExpectedResponse(teamResult);
+            }
         }
         consume(entity);
         return result;

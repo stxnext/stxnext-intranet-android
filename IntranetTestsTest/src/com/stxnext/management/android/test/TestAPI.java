@@ -3,7 +3,9 @@ package com.stxnext.management.android.test;
 import android.test.ApplicationTestCase;
 
 import com.stxnext.management.android.AppIntranet;
+import com.stxnext.management.android.dto.local.TeamResult;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
+import com.stxnext.management.android.web.api.HTTPResponse;
 import com.stxnext.management.android.web.api.IntranetApi;
 
 public class TestAPI  extends ApplicationTestCase<AppIntranet>{
@@ -30,9 +32,11 @@ public class TestAPI  extends ApplicationTestCase<AppIntranet>{
     }
  
     public void testUsersList(){
-        String code = prefs.getAuthCode();
-        api.loginWithCode(code);
-        //api.getUsers("");
+//        String code = prefs.getAuthCode();
+//        api.loginWithCode(code);
+        //api.getUsers();
+        HTTPResponse<TeamResult> result = api.getTeams(null);
+        String teams = "dasd";
     }
     
 }

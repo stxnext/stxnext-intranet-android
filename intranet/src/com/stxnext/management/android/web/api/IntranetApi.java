@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.MandatedTime;
 import com.stxnext.management.android.dto.local.PresenceResult;
+import com.stxnext.management.android.dto.local.TeamResult;
 import com.stxnext.management.android.dto.postmessage.AbsencePayload;
 import com.stxnext.management.android.dto.postmessage.LatenessPayload;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
@@ -123,6 +124,19 @@ public class IntranetApi extends AbstractApi {
                     }
                 });
         return result;
+    }
+    
+    public HTTPResponse<TeamResult> getTeams(final Long teamId){
+        
+        HTTPResponse<TeamResult> result = call(false,
+                new ApiExecutable<TeamResult>() {
+                    @Override
+                    public HTTPResponse<TeamResult> call() throws Exception {
+                        return service.getTeams(teamId);
+                    }
+                });
+        return result;
+        
     }
     
 }
