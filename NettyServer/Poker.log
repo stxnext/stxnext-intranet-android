@@ -1,0 +1,28 @@
+2014-03-13 16:49:27,149 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-13 16:49:27,157 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-13 16:49:27,223 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-13 16:49:27,226 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-13 16:49:27,227 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-13 16:49:27,231 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-13 16:49:27,232 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-13 16:49:27,232 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-13 16:49:27,232 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-13 16:49:27,233 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-13 16:49:27,233 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-13 16:49:27,233 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-13 16:49:27,375 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-13 16:49:27,376 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-13 16:49:27,376 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-13 16:49:27,377 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-13 16:49:27,426 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-13 16:49:27,427 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-13 16:49:27,457 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-13 16:49:27,464 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-13 16:49:27,467 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-13 16:49:27,543 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0xb9a7f9a603a8c9be
+2014-03-13 16:49:27,555 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-13 16:49:27,602 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-13 16:49:27,612 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-13 16:49:27,613 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-13 16:49:27,613 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-13 16:49:27,613 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1

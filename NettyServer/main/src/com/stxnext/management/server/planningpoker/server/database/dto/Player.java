@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = Player.ENTITY_NAME)
 public class Player {
 
-    public static final String ENTITY_NAME = "player"; 
+    public static final String ENTITY_NAME = "poker_player"; 
 	// for QueryBuilder to be able to find the fields
     
     public static final String FIELD_ID = "id"; 
@@ -14,9 +14,14 @@ public class Player {
 	public static final String FIELD_EMAIL = "email";
 	public static final String FIELD_EXTERNAL_ID = "external_id";
 	public static final String FIELD_TEAM_ID = "team_id";
+	public static final String FIELD_SESSION_ID = "session_id";
 
+	
 	@DatabaseField(generatedId = true, columnName = FIELD_ID)
 	private long id;
+	
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = FIELD_SESSION_ID)
+    private Session session;
 
 	@DatabaseField(columnName = FIELD_NAME, canBeNull = false)
 	private String name;
@@ -35,10 +40,6 @@ public class Player {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -71,6 +72,14 @@ public class Player {
 
     public void setTeamId(long teamId) {
         this.teamId = teamId;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 	
 }

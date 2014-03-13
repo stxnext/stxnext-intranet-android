@@ -8,7 +8,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = Ticket.ENTITY_NAME)
 public class Ticket {
 
-    public static final String ENTITY_NAME = "ticket"; 
+    public static final String ENTITY_NAME = "poker_ticket"; 
     
     public static final String FIELD_ID = "id";
     public static final String FIELD_DISPLAY_VALUE = "display_value";
@@ -26,10 +26,6 @@ public class Ticket {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public ForeignCollection<Vote> getVotes() {

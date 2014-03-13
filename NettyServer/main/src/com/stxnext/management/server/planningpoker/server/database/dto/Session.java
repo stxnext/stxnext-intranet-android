@@ -8,7 +8,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = Session.ENTITY_NAME)
 public class Session {
     
-    public static final String ENTITY_NAME = "session"; 
+    public static final String ENTITY_NAME = "poker_session"; 
     
     public static final String FIELD_ID = "id"; 
     public static final String FIELD_START_TIME = "start_time";
@@ -34,10 +34,6 @@ public class Session {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getStartTime() {

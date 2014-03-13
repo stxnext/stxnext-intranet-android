@@ -8,7 +8,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = Deck.ENTITY_NAME)
 public class Deck {
-    public static final String ENTITY_NAME = "vote";
+    public static final String ENTITY_NAME = "poker_deck";
     
     public static final String FIELD_ID = "id";
     public static final String FIELD_NAME = "name";
@@ -22,12 +22,10 @@ public class Deck {
     @ForeignCollectionField
     private ForeignCollection<Card> cards;
 
+    public Deck(){}
+    
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {

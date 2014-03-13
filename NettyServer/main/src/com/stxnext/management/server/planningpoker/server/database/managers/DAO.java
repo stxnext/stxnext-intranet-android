@@ -16,7 +16,12 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.support.DatabaseConnection;
 import com.j256.ormlite.table.TableUtils;
 import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
+import com.stxnext.management.server.planningpoker.server.database.dto.Card;
+import com.stxnext.management.server.planningpoker.server.database.dto.Deck;
 import com.stxnext.management.server.planningpoker.server.database.dto.Player;
+import com.stxnext.management.server.planningpoker.server.database.dto.Session;
+import com.stxnext.management.server.planningpoker.server.database.dto.Ticket;
+import com.stxnext.management.server.planningpoker.server.database.dto.Vote;
 
 public class DAO {
 
@@ -38,6 +43,11 @@ public class DAO {
     private Logger logger;
 
     private Dao<Player, Long> playerDao;
+    private Dao<Card, Long> cardDao;
+    private Dao<Deck, Long> deckDao;
+    private Dao<Session, Long> sessionDao;
+    private Dao<Ticket, Long> ticketDao;
+    private Dao<Vote, Long> voteDao;
 
     private DAO() {
         logger = ServerConfigurator.getInstance().getLogger();
@@ -56,15 +66,23 @@ public class DAO {
 
     private void setupDatabase(ConnectionSource connectionSource) {
         try {
-            playerDao = DaoManager.createDao(connectionSource, Player.class);
-            if (!playerDao.isTableExists()) {
-                TableUtils.createTable(connectionSource, Player.class);
-            }
-
+            playerDao = checkTable(Player.class, connectionSource);
+            cardDao = checkTable(Card.class, connectionSource);
+            deckDao = checkTable(Deck.class, connectionSource);
+            sessionDao = checkTable(Session.class, connectionSource);
+            ticketDao = checkTable(Ticket.class, connectionSource);
+            voteDao = checkTable(Vote.class, connectionSource);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "", e);
         }
+    }
 
+    <T> Dao<T, Long> checkTable(Class<T> clazz, ConnectionSource source) throws SQLException {
+        Dao<T, Long> dao = DaoManager.createDao(source, clazz);
+        if (!dao.isTableExists()) {
+            TableUtils.createTable(connectionSource, clazz);
+        }
+        return dao;
     }
 
     public void createAndConnect() {
@@ -78,6 +96,30 @@ public class DAO {
         } catch (Exception c) {
             logger.log(Level.ERROR, "", c);
         }
+    }
+
+    public Dao<Player, Long> getPlayerDao() {
+        return playerDao;
+    }
+
+    public Dao<Card, Long> getCardDao() {
+        return cardDao;
+    }
+
+    public Dao<Deck, Long> getDeckDao() {
+        return deckDao;
+    }
+
+    public Dao<Session, Long> getSessionDao() {
+        return sessionDao;
+    }
+
+    public Dao<Ticket, Long> getTicketDao() {
+        return ticketDao;
+    }
+
+    public Dao<Vote, Long> getVoteDao() {
+        return voteDao;
     }
 
 }

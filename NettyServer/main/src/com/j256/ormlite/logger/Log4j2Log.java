@@ -1,7 +1,5 @@
 package com.j256.ormlite.logger;
 
-import org.apache.log4j.LogManager;
-
 /**
  * Class which implements our {@link com.j256.ormlite.logger.Log} interface by delegating to Apache Log4j2.
  * 
@@ -9,10 +7,10 @@ import org.apache.log4j.LogManager;
  */
 public class Log4j2Log implements Log {
 
-	private final org.apache.log4j.Logger logger;
+	private final org.apache.logging.log4j.Logger logger;
 
 	public Log4j2Log(String className) {
-		this.logger = LogManager.getLogger(className);
+		this.logger = org.apache.logging.log4j.LogManager.getLogger(className);
 	}
 
 	public boolean isLevelEnabled(Level level) {
@@ -24,11 +22,11 @@ public class Log4j2Log implements Log {
 			case INFO :
 				return logger.isInfoEnabled();
 			case WARNING :
-				return false;//logger.isWarnEnabled();
+				return logger.isWarnEnabled();
 			case ERROR :
-			    return false;//return logger.isErrorEnabled();
+				return logger.isErrorEnabled();
 			case FATAL :
-			    return false;//return logger.isFatalEnabled();
+				return logger.isFatalEnabled();
 			default :
 				return logger.isInfoEnabled();
 		}
