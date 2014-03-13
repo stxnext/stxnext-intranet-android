@@ -30,7 +30,7 @@ public class Player {
 	@DatabaseField(columnName = FIELD_TEAM_ID)
     private long teamId;
 
-	Player() {
+	public Player() {
 	}
 
     public long getId() {
