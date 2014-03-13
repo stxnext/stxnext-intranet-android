@@ -28,7 +28,7 @@ public class ServerConfigurator {
         boolean configOk = true;
         
         try{
-            DOMConfigurator.configure("res/log4jconfig.xml");
+            DOMConfigurator.configure("main/res/log4jconfig.xml");
         }
         catch(FactoryConfigurationError e){
             configOk = false;
