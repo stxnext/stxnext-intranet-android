@@ -29,7 +29,6 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.ease.EaseCubicInOut;
 
-import android.graphics.Point;
 import android.graphics.Typeface;
 import android.view.Display;
 

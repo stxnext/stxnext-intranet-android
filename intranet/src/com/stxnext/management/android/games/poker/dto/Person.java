@@ -13,6 +13,8 @@ public class Person extends AbstractDTO {
     private String email;
     private Number revision;
 
+    public Person(){};
+    
     public Person(ParseObject po) {
         this.inflateFromParse(po);
     }
