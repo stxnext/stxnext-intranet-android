@@ -1,0 +1,49 @@
+2014-03-13 11:36:32,477 DEBUG [main] logging.InternalLoggerFactory (InternalLoggerFactory.java:46) - Using Log4J as the default logging framework
+2014-03-13 11:36:32,485 DEBUG [main] channel.MultithreadEventLoopGroup (MultithreadEventLoopGroup.java:41) - -Dio.netty.eventLoopThreads: 8
+2014-03-13 11:36:32,508 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:445) - UID: 502
+2014-03-13 11:36:32,511 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:522) - Java version: 6
+2014-03-13 11:36:32,512 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:529) - -Dio.netty.noUnsafe: false
+2014-03-13 11:36:32,516 DEBUG [main] internal.PlatformDependent0 (PlatformDependent0.java:61) - java.nio.ByteBuffer.cleaner: available
+2014-03-13 11:36:32,518 DEBUG [main] internal.PlatformDependent0 (PlatformDependent0.java:80) - java.nio.Buffer.address: available
+2014-03-13 11:36:32,518 DEBUG [main] internal.PlatformDependent0 (PlatformDependent0.java:88) - sun.misc.Unsafe.theUnsafe: available
+2014-03-13 11:36:32,519 DEBUG [main] internal.PlatformDependent0 (PlatformDependent0.java:98) - sun.misc.Unsafe.copyMemory: available
+2014-03-13 11:36:32,519 DEBUG [main] internal.PlatformDependent0 (PlatformDependent0.java:135) - java.nio.Bits.unaligned: true
+2014-03-13 11:36:32,519 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:556) - sun.misc.Unsafe: available
+2014-03-13 11:36:32,520 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:639) - -Dio.netty.noJavassist: false
+2014-03-13 11:36:32,657 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:648) - Javassist: available
+2014-03-13 11:36:32,657 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:671) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-13 11:36:32,657 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:752) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-13 11:36:32,658 DEBUG [main] internal.PlatformDependent (PlatformDependent.java:84) - -Dio.netty.noPreferDirect: false
+2014-03-13 11:36:32,708 DEBUG [main] nio.NioEventLoop (NioEventLoop.java:88) - -Dio.netty.noKeySetOptimization: false
+2014-03-13 11:36:32,708 DEBUG [main] nio.NioEventLoop (NioEventLoop.java:89) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-13 11:36:32,741 DEBUG [main] internal.JavassistTypeParameterMatcherGenerator (JavassistTypeParameterMatcherGenerator.java:78) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-13 11:36:32,747 DEBUG [main] internal.JavassistTypeParameterMatcherGenerator (JavassistTypeParameterMatcherGenerator.java:78) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-13 11:36:32,752 DEBUG [main] internal.JavassistTypeParameterMatcherGenerator (JavassistTypeParameterMatcherGenerator.java:78) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-13 11:36:32,814 DEBUG [main] internal.ThreadLocalRandom (ThreadLocalRandom.java:139) - -Dio.netty.initialSeedUniquifier: 0xf4c0459cfa2b4015
+2014-03-13 11:36:32,825 DEBUG [main] channel.ChannelOutboundBuffer (ChannelOutboundBuffer.java:57) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-13 11:36:32,854 DEBUG [main] buffer.ByteBufUtil (ByteBufUtil.java:55) - -Dio.netty.allocator.type: unpooled
+2014-03-13 11:36:32,860 DEBUG [main] util.NetUtil (NetUtil.java:100) - Loopback interface: lo0
+2014-03-13 11:36:32,860 DEBUG [main] util.NetUtil (NetUtil.java:105) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-13 11:36:32,861 DEBUG [main] util.NetUtil (NetUtil.java:108) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-13 11:36:32,861 DEBUG [main] util.NetUtil (NetUtil.java:108) - Loopback address: /127.0.0.1
+2014-03-13 11:36:35,022 DEBUG [nioEventLoopGroup-3-1] util.ResourceLeakDetector (ResourceLeakDetector.java:91) - -Dio.netty.leakDetectionLevel: simple
+2014-03-13 11:36:35,035 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:74) - request from /192.168.2.5:41843:adasdsa
+
+2014-03-13 11:36:35,035 INFO  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:97) - adasdsa
+
+2014-03-13 11:36:35,981 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:74) - request from /192.168.2.5:41843:ff
+
+2014-03-13 11:36:35,981 INFO  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:97) - ff
+
+2014-03-13 11:36:36,451 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:74) - request from /192.168.2.5:41843:ff
+
+2014-03-13 11:36:36,451 INFO  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:97) - ff
+
+2014-03-13 11:36:36,634 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:74) - request from /192.168.2.5:41843:ff
+
+2014-03-13 11:36:36,635 INFO  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:97) - ff
+
+2014-03-13 11:36:36,749 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:74) - request from /192.168.2.5:41843:ff
+
+2014-03-13 11:36:36,750 INFO  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:97) - ff
+
