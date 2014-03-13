@@ -9,7 +9,7 @@
 	<classpathentry kind="lib" path="lib/jzlib-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="lib/metrics-core-2.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/netty-all-4.0.17.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-all-4.0.17.Final.jar" sourcepath="/Users/luczakp/.m2/repository/io/netty/netty-all/4.0.17.Final/netty-all-4.0.17.Final-sources.jar"/>
 	<classpathentry kind="lib" path="lib/npn-api-1.0.0.v20120402.jar"/>
 	<classpathentry kind="lib" path="lib/protobuf-java-2.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.6.jar"/>
