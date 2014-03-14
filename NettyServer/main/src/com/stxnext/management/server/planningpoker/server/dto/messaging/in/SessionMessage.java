@@ -1,5 +1,9 @@
 package com.stxnext.management.server.planningpoker.server.dto.messaging.in;
 
-public class SessionMessage extends IncomingMessage{
+import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 
+public class SessionMessage extends AbstractMessage{
+
+    
+    
 }

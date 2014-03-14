@@ -18,6 +18,7 @@ public class Player extends AbstractMessage {
 	public static final String FIELD_EXTERNAL_ID = "external_id";
 	public static final String FIELD_TEAM_ID = "team_id";
 	public static final String FIELD_SESSION_ID = "session_id";
+	public static final String FIELD_ACTIVE = "active";
 
 	
 	@Expose
@@ -47,6 +48,11 @@ public class Player extends AbstractMessage {
     @SerializedName(FIELD_TEAM_ID)
 	@DatabaseField(columnName = FIELD_TEAM_ID)
     private long teamId;
+	
+	@Expose
+    @SerializedName(FIELD_ACTIVE)
+    @DatabaseField(columnName = FIELD_ACTIVE)
+    private boolean active;
 
 	public Player() {
 	}
@@ -94,5 +100,14 @@ public class Player extends AbstractMessage {
     public void setSession(Session session) {
         this.session = session;
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
 	
 }

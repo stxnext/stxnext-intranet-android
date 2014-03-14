@@ -31,25 +31,31 @@ import java.util.Map.Entry;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import com.google.gson.JsonSyntaxException;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.in.IncomingMessage;
+import com.stxnext.management.server.planningpoker.server.handlers.MessageHandler;
+
 /**
  * Handles a server-side channel.
  */
 @Sharable
 public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
 
+    private MessageHandler msgHandler;
     private Logger logger;
     private final HashMap<String, ChannelHandlerContext> channels = new LinkedHashMap<String, ChannelHandlerContext>(200, 0.5f);
     
     public PokerServerHandler(){
         logger = ServerConfigurator.getInstance().getLogger();
+        msgHandler = new MessageHandler(channels);
     }
     
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        // Send greeting for a new connection.
-        ctx.write(
-                "Welcome to " + InetAddress.getLocalHost().getHostName() + "\r\n");
-        ctx.flush();
+        // TODO handle active users here
+//        ctx.write(
+//                "Welcome to " + InetAddress.getLocalHost().getHostName() + "\r\n");
+//        ctx.flush();
         channels.put(ctx.channel().remoteAddress().toString(),ctx);
     }
 
@@ -69,32 +75,54 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
     }
 
     @Override
+    public void channelRead(ChannelHandlerContext arg0, Object arg1) throws Exception {
+        super.channelRead(arg0, arg1);
+    }
+    
+    @Override
     public void channelRead0(ChannelHandlerContext ctx, String request) throws Exception {
-
         logger.log(Level.DEBUG, "request from " + ctx.channel().remoteAddress().toString() + ":"
                 + request + "\r\n");
-        // Generate and write a response.
-        String response;
-        boolean close = false;
-        if (request.isEmpty()) {
-            response = "[empty message].\r\n";
-        } else if ("quit".equals(request.toLowerCase())) {
-            response = "Exit requested, closing channel!\r\n";
-            close = true;
-        } else {
-            response = request +"\r\n";
+        try{
+            request = request.trim();
+            IncomingMessage message = IncomingMessage.fromJsonString(request, IncomingMessage.class);
+            msgHandler.handleMessage(message, ctx);
         }
-        broadcastToGroup(response);
+        catch(JsonSyntaxException jse){
+            // respond with error here
+            logger.log(Level.WARN, jse);
+        }
+        
+//        // Generate and write a response.
+//        String response;
+//        boolean close = false;
+//        if (request.isEmpty()) {
+//            response = "[empty message].\r\n";
+//        } else if ("quit".equals(request.toLowerCase())) {
+//            response = "Exit requested, closing channel!\r\n";
+//            close = true;
+//        } else {
+//            response = request +"\r\n";
+//        }
+//        broadcastToGroup(response);
+        
         
     }
     
-    private void broadcastToGroup(String message){
+    void broadcastToGroup(String message){
         removeInactiveChannels();
         for (ChannelHandlerContext channel : channels.values()) {
             ChannelFuture future = channel.writeAndFlush(message);
             //future.isCancelled()
         }
         logger.log(Level.INFO,message);
+    }
+    
+    public static void respond(String message,ChannelHandlerContext channel, boolean closeAfter){
+        ChannelFuture future = channel.writeAndFlush(message);
+        if(closeAfter){
+            future.channel().close();
+        }
     }
     
     private void removeInactiveChannels(){
