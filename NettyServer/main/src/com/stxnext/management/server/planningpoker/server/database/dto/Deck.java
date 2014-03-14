@@ -12,12 +12,16 @@ public class Deck {
     
     public static final String FIELD_ID = "id";
     public static final String FIELD_NAME = "name";
+    public static final String FIELD_PREDEFINED_TYPE = "predefined_type";
     
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
     private long id;
     
     @DatabaseField(columnName = FIELD_NAME)
     private String name;
+    
+    @DatabaseField(columnName = FIELD_PREDEFINED_TYPE)
+    private int predefinedType;
     
     @ForeignCollectionField
     private ForeignCollection<Card> cards;
@@ -42,6 +46,14 @@ public class Deck {
 
     public void setCards(ForeignCollection<Card> cards) {
         this.cards = cards;
+    }
+
+    public int getPredefinedType() {
+        return predefinedType;
+    }
+
+    public void setPredefinedType(int predefinedType) {
+        this.predefinedType = predefinedType;
     }
     
 }

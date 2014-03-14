@@ -21,10 +21,13 @@ public class ServerConfigurator {
     }
     
     public Logger getLogger() {
+        if(logger == null){
+            configureLogger();
+        }
         return logger;
     }
 
-    public boolean configure(){
+    private boolean configureLogger(){
         boolean configOk = true;
         
         try{
@@ -36,6 +39,15 @@ public class ServerConfigurator {
         }
         
         logger = Logger.getLogger("A1");
+        
+        return configOk;
+    }
+    
+    public boolean configure(){
+        boolean configOk = true;
+        
+        if(!configureLogger())
+            configOk = false;
         
         return configOk;
     }

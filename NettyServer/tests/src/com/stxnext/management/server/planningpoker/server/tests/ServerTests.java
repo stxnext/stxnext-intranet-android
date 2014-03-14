@@ -2,22 +2,31 @@ package com.stxnext.management.server.planningpoker.server.tests;
 
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
 import com.j256.ormlite.dao.ForeignCollection;
+import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
 import com.stxnext.management.server.planningpoker.server.database.dto.Card;
+import com.stxnext.management.server.planningpoker.server.database.dto.Deck;
 import com.stxnext.management.server.planningpoker.server.database.dto.Player;
 import com.stxnext.management.server.planningpoker.server.database.dto.Ticket;
 import com.stxnext.management.server.planningpoker.server.database.dto.Vote;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
+import com.stxnext.management.server.planningpoker.server.handlers.DeckFactory;
 
 public class ServerTests {
 
+    static Logger logger;
+    
     @Before
     public void setUp() throws Exception {
+        ServerConfigurator.getInstance().configure();
+        logger = ServerConfigurator.getInstance().getLogger();
     }
 
     @After
@@ -70,9 +79,20 @@ public class ServerTests {
         List<Ticket> tickets = dao.getTicketDao().queryForAll();
         for(Ticket t : tickets){
             ForeignCollection<Vote> votes = t.getVotes();
-            String g = "";
+            for(Vote v : votes){
+                logger.log(Level.DEBUG, t.getDisplayValue()+" has vote "+v.getCard().getName());
+            }
         }
         
+        DeckFactory.preparePredefined(dao);
+
+        List<Deck> decks = dao.getDeckDao().queryForAll();
+        for(Deck deck : decks){
+            ForeignCollection<Card> cards = deck.getCards();
+            for(Card c : cards){
+                logger.log(Level.DEBUG, deck.getName()+" has card "+c.getName());
+            }
+        }
         
         // U
         

@@ -26,3 +26,475 @@
 2014-03-13 16:49:27,613 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
 2014-03-13 16:49:27,613 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
 2014-03-13 16:49:27,613 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-14 11:42:59,708 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-14 11:42:59,714 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-14 11:42:59,779 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,782 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 11:42:59,794 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,795 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 11:42:59,804 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,805 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 11:42:59,812 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,812 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 11:42:59,822 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,822 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 11:42:59,827 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,828 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 11:42:59,833 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,840 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_player` (`session_id` ,`name` ,`email` ,`external_id` ,`team_id` ) VALUES (?,?,?,?,?)
+2014-03-14 11:42:59,845 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_player` (`session_id` ,`name` ,`email` ,`external_id` ,`team_id` ) VALUES (?,?,?,?,?)' and 5 args, changed 1 rows
+2014-03-14 11:42:59,846 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [null, player1, player1@gmail.com, 1, 0]
+2014-03-14 11:42:59,846 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '35' from keyholder to 'id' in Player object
+2014-03-14 11:42:59,846 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,847 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_player` (`session_id` ,`name` ,`email` ,`external_id` ,`team_id` ) VALUES (?,?,?,?,?)
+2014-03-14 11:42:59,847 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_player` (`session_id` ,`name` ,`email` ,`external_id` ,`team_id` ) VALUES (?,?,?,?,?)' and 5 args, changed 1 rows
+2014-03-14 11:42:59,847 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [null, player2, player2@gmail.com, 2, 0]
+2014-03-14 11:42:59,848 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '36' from keyholder to 'id' in Player object
+2014-03-14 11:42:59,848 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,849 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:42:59,849 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:42:59,849 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [trefl ;), null]
+2014-03-14 11:42:59,850 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '34' from keyholder to 'id' in Card object
+2014-03-14 11:42:59,850 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,852 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_ticket` (`display_value` ) VALUES (?)
+2014-03-14 11:42:59,852 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_ticket` (`display_value` ) VALUES (?)' and 1 args, changed 1 rows
+2014-03-14 11:42:59,852 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [some ticket]
+2014-03-14 11:42:59,852 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '34' from keyholder to 'id' in Ticket object
+2014-03-14 11:42:59,853 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,854 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_vote` (`card_id` ,`player_id` ,`ticket_id` ) VALUES (?,?,?)
+2014-03-14 11:42:59,855 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_vote` (`card_id` ,`player_id` ,`ticket_id` ) VALUES (?,?,?)' and 3 args, changed 1 rows
+2014-03-14 11:42:59,855 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [34, 35, 34]
+2014-03-14 11:42:59,855 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '35' from keyholder to 'id' in Vote object
+2014-03-14 11:42:59,855 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,856 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_vote` (`card_id` ,`player_id` ,`ticket_id` ) VALUES (?,?,?)
+2014-03-14 11:42:59,857 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_vote` (`card_id` ,`player_id` ,`ticket_id` ) VALUES (?,?,?)' and 3 args, changed 1 rows
+2014-03-14 11:42:59,857 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [34, 36, 34]
+2014-03-14 11:42:59,857 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '36' from keyholder to 'id' in Vote object
+2014-03-14 11:42:59,867 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,869 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_ticket` 
+2014-03-14 11:42:59,869 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_ticket` ' with 0 args
+2014-03-14 11:42:59,872 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_ticket` ' returned 3 results
+2014-03-14 11:42:59,880 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,880 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_vote` WHERE `ticket_id` = ? 
+2014-03-14 11:42:59,881 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_vote` WHERE `ticket_id` = ? ' with 1 args
+2014-03-14 11:42:59,881 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-14 11:42:59,882 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,883 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_card` WHERE `id` = ?
+2014-03-14 11:42:59,884 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_card` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:42:59,885 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-14 11:42:59,885 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:42:59,886 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-14 11:42:59,886 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:42:59,887 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-14 11:43:02,874 DEBUG [main] tests.ServerTests (ServerTests.java:83) - some ticket has vote trefl ;)
+2014-03-14 11:43:02,875 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:02,875 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_card` WHERE `id` = ?
+2014-03-14 11:43:02,876 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_card` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:02,876 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-14 11:43:02,876 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:02,877 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-14 11:43:02,877 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:02,877 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [2]
+2014-03-14 11:43:11,897 DEBUG [main] tests.ServerTests (ServerTests.java:83) - some ticket has vote trefl ;)
+2014-03-14 11:43:11,898 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:11,898 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_vote` WHERE `ticket_id` = ? 
+2014-03-14 11:43:11,898 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_vote` WHERE `ticket_id` = ? ' with 1 args
+2014-03-14 11:43:11,899 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [2]
+2014-03-14 11:43:11,899 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:11,900 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_card` WHERE `id` = ?
+2014-03-14 11:43:11,900 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_card` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:11,901 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [2]
+2014-03-14 11:43:11,901 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:11,902 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-14 11:43:11,902 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:11,903 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [3]
+2014-03-14 11:43:13,000 DEBUG [main] tests.ServerTests (ServerTests.java:83) - some ticket has vote trefl ;)
+2014-03-14 11:43:13,001 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:13,002 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_card` WHERE `id` = ?
+2014-03-14 11:43:13,002 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_card` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:13,002 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [2]
+2014-03-14 11:43:13,002 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:13,003 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-14 11:43:13,003 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:13,003 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [4]
+2014-03-14 11:43:14,081 DEBUG [main] tests.ServerTests (ServerTests.java:83) - some ticket has vote trefl ;)
+2014-03-14 11:43:14,081 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:14,082 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_vote` WHERE `ticket_id` = ? 
+2014-03-14 11:43:14,082 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_vote` WHERE `ticket_id` = ? ' with 1 args
+2014-03-14 11:43:14,082 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [34]
+2014-03-14 11:43:14,083 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:14,083 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_card` WHERE `id` = ?
+2014-03-14 11:43:14,083 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_card` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:14,084 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [34]
+2014-03-14 11:43:14,084 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:14,084 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-14 11:43:14,085 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:14,085 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [35]
+2014-03-14 11:43:15,209 DEBUG [main] tests.ServerTests (ServerTests.java:83) - some ticket has vote trefl ;)
+2014-03-14 11:43:15,210 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:15,211 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_card` WHERE `id` = ?
+2014-03-14 11:43:15,211 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_card` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:15,211 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [34]
+2014-03-14 11:43:15,212 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:15,212 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-14 11:43:15,212 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-14 11:43:15,213 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [36]
+2014-03-14 11:43:16,297 DEBUG [main] tests.ServerTests (ServerTests.java:83) - some ticket has vote trefl ;)
+2014-03-14 11:43:16,299 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,300 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 
+2014-03-14 11:43:16,300 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 ' with 0 args
+2014-03-14 11:43:16,305 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,306 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-14 11:43:16,306 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,306 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [BINARY, 0]
+2014-03-14 11:43:16,306 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '1' from keyholder to 'id' in Deck object
+2014-03-14 11:43:16,307 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,307 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-14 11:43:16,308 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-14 11:43:16,308 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-14 11:43:16,308 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,308 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,309 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,309 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 1]
+2014-03-14 11:43:16,309 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '35' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,309 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,309 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,310 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,310 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 1]
+2014-03-14 11:43:16,310 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '36' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,310 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,311 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,311 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,311 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 1]
+2014-03-14 11:43:16,311 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '37' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,311 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,311 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,312 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,312 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [3, 1]
+2014-03-14 11:43:16,312 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '38' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,312 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,312 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,313 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,313 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [5, 1]
+2014-03-14 11:43:16,313 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '39' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,313 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,313 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,314 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,314 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 1]
+2014-03-14 11:43:16,314 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '40' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,314 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,314 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,315 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,315 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [13, 1]
+2014-03-14 11:43:16,315 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '41' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,315 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,315 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,316 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,316 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [20, 1]
+2014-03-14 11:43:16,316 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '42' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,316 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,316 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,317 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,317 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [40, 1]
+2014-03-14 11:43:16,317 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '43' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,317 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,317 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,318 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,318 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [100, 1]
+2014-03-14 11:43:16,318 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '44' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,318 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,319 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,319 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,319 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 1]
+2014-03-14 11:43:16,319 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '45' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,319 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,320 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,320 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,320 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 1]
+2014-03-14 11:43:16,320 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '46' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,321 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-14 11:43:16,321 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-14 11:43:16,321 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,322 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 
+2014-03-14 11:43:16,322 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 ' with 0 args
+2014-03-14 11:43:16,322 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,322 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-14 11:43:16,323 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,323 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [FIBONACCI, 1]
+2014-03-14 11:43:16,323 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '2' from keyholder to 'id' in Deck object
+2014-03-14 11:43:16,323 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,323 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-14 11:43:16,323 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-14 11:43:16,324 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-14 11:43:16,324 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,324 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,324 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,325 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 2]
+2014-03-14 11:43:16,325 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '47' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,325 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,326 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,326 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,326 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 2]
+2014-03-14 11:43:16,326 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '48' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,327 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,327 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,328 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,328 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 2]
+2014-03-14 11:43:16,328 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '49' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,328 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,329 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,329 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,329 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [4, 2]
+2014-03-14 11:43:16,330 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '50' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,330 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,330 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,330 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,331 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 2]
+2014-03-14 11:43:16,331 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '51' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,331 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,331 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,332 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,332 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [16, 2]
+2014-03-14 11:43:16,332 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '52' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,333 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,333 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,333 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,334 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [32, 2]
+2014-03-14 11:43:16,334 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '53' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,334 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,335 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,335 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,335 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [64, 2]
+2014-03-14 11:43:16,335 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '54' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,336 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,336 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,336 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,337 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [128, 2]
+2014-03-14 11:43:16,337 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '55' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,337 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,337 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,338 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,338 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 2]
+2014-03-14 11:43:16,338 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '56' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,338 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,339 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,339 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,339 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 2]
+2014-03-14 11:43:16,339 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '57' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,339 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-14 11:43:16,340 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-14 11:43:16,340 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,340 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 
+2014-03-14 11:43:16,340 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 ' with 0 args
+2014-03-14 11:43:16,341 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,341 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-14 11:43:16,341 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,342 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [LARGE, 2]
+2014-03-14 11:43:16,342 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '3' from keyholder to 'id' in Deck object
+2014-03-14 11:43:16,342 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,342 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-14 11:43:16,342 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-14 11:43:16,342 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-14 11:43:16,343 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,343 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,343 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,344 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 3]
+2014-03-14 11:43:16,344 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '58' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,344 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,345 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,345 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,345 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [10, 3]
+2014-03-14 11:43:16,345 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '59' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,346 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,347 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,347 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,347 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [20, 3]
+2014-03-14 11:43:16,348 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '60' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,348 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,349 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,349 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,350 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [30, 3]
+2014-03-14 11:43:16,350 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '61' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,350 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,350 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,351 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,351 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [50, 3]
+2014-03-14 11:43:16,351 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '62' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,351 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,352 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,352 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,352 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [80, 3]
+2014-03-14 11:43:16,353 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '63' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,353 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,353 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,354 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,354 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [130, 3]
+2014-03-14 11:43:16,355 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '64' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,355 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,355 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,356 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,356 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [200, 3]
+2014-03-14 11:43:16,356 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '65' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,356 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,357 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,357 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,358 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [400, 3]
+2014-03-14 11:43:16,358 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '66' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,358 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,359 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,359 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,359 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [999, 3]
+2014-03-14 11:43:16,359 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '67' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,359 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,360 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,361 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,361 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 3]
+2014-03-14 11:43:16,361 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '68' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,361 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,362 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,362 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,362 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 3]
+2014-03-14 11:43:16,362 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '69' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,362 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-14 11:43:16,363 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-14 11:43:16,363 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,363 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 
+2014-03-14 11:43:16,364 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 ' with 0 args
+2014-03-14 11:43:16,364 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,364 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-14 11:43:16,365 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,365 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [ONE_TO_TEN, 3]
+2014-03-14 11:43:16,365 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '4' from keyholder to 'id' in Deck object
+2014-03-14 11:43:16,365 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,365 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-14 11:43:16,365 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-14 11:43:16,366 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-14 11:43:16,366 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,366 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,367 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,367 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 4]
+2014-03-14 11:43:16,367 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '70' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,367 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,368 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,368 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,369 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 4]
+2014-03-14 11:43:16,369 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '71' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,369 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,371 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,372 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,372 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [3, 4]
+2014-03-14 11:43:16,372 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '72' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,374 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,374 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,375 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,375 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [4, 4]
+2014-03-14 11:43:16,375 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '73' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,375 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,376 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,376 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,376 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [5, 4]
+2014-03-14 11:43:16,376 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '74' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,377 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,377 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,377 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,378 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [6, 4]
+2014-03-14 11:43:16,378 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '75' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,378 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,378 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,379 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,379 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [7, 4]
+2014-03-14 11:43:16,379 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '76' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,379 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,380 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,380 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,380 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 4]
+2014-03-14 11:43:16,380 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '77' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,380 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,381 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,381 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,381 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [9, 4]
+2014-03-14 11:43:16,381 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '78' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,381 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,382 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,382 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,383 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [10, 4]
+2014-03-14 11:43:16,383 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '79' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,383 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,384 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,384 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,384 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 4]
+2014-03-14 11:43:16,384 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '80' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,385 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,385 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-14 11:43:16,385 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-14 11:43:16,385 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 4]
+2014-03-14 11:43:16,386 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '81' from keyholder to 'id' in Card object
+2014-03-14 11:43:16,386 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-14 11:43:16,386 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-14 11:43:16,386 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,386 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_deck` 
+2014-03-14 11:43:16,387 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_deck` ' with 0 args
+2014-03-14 11:43:16,387 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_deck` ' returned 4 results
+2014-03-14 11:43:16,387 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:16,388 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_card` WHERE `deck_id` = ? 
+2014-03-14 11:43:16,388 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_card` WHERE `deck_id` = ? ' with 1 args
+2014-03-14 11:43:16,388 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-14 11:43:17,401 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 0
+2014-03-14 11:43:18,393 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 1
+2014-03-14 11:43:21,841 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 2
+2014-03-14 11:43:21,842 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 3
+2014-03-14 11:43:21,842 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 5
+2014-03-14 11:43:21,842 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 8
+2014-03-14 11:43:21,842 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 13
+2014-03-14 11:43:21,843 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 20
+2014-03-14 11:43:21,843 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 40
+2014-03-14 11:43:21,844 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card 100
+2014-03-14 11:43:21,844 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card ?
+2014-03-14 11:43:21,845 DEBUG [main] tests.ServerTests (ServerTests.java:93) - BINARY has card cafe
+2014-03-14 11:43:21,845 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:21,845 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_card` WHERE `deck_id` = ? 
+2014-03-14 11:43:21,846 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_card` WHERE `deck_id` = ? ' with 1 args
+2014-03-14 11:43:21,846 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [2]
+2014-03-14 11:43:21,846 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 0
+2014-03-14 11:43:21,847 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 1
+2014-03-14 11:43:21,847 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 2
+2014-03-14 11:43:21,847 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 4
+2014-03-14 11:43:21,847 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 8
+2014-03-14 11:43:21,847 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 16
+2014-03-14 11:43:21,847 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 32
+2014-03-14 11:43:21,848 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 64
+2014-03-14 11:43:21,848 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card 128
+2014-03-14 11:43:21,848 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card ?
+2014-03-14 11:43:21,848 DEBUG [main] tests.ServerTests (ServerTests.java:93) - FIBONACCI has card cafe
+2014-03-14 11:43:21,849 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:21,849 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_card` WHERE `deck_id` = ? 
+2014-03-14 11:43:21,849 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_card` WHERE `deck_id` = ? ' with 1 args
+2014-03-14 11:43:21,849 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [3]
+2014-03-14 11:43:21,850 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 0
+2014-03-14 11:43:21,850 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 10
+2014-03-14 11:43:21,850 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 20
+2014-03-14 11:43:21,850 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 30
+2014-03-14 11:43:21,850 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 50
+2014-03-14 11:43:21,851 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 80
+2014-03-14 11:43:21,851 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 130
+2014-03-14 11:43:21,851 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 200
+2014-03-14 11:43:21,851 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 400
+2014-03-14 11:43:21,851 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card 999
+2014-03-14 11:43:21,851 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card ?
+2014-03-14 11:43:21,852 DEBUG [main] tests.ServerTests (ServerTests.java:93) - LARGE has card cafe
+2014-03-14 11:43:21,852 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 11:43:21,852 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_card` WHERE `deck_id` = ? 
+2014-03-14 11:43:21,852 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_card` WHERE `deck_id` = ? ' with 1 args
+2014-03-14 11:43:21,852 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [4]
+2014-03-14 11:43:21,853 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 1
+2014-03-14 11:43:21,853 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 2
+2014-03-14 11:43:21,853 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 3
+2014-03-14 11:43:21,853 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 4
+2014-03-14 11:43:21,853 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 5
+2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 6
+2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 7
+2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 8
+2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 9
+2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 10
+2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card ?
+2014-03-14 11:43:21,855 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card cafe
