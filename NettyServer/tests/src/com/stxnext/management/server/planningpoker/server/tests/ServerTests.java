@@ -12,12 +12,12 @@ import com.google.common.collect.Lists;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
+import com.stxnext.management.server.planningpoker.server.database.managers.DeckFactory;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
-import com.stxnext.management.server.planningpoker.server.handlers.DeckFactory;
 
 public class ServerTests {
 

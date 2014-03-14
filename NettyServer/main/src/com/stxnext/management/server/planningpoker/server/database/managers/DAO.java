@@ -72,7 +72,8 @@ public class DAO {
             sessionDao = checkTable(Session.class, connectionSource);
             ticketDao = checkTable(Ticket.class, connectionSource);
             voteDao = checkTable(Vote.class, connectionSource);
-        } catch (SQLException e) {
+            DeckFactory.preparePredefined(this);
+        } catch (Exception e) {
             logger.log(Level.ERROR, "", e);
         }
     }
