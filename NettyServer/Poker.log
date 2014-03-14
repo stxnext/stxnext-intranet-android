@@ -498,3 +498,25 @@
 2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card 10
 2014-03-14 11:43:21,854 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card ?
 2014-03-14 11:43:21,855 DEBUG [main] tests.ServerTests (ServerTests.java:93) - ONE_TO_TEN has card cafe
+2014-03-14 12:01:51,839 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-14 12:01:51,846 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-14 12:01:51,915 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:01:51,918 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 12:01:51,935 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:01:51,935 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 12:01:51,943 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:01:51,943 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 12:01:51,948 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:01:51,948 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 12:01:51,958 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:01:51,958 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 12:01:51,962 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:01:51,963 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-14 12:01:51,973 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:01:51,974 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_deck` 
+2014-03-14 12:01:51,977 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_deck` ' with 0 args
+2014-03-14 12:01:51,986 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_deck` ' returned 4 results
+2014-03-14 12:02:02,919 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-14 12:02:02,920 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_card` WHERE `deck_id` = ? 
+2014-03-14 12:02:02,921 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_card` WHERE `deck_id` = ? ' with 1 args
+2014-03-14 12:02:02,922 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]

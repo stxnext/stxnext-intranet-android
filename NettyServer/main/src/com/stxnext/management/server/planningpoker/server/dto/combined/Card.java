@@ -1,10 +1,13 @@
-package com.stxnext.management.server.planningpoker.server.database.dto;
+package com.stxnext.management.server.planningpoker.server.dto.combined;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 
 @DatabaseTable(tableName = Card.ENTITY_NAME)
-public class Card {
+public class Card extends AbstractMessage{
     
     public static final String ENTITY_NAME = "poker_card";
     
@@ -12,9 +15,13 @@ public class Card {
     public static final String FIELD_NAME = "display_value";
     public static final String FIELD_DECK_ID = "deck_id";
     
+    @Expose
+    @SerializedName(FIELD_ID)
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
     private long id;
     
+    @Expose
+    @SerializedName(FIELD_NAME)
     @DatabaseField(columnName = FIELD_NAME)
     private String name;
     

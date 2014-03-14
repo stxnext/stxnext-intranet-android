@@ -1,11 +1,14 @@
 
-package com.stxnext.management.server.planningpoker.server.database.dto;
+package com.stxnext.management.server.planningpoker.server.dto.combined;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 
 @DatabaseTable(tableName = Vote.ENTITY_NAME)
-public class Vote {
+public class Vote extends AbstractMessage {
 
     public static final String ENTITY_NAME = "poker_vote";
 
@@ -14,6 +17,8 @@ public class Vote {
     public static final String FIELD_PLAYER_ID = "player_id";
     public static final String FIELD_TICKET_ID = "ticket_id";
     
+    @Expose
+    @SerializedName(FIELD_ID)
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
     private long id;
 

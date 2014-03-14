@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import com.j256.ormlite.dao.Dao;
-import com.stxnext.management.server.planningpoker.server.database.dto.Card;
-import com.stxnext.management.server.planningpoker.server.database.dto.Deck;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
 
 public class DeckFactory {
 

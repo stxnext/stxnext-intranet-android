@@ -11,12 +11,12 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
-import com.stxnext.management.server.planningpoker.server.database.dto.Card;
-import com.stxnext.management.server.planningpoker.server.database.dto.Deck;
-import com.stxnext.management.server.planningpoker.server.database.dto.Player;
-import com.stxnext.management.server.planningpoker.server.database.dto.Ticket;
-import com.stxnext.management.server.planningpoker.server.database.dto.Vote;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
 import com.stxnext.management.server.planningpoker.server.handlers.DeckFactory;
 
 public class ServerTests {
@@ -33,7 +33,7 @@ public class ServerTests {
     public void tearDown() throws Exception {
     }
 
-    @Test
+    //@Test
     public void testEntityCRUD() throws Exception{
         //C
         
@@ -101,6 +101,16 @@ public class ServerTests {
         
         //ticket.setVotes(votes)
         
+    }
+    
+    
+    @Test
+    public void testGsonSerialization() throws Exception{
+        List<Deck> decks = DAO.getInstance().getDeckDao().queryForAll();
+        for(Deck deck : decks){
+            String jsonString = deck.serialize();
+            logger.log(Level.DEBUG, jsonString);
+        }
     }
 
 }

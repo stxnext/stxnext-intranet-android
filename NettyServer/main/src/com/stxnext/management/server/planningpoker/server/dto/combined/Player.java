@@ -1,10 +1,13 @@
-package com.stxnext.management.server.planningpoker.server.database.dto;
+package com.stxnext.management.server.planningpoker.server.dto.combined;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 
 @DatabaseTable(tableName = Player.ENTITY_NAME)
-public class Player {
+public class Player extends AbstractMessage {
 
     public static final String ENTITY_NAME = "poker_player"; 
 	// for QueryBuilder to be able to find the fields
@@ -17,21 +20,31 @@ public class Player {
 	public static final String FIELD_SESSION_ID = "session_id";
 
 	
+	@Expose
+    @SerializedName(FIELD_ID)
 	@DatabaseField(generatedId = true, columnName = FIELD_ID)
 	private long id;
 	
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = FIELD_SESSION_ID)
     private Session session;
 
+	@Expose
+    @SerializedName(FIELD_NAME)
 	@DatabaseField(columnName = FIELD_NAME, canBeNull = false)
 	private String name;
 
+	@Expose
+    @SerializedName(FIELD_EMAIL)
 	@DatabaseField(columnName = FIELD_EMAIL)
 	private String email;
 	
+	@Expose
+    @SerializedName(FIELD_EXTERNAL_ID)
 	@DatabaseField(columnName = FIELD_EXTERNAL_ID)
     private long externalId;
 	
+	@Expose
+    @SerializedName(FIELD_TEAM_ID)
 	@DatabaseField(columnName = FIELD_TEAM_ID)
     private long teamId;
 

@@ -16,12 +16,12 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.support.DatabaseConnection;
 import com.j256.ormlite.table.TableUtils;
 import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
-import com.stxnext.management.server.planningpoker.server.database.dto.Card;
-import com.stxnext.management.server.planningpoker.server.database.dto.Deck;
-import com.stxnext.management.server.planningpoker.server.database.dto.Player;
-import com.stxnext.management.server.planningpoker.server.database.dto.Session;
-import com.stxnext.management.server.planningpoker.server.database.dto.Ticket;
-import com.stxnext.management.server.planningpoker.server.database.dto.Vote;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
 
 public class DAO {
 
