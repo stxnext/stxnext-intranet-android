@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="main/lib/slf4j-log4j12-1.7.2.jar"/>
 	<classpathentry kind="lib" path="main/lib/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="main/lib/log4j-api-2.0-beta4.jar"/>
+	<classpathentry kind="lib" path="main/lib/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
