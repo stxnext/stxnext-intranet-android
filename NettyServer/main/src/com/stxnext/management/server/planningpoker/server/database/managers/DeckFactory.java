@@ -34,6 +34,11 @@ public class DeckFactory {
             this.name = name;
             this.displayNames = displayNames;
         }
+
+        public String getName() {
+            return name;
+        }
+        
     }
 
     public static HashMap<Deck, List<Card>> preparePredefined(DAO dao) throws Exception {
@@ -55,7 +60,7 @@ public class DeckFactory {
             return;
 
         final Deck deck = new Deck();
-        deck.setName(type.name());
+        deck.setName(type.getName());
         deck.setPredefinedType(type.ordinal());
         deckDao.create(deck);
 

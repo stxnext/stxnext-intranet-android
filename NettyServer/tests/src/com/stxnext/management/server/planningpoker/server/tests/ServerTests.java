@@ -1,5 +1,6 @@
 package com.stxnext.management.server.planningpoker.server.tests;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Level;
@@ -8,14 +9,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.collect.Lists;
 import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
 import com.stxnext.management.server.planningpoker.server.database.managers.DeckFactory;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.PlayerSession;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
 
@@ -33,7 +36,7 @@ public class ServerTests {
     public void tearDown() throws Exception {
     }
 
-    //@Test
+    @Test
     public void testEntityCRUD() throws Exception{
         //C
         
@@ -73,6 +76,32 @@ public class ServerTests {
         dao.getVoteDao().create(vote1);
         dao.getVoteDao().create(vote2);
         
+        Session session = new Session();
+        session.setEndTime(new Date().getTime());
+        session.setStartTime(new Date().getTime());
+        session.setOwner(player1);
+        dao.getSessionDao().createOrUpdate(session);
+        
+        PlayerSession playerSession1 = new PlayerSession(player1, session);
+        PlayerSession playerSession2 = new PlayerSession(player2, session);
+        dao.getPlayerSessionDao().createOrUpdate(playerSession2);
+        dao.getPlayerSessionDao().createOrUpdate(playerSession1);
+        
+        //List<PlayerSession> sessions = dao.getPlayerSessionDao().queryForEq(PlayerSession.FIELD_SESSION_ID, session.getId());
+        
+        PreparedQuery<Player> query = PlayerSession.makePlayerForSession(dao);
+        query.setArgumentHolderValue(0, session);
+        
+        List<Player> sessionPlayes = dao.getPlayerDao().query(query);
+        session.setPlayers(sessionPlayes);
+        
+        String json = session.serialize();
+        
+        
+        PreparedQuery<Session> querySession = PlayerSession.makeUsersForPostQuery(dao);
+        querySession.setArgumentHolderValue(0, player1);
+        
+        List<Session> playerSessions = dao.getSessionDao().query(querySession);
         
         // R
         

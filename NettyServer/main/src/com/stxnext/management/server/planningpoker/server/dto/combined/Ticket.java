@@ -16,6 +16,7 @@ public class Ticket extends AbstractMessage {
     public static final String FIELD_ID = "id";
     public static final String FIELD_DISPLAY_VALUE = "display_value";
     public static final String JSON_FIELD_VOTES = "votes";
+    public static final String FIELD_SESION_ID = "session_id";
     
     public Ticket(){};
     
@@ -28,6 +29,11 @@ public class Ticket extends AbstractMessage {
     @SerializedName(JSON_FIELD_VOTES)
     @ForeignCollectionField
     private ForeignCollection<Vote> votes;
+    
+    @Expose
+    @SerializedName(FIELD_SESION_ID)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true,columnName = FIELD_SESION_ID)
+    private Session session;
     
     @Expose
     @SerializedName(FIELD_DISPLAY_VALUE)
@@ -52,6 +58,14 @@ public class Ticket extends AbstractMessage {
 
     public void setDisplayValue(String displayValue) {
         this.displayValue = displayValue;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
     
 }

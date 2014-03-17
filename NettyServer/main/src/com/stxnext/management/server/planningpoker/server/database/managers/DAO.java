@@ -19,6 +19,7 @@ import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.PlayerSession;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
@@ -48,6 +49,7 @@ public class DAO {
     private Dao<Session, Long> sessionDao;
     private Dao<Ticket, Long> ticketDao;
     private Dao<Vote, Long> voteDao;
+    private Dao<PlayerSession, Long> playerSessionDao;
 
     private DAO() {
         logger = ServerConfigurator.getInstance().getLogger();
@@ -72,6 +74,7 @@ public class DAO {
             sessionDao = checkTable(Session.class, connectionSource);
             ticketDao = checkTable(Ticket.class, connectionSource);
             voteDao = checkTable(Vote.class, connectionSource);
+            playerSessionDao = checkTable(PlayerSession.class, connectionSource);
             DeckFactory.preparePredefined(this);
         } catch (Exception e) {
             logger.log(Level.ERROR, "", e);
@@ -123,4 +126,8 @@ public class DAO {
         return voteDao;
     }
 
+    public Dao<PlayerSession, Long> getPlayerSessionDao() {
+        return playerSessionDao;
+    }
+    
 }

@@ -17,7 +17,7 @@ public class Player extends AbstractMessage {
 	public static final String FIELD_EMAIL = "email";
 	public static final String FIELD_EXTERNAL_ID = "external_id";
 	public static final String FIELD_TEAM_ID = "team_id";
-	public static final String FIELD_SESSION_ID = "session_id";
+	//public static final String FIELD_SESSION_ID = "session_id";
 	public static final String FIELD_ACTIVE = "active";
 
 	
@@ -26,8 +26,8 @@ public class Player extends AbstractMessage {
 	@DatabaseField(generatedId = true, columnName = FIELD_ID)
 	private long id;
 	
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = FIELD_SESSION_ID)
-    private Session session;
+//	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = FIELD_SESSION_ID)
+//    private Session session;
 
 	@Expose
     @SerializedName(FIELD_NAME)
@@ -93,13 +93,13 @@ public class Player extends AbstractMessage {
         this.teamId = teamId;
     }
 
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
+//    public Session getSession() {
+//        return session;
+//    }
+//
+//    public void setSession(Session session) {
+//        this.session = session;
+//    }
 
     public boolean isActive() {
         return active;

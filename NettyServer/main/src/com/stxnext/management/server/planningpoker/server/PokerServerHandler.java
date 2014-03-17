@@ -32,6 +32,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonSyntaxException;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.IncomingMessage;
 import com.stxnext.management.server.planningpoker.server.handlers.MessageHandler;
 
@@ -85,10 +86,10 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
                 + request + "\r\n");
         try{
             request = request.trim();
-            IncomingMessage message = IncomingMessage.fromJsonString(request, IncomingMessage.class);
+            MessageWrapper message = MessageWrapper.fromJsonString(request, MessageWrapper.class);
             msgHandler.handleMessage(message, ctx);
         }
-        catch(JsonSyntaxException jse){
+        catch(Exception jse){
             // respond with error here
             logger.log(Level.WARN, jse);
         }
@@ -119,7 +120,7 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
     }
     
     public static void respond(String message,ChannelHandlerContext channel, boolean closeAfter){
-        ChannelFuture future = channel.writeAndFlush(message);
+        ChannelFuture future = channel.writeAndFlush(message+"\r\n");
         if(closeAfter){
             future.channel().close();
         }
