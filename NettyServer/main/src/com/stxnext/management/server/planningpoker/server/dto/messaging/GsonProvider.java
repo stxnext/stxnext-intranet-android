@@ -8,7 +8,7 @@ public class GsonProvider {
     
     public static Gson get(){
         if(_gson == null){
-            _gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            _gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().disableHtmlEscaping().create();
         }
         return _gson;
     }

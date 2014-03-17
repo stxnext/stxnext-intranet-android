@@ -3,14 +3,20 @@ package com.stxnext.management.server.planningpoker.server.handlers;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.stxnext.management.server.planningpoker.server.PokerServerHandler;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.PlayerSession;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.GsonProvider;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.RequestFor;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
@@ -51,20 +57,73 @@ public class MessageHandler {
                 break;
             case CreateSession:
                 createSession(ctx, wrapper);
+                break;
+            case SessionForPlayer:
+                fetchUserSession(ctx, wrapper);
+                break;
+            case PlayerHandshake:
+                playerHandshake(ctx, wrapper);
+                break;
             default:
                 
                 break;
         }
     }
+
     
+    private void playerHandshake(ChannelHandlerContext ctx,MessageWrapper msg) throws Exception{
+        String json = msg.getPayload();
+        
+        List<Long> playerIds = new ArrayList<Long>();
+        List<Player> sentPlayers = Player.fromJsonString(json, new TypeToken<ArrayList<Player>>(){}.getType());
+        for(Player player : sentPlayers){
+            playerIds.add(player.getExternalId());
+        }
+        
+        PreparedQuery<Player> query = dao.getPlayerDao().queryBuilder().where().in(Player.FIELD_EXTERNAL_ID, playerIds).prepare();
+        List<Player> foundPlayers = dao.getPlayerDao().query(query);
+        
+        for(Player player : sentPlayers){
+            if(foundPlayers.contains(player)){
+                player.setId(foundPlayers.get(foundPlayers.indexOf(player)).getId());
+            }
+            else{
+                dao.getPlayerDao().createOrUpdate(player);
+            }
+        }
+        
+        Gson gson = GsonProvider.get();
+        String output = gson.toJson(sentPlayers, new TypeToken<ArrayList<Player>>(){}.getType());
+        MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_RESPONSE, RequestFor.PlayerHandshake.getMessage(), output);
+        PokerServerHandler.respond(wrapper.serialize(), ctx, false);
+    }
+    
+    private void fetchUserSession(ChannelHandlerContext ctx, MessageWrapper msg) throws Exception{
+        String json = msg.getPayload();
+        Player player = Player.fromJsonString(json, Player.class);
+        PreparedQuery<Session> querySession = PlayerSession.makeSessionsForExternalUserIdQuery(dao);
+        querySession.setArgumentHolderValue(0, player);
+        
+        List<Session> playerSessions = dao.getSessionDao().query(querySession);
+        Gson gson = GsonProvider.get();
+        String output = gson.toJson(playerSessions, new TypeToken<ArrayList<Session>>(){}.getType());
+        
+        MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_RESPONSE, RequestFor.SessionForPlayer.getMessage(), output);
+        PokerServerHandler.respond(wrapper.serialize(), ctx, false);
+    }
     
     private void createSession(ChannelHandlerContext ctx, MessageWrapper msg) throws Exception{
         String json = msg.getPayload();
         Session session = Session.fromJsonString(json, Session.class);
         dao.getSessionDao().createOrUpdate(session);
         dao.getPlayerDao().createOrUpdate(session.getOwner());
+        PlayerSession playerSession = new PlayerSession(session.getOwner(), session);
+        dao.getPlayerSessionDao().createOrUpdate(playerSession);
+        
         for(Player player : session.getPlayers()){
             dao.getPlayerDao().createOrUpdate(player);
+            playerSession = new PlayerSession(player, session);
+            dao.getPlayerSessionDao().createOrUpdate(playerSession);
         }
         
         String output = session.serialize();
@@ -80,4 +139,5 @@ public class MessageHandler {
         MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_RESPONSE, RequestFor.CardDecks.getMessage(), output);
         PokerServerHandler.respond(wrapper.serialize(), ctx, false);
     }
+    
 }

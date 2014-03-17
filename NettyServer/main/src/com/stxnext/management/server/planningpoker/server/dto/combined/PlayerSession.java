@@ -69,7 +69,7 @@ public class PlayerSession {
         return postQb.prepare();
     }
     
-    public static PreparedQuery<Session> makeUsersForPostQuery(DAO dao) throws SQLException {
+    public static PreparedQuery<Session> makeSessionsForExternalUserIdQuery(DAO dao) throws SQLException {
         QueryBuilder<PlayerSession, Long> userPostQb = dao.getPlayerSessionDao().queryBuilder();
         // this time selecting for the user-id field
         userPostQb.selectColumns(PlayerSession.FIELD_SESSION_ID);

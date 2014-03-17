@@ -42,12 +42,12 @@ public class Player extends AbstractMessage {
 	@Expose
     @SerializedName(FIELD_EXTERNAL_ID)
 	@DatabaseField(columnName = FIELD_EXTERNAL_ID)
-    private long externalId;
+    private Long externalId;
 	
 	@Expose
     @SerializedName(FIELD_TEAM_ID)
 	@DatabaseField(columnName = FIELD_TEAM_ID)
-    private long teamId;
+    private Long teamId;
 	
 	@Expose
     @SerializedName(FIELD_ACTIVE)
@@ -57,7 +57,7 @@ public class Player extends AbstractMessage {
 	public Player() {
 	}
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -77,11 +77,11 @@ public class Player extends AbstractMessage {
         this.email = email;
     }
 
-    public long getExternalId() {
+    public Long getExternalId() {
         return externalId;
     }
 
-    public void setExternalId(long externalId) {
+    public void setExternalId(Long externalId) {
         this.externalId = externalId;
     }
 
@@ -107,6 +107,22 @@ public class Player extends AbstractMessage {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj!=null && obj instanceof Player){
+            Player player = (Player) obj;
+            if(this.id != null && player.getId() != null)
+                return this.id.equals(player.getId());
+            if(this.externalId != null && player.getExternalId() != null)
+                return this.externalId.equals(player.getExternalId());
+        }
+        return false;
     }
     
 	

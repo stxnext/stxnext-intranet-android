@@ -2,6 +2,7 @@ package com.stxnext.management.server.planningpoker.server.dto.messaging;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -19,5 +20,5 @@ public class AbstractMessage {
                 jsonString,
                 type);
     }
-
+    
 }

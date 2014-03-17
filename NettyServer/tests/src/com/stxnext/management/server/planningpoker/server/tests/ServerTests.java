@@ -45,12 +45,12 @@ public class ServerTests {
         Player player1 = new Player();
         player1.setEmail("player1@gmail.com");
         player1.setName("player1");
-        player1.setExternalId(1);
+        player1.setExternalId(1L);
         
         Player player2 = new Player();
         player2.setEmail("player2@gmail.com");
         player2.setName("player2");
-        player2.setExternalId(2);
+        player2.setExternalId(2L);
         
         dao.getPlayerDao().create(player1);
         dao.getPlayerDao().create(player2);
@@ -98,7 +98,7 @@ public class ServerTests {
         String json = session.serialize();
         
         
-        PreparedQuery<Session> querySession = PlayerSession.makeUsersForPostQuery(dao);
+        PreparedQuery<Session> querySession = PlayerSession.makeSessionsForExternalUserIdQuery(dao);
         querySession.setArgumentHolderValue(0, player1);
         
         List<Session> playerSessions = dao.getSessionDao().query(querySession);

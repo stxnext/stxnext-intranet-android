@@ -5,7 +5,8 @@ public enum RequestFor {
     CardDecks("card_decks"),
     OngoingSession("ongoing_sessions"),
     CreateSession("create_session"),
-    SessionForPlayer("player_sessions");
+    SessionForPlayer("player_sessions"),
+    PlayerHandshake("player_handshake");
 
     private String message;
 
