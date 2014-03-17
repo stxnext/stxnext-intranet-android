@@ -10,7 +10,7 @@
 	<classpathentry kind="lib" path="main/lib/jzlib-1.1.1.jar"/>
 	<classpathentry kind="lib" path="main/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="main/lib/metrics-core-2.2.0.jar"/>
-	<classpathentry kind="lib" path="main/lib/netty-all-4.0.17.Final.jar"/>
+	<classpathentry kind="lib" path="main/lib/netty-all-4.0.17.Final.jar" sourcepath="/Users/luczakp/.m2/repository/io/netty/netty-all/4.0.17.Final/netty-all-4.0.17.Final-sources.jar"/>
 	<classpathentry kind="lib" path="main/lib/npn-api-1.0.0.v20120402.jar"/>
 	<classpathentry kind="lib" path="main/lib/ormlite-core-4.48.jar" sourcepath="/Users/luczakp/.m2/repository/com/j256/ormlite/ormlite-core/4.48/ormlite-core-4.48-sources.jar"/>
 	<classpathentry kind="lib" path="main/lib/persistence-api-1.0.jar"/>

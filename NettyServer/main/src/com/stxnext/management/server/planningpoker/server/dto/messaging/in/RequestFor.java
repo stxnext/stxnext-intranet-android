@@ -6,7 +6,13 @@ public enum RequestFor {
     OngoingSession("ongoing_sessions"),
     CreateSession("create_session"),
     SessionForPlayer("player_sessions"),
-    PlayerHandshake("player_handshake");
+    PlayerHandshake("player_handshake"),
+    PlayersInSession("player_in_session"),
+    JoinSession("join_session"),
+    SMNewTicketRound("new_ticket_round"),
+    SMSimpleVote("simple_vote"),
+    SMRevealVotes("reveal_votes"),
+    SMFinishSession("finish_session");
 
     private String message;
 

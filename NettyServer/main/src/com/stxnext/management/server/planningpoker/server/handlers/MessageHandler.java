@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -19,6 +20,7 @@ import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.GsonProvider;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.RequestFor;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.in.SessionMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 
 /**
@@ -32,44 +34,62 @@ public class MessageHandler {
     
     DAO dao;
     HashMap<String, ChannelHandlerContext> channels;
+    HashMap<Long, SessionConnectionContext> sessionConnections;
 
     public MessageHandler(HashMap<String, ChannelHandlerContext> channels){
         this.channels = channels;
         this.dao = DAO.getInstance();
+        this.sessionConnections = new LinkedHashMap<Long, SessionConnectionContext>();
     }
     
     public void handleMessage(MessageWrapper wrapper,ChannelHandlerContext ctx) throws Exception{
           if(!handleError(wrapper, ctx)){
               peelAndRespond(wrapper, ctx);
           }
-
     }
     
     private boolean handleError(MessageWrapper wrapper,ChannelHandlerContext ctx){
         return false;
     }
     
-    private void peelAndRespond(MessageWrapper wrapper,ChannelHandlerContext ctx) throws Exception{
-        RequestFor request = RequestFor.requestForMessage(wrapper.getAction());
+    private void peelAndRespond(MessageWrapper msg,ChannelHandlerContext ctx) throws Exception{
+        RequestFor request = RequestFor.requestForMessage(msg.getAction());
         switch(request){
             case CardDecks :
                 pushDecksList(ctx);
                 break;
             case CreateSession:
-                createSession(ctx, wrapper);
+                createSession(ctx, msg);
                 break;
             case SessionForPlayer:
-                fetchUserSession(ctx, wrapper);
+                fetchUserSession(ctx, msg);
                 break;
             case PlayerHandshake:
-                playerHandshake(ctx, wrapper);
+                playerHandshake(ctx, msg);
                 break;
+            case JoinSession:
+                joinSession(ctx, msg);
             default:
                 
                 break;
         }
     }
 
+    
+    
+    private void joinSession(ChannelHandlerContext ctx,MessageWrapper msg) throws Exception{
+        String json = msg.getPayload();
+        SessionMessage sessionMsg = SessionMessage.fromJsonString(json, SessionMessage.class);
+        Session cachedSession = dao.getSessionDao().queryForId(sessionMsg.getSessionId());
+        Player cachedPlayer = dao.getPlayerDao().queryForId(sessionMsg.getPlayerId());
+        if(cachedSession!=null && cachedPlayer != null){
+            SessionConnectionContext sessionCtx = new SessionConnectionContext();
+            sessionCtx.setSession(cachedSession);
+            sessionCtx.addConnectedPlayer(cachedPlayer, ctx);
+        }
+        // error message goes here
+    }
+    
     
     private void playerHandshake(ChannelHandlerContext ctx,MessageWrapper msg) throws Exception{
         String json = msg.getPayload();
