@@ -23,7 +23,7 @@ public class Ticket extends AbstractMessage {
     @Expose
     @SerializedName(FIELD_ID)
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
-    private long id;
+    private Long id;
     
     @Expose
     @SerializedName(JSON_FIELD_VOTES)

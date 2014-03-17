@@ -9,10 +9,9 @@ import java.util.List;
 import com.stxnext.management.server.planningpoker.server.PokerServerHandler;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
-import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
-import com.stxnext.management.server.planningpoker.server.dto.messaging.in.IncomingMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.RequestFor;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 
@@ -26,30 +25,18 @@ import com.stxnext.management.server.planningpoker.server.dto.messaging.out.Deck
 public class MessageHandler {
     
     DAO dao;
-    //private RequestHandler requestHandler;
-    //private GameSessionHandler gameSessionHandler;
     HashMap<String, ChannelHandlerContext> channels;
 
     public MessageHandler(HashMap<String, ChannelHandlerContext> channels){
         this.channels = channels;
         this.dao = DAO.getInstance();
-        //requestHandler = new RequestHandler(channels);
-        //gameSessionHandler = new GameSessionHandler(channels);
     }
     
     public void handleMessage(MessageWrapper wrapper,ChannelHandlerContext ctx) throws Exception{
           if(!handleError(wrapper, ctx)){
               peelAndRespond(wrapper, ctx);
           }
-        
-        
-//        if(message.getRequest()!=null){
-//            requestHandler.handleMessage(message.getRequest(), ctx);
-//        }
-//        //allowing to handle multiple messages at once - device must be prepared to handle those in not necessarily same order
-//        if(message.getSessionMessage()!=null){
-//            gameSessionHandler.handleMessage(message.getSessionMessage(), ctx);
-//        }
+
     }
     
     private boolean handleError(MessageWrapper wrapper,ChannelHandlerContext ctx){
@@ -75,6 +62,10 @@ public class MessageHandler {
         String json = msg.getPayload();
         Session session = Session.fromJsonString(json, Session.class);
         dao.getSessionDao().createOrUpdate(session);
+        dao.getPlayerDao().createOrUpdate(session.getOwner());
+        for(Player player : session.getPlayers()){
+            dao.getPlayerDao().createOrUpdate(player);
+        }
         
         String output = session.serialize();
         MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_RESPONSE, RequestFor.CreateSession.getMessage(), output);

@@ -20,7 +20,7 @@ public class Vote extends AbstractMessage {
     @Expose
     @SerializedName(FIELD_ID)
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
-    private long id;
+    private Long id;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true,columnName = FIELD_CARD_ID)
     private Card card;

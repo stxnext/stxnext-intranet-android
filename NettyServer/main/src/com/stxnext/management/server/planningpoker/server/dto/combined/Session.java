@@ -16,6 +16,7 @@ public class Session  extends AbstractMessage{
     public static final String ENTITY_NAME = "poker_session"; 
     
     public static final String FIELD_ID = "id"; 
+    public static final String FIELD_NAME = "name";
     public static final String FIELD_START_TIME = "start_time";
     public static final String FIELD_END_TIME = "end_time";
     public static final String FIELD_EXPIRED = "expired";
@@ -30,7 +31,7 @@ public class Session  extends AbstractMessage{
     @Expose
     @SerializedName(FIELD_ID)
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
-    private long id;
+    private Long id;
     
     @Expose
     @SerializedName(FIELD_START_TIME)
@@ -38,9 +39,14 @@ public class Session  extends AbstractMessage{
     private long startTime;
     
     @Expose
+    @SerializedName(FIELD_NAME)
+    @DatabaseField(columnName = FIELD_NAME)
+    private String name;
+    
+    @Expose
     @SerializedName(FIELD_DECK_ID)
     @DatabaseField(columnName = FIELD_DECK_ID)
-    private Number deckId;
+    private Long deckId;
     
     @Expose
     @SerializedName(FIELD_END_TIME)
@@ -120,12 +126,20 @@ public class Session  extends AbstractMessage{
         this.tickets = tickets;
     }
 
-    public Number getDeckId() {
+    public Long getDeckId() {
         return deckId;
     }
 
-    public void setDeckId(Number deckId) {
+    public void setDeckId(Long deckId) {
         this.deckId = deckId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

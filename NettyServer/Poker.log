@@ -2763,3 +2763,1238 @@ INSERT INTO `poker_vote` (`player_id` ,`session_id` ) VALUES (?,?) [42122-175]
 2014-03-17 12:25:14,956 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_session` (`start_time` ,`end_time` ,`expired` ,`owner_id` ) VALUES (?,?,?,?)' and 4 args, changed 1 rows
 2014-03-17 12:25:14,956 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1395055408214, 1395055408214, false, 0]
 2014-03-17 12:25:14,957 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '66' from keyholder to 'id' in Session object
+2014-03-17 12:52:52,004 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 12:52:52,013 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 12:52:52,035 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 12:52:52,038 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 12:52:52,039 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 12:52:52,044 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 12:52:52,044 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 12:52:52,045 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 12:52:52,045 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 12:52:52,046 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 12:52:52,046 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 12:52:52,047 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 12:52:52,172 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 12:52:52,172 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 12:52:52,173 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 12:52:52,173 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 12:52:52,215 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 12:52:52,215 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 12:52:52,249 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 12:52:52,254 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 12:52:52,259 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 12:52:54,718 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 12:52:54,718 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 12:52:54,802 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 12:52:54,804 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 12:52:54,820 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 12:52:54,820 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 12:52:54,825 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 12:52:54,825 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 12:52:54,840 ERROR [main] managers.DAO (DAO.java:80) - 
+java.sql.SQLException: ORMLite does not know how to store class java.lang.Number for field 'deckId'.  Use another class, custom persister, or to serialize it use dataType=DataType.SERIALIZABLE
+	at com.j256.ormlite.field.FieldType.<init>(FieldType.java:185)
+	at com.j256.ormlite.field.FieldType.createFieldType(FieldType.java:957)
+	at com.j256.ormlite.table.DatabaseTableConfig.extractFieldTypes(DatabaseTableConfig.java:208)
+	at com.j256.ormlite.table.DatabaseTableConfig.fromClass(DatabaseTableConfig.java:146)
+	at com.j256.ormlite.table.TableInfo.<init>(TableInfo.java:53)
+	at com.j256.ormlite.dao.BaseDaoImpl.initialize(BaseDaoImpl.java:151)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:128)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:107)
+	at com.j256.ormlite.dao.BaseDaoImpl$4.<init>(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.BaseDaoImpl.createDao(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.DaoManager.createDao(DaoManager.java:70)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.checkTable(DAO.java:85)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.setupDatabase(DAO.java:74)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.createAndConnect(DAO.java:99)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.<init>(DAO.java:56)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.getInstance(DAO.java:37)
+	at com.stxnext.management.server.planningpoker.server.handlers.MessageHandler.<init>(MessageHandler.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServerHandler.<init>(PokerServerHandler.java:51)
+	at com.stxnext.management.server.planningpoker.server.PokerServerInitializer.<init>(PokerServerInitializer.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.run(PokerServer.java:42)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.main(PokerServer.java:58)
+2014-03-17 12:52:54,860 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x8d8b4b59922dcd4d
+2014-03-17 12:52:54,869 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 12:52:54,892 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 12:52:54,897 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 12:52:54,897 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 12:52:54,897 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 12:52:54,898 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 12:53:13,202 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-17 12:53:17,639 WARN  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:75) - /192.168.2.4:56033 INACTIVE 
+
+2014-03-17 12:53:17,640 WARN  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:67) - /192.168.2.4:56033UNREGISTERED 
+
+2014-03-17 12:53:17,640 INFO  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:119) - /192.168.2.4:56033 has disconnected
+2014-03-17 12:57:09,920 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:75) - /192.168.2.4:56109 INACTIVE 
+
+2014-03-17 12:57:09,920 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:67) - /192.168.2.4:56109UNREGISTERED 
+
+2014-03-17 12:57:09,920 INFO  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:119) - /192.168.2.4:56109 has disconnected
+2014-03-17 12:57:45,330 WARN  [nioEventLoopGroup-3-3] server.PokerServerHandler (PokerServerHandler.java:75) - /192.168.2.4:58616 INACTIVE 
+
+2014-03-17 12:57:45,330 WARN  [nioEventLoopGroup-3-4] server.PokerServerHandler (PokerServerHandler.java:75) - /192.168.2.4:54190 INACTIVE 
+
+2014-03-17 12:57:45,330 WARN  [nioEventLoopGroup-3-3] server.PokerServerHandler (PokerServerHandler.java:67) - /192.168.2.4:58616UNREGISTERED 
+
+2014-03-17 12:57:45,330 WARN  [nioEventLoopGroup-3-4] server.PokerServerHandler (PokerServerHandler.java:67) - /192.168.2.4:54190UNREGISTERED 
+
+2014-03-17 12:57:45,331 INFO  [nioEventLoopGroup-3-3] server.PokerServerHandler (PokerServerHandler.java:119) - /192.168.2.4:58616 has disconnected
+2014-03-17 12:57:45,331 INFO  [nioEventLoopGroup-3-4] server.PokerServerHandler (PokerServerHandler.java:119) - /192.168.2.4:54190 has disconnected
+2014-03-17 12:58:43,570 WARN  [nioEventLoopGroup-3-5] server.PokerServerHandler (PokerServerHandler.java:75) - /192.168.2.4:49863 INACTIVE 
+
+2014-03-17 12:58:43,570 WARN  [nioEventLoopGroup-3-5] server.PokerServerHandler (PokerServerHandler.java:67) - /192.168.2.4:49863UNREGISTERED 
+
+2014-03-17 12:58:43,570 INFO  [nioEventLoopGroup-3-5] server.PokerServerHandler (PokerServerHandler.java:119) - /192.168.2.4:49863 has disconnected
+2014-03-17 13:00:30,727 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:00:30,735 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:00:30,757 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:00:30,760 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:00:30,760 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:00:30,767 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:00:30,767 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:00:30,768 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:00:30,768 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:00:30,769 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:00:30,769 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:00:30,769 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:00:30,895 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:00:30,895 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:00:30,896 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:00:30,896 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:00:30,942 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:00:30,943 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:00:30,979 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:00:30,985 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:00:30,989 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:00:33,392 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:00:33,393 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:00:33,471 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:33,473 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:00:33,489 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:33,489 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:00:33,495 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:33,495 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:00:33,509 ERROR [main] managers.DAO (DAO.java:80) - 
+java.sql.SQLException: ORMLite does not know how to store class java.lang.Number for field 'deckId'.  Use another class, custom persister, or to serialize it use dataType=DataType.SERIALIZABLE
+	at com.j256.ormlite.field.FieldType.<init>(FieldType.java:185)
+	at com.j256.ormlite.field.FieldType.createFieldType(FieldType.java:957)
+	at com.j256.ormlite.table.DatabaseTableConfig.extractFieldTypes(DatabaseTableConfig.java:208)
+	at com.j256.ormlite.table.DatabaseTableConfig.fromClass(DatabaseTableConfig.java:146)
+	at com.j256.ormlite.table.TableInfo.<init>(TableInfo.java:53)
+	at com.j256.ormlite.dao.BaseDaoImpl.initialize(BaseDaoImpl.java:151)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:128)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:107)
+	at com.j256.ormlite.dao.BaseDaoImpl$4.<init>(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.BaseDaoImpl.createDao(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.DaoManager.createDao(DaoManager.java:70)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.checkTable(DAO.java:85)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.setupDatabase(DAO.java:74)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.createAndConnect(DAO.java:99)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.<init>(DAO.java:56)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.getInstance(DAO.java:37)
+	at com.stxnext.management.server.planningpoker.server.handlers.MessageHandler.<init>(MessageHandler.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServerHandler.<init>(PokerServerHandler.java:51)
+	at com.stxnext.management.server.planningpoker.server.PokerServerInitializer.<init>(PokerServerInitializer.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.run(PokerServer.java:42)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.main(PokerServer.java:58)
+2014-03-17 13:00:33,528 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x86853aa27081bb7c
+2014-03-17 13:00:33,536 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:00:33,562 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:00:33,567 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:00:33,567 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:00:33,567 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:00:33,568 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:00:55,238 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:00:55,247 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:00:55,269 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:00:55,273 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:00:55,273 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:00:55,277 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:00:55,278 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:00:55,279 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:00:55,279 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:00:55,280 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:00:55,280 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:00:55,280 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:00:55,404 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:00:55,404 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:00:55,404 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:00:55,404 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:00:55,452 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:00:55,453 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:00:55,488 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:00:55,493 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:00:55,497 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:00:55,885 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:00:55,885 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:00:55,973 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:55,975 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:00:55,983 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_player'
+2014-03-17 13:00:55,984 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:55,986 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:00:55,990 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:00:56,001 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:56,001 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:00:56,006 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_card'
+2014-03-17 13:00:56,006 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:56,007 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:00:56,008 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:00:56,009 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:56,009 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:00:56,017 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_deck'
+2014-03-17 13:00:56,017 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:00:56,018 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:00:56,020 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:00:56,024 ERROR [main] managers.DAO (DAO.java:80) - 
+java.sql.SQLException: ORMLite does not know how to store class java.lang.Number for field 'deckId'.  Use another class, custom persister, or to serialize it use dataType=DataType.SERIALIZABLE
+	at com.j256.ormlite.field.FieldType.<init>(FieldType.java:185)
+	at com.j256.ormlite.field.FieldType.createFieldType(FieldType.java:957)
+	at com.j256.ormlite.table.DatabaseTableConfig.extractFieldTypes(DatabaseTableConfig.java:208)
+	at com.j256.ormlite.table.DatabaseTableConfig.fromClass(DatabaseTableConfig.java:146)
+	at com.j256.ormlite.table.TableInfo.<init>(TableInfo.java:53)
+	at com.j256.ormlite.dao.BaseDaoImpl.initialize(BaseDaoImpl.java:151)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:128)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:107)
+	at com.j256.ormlite.dao.BaseDaoImpl$4.<init>(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.BaseDaoImpl.createDao(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.DaoManager.createDao(DaoManager.java:70)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.checkTable(DAO.java:85)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.setupDatabase(DAO.java:74)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.createAndConnect(DAO.java:99)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.<init>(DAO.java:56)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.getInstance(DAO.java:37)
+	at com.stxnext.management.server.planningpoker.server.handlers.MessageHandler.<init>(MessageHandler.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServerHandler.<init>(PokerServerHandler.java:51)
+	at com.stxnext.management.server.planningpoker.server.PokerServerInitializer.<init>(PokerServerInitializer.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.run(PokerServer.java:42)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.main(PokerServer.java:58)
+2014-03-17 13:00:56,047 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0xfc1dd5de3d221112
+2014-03-17 13:00:56,057 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:00:56,080 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:00:56,086 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:00:56,087 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:00:56,087 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:00:56,087 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:00:59,422 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-17 13:01:05,895 WARN  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:75) - /192.168.2.4:46237 INACTIVE 
+
+2014-03-17 13:01:05,896 WARN  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:67) - /192.168.2.4:46237UNREGISTERED 
+
+2014-03-17 13:01:05,896 INFO  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:119) - /192.168.2.4:46237 has disconnected
+2014-03-17 13:02:31,873 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:02:31,883 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:02:31,907 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:02:31,912 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:02:31,912 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:02:31,917 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:02:31,917 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:02:31,918 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:02:31,919 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:02:31,919 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:02:31,919 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:02:31,920 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:02:32,068 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:02:32,069 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:02:32,069 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:02:32,069 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:02:32,113 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:02:32,113 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:02:32,148 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:02:32,154 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:02:32,159 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:02:34,676 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:02:34,676 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:02:34,753 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:02:34,755 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:02:34,770 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:02:34,770 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:02:34,774 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:02:34,774 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:02:34,782 ERROR [main] managers.DAO (DAO.java:80) - 
+java.sql.SQLException: ORMLite does not know how to store class java.lang.Number for field 'deckId'.  Use another class, custom persister, or to serialize it use dataType=DataType.SERIALIZABLE
+	at com.j256.ormlite.field.FieldType.<init>(FieldType.java:185)
+	at com.j256.ormlite.field.FieldType.createFieldType(FieldType.java:957)
+	at com.j256.ormlite.table.DatabaseTableConfig.extractFieldTypes(DatabaseTableConfig.java:208)
+	at com.j256.ormlite.table.DatabaseTableConfig.fromClass(DatabaseTableConfig.java:146)
+	at com.j256.ormlite.table.TableInfo.<init>(TableInfo.java:53)
+	at com.j256.ormlite.dao.BaseDaoImpl.initialize(BaseDaoImpl.java:151)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:128)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:107)
+	at com.j256.ormlite.dao.BaseDaoImpl$4.<init>(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.BaseDaoImpl.createDao(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.DaoManager.createDao(DaoManager.java:70)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.checkTable(DAO.java:85)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.setupDatabase(DAO.java:74)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.createAndConnect(DAO.java:99)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.<init>(DAO.java:56)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.getInstance(DAO.java:37)
+	at com.stxnext.management.server.planningpoker.server.handlers.MessageHandler.<init>(MessageHandler.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServerHandler.<init>(PokerServerHandler.java:51)
+	at com.stxnext.management.server.planningpoker.server.PokerServerInitializer.<init>(PokerServerInitializer.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.run(PokerServer.java:42)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.main(PokerServer.java:58)
+2014-03-17 13:02:34,804 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0xbd3546ce05db66f6
+2014-03-17 13:02:34,812 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:02:34,834 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:02:34,839 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:02:34,840 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:02:34,840 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:02:34,840 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:06:56,870 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-17 13:06:59,246 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:85) - request from /192.168.2.4:39865:{"action":"create_session","payload":"{\"deck_id\":1,\"players\":[{\"name\":\"ziomek4\",\"email\":\"plauer668@gmail.com\",\"active\":true,\"id\":0,\"external_id\":668,\"team_id\":5},{\"name\":\"ziomek2\",\"email\":\"plauer667@gmail.com\",\"active\":true,\"id\":0,\"external_id\":667,\"team_id\":5},{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5}],\"owner\":{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5},\"expired\":false,\"id\":0,\"start_time\":1395058017867,\"end_time\":1395058017867}","type":"request"}
+
+2014-03-17 13:38:06,927 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:38:06,934 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:38:06,956 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:38:06,960 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:38:06,960 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:38:06,966 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:38:06,966 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:38:06,967 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:38:06,967 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:38:06,968 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:38:06,968 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:38:06,968 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:38:07,107 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:38:07,108 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:38:07,108 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:38:07,109 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:38:07,150 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:38:07,150 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:38:07,183 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:38:07,188 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:38:07,192 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:38:07,564 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:38:07,564 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:38:07,645 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:38:07,647 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:38:07,657 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_player'
+2014-03-17 13:38:07,658 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:38:07,660 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:38:07,664 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:38:07,673 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:38:07,673 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:38:07,678 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_card'
+2014-03-17 13:38:07,678 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:38:07,679 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:38:07,680 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:38:07,680 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:38:07,680 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:38:07,686 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_deck'
+2014-03-17 13:38:07,687 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:38:07,687 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:38:07,689 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:38:07,694 ERROR [main] managers.DAO (DAO.java:80) - 
+java.sql.SQLException: ORMLite does not know how to store class java.lang.Number for field 'deckId'.  Use another class, custom persister, or to serialize it use dataType=DataType.SERIALIZABLE
+	at com.j256.ormlite.field.FieldType.<init>(FieldType.java:185)
+	at com.j256.ormlite.field.FieldType.createFieldType(FieldType.java:957)
+	at com.j256.ormlite.table.DatabaseTableConfig.extractFieldTypes(DatabaseTableConfig.java:208)
+	at com.j256.ormlite.table.DatabaseTableConfig.fromClass(DatabaseTableConfig.java:146)
+	at com.j256.ormlite.table.TableInfo.<init>(TableInfo.java:53)
+	at com.j256.ormlite.dao.BaseDaoImpl.initialize(BaseDaoImpl.java:151)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:128)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:107)
+	at com.j256.ormlite.dao.BaseDaoImpl$4.<init>(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.BaseDaoImpl.createDao(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.DaoManager.createDao(DaoManager.java:70)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.checkTable(DAO.java:85)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.setupDatabase(DAO.java:74)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.createAndConnect(DAO.java:99)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.<init>(DAO.java:56)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.getInstance(DAO.java:37)
+	at com.stxnext.management.server.planningpoker.server.handlers.MessageHandler.<init>(MessageHandler.java:34)
+	at com.stxnext.management.server.planningpoker.server.PokerServerHandler.<init>(PokerServerHandler.java:51)
+	at com.stxnext.management.server.planningpoker.server.PokerServerInitializer.<init>(PokerServerInitializer.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.run(PokerServer.java:42)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.main(PokerServer.java:58)
+2014-03-17 13:38:07,713 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x167f493febd90326
+2014-03-17 13:38:07,722 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:38:07,747 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:38:07,753 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:38:07,753 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:38:07,753 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:38:07,754 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:38:31,719 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-17 13:38:36,732 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:85) - request from /192.168.2.4:58589:{"action":"create_session","payload":"{\"deck_id\":1,\"players\":[{\"name\":\"ziomek4\",\"email\":\"plauer668@gmail.com\",\"active\":true,\"id\":0,\"external_id\":668,\"team_id\":5},{\"name\":\"ziomek2\",\"email\":\"plauer667@gmail.com\",\"active\":true,\"id\":0,\"external_id\":667,\"team_id\":5},{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5}],\"owner\":{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5},\"expired\":false,\"id\":0,\"start_time\":1395059915423,\"end_time\":1395059915423}","type":"request"}
+
+2014-03-17 13:38:36,807 WARN  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:94) - java.lang.NullPointerException
+2014-03-17 13:39:05,687 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:85) - request from /192.168.2.4:58589:{"action":"create_session","payload":"{\"deck_id\":1,\"players\":[{\"name\":\"ziomek4\",\"email\":\"plauer668@gmail.com\",\"active\":true,\"id\":0,\"external_id\":668,\"team_id\":5},{\"name\":\"ziomek2\",\"email\":\"plauer667@gmail.com\",\"active\":true,\"id\":0,\"external_id\":667,\"team_id\":5},{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5}],\"owner\":{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5},\"expired\":false,\"id\":0,\"start_time\":1395059944380,\"end_time\":1395059944380}","type":"request"}
+
+2014-03-17 13:39:40,073 WARN  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:94) - java.lang.NullPointerException
+2014-03-17 13:39:58,187 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:85) - request from /192.168.2.4:58589:{"action":"create_session","payload":"{\"deck_id\":1,\"players\":[{\"name\":\"ziomek4\",\"email\":\"plauer668@gmail.com\",\"active\":true,\"id\":0,\"external_id\":668,\"team_id\":5},{\"name\":\"ziomek2\",\"email\":\"plauer667@gmail.com\",\"active\":true,\"id\":0,\"external_id\":667,\"team_id\":5},{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5}],\"owner\":{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5},\"expired\":false,\"id\":0,\"start_time\":1395059996885,\"end_time\":1395059996885}","type":"request"}
+
+2014-03-17 13:40:15,437 WARN  [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:94) - java.lang.NullPointerException
+2014-03-17 13:40:17,597 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:85) - request from /192.168.2.4:58589:{"action":"create_session","payload":"{\"deck_id\":1,\"players\":[{\"name\":\"ziomek4\",\"email\":\"plauer668@gmail.com\",\"active\":true,\"id\":0,\"external_id\":668,\"team_id\":5},{\"name\":\"ziomek2\",\"email\":\"plauer667@gmail.com\",\"active\":true,\"id\":0,\"external_id\":667,\"team_id\":5},{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5}],\"owner\":{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"active\":true,\"id\":0,\"external_id\":666,\"team_id\":5},\"expired\":false,\"id\":0,\"start_time\":1395060016300,\"end_time\":1395060016300}","type":"request"}
+
+2014-03-17 13:42:36,011 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:42:36,017 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:42:36,038 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:42:36,042 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:42:36,042 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:42:36,048 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:42:36,048 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:42:36,049 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:42:36,049 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:42:36,049 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:42:36,049 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:42:36,050 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:42:36,171 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:42:36,172 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:42:36,172 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:42:36,172 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:42:36,223 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:42:36,223 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:42:36,257 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:42:36,263 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:42:36,273 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:42:36,668 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:42:36,668 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:42:36,749 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:42:36,751 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:42:36,760 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_player'
+2014-03-17 13:42:36,761 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:42:36,762 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:42:36,766 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:42:36,775 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:42:36,775 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:42:36,780 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_card'
+2014-03-17 13:42:36,780 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:42:36,781 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:42:36,782 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:42:36,782 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:42:36,782 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:42:36,790 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_deck'
+2014-03-17 13:42:36,790 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:42:36,791 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:42:36,793 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:42:36,799 ERROR [main] managers.DAO (DAO.java:80) - 
+java.sql.SQLException: ORMLite does not know how to store class java.lang.Number for field 'deckId'.  Use another class, custom persister, or to serialize it use dataType=DataType.SERIALIZABLE
+	at com.j256.ormlite.field.FieldType.<init>(FieldType.java:185)
+	at com.j256.ormlite.field.FieldType.createFieldType(FieldType.java:957)
+	at com.j256.ormlite.table.DatabaseTableConfig.extractFieldTypes(DatabaseTableConfig.java:208)
+	at com.j256.ormlite.table.DatabaseTableConfig.fromClass(DatabaseTableConfig.java:146)
+	at com.j256.ormlite.table.TableInfo.<init>(TableInfo.java:53)
+	at com.j256.ormlite.dao.BaseDaoImpl.initialize(BaseDaoImpl.java:151)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:128)
+	at com.j256.ormlite.dao.BaseDaoImpl.<init>(BaseDaoImpl.java:107)
+	at com.j256.ormlite.dao.BaseDaoImpl$4.<init>(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.BaseDaoImpl.createDao(BaseDaoImpl.java:907)
+	at com.j256.ormlite.dao.DaoManager.createDao(DaoManager.java:70)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.checkTable(DAO.java:85)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.setupDatabase(DAO.java:74)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.createAndConnect(DAO.java:99)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.<init>(DAO.java:56)
+	at com.stxnext.management.server.planningpoker.server.database.managers.DAO.getInstance(DAO.java:37)
+	at com.stxnext.management.server.planningpoker.server.handlers.MessageHandler.<init>(MessageHandler.java:34)
+	at com.stxnext.management.server.planningpoker.server.PokerServerHandler.<init>(PokerServerHandler.java:51)
+	at com.stxnext.management.server.planningpoker.server.PokerServerInitializer.<init>(PokerServerInitializer.java:35)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.run(PokerServer.java:42)
+	at com.stxnext.management.server.planningpoker.server.PokerServer.main(PokerServer.java:58)
+2014-03-17 13:42:36,821 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x4f6827946efa51f7
+2014-03-17 13:42:36,830 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:42:36,850 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:42:36,855 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:42:36,855 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:42:36,855 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:42:36,855 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:44:59,467 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:44:59,479 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:44:59,512 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:44:59,516 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:44:59,516 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:44:59,522 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:44:59,523 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:44:59,523 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:44:59,524 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:44:59,524 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:44:59,524 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:44:59,525 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:44:59,678 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:44:59,679 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:44:59,679 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:44:59,679 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:44:59,729 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:44:59,730 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:44:59,770 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:44:59,776 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:44:59,786 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:45:02,276 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:45:02,277 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:02,363 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,365 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:02,385 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,385 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:02,390 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,391 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:02,413 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,413 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:02,419 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_session'
+2014-03-17 13:45:02,420 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,423 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_session` (`id` BIGINT AUTO_INCREMENT , `start_time` BIGINT , `name` VARCHAR(255) , `deck_id` BIGINT , `end_time` BIGINT , `expired` TINYINT(1) , `owner` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,426 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_session` (`id` BIGINT AUTO_INCREMENT , `start_time` BIGINT , `name` VARCHAR(255) , `deck_id` BIGINT , `end_time` BIGINT , `expired` TINYINT(1) , `owner` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,427 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,427 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:02,433 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_ticket'
+2014-03-17 13:45:02,434 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,434 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_ticket` (`id` BIGINT AUTO_INCREMENT , `session_id` BIGINT , `display_value` VARCHAR(255) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,436 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_ticket` (`id` BIGINT AUTO_INCREMENT , `session_id` BIGINT , `display_value` VARCHAR(255) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,436 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,436 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:02,441 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_vote'
+2014-03-17 13:45:02,442 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,442 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_vote` (`id` BIGINT AUTO_INCREMENT , `card_id` BIGINT , `player_id` BIGINT , `ticket_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,444 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_vote` (`id` BIGINT AUTO_INCREMENT , `card_id` BIGINT , `player_id` BIGINT , `ticket_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,447 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,447 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:02,454 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'player_session'
+2014-03-17 13:45:02,454 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,455 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `player_session` (`id` INTEGER AUTO_INCREMENT , `player_id` BIGINT , `session_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,457 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `player_session` (`id` INTEGER AUTO_INCREMENT , `player_id` BIGINT , `session_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:02,473 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,473 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 
+2014-03-17 13:45:02,474 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 ' with 0 args
+2014-03-17 13:45:02,487 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,496 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:02,498 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,498 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [Binary, 0]
+2014-03-17 13:45:02,499 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '1' from keyholder to 'id' in Deck object
+2014-03-17 13:45:02,499 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,500 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:02,500 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:02,500 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:02,501 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,502 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,502 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,502 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 1]
+2014-03-17 13:45:02,503 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '1' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,503 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,503 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,504 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,504 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 1]
+2014-03-17 13:45:02,504 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '2' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,504 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,506 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,507 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,507 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 1]
+2014-03-17 13:45:02,508 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '3' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,508 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,508 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,509 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,509 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [3, 1]
+2014-03-17 13:45:02,509 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '4' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,509 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,510 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,510 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,511 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [5, 1]
+2014-03-17 13:45:02,511 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '5' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,511 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,512 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,512 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,512 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 1]
+2014-03-17 13:45:02,513 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '6' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,513 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,513 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,514 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,514 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [13, 1]
+2014-03-17 13:45:02,514 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '7' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,514 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,515 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,515 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,515 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [20, 1]
+2014-03-17 13:45:02,516 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '8' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,516 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,516 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,517 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,517 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [40, 1]
+2014-03-17 13:45:02,517 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '9' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,517 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,518 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,518 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,519 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [100, 1]
+2014-03-17 13:45:02,519 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '10' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,519 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,519 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,520 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,520 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 1]
+2014-03-17 13:45:02,520 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '11' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,520 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,521 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,521 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,521 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 1]
+2014-03-17 13:45:02,522 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '12' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,523 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:02,524 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:02,524 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,525 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 
+2014-03-17 13:45:02,525 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 ' with 0 args
+2014-03-17 13:45:02,525 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,526 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:02,526 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,526 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [Fibonacci, 1]
+2014-03-17 13:45:02,526 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '2' from keyholder to 'id' in Deck object
+2014-03-17 13:45:02,526 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,527 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:02,527 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:02,527 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:02,527 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,528 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,528 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,528 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 2]
+2014-03-17 13:45:02,528 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '13' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,529 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,529 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,530 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,530 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 2]
+2014-03-17 13:45:02,530 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '14' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,530 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,531 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,531 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,531 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 2]
+2014-03-17 13:45:02,531 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '15' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,531 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,532 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,532 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,532 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [4, 2]
+2014-03-17 13:45:02,533 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '16' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,533 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,533 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,533 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,534 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 2]
+2014-03-17 13:45:02,534 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '17' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,534 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,534 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,535 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,535 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [16, 2]
+2014-03-17 13:45:02,535 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '18' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,535 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,536 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,536 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,536 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [32, 2]
+2014-03-17 13:45:02,536 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '19' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,537 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,537 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,537 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,538 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [64, 2]
+2014-03-17 13:45:02,538 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '20' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,538 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,539 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,539 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,539 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [128, 2]
+2014-03-17 13:45:02,539 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '21' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,540 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,540 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,540 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,540 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 2]
+2014-03-17 13:45:02,541 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '22' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,541 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,541 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,542 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,542 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 2]
+2014-03-17 13:45:02,542 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '23' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,542 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:02,542 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:02,543 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,543 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 
+2014-03-17 13:45:02,543 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 ' with 0 args
+2014-03-17 13:45:02,544 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,544 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:02,545 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,545 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [Large, 2]
+2014-03-17 13:45:02,545 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '3' from keyholder to 'id' in Deck object
+2014-03-17 13:45:02,545 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,546 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:02,546 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:02,546 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:02,546 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,547 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,547 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,547 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 3]
+2014-03-17 13:45:02,548 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '24' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,548 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,548 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,548 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,549 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [10, 3]
+2014-03-17 13:45:02,549 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '25' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,549 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,549 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,550 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,550 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [20, 3]
+2014-03-17 13:45:02,550 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '26' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,550 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,551 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,551 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,551 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [30, 3]
+2014-03-17 13:45:02,551 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '27' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,552 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,552 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,552 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,552 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [50, 3]
+2014-03-17 13:45:02,553 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '28' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,553 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,555 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,556 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,556 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [80, 3]
+2014-03-17 13:45:02,556 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '29' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,556 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,557 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,557 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,557 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [130, 3]
+2014-03-17 13:45:02,557 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '30' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,558 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,558 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,558 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,559 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [200, 3]
+2014-03-17 13:45:02,559 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '31' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,559 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,559 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,560 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,560 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [400, 3]
+2014-03-17 13:45:02,560 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '32' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,560 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,561 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,561 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,561 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [999, 3]
+2014-03-17 13:45:02,562 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '33' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,562 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,562 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,562 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,562 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 3]
+2014-03-17 13:45:02,563 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '34' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,563 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,563 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,564 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,564 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 3]
+2014-03-17 13:45:02,564 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '35' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,564 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:02,565 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:02,565 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,565 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 
+2014-03-17 13:45:02,565 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 ' with 0 args
+2014-03-17 13:45:02,566 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,566 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:02,566 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,567 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1 to 10, 3]
+2014-03-17 13:45:02,567 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '4' from keyholder to 'id' in Deck object
+2014-03-17 13:45:02,567 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,567 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:02,567 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:02,567 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:02,567 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,568 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,568 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,568 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 4]
+2014-03-17 13:45:02,568 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '36' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,569 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,569 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,569 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,569 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 4]
+2014-03-17 13:45:02,569 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '37' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,570 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,570 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,570 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,570 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [3, 4]
+2014-03-17 13:45:02,571 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '38' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,571 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,571 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,572 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,572 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [4, 4]
+2014-03-17 13:45:02,573 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '39' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,573 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,573 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,574 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,574 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [5, 4]
+2014-03-17 13:45:02,574 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '40' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,574 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,575 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,575 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,575 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [6, 4]
+2014-03-17 13:45:02,576 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '41' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,576 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,576 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,577 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,577 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [7, 4]
+2014-03-17 13:45:02,578 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '42' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,578 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,578 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,579 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,579 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 4]
+2014-03-17 13:45:02,579 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '43' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,579 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,580 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,580 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,580 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [9, 4]
+2014-03-17 13:45:02,581 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '44' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,581 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,581 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,582 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,582 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [10, 4]
+2014-03-17 13:45:02,582 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '45' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,582 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,583 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,583 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,583 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 4]
+2014-03-17 13:45:02,583 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '46' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,583 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:02,584 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:02,584 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:02,584 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 4]
+2014-03-17 13:45:02,585 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '47' from keyholder to 'id' in Card object
+2014-03-17 13:45:02,585 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:02,585 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:02,611 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x23dcd6385ceec1e9
+2014-03-17 13:45:02,623 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:45:02,664 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:45:02,669 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:45:02,669 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:45:02,669 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:45:02,669 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:45:19,851 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:45:19,859 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:45:19,882 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:45:19,886 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:45:19,886 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:45:19,892 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:45:19,892 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:45:19,893 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:45:19,893 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:45:19,894 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:45:19,894 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:45:19,895 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:45:20,042 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:45:20,043 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:45:20,043 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:45:20,044 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:45:20,088 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:45:20,088 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:45:20,116 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:45:20,120 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:45:20,131 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:45:20,524 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:45:20,525 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:20,597 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,599 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:20,607 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_player'
+2014-03-17 13:45:20,608 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,609 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,613 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_player` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) , `external_id` BIGINT , `team_id` BIGINT , `active` TINYINT(1) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,622 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,622 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:20,627 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_card'
+2014-03-17 13:45:20,627 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,627 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,629 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_card` (`id` BIGINT AUTO_INCREMENT , `display_value` VARCHAR(255) , `deck_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,629 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,629 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:20,636 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_deck'
+2014-03-17 13:45:20,637 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,637 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,639 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_deck` (`id` BIGINT AUTO_INCREMENT , `name` VARCHAR(255) , `predefined_type` INTEGER , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,652 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,653 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:20,659 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_session'
+2014-03-17 13:45:20,659 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,660 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_session` (`id` BIGINT AUTO_INCREMENT , `start_time` BIGINT , `name` VARCHAR(255) , `deck_id` BIGINT , `end_time` BIGINT , `expired` TINYINT(1) , `owner` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,662 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_session` (`id` BIGINT AUTO_INCREMENT , `start_time` BIGINT , `name` VARCHAR(255) , `deck_id` BIGINT , `end_time` BIGINT , `expired` TINYINT(1) , `owner` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,662 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,662 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:20,667 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_ticket'
+2014-03-17 13:45:20,667 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,668 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_ticket` (`id` BIGINT AUTO_INCREMENT , `session_id` BIGINT , `display_value` VARCHAR(255) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,669 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_ticket` (`id` BIGINT AUTO_INCREMENT , `session_id` BIGINT , `display_value` VARCHAR(255) , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,669 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,669 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:20,674 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'poker_vote'
+2014-03-17 13:45:20,674 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,675 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `poker_vote` (`id` BIGINT AUTO_INCREMENT , `card_id` BIGINT , `player_id` BIGINT , `ticket_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,676 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `poker_vote` (`id` BIGINT AUTO_INCREMENT , `card_id` BIGINT , `player_id` BIGINT , `ticket_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,678 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,678 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:20,685 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - creating table 'player_session'
+2014-03-17 13:45:20,685 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,685 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: CREATE TABLE `player_session` (`id` INTEGER AUTO_INCREMENT , `player_id` BIGINT , `session_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,687 INFO  [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:44) - executed create table statement changed 0 rows: CREATE TABLE `player_session` (`id` INTEGER AUTO_INCREMENT , `player_id` BIGINT , `session_id` BIGINT , PRIMARY KEY (`id`) ) 
+2014-03-17 13:45:20,701 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,702 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 
+2014-03-17 13:45:20,702 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 ' with 0 args
+2014-03-17 13:45:20,714 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,719 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:20,721 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,721 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [Binary, 0]
+2014-03-17 13:45:20,722 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '1' from keyholder to 'id' in Deck object
+2014-03-17 13:45:20,722 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,723 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:20,723 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:20,723 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:20,723 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,724 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,725 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,725 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 1]
+2014-03-17 13:45:20,725 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '1' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,725 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,726 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,726 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,726 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 1]
+2014-03-17 13:45:20,726 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '2' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,726 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,726 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,727 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,727 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 1]
+2014-03-17 13:45:20,727 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '3' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,727 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,727 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,727 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,728 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [3, 1]
+2014-03-17 13:45:20,728 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '4' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,728 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,728 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,728 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,729 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [5, 1]
+2014-03-17 13:45:20,729 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '5' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,729 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,729 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,729 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,730 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 1]
+2014-03-17 13:45:20,730 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '6' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,730 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,730 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,730 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,731 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [13, 1]
+2014-03-17 13:45:20,731 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '7' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,731 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,731 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,731 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,731 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [20, 1]
+2014-03-17 13:45:20,732 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '8' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,732 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,732 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,732 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,732 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [40, 1]
+2014-03-17 13:45:20,733 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '9' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,733 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,733 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,734 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,734 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [100, 1]
+2014-03-17 13:45:20,734 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '10' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,734 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,734 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,735 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,735 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 1]
+2014-03-17 13:45:20,735 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '11' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,735 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,735 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,736 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,736 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 1]
+2014-03-17 13:45:20,736 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '12' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,737 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:20,737 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:20,737 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,737 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 
+2014-03-17 13:45:20,738 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 ' with 0 args
+2014-03-17 13:45:20,738 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,738 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:20,739 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,739 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [Fibonacci, 1]
+2014-03-17 13:45:20,739 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '2' from keyholder to 'id' in Deck object
+2014-03-17 13:45:20,739 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,739 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:20,739 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:20,740 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:20,740 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,740 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,740 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,741 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 2]
+2014-03-17 13:45:20,741 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '13' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,741 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,741 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,742 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,742 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 2]
+2014-03-17 13:45:20,742 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '14' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,742 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,743 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,743 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,743 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 2]
+2014-03-17 13:45:20,743 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '15' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,743 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,744 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,744 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,744 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [4, 2]
+2014-03-17 13:45:20,744 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '16' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,744 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,745 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,745 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,745 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 2]
+2014-03-17 13:45:20,745 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '17' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,745 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,746 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,746 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,746 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [16, 2]
+2014-03-17 13:45:20,746 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '18' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,746 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,747 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,747 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,747 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [32, 2]
+2014-03-17 13:45:20,747 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '19' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,747 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,748 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,748 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,748 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [64, 2]
+2014-03-17 13:45:20,748 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '20' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,748 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,749 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,749 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,749 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [128, 2]
+2014-03-17 13:45:20,750 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '21' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,750 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,750 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,750 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,751 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 2]
+2014-03-17 13:45:20,751 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '22' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,751 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,751 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,752 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,752 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 2]
+2014-03-17 13:45:20,752 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '23' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,752 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:20,752 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:20,752 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,753 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 
+2014-03-17 13:45:20,753 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 ' with 0 args
+2014-03-17 13:45:20,753 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,754 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:20,754 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,754 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [Large, 2]
+2014-03-17 13:45:20,754 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '3' from keyholder to 'id' in Deck object
+2014-03-17 13:45:20,755 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,755 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:20,755 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:20,755 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:20,755 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,756 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,756 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,756 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [0, 3]
+2014-03-17 13:45:20,756 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '24' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,756 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,757 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,757 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,757 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [10, 3]
+2014-03-17 13:45:20,757 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '25' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,757 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,758 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,758 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,758 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [20, 3]
+2014-03-17 13:45:20,758 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '26' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,758 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,759 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,759 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,759 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [30, 3]
+2014-03-17 13:45:20,759 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '27' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,759 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,760 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,760 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,760 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [50, 3]
+2014-03-17 13:45:20,760 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '28' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,760 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,761 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,761 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,761 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [80, 3]
+2014-03-17 13:45:20,761 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '29' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,761 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,761 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,762 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,762 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [130, 3]
+2014-03-17 13:45:20,762 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '30' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,762 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,762 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,763 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,763 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [200, 3]
+2014-03-17 13:45:20,763 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '31' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,763 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,763 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,764 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,764 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [400, 3]
+2014-03-17 13:45:20,764 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '32' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,764 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,764 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,765 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,765 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [999, 3]
+2014-03-17 13:45:20,765 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '33' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,765 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,765 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,766 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,766 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 3]
+2014-03-17 13:45:20,766 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '34' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,766 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,767 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,767 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,767 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 3]
+2014-03-17 13:45:20,767 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '35' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,768 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:20,768 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:20,768 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,768 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 
+2014-03-17 13:45:20,769 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 ' with 0 args
+2014-03-17 13:45:20,769 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,769 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)
+2014-03-17 13:45:20,770 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_deck` (`name` ,`predefined_type` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,770 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1 to 10, 3]
+2014-03-17 13:45:20,770 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '4' from keyholder to 'id' in Deck object
+2014-03-17 13:45:20,770 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,770 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection autoCommit is true
+2014-03-17 13:45:20,770 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to false
+2014-03-17 13:45:20,770 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - disabled auto-commit on table poker_card before batch tasks
+2014-03-17 13:45:20,771 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,771 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,771 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,771 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1, 4]
+2014-03-17 13:45:20,772 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '36' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,772 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,772 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,772 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,773 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [2, 4]
+2014-03-17 13:45:20,773 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '37' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,775 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,778 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,779 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,779 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [3, 4]
+2014-03-17 13:45:20,780 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '38' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,780 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,781 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,781 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,782 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [4, 4]
+2014-03-17 13:45:20,782 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '39' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,782 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,783 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,783 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,784 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [5, 4]
+2014-03-17 13:45:20,784 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '40' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,784 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,785 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,785 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,785 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [6, 4]
+2014-03-17 13:45:20,786 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '41' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,786 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,786 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,787 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,787 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [7, 4]
+2014-03-17 13:45:20,787 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '42' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,787 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,788 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,788 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,788 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [8, 4]
+2014-03-17 13:45:20,788 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '43' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,788 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,789 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,789 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,789 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [9, 4]
+2014-03-17 13:45:20,789 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '44' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,790 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,790 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,790 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,790 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [10, 4]
+2014-03-17 13:45:20,791 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '45' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,791 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,791 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,792 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,792 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [?, 4]
+2014-03-17 13:45:20,792 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '46' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,792 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:20,793 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)
+2014-03-17 13:45:20,793 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_card` (`display_value` ,`deck_id` ) VALUES (?,?)' and 2 args, changed 1 rows
+2014-03-17 13:45:20,794 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [cafe, 4]
+2014-03-17 13:45:20,794 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '47' from keyholder to 'id' in Card object
+2014-03-17 13:45:20,796 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:20,796 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - re-enabled auto-commit on table poker_card after batch tasks
+2014-03-17 13:45:20,816 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x0d92469efa9a791e
+2014-03-17 13:45:20,829 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:45:20,862 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:45:20,868 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:45:20,869 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:45:20,869 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:45:20,869 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:45:30,953 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-17 13:45:30,962 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-17 13:45:30,986 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-17 13:45:30,989 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-17 13:45:30,989 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-17 13:45:30,995 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-17 13:45:30,995 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-17 13:45:30,996 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-17 13:45:30,996 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-17 13:45:30,996 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-17 13:45:30,996 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-17 13:45:30,997 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-17 13:45:31,144 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-17 13:45:31,145 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-17 13:45:31,145 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-17 13:45:31,145 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-17 13:45:31,196 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-17 13:45:31,196 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-17 13:45:31,228 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-17 13:45:31,234 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-17 13:45:31,244 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-17 13:45:33,759 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-17 13:45:33,761 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-17 13:45:33,872 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,874 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:33,891 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,891 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:33,896 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,896 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:33,925 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,925 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:33,929 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,930 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:33,935 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,935 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:33,941 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,942 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-17 13:45:33,963 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,965 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 
+2014-03-17 13:45:33,965 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 ' with 0 args
+2014-03-17 13:45:33,971 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,972 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 
+2014-03-17 13:45:33,972 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 ' with 0 args
+2014-03-17 13:45:33,972 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,973 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 
+2014-03-17 13:45:33,973 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 ' with 0 args
+2014-03-17 13:45:33,974 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:33,974 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 
+2014-03-17 13:45:33,974 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 ' with 0 args
+2014-03-17 13:45:33,992 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x6c7a2b4335903a61
+2014-03-17 13:45:34,004 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-17 13:45:34,031 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-17 13:45:34,037 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-17 13:45:34,037 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-17 13:45:34,038 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-17 13:45:34,038 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-17 13:45:40,961 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-17 13:45:42,965 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:85) - request from /192.168.2.4:49358:{"action":"create_session","payload":"{\"deck_id\":1,\"players\":[{\"name\":\"ziomek4\",\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"team_id\":5,\"active\":true},{\"name\":\"ziomek2\",\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"team_id\":5,\"active\":true},{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"team_id\":5,\"active\":true}],\"owner\":{\"name\":\"ziomek\",\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"team_id\":5,\"active\":true},\"expired\":false,\"start_time\":1395060341576,\"end_time\":1395060341576}","type":"request"}
+
+2014-03-17 13:45:57,997 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:58,005 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_session` (`start_time` ,`name` ,`deck_id` ,`end_time` ,`expired` ,`owner` ) VALUES (?,?,?,?,?,?)
+2014-03-17 13:45:58,007 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_session` (`start_time` ,`name` ,`deck_id` ,`end_time` ,`expired` ,`owner` ) VALUES (?,?,?,?,?,?)' and 6 args, changed 1 rows
+2014-03-17 13:45:58,007 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [1395060341576, null, 1, 1395060341576, false, null]
+2014-03-17 13:45:58,007 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '1' from keyholder to 'id' in Session object
+2014-03-17 13:45:58,998 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:45:59,000 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)
+2014-03-17 13:45:59,000 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)' and 5 args, changed 1 rows
+2014-03-17 13:45:59,001 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [ziomek, plauer666@gmail.com, 666, 5, true]
+2014-03-17 13:45:59,001 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '1' from keyholder to 'id' in Player object
+2014-03-17 13:46:13,797 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:46:13,798 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)
+2014-03-17 13:46:13,798 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)' and 5 args, changed 1 rows
+2014-03-17 13:46:13,799 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [ziomek4, plauer668@gmail.com, 668, 5, true]
+2014-03-17 13:46:13,799 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '2' from keyholder to 'id' in Player object
+2014-03-17 13:46:15,291 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:46:15,291 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)
+2014-03-17 13:46:15,292 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)' and 5 args, changed 1 rows
+2014-03-17 13:46:15,292 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [ziomek2, plauer667@gmail.com, 667, 5, true]
+2014-03-17 13:46:15,293 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '3' from keyholder to 'id' in Player object
+2014-03-17 13:46:16,780 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-17 13:46:16,781 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert statement is prepared and executed: INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)
+2014-03-17 13:46:16,781 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - insert data with statement 'INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` ) VALUES (?,?,?,?,?)' and 5 args, changed 1 rows
+2014-03-17 13:46:16,781 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - insert arguments: [ziomek, plauer666@gmail.com, 666, 5, true]
+2014-03-17 13:46:16,782 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - assigned id '4' from keyholder to 'id' in Player object
