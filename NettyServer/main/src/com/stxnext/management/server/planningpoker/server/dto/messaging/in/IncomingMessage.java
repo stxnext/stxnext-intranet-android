@@ -25,4 +25,8 @@ public class IncomingMessage extends AbstractMessage{
         return sessionMessage;
     }
 
+    @Override
+    protected void prepareToSerialization() {
+    }
+
 }

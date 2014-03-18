@@ -107,7 +107,7 @@ public class ServerTests {
         
         List<Ticket> tickets = dao.getTicketDao().queryForAll();
         for(Ticket t : tickets){
-            ForeignCollection<Vote> votes = t.getVotes();
+            List<Vote> votes = t.getVotes();
             for(Vote v : votes){
                 logger.log(Level.DEBUG, t.getDisplayValue()+" has vote "+v.getCard().getName());
             }
@@ -117,7 +117,7 @@ public class ServerTests {
 
         List<Deck> decks = dao.getDeckDao().queryForAll();
         for(Deck deck : decks){
-            ForeignCollection<Card> cards = deck.getCards();
+            List<Card> cards = deck.getCards();
             for(Card c : cards){
                 logger.log(Level.DEBUG, deck.getName()+" has card "+c.getName());
             }

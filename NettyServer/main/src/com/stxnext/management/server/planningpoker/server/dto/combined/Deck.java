@@ -1,6 +1,9 @@
 
 package com.stxnext.management.server.planningpoker.server.dto.combined;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.dao.ForeignCollection;
@@ -33,10 +36,12 @@ public class Deck extends AbstractMessage {
     @DatabaseField(columnName = FIELD_PREDEFINED_TYPE)
     private int predefinedType;
     
-    @Expose
-    @SerializedName(JSON_FIELD_CARDS)
     @ForeignCollectionField
     private ForeignCollection<Card> cards;
+    
+    @Expose
+    @SerializedName(JSON_FIELD_CARDS)
+    private List<Card> jsonCards;
 
     public Deck(){}
     
@@ -52,20 +57,28 @@ public class Deck extends AbstractMessage {
         this.name = name;
     }
 
-    public ForeignCollection<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(ForeignCollection<Card> cards) {
-        this.cards = cards;
-    }
-
     public int getPredefinedType() {
         return predefinedType;
     }
 
     public void setPredefinedType(int predefinedType) {
         this.predefinedType = predefinedType;
+    }
+    
+    public List<Card> getCards() {
+        if(jsonCards == null)
+            prepareToSerialization();
+        return jsonCards;
+    }
+
+    public void setCards(List<Card> jsonCards) {
+        this.jsonCards = jsonCards;
+    }
+
+    @Override
+    protected void prepareToSerialization() {
+        if(this.cards != null)
+            this.jsonCards = new ArrayList<Card>(this.cards);
     }
     
 }

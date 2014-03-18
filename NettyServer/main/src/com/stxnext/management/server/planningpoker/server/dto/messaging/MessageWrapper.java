@@ -48,8 +48,10 @@ public class MessageWrapper extends AbstractMessage{
     public void setPayload(String payload) {
         this.payload = payload;
     }
-    
-    
-    
+
+    @Override
+    protected void prepareToSerialization() {
+        
+    }
     
 }

@@ -6,12 +6,13 @@ import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 
-public class AbstractMessage {
+public abstract class AbstractMessage {
 
     protected Type listStringType = new TypeToken<ArrayList<String>>() {
     }.getType();
 
     public String serialize() {
+        prepareToSerialization();
         return GsonProvider.get().toJson(this);
     }
 
@@ -20,5 +21,7 @@ public class AbstractMessage {
                 jsonString,
                 type);
     }
+    
+    protected abstract void prepareToSerialization();
     
 }

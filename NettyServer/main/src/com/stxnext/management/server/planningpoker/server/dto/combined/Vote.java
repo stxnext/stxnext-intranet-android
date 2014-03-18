@@ -65,4 +65,8 @@ public class Vote extends AbstractMessage {
         this.card = card;
     }
 
+    @Override
+    protected void prepareToSerialization() {
+    }
+
 }

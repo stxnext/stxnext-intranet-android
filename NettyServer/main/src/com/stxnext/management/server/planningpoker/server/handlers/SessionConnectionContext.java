@@ -25,11 +25,25 @@ public class SessionConnectionContext {
     }
     
     public void addConnectedPlayer(Player player, ChannelHandlerContext ctx){
+        ChannelHandlerContext playerContext = this.connectedPlayers.get(player);
+        if(playerContext != null){
+            //discard old connection - device/player should know what he is doing. If he wants to join again he'll loose his old channel
+            //we're not broadcasting that player has been disconnected - he just changed a channel
+            playerContext.close();
+        }
         this.connectedPlayers.put(player, ctx);
     }
     
-    public void removeConnected(Player player){
+    private void removePlayerAndConnection(Player player){
+        ChannelHandlerContext playerContext = this.connectedPlayers.get(player);
+        if(playerContext != null){
+            playerContext.close();
+        }
         this.connectedPlayers.remove(player);
+    }
+    
+    public void removeConnected(Player player){
+        removePlayerAndConnection(player);
     }
     
     public void removeConnected(ChannelHandlerContext ctx){
@@ -42,7 +56,7 @@ public class SessionConnectionContext {
         }
         
         if(toRemove!=null){
-            this.connectedPlayers.remove(toRemove);
+            removePlayerAndConnection(toRemove);
         }
     }
     

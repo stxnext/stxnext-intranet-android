@@ -53,10 +53,6 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
     
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        // TODO handle active users here
-//        ctx.write(
-//                "Welcome to " + InetAddress.getLocalHost().getHostName() + "\r\n");
-//        ctx.flush();
         channels.put(ctx.channel().remoteAddress().toString(),ctx);
     }
 
@@ -90,31 +86,14 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
             msgHandler.handleMessage(message, ctx);
         }
         catch(Exception jse){
-            // respond with error here
             logger.log(Level.WARN, jse);
         }
-        
-//        // Generate and write a response.
-//        String response;
-//        boolean close = false;
-//        if (request.isEmpty()) {
-//            response = "[empty message].\r\n";
-//        } else if ("quit".equals(request.toLowerCase())) {
-//            response = "Exit requested, closing channel!\r\n";
-//            close = true;
-//        } else {
-//            response = request +"\r\n";
-//        }
-//        broadcastToGroup(response);
-        
-        
     }
     
     void broadcastToGroup(String message){
         removeInactiveChannels();
         for (ChannelHandlerContext channel : channels.values()) {
             ChannelFuture future = channel.writeAndFlush(message);
-            //future.isCancelled()
         }
         logger.log(Level.INFO,message);
     }

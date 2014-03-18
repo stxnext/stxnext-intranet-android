@@ -1,4 +1,4 @@
-package com.stxnext.management.server.planningpoker.server.dto.messaging.in;
+package com.stxnext.management.server.planningpoker.server.dto.messaging.out;
 
 public enum NotificationFor {
 

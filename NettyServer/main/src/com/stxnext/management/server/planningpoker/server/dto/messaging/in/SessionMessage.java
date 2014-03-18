@@ -3,6 +3,8 @@ package com.stxnext.management.server.planningpoker.server.dto.messaging.in;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 
 public class SessionMessage extends AbstractMessage {
@@ -17,6 +19,12 @@ public class SessionMessage extends AbstractMessage {
     @SerializedName("session_subject")
     private String sessionSubject;
 
+    public SessionMessage(Player player, Session session, String serializedSubject){
+        this.playerId = player.getId();
+        this.sessionId = session.getId();
+        this.sessionSubject = serializedSubject;
+    }
+    
     public Long getSessionId() {
         return sessionId;
     }
@@ -39,6 +47,10 @@ public class SessionMessage extends AbstractMessage {
 
     public void setSessionSubject(String sessionSubject) {
         this.sessionSubject = sessionSubject;
+    }
+
+    @Override
+    protected void prepareToSerialization() {
     }
 
 }

@@ -1,5 +1,6 @@
 package com.stxnext.management.server.planningpoker.server.dto.combined;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
@@ -63,14 +64,15 @@ public class Session  extends AbstractMessage{
     @DatabaseField(foreign = true, foreignAutoRefresh = true,columnName = FIELD_OWNER_ID)
     private Player owner;
     
-    @Expose
-    @SerializedName(JSON_FIELD_TICKETS)
     @ForeignCollectionField
     private ForeignCollection<Ticket> tickets;
     
     @Expose
+    @SerializedName(JSON_FIELD_TICKETS)
+    private List<Ticket> jsonTickets;
+    
+    @Expose
     @SerializedName(JSON_FIELD_PLAYERS)
-    //@ForeignCollectionField
     private List<Player> players;
 
     public long getId() {
@@ -93,15 +95,6 @@ public class Session  extends AbstractMessage{
         this.endTime = endTime;
     }
     
-
-//    public ForeignCollection<Player> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(ForeignCollection<Player> players) {
-//        this.players = players;
-//    }
-
     public List<Player> getPlayers() {
         return players;
     }
@@ -118,12 +111,14 @@ public class Session  extends AbstractMessage{
         this.owner = owner;
     }
 
-    public ForeignCollection<Ticket> getTickets() {
-        return tickets;
+    public List<Ticket> getTickets() {
+        if(jsonTickets == null)
+            prepareToSerialization();
+        return jsonTickets;
     }
 
-    public void setTickets(ForeignCollection<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setTickets(List<Ticket> tickets) {
+        this.jsonTickets = tickets;
     }
 
     public Long getDeckId() {
@@ -141,5 +136,11 @@ public class Session  extends AbstractMessage{
     public void setName(String name) {
         this.name = name;
     }
+    
+    public void prepareToSerialization(){
+        if(this.tickets !=null)
+            this.jsonTickets = new ArrayList<Ticket>(this.tickets);
+    }
+    
     
 }

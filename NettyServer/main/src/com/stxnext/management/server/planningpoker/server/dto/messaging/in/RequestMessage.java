@@ -17,4 +17,9 @@ public class RequestMessage extends AbstractMessage{
         return requestName;
     }
 
+
+    @Override
+    protected void prepareToSerialization() {
+    }
+
 }

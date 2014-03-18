@@ -49,6 +49,11 @@ public class Card extends AbstractMessage{
     public void setDeck(Deck deck) {
         this.deck = deck;
     }
+
+    @Override
+    protected void prepareToSerialization() {
+        //nope, no foreign collection here
+    }
     
     
 }

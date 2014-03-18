@@ -23,5 +23,9 @@ public class DeckSetMessage extends AbstractMessage {
     public void setDecks(List<Deck> decks) {
         this.decks = decks;
     }
+
+    @Override
+    protected void prepareToSerialization() {
+    }
     
 }

@@ -1,5 +1,8 @@
 package com.stxnext.management.server.planningpoker.server.dto.combined;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.dao.ForeignCollection;
@@ -25,10 +28,12 @@ public class Ticket extends AbstractMessage {
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
     private Long id;
     
-    @Expose
-    @SerializedName(JSON_FIELD_VOTES)
     @ForeignCollectionField
     private ForeignCollection<Vote> votes;
+    
+    @Expose
+    @SerializedName(JSON_FIELD_VOTES)
+    private List<Vote> jsonVotes;
     
     @Expose
     @SerializedName(FIELD_SESION_ID)
@@ -42,14 +47,6 @@ public class Ticket extends AbstractMessage {
 
     public long getId() {
         return id;
-    }
-
-    public ForeignCollection<Vote> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(ForeignCollection<Vote> votes) {
-        this.votes = votes;
     }
 
     public String getDisplayValue() {
@@ -66,6 +63,22 @@ public class Ticket extends AbstractMessage {
 
     public void setSession(Session session) {
         this.session = session;
+    }
+    
+    public List<Vote> getVotes() {
+        if(jsonVotes == null)
+            prepareToSerialization();
+        return jsonVotes;
+    }
+
+    public void setVotes(List<Vote> jsonVotes) {
+        this.jsonVotes = jsonVotes;
+    }
+
+    @Override
+    protected void prepareToSerialization() {
+        if(this.votes!=null)
+            this.jsonVotes = new ArrayList<Vote>(votes);
     }
     
 }
