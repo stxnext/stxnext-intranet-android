@@ -13,7 +13,9 @@ public class Card extends AbstractMessage{
     
     public static final String FIELD_ID = "id";
     public static final String FIELD_NAME = "display_value";
-    public static final String FIELD_DECK_ID = "deck_id";
+    public static final String FIELD_DECK_ID = "deck";
+    
+    public static final String JSON_DECK_ID = "deck_id";
     
     @Expose
     @SerializedName(FIELD_ID)
@@ -28,7 +30,15 @@ public class Card extends AbstractMessage{
     @DatabaseField(foreign = true, columnName = FIELD_DECK_ID)
     private Deck deck;
     
+    @Expose
+    @SerializedName(JSON_DECK_ID)
+    private Long deckId;
+    
     public Card(){};
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getId() {
         return id;
@@ -48,6 +58,14 @@ public class Card extends AbstractMessage{
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public Long getDeckId() {
+        return deckId;
+    }
+
+    public void setDeckId(Long deckId) {
+        this.deckId = deckId;
     }
 
     @Override

@@ -13,9 +13,11 @@ public class Vote extends AbstractMessage {
     public static final String ENTITY_NAME = "poker_vote";
 
     public static final String FIELD_ID = "id";
-    public static final String FIELD_CARD_ID = "card_id";
-    public static final String FIELD_PLAYER_ID = "player_id";
-    public static final String FIELD_TICKET_ID = "ticket_id";
+    public static final String FIELD_CARD_ID = "card";
+    public static final String FIELD_PLAYER_ID = "player";
+    public static final String FIELD_TICKET_ID = "ticket";
+    
+    public static final String JSON_TICKET_ID = "ticket_id";
     
     @Expose
     @SerializedName(FIELD_ID)
@@ -36,7 +38,7 @@ public class Vote extends AbstractMessage {
     private Ticket ticket;
     
     @Expose
-    @SerializedName(FIELD_TICKET_ID)
+    @SerializedName(JSON_TICKET_ID)
     private Long ticketId;
 
     public Vote(){};
@@ -53,29 +55,29 @@ public class Vote extends AbstractMessage {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public Ticket getTicket() {
         return ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
     }
 
     public Card getCard() {
         return card;
     }
-
+    
     public void setCard(Card card) {
         this.card = card;
     }
-    
+
     public Long getTicketId() {
         prepareToSerialization();
         return ticketId;
+    }
+    
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public void setTicketId(Long ticketId) {

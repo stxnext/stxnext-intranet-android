@@ -31,11 +31,6 @@ import com.stxnext.management.server.planningpoker.server.dto.messaging.out.Deck
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.NotificationFor;
 
 /**
- * shuold be a singleton that just handles messages and assigning specific type
- * of msg to particular handler will have db and SocketContext set to respond to
- * devices Will have db access and also should have be responsible for
- * separating the game sessions
- * 
  * @author luczakp
  */
 public class MessageHandler {
@@ -94,7 +89,6 @@ public class MessageHandler {
             case PlayersInLiveSession:
                 playersInLiveSession(ctx, msg);
                 break;
-                
             case SMNewTicketRound:
                 newTicketRound(ctx, msg);
                 break;
@@ -154,7 +148,9 @@ public class MessageHandler {
         Vote newVote = Vote.fromJsonString(sessionMsg.getSessionSubject(), Vote.class);
         Session cachedSession = dao.getSessionDao().queryForId(sessionMsg.getSessionId());
         Player cachedPlayer = dao.getPlayerDao().queryForId(sessionMsg.getPlayerId());
-        
+        Ticket cachedTicket = dao.getTicketDao().queryForId(newVote.getTicketId());
+        newVote.setPlayer(cachedPlayer);
+        newVote.setTicket(cachedTicket);
         //allowing for changing user's mind
         dao.getVoteDao().createOrUpdate(newVote);
         
@@ -164,7 +160,7 @@ public class MessageHandler {
                 NotificationFor.UserVote.getAction(), sessionResponse.serialize());
         
         SessionConnectionContext sessionCtx = sessionConnections.get(sessionMsg.getSessionId());
-        broadcastToSessionParticipants(sessionCtx, wrapper, Lists.newArrayList(cachedPlayer),false);
+        broadcastToSessionParticipants(sessionCtx, wrapper, null,false);
     }
     
     private void newTicketRound(ChannelHandlerContext ctx, MessageWrapper msg) throws Exception{
@@ -183,7 +179,7 @@ public class MessageHandler {
                 NotificationFor.NextTicket.getAction(), sessionResponse.serialize());
         
         SessionConnectionContext sessionCtx = sessionConnections.get(sessionMsg.getSessionId());
-        broadcastToSessionParticipants(sessionCtx, wrapper, Lists.newArrayList(cachedPlayer),false);
+        broadcastToSessionParticipants(sessionCtx, wrapper, null,false);
         
         //cachedSession.set
     }
@@ -317,7 +313,7 @@ public class MessageHandler {
             MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_NOTIFICATION,
                     NotificationFor.UserConnectionState.getAction(), sessionMsg.serialize());
             
-            broadcastToSessionParticipants(sessionCtx, wrapper, Lists.newArrayList(player), false);
+            broadcastToSessionParticipants(sessionCtx, wrapper, null, false);
         }
     }
     
