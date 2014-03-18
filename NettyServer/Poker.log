@@ -9246,3 +9246,993 @@ INSERT INTO `poker_player` (`name` ,`email` ,`external_id` ,`team_id` ,`active` 
 2014-03-18 12:28:58,299 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update statement is prepared and executed returning 1: UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?
 2014-03-18 12:28:58,299 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - update data with statement 'UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?' and 6 args, changed 1 rows
 2014-03-18 12:28:58,299 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update arguments: [ziomek4, plauer668@gmail.com, 668, 5, true, 1]
+2014-03-18 13:16:56,535 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-18 13:16:56,542 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-18 13:16:56,707 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-18 13:16:56,711 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-18 13:16:56,711 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-18 13:16:56,717 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-18 13:16:56,717 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-18 13:16:56,718 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-18 13:16:56,718 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-18 13:16:56,718 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-18 13:16:56,719 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-18 13:16:56,719 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-18 13:16:56,826 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-18 13:16:56,826 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-18 13:16:56,827 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-18 13:16:56,827 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-18 13:16:56,862 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-18 13:16:56,862 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-18 13:16:56,894 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-18 13:16:56,899 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-18 13:16:56,903 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-18 13:16:59,325 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-18 13:16:59,326 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-18 13:16:59,408 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,409 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:16:59,431 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,431 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:16:59,437 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,437 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:16:59,463 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,463 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:16:59,467 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,467 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:16:59,471 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,471 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:16:59,477 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,477 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:16:59,493 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,494 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 
+2014-03-18 13:16:59,494 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 ' with 0 args
+2014-03-18 13:16:59,498 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,499 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 
+2014-03-18 13:16:59,499 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 ' with 0 args
+2014-03-18 13:16:59,499 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,500 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 
+2014-03-18 13:16:59,500 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 ' with 0 args
+2014-03-18 13:16:59,500 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:16:59,501 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 
+2014-03-18 13:16:59,501 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 ' with 0 args
+2014-03-18 13:16:59,519 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x3197b320155ece25
+2014-03-18 13:16:59,526 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-18 13:16:59,549 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-18 13:16:59,554 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-18 13:16:59,554 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-18 13:16:59,554 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-18 13:16:59,554 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-18 13:18:05,075 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-18 13:18:08,658 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.4:60462:{"action":"player_handshake","payload":"[{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"name\":\"ziomek4\",\"active\":true},{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"name\":\"ziomek2\",\"active\":true},{\"team_id\":5,\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"name\":\"ziomek\",\"active\":true}]","type":"request"}
+
+2014-03-18 13:18:08,727 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,728 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) 
+2014-03-18 13:18:08,728 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' with 0 args
+2014-03-18 13:18:08,731 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' returned 3 results
+2014-03-18 13:18:08,796 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.4:60462:{"action":"player_sessions","payload":"{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"id\":1,\"name\":\"ziomek4\",\"active\":true}","type":"request"}
+
+2014-03-18 13:18:08,800 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,802 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) 
+2014-03-18 13:18:08,803 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,803 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:18:08,807 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,808 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,808 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,808 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,810 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,810 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,811 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,811 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,812 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,812 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,812 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,812 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,813 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,813 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,814 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,814 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,814 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,815 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,815 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,815 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,815 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,816 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,816 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,816 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,817 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,817 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,817 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,817 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,818 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,818 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,818 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,818 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,819 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,819 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,820 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,820 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,820 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,820 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,820 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,821 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,821 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,821 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:08,821 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:08,821 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:08,822 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' returned 11 results
+2014-03-18 13:18:08,822 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,822 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,823 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,823 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:18:08,824 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,824 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,824 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,824 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,824 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [33]
+2014-03-18 13:18:08,825 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,825 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,826 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,826 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,826 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [65]
+2014-03-18 13:18:08,827 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,828 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,828 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,828 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,829 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [66]
+2014-03-18 13:18:08,830 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,830 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,830 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,831 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,831 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [67]
+2014-03-18 13:18:08,832 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,833 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,833 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,833 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,833 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [68]
+2014-03-18 13:18:08,834 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,835 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,835 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,835 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,835 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [69]
+2014-03-18 13:18:08,837 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,837 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,837 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,837 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,838 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [97]
+2014-03-18 13:18:08,839 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,839 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,840 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,840 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,840 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [129]
+2014-03-18 13:18:08,842 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,842 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,842 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,843 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,843 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [130]
+2014-03-18 13:18:08,844 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:08,845 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:08,845 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:08,845 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:08,846 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [161]
+2014-03-18 13:18:08,847 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:09,010 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.4:60462:{"action":"join_session","payload":"{\"player_id\":1,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:18:09,012 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:09,013 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_session` WHERE `id` = ?
+2014-03-18 13:18:09,013 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:09,014 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:09,014 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:09,014 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:09,014 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_session` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:09,014 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:09,015 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:09,015 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:09,015 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:09,015 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:09,016 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:09,017 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for long statement is prepared and executed: SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? 
+2014-03-18 13:18:09,017 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? ' returned 1
+2014-03-18 13:18:09,017 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:09,020 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update statement is prepared and executed returning 1: UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?
+2014-03-18 13:18:09,021 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - update data with statement 'UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?' and 6 args, changed 1 rows
+2014-03-18 13:18:09,021 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update arguments: [ziomek4, plauer668@gmail.com, 668, 5, true, 1]
+2014-03-18 13:18:31,422 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.15:55696:{"action":"player_handshake","payload":"[{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"name\":\"ziomek4\",\"active\":true},{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"name\":\"ziomek2\",\"active\":true},{\"team_id\":5,\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"name\":\"ziomek\",\"active\":true}]","type":"request"}
+
+2014-03-18 13:18:31,423 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,424 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) 
+2014-03-18 13:18:31,424 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' with 0 args
+2014-03-18 13:18:31,425 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' returned 3 results
+2014-03-18 13:18:31,470 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.15:55696:{"action":"player_sessions","payload":"{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"id\":1,\"name\":\"ziomek4\",\"active\":true}","type":"request"}
+
+2014-03-18 13:18:31,471 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,471 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) 
+2014-03-18 13:18:31,471 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,471 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:18:31,471 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,472 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,472 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,472 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,472 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,472 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,473 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,473 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,473 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,473 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,473 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,474 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,474 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,475 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,475 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,476 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,476 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,476 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,477 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,477 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,477 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,478 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,478 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,478 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,478 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,479 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,479 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,479 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,479 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,480 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,480 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,480 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,480 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,481 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,481 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,481 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,481 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,482 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,482 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,482 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,482 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,482 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:31,483 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:31,483 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:31,483 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' returned 11 results
+2014-03-18 13:18:31,483 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,484 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,484 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,484 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:18:31,485 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,486 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,486 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,486 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,486 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [33]
+2014-03-18 13:18:31,488 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,488 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,488 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,488 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,488 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [65]
+2014-03-18 13:18:31,489 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,490 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,490 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,490 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,490 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [66]
+2014-03-18 13:18:31,491 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,491 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,491 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,492 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,492 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [67]
+2014-03-18 13:18:31,493 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,493 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,493 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,493 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,494 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [68]
+2014-03-18 13:18:31,494 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,495 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,495 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,495 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,495 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [69]
+2014-03-18 13:18:31,496 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,496 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,496 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,497 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,497 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [97]
+2014-03-18 13:18:31,497 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,498 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,498 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,498 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,498 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [129]
+2014-03-18 13:18:31,499 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,499 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,499 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,500 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,500 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [130]
+2014-03-18 13:18:31,501 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:31,501 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:31,501 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:18:31,501 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:18:31,501 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [161]
+2014-03-18 13:18:31,502 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:18:32,112 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.15:55696:{"action":"join_session","payload":"{\"player_id\":1,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:18:32,112 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:32,112 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_session` WHERE `id` = ?
+2014-03-18 13:18:32,113 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:32,113 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:32,113 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:32,113 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:32,113 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_session` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:32,114 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:32,114 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:32,114 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:18:32,114 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:18:32,114 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:18:32,114 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:32,115 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for long statement is prepared and executed: SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? 
+2014-03-18 13:18:32,115 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? ' returned 1
+2014-03-18 13:18:32,115 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:18:32,115 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update statement is prepared and executed returning 1: UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?
+2014-03-18 13:18:32,116 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - update data with statement 'UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?' and 6 args, changed 1 rows
+2014-03-18 13:18:32,116 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update arguments: [ziomek4, plauer668@gmail.com, 668, 5, true, 1]
+2014-03-18 13:20:04,518 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:71) - /192.168.2.15:55696 INACTIVE 
+
+2014-03-18 13:20:04,518 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:63) - /192.168.2.15:55696UNREGISTERED 
+
+2014-03-18 13:20:04,520 INFO  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:98) - /192.168.2.15:55696 has disconnected
+2014-03-18 13:34:56,961 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-18 13:34:56,970 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-18 13:34:56,991 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-18 13:34:56,994 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-18 13:34:56,994 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-18 13:34:56,998 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-18 13:34:56,999 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-18 13:34:56,999 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-18 13:34:56,999 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-18 13:34:57,000 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-18 13:34:57,000 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-18 13:34:57,001 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-18 13:34:57,120 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-18 13:34:57,120 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-18 13:34:57,120 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-18 13:34:57,121 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-18 13:34:57,167 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-18 13:34:57,167 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-18 13:34:57,200 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-18 13:34:57,204 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-18 13:34:57,208 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-18 13:34:57,555 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-18 13:34:57,556 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-18 13:34:57,621 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,623 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:34:57,639 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,639 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:34:57,645 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,645 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:34:57,669 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,670 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:34:57,674 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,674 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:34:57,678 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,678 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:34:57,683 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,683 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:34:57,699 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,700 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 
+2014-03-18 13:34:57,700 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 ' with 0 args
+2014-03-18 13:34:57,704 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,705 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 
+2014-03-18 13:34:57,705 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 ' with 0 args
+2014-03-18 13:34:57,705 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,706 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 
+2014-03-18 13:34:57,706 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 ' with 0 args
+2014-03-18 13:34:57,706 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:34:57,706 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 
+2014-03-18 13:34:57,707 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 ' with 0 args
+2014-03-18 13:34:57,722 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x491789d400f32b49
+2014-03-18 13:34:57,730 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-18 13:34:57,755 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-18 13:34:57,763 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-18 13:34:57,763 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-18 13:34:57,763 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-18 13:34:57,764 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-18 13:35:54,825 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-18 13:36:00,670 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.4:47753:{"action":"player_handshake","payload":"[{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"name\":\"ziomek4\",\"active\":true},{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"name\":\"ziomek2\",\"active\":true},{\"team_id\":5,\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"name\":\"ziomek\",\"active\":true}]","type":"request"}
+
+2014-03-18 13:36:00,752 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,753 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) 
+2014-03-18 13:36:00,753 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' with 0 args
+2014-03-18 13:36:00,755 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' returned 3 results
+2014-03-18 13:36:00,807 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.4:47753:{"action":"player_sessions","payload":"{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"id\":1,\"name\":\"ziomek4\",\"active\":true}","type":"request"}
+
+2014-03-18 13:36:00,811 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,812 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) 
+2014-03-18 13:36:00,814 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,814 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:36:00,818 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,819 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,819 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,820 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,822 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,822 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,822 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,823 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,823 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,824 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,824 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,824 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,825 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,825 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,825 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,825 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,826 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,826 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,826 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,827 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,827 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,827 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,828 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,828 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,828 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,829 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,829 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,829 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,829 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,829 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,830 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,830 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,830 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,830 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,831 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,831 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,831 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,832 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,832 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,832 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,832 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,833 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:00,833 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:00,833 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:00,833 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' returned 11 results
+2014-03-18 13:36:00,833 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,834 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,834 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,834 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:36:00,835 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,835 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,836 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,836 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,836 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [33]
+2014-03-18 13:36:00,837 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,837 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,838 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,838 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,839 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [65]
+2014-03-18 13:36:00,840 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,841 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,841 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,841 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,841 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [66]
+2014-03-18 13:36:00,842 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,842 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,843 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,843 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,843 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [67]
+2014-03-18 13:36:00,844 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,844 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,845 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,845 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,845 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [68]
+2014-03-18 13:36:00,846 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,847 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,847 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,847 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,847 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [69]
+2014-03-18 13:36:00,848 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,848 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,848 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,849 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,849 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [97]
+2014-03-18 13:36:00,850 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,850 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,850 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,850 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,851 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [129]
+2014-03-18 13:36:00,852 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,852 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,852 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,852 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,853 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [130]
+2014-03-18 13:36:00,854 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:00,855 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:00,856 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:00,856 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:00,857 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [161]
+2014-03-18 13:36:00,858 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:01,025 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.4:47753:{"action":"join_session","payload":"{\"player_id\":1,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:36:01,027 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:01,027 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_session` WHERE `id` = ?
+2014-03-18 13:36:01,028 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:01,028 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:01,028 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:01,028 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:01,029 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_session` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:01,029 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:01,029 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:01,029 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:01,030 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:01,030 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:01,030 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:01,031 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for long statement is prepared and executed: SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? 
+2014-03-18 13:36:01,031 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? ' returned 1
+2014-03-18 13:36:01,031 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:01,036 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update statement is prepared and executed returning 1: UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?
+2014-03-18 13:36:01,036 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - update data with statement 'UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?' and 6 args, changed 1 rows
+2014-03-18 13:36:01,037 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update arguments: [ziomek4, plauer668@gmail.com, 668, 5, true, 1]
+2014-03-18 13:36:01,046 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.4:47753:{"action":"player_in_live_session","payload":"{\"player_id\":1,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:36:06,172 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.15:45993:{"action":"player_handshake","payload":"[{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"name\":\"ziomek4\",\"active\":true},{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"name\":\"ziomek2\",\"active\":true},{\"team_id\":5,\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"name\":\"ziomek\",\"active\":true}]","type":"request"}
+
+2014-03-18 13:36:06,173 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,173 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) 
+2014-03-18 13:36:06,173 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' with 0 args
+2014-03-18 13:36:06,174 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' returned 3 results
+2014-03-18 13:36:06,371 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.15:45993:{"action":"player_sessions","payload":"{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"id\":2,\"name\":\"ziomek2\",\"active\":true}","type":"request"}
+
+2014-03-18 13:36:06,371 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,371 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) 
+2014-03-18 13:36:06,371 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,372 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [2]
+2014-03-18 13:36:06,373 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,373 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,373 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,373 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,374 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,374 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,374 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,374 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,375 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,375 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,375 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,375 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,376 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,376 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,376 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,376 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,377 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,377 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,377 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,377 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,378 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,378 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,378 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,378 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,378 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,379 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,379 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,379 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,379 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,379 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,380 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,380 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,380 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,380 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,381 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,381 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,381 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,381 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,381 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,381 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,382 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,382 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,382 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,382 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,382 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' returned 11 results
+2014-03-18 13:36:06,383 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,383 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,383 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,383 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:36:06,384 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,384 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,385 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,385 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,385 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [33]
+2014-03-18 13:36:06,386 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,386 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,386 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,386 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,386 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [65]
+2014-03-18 13:36:06,387 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,387 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,388 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,388 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,388 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [66]
+2014-03-18 13:36:06,389 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,389 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,389 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,389 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,390 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [67]
+2014-03-18 13:36:06,390 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,391 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,391 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,391 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,391 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [68]
+2014-03-18 13:36:06,392 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,392 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,392 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,392 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,393 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [69]
+2014-03-18 13:36:06,393 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,394 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,394 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,394 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,394 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [97]
+2014-03-18 13:36:06,395 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,395 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,395 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,395 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,396 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [129]
+2014-03-18 13:36:06,396 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,397 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,397 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,397 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,397 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [130]
+2014-03-18 13:36:06,398 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,399 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,399 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:36:06,399 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:36:06,399 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [161]
+2014-03-18 13:36:06,400 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:36:06,679 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.15:45993:{"action":"join_session","payload":"{\"player_id\":2,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:36:06,680 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,680 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_session` WHERE `id` = ?
+2014-03-18 13:36:06,680 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,680 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,681 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,681 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,681 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_session` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,681 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:36:06,681 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:36:06,682 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:36:06,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [2]
+2014-03-18 13:36:06,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for long statement is prepared and executed: SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? 
+2014-03-18 13:36:06,682 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? ' returned 1
+2014-03-18 13:36:06,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:36:06,683 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update statement is prepared and executed returning 1: UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?
+2014-03-18 13:36:06,683 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - update data with statement 'UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?' and 6 args, changed 1 rows
+2014-03-18 13:36:06,683 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update arguments: [ziomek2, plauer667@gmail.com, 667, 5, true, 2]
+2014-03-18 13:36:06,692 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:81) - request from /192.168.2.15:45993:{"action":"player_in_live_session","payload":"{\"player_id\":2,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:36:19,334 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:71) - /192.168.2.15:45993 INACTIVE 
+
+2014-03-18 13:36:19,335 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:63) - /192.168.2.15:45993UNREGISTERED 
+
+2014-03-18 13:38:25,452 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Using SLF4J as the default logging framework
+2014-03-18 13:38:25,459 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.eventLoopThreads: 8
+2014-03-18 13:38:25,481 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - UID: 502
+2014-03-18 13:38:25,484 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Java version: 6
+2014-03-18 13:38:25,484 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noUnsafe: false
+2014-03-18 13:38:25,489 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.ByteBuffer.cleaner: available
+2014-03-18 13:38:25,490 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Buffer.address: available
+2014-03-18 13:38:25,491 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe.theUnsafe: available
+2014-03-18 13:38:25,491 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - sun.misc.Unsafe.copyMemory: available
+2014-03-18 13:38:25,492 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - java.nio.Bits.unaligned: true
+2014-03-18 13:38:25,492 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - sun.misc.Unsafe: available
+2014-03-18 13:38:25,493 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noJavassist: false
+2014-03-18 13:38:25,612 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - Javassist: available
+2014-03-18 13:38:25,612 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.tmpdir: /var/folders/zt/tqb9w7cd0dd337wszqssg8bh0000gp/T (java.io.tmpdir)
+2014-03-18 13:38:25,612 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2014-03-18 13:38:25,613 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noPreferDirect: false
+2014-03-18 13:38:25,663 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.noKeySetOptimization: false
+2014-03-18 13:38:25,664 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.selectorAutoRebuildThreshold: 512
+2014-03-18 13:38:25,695 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2014-03-18 13:38:25,702 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.CharSequenceMatcher
+2014-03-18 13:38:25,707 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Generated: io.netty.util.internal.__matchers__.java.lang.StringMatcher
+2014-03-18 13:38:26,096 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection opened: conn2: url=jdbc:h2:poker/poker user=
+2014-03-18 13:38:26,096 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection set autoCommit to true
+2014-03-18 13:38:26,177 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,180 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:38:26,195 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,196 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:38:26,201 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,201 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:38:26,228 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,229 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:38:26,233 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,234 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:38:26,239 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,240 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:38:26,246 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,247 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - Got meta data from connection
+2014-03-18 13:38:26,267 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,268 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 
+2014-03-18 13:38:26,269 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 0 ' with 0 args
+2014-03-18 13:38:26,274 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,274 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 
+2014-03-18 13:38:26,274 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 1 ' with 0 args
+2014-03-18 13:38:26,275 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,275 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 
+2014-03-18 13:38:26,275 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 2 ' with 0 args
+2014-03-18 13:38:26,276 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:26,276 TRACE [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 
+2014-03-18 13:38:26,276 DEBUG [main] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT COUNT(*) FROM `poker_deck` WHERE `predefined_type` = 3 ' with 0 args
+2014-03-18 13:38:26,293 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:71) - -Dio.netty.initialSeedUniquifier: 0x098345ad1408fc14
+2014-03-18 13:38:26,302 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.threadLocalDirectBufferSize: 65536
+2014-03-18 13:38:26,331 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - -Dio.netty.allocator.type: unpooled
+2014-03-18 13:38:26,337 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback interface: lo0
+2014-03-18 13:38:26,337 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /fe80:0:0:0:0:0:0:1%1 (primary)
+2014-03-18 13:38:26,338 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /0:0:0:0:0:0:0:1
+2014-03-18 13:38:26,338 DEBUG [main] logging.Slf4JLogger (Slf4JLogger.java:76) - Loopback address: /127.0.0.1
+2014-03-18 13:38:38,047 DEBUG [nioEventLoopGroup-3-1] logging.Slf4JLogger (Slf4JLogger.java:81) - -Dio.netty.leakDetectionLevel: simple
+2014-03-18 13:38:39,162 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.4:58612:{"action":"player_handshake","payload":"[{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"name\":\"ziomek4\",\"active\":true},{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"name\":\"ziomek2\",\"active\":true},{\"team_id\":5,\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"name\":\"ziomek\",\"active\":true}]","type":"request"}
+
+2014-03-18 13:38:39,241 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,242 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) 
+2014-03-18 13:38:39,243 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' with 0 args
+2014-03-18 13:38:39,245 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' returned 3 results
+2014-03-18 13:38:39,260 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.4:58612:{"action":"player_sessions","payload":"{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"id\":1,\"name\":\"ziomek4\",\"active\":true}","type":"request"}
+
+2014-03-18 13:38:39,264 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,266 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) 
+2014-03-18 13:38:39,267 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,268 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:38:39,271 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,272 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,273 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,273 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,274 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,275 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,275 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,275 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,276 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,276 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,277 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,277 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,277 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,278 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,278 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,278 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,279 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,279 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,279 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,280 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,280 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,280 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,281 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,281 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,281 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,282 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,282 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,282 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,283 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,283 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,283 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,283 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,284 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,284 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,285 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,285 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,285 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,286 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,286 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,286 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,286 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,286 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,287 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,287 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,287 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' returned 11 results
+2014-03-18 13:38:39,287 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,288 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,288 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,288 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:38:39,289 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,289 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,289 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,290 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,290 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [33]
+2014-03-18 13:38:39,291 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,292 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,292 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,292 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,292 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [65]
+2014-03-18 13:38:39,294 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,294 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,295 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,295 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,295 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [66]
+2014-03-18 13:38:39,296 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,297 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,297 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,297 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,297 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [67]
+2014-03-18 13:38:39,299 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,299 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,299 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,299 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,300 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [68]
+2014-03-18 13:38:39,301 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,301 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,302 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,302 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,302 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [69]
+2014-03-18 13:38:39,304 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,304 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,304 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,305 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,305 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [97]
+2014-03-18 13:38:39,306 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,306 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,307 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,307 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,307 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [129]
+2014-03-18 13:38:39,309 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,309 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,309 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,310 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,310 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [130]
+2014-03-18 13:38:39,311 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,312 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,312 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:39,312 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:39,313 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [161]
+2014-03-18 13:38:39,314 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:39,396 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.4:58612:{"action":"join_session","payload":"{\"player_id\":1,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:38:39,398 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,399 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_session` WHERE `id` = ?
+2014-03-18 13:38:39,399 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,399 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,400 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,400 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,400 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_session` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,400 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,400 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,401 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:39,401 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:39,401 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:39,402 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,403 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for long statement is prepared and executed: SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? 
+2014-03-18 13:38:39,403 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? ' returned 1
+2014-03-18 13:38:39,404 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:39,409 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update statement is prepared and executed returning 1: UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?
+2014-03-18 13:38:39,410 DEBUG [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - update data with statement 'UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?' and 6 args, changed 1 rows
+2014-03-18 13:38:39,410 TRACE [nioEventLoopGroup-3-1] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update arguments: [ziomek4, plauer668@gmail.com, 668, 5, true, 1]
+2014-03-18 13:38:39,419 DEBUG [nioEventLoopGroup-3-1] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.4:58612:{"action":"player_in_live_session","payload":"{\"player_id\":1,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:38:43,636 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.15:49869:{"action":"player_handshake","payload":"[{\"team_id\":5,\"email\":\"plauer668@gmail.com\",\"external_id\":668,\"name\":\"ziomek4\",\"active\":true},{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"name\":\"ziomek2\",\"active\":true},{\"team_id\":5,\"email\":\"plauer666@gmail.com\",\"external_id\":666,\"name\":\"ziomek\",\"active\":true}]","type":"request"}
+
+2014-03-18 13:38:43,637 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,637 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) 
+2014-03-18 13:38:43,637 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' with 0 args
+2014-03-18 13:38:43,638 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `external_id` IN (668 ,667 ,666 ) ' returned 3 results
+2014-03-18 13:38:43,655 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.15:49869:{"action":"player_sessions","payload":"{\"team_id\":5,\"email\":\"plauer667@gmail.com\",\"external_id\":667,\"id\":2,\"name\":\"ziomek2\",\"active\":true}","type":"request"}
+
+2014-03-18 13:38:43,655 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,655 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) 
+2014-03-18 13:38:43,655 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,656 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [2]
+2014-03-18 13:38:43,657 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,657 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,658 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,658 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,658 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,658 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,659 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,659 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,659 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,659 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,660 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,660 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,660 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,661 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,661 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,661 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,661 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,662 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,662 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,662 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,662 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,663 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,663 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,663 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,663 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,663 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,664 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,664 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,664 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,664 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,665 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,665 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,665 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,665 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,666 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,666 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,666 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,666 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,666 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,667 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,667 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,667 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,667 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,668 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,668 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_session` WHERE `id` IN (SELECT `session_id` FROM `player_session` WHERE `player_id` = ? ) ' returned 11 results
+2014-03-18 13:38:43,668 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,668 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,668 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,669 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [1]
+2014-03-18 13:38:43,670 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,670 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,670 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,670 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,670 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [33]
+2014-03-18 13:38:43,671 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,672 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,672 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,672 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,672 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [65]
+2014-03-18 13:38:43,673 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,673 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,673 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,674 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,674 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [66]
+2014-03-18 13:38:43,675 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,675 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,675 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,676 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,676 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [67]
+2014-03-18 13:38:43,677 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,677 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,677 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,677 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,677 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [68]
+2014-03-18 13:38:43,678 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,679 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,679 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,679 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,679 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [69]
+2014-03-18 13:38:43,680 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,680 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,680 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,680 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,681 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [97]
+2014-03-18 13:38:43,681 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,682 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,682 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [129]
+2014-03-18 13:38:43,683 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,683 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,684 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,684 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,684 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [130]
+2014-03-18 13:38:43,685 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,685 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,686 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - compiled statement: SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) 
+2014-03-18 13:38:43,686 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - prepared statement 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' with 1 args
+2014-03-18 13:38:43,686 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - prepared statement arguments: [161]
+2014-03-18 13:38:43,687 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT * FROM `poker_player` WHERE `id` IN (SELECT `player_id` FROM `player_session` WHERE `session_id` = ? ) ' returned 3 results
+2014-03-18 13:38:43,801 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.15:49869:{"action":"join_session","payload":"{\"player_id\":2,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:38:43,801 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,801 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_session` WHERE `id` = ?
+2014-03-18 13:38:43,802 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,802 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,802 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,803 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,803 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_session` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,803 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [1]
+2014-03-18 13:38:43,803 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,804 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for one statement is prepared and executed: SELECT * FROM `poker_player` WHERE `id` = ?
+2014-03-18 13:38:43,804 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query-for-id using 'SELECT * FROM `poker_player` WHERE `id` = ?' and 1 args, got 1 result
+2014-03-18 13:38:43,804 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query-for-id arguments: [2]
+2014-03-18 13:38:43,804 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,805 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - query for long statement is prepared and executed: SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? 
+2014-03-18 13:38:43,805 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - query of 'SELECT COUNT(*) FROM `poker_player` WHERE `id` = ? ' returned 1
+2014-03-18 13:38:43,805 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - connection is closed returned false
+2014-03-18 13:38:43,805 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update statement is prepared and executed returning 1: UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?
+2014-03-18 13:38:43,806 DEBUG [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:41) - update data with statement 'UPDATE `poker_player` SET `name` = ?, `email` = ?, `external_id` = ?, `team_id` = ?, `active` = ? WHERE `id` = ?' and 6 args, changed 1 rows
+2014-03-18 13:38:43,806 TRACE [nioEventLoopGroup-3-2] logger.Slf4jLoggingLog (Slf4jLoggingLog.java:38) - update arguments: [ziomek2, plauer667@gmail.com, 667, 5, true, 2]
+2014-03-18 13:38:43,809 DEBUG [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:82) - request from /192.168.2.15:49869:{"action":"player_in_live_session","payload":"{\"player_id\":2,\"session_id\":1}","type":"request"}
+
+2014-03-18 13:38:56,631 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:72) - /192.168.2.15:49869 INACTIVE 
+
+2014-03-18 13:38:56,631 WARN  [nioEventLoopGroup-3-2] server.PokerServerHandler (PokerServerHandler.java:63) - /192.168.2.15:49869UNREGISTERED 
+

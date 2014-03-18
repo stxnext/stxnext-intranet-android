@@ -46,7 +46,8 @@ public class SessionConnectionContext {
         removePlayerAndConnection(player);
     }
     
-    public void removeConnected(ChannelHandlerContext ctx){
+    //returns a player to be able to broadcast his connection interruption
+    public Player removeConnected(ChannelHandlerContext ctx){
         Player toRemove = null;
         for(Entry<Player, ChannelHandlerContext> entry : this.connectedPlayers.entrySet()){
             if(entry.getValue().equals(ctx)){
@@ -58,6 +59,7 @@ public class SessionConnectionContext {
         if(toRemove!=null){
             removePlayerAndConnection(toRemove);
         }
+        return toRemove;
     }
     
 }

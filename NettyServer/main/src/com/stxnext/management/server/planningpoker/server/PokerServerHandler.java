@@ -61,7 +61,7 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
         super.channelUnregistered(ctx);
         String msg = ctx.channel().remoteAddress().toString() + "UNREGISTERED \r\n";
         logger.log(Level.WARN, msg);
-        broadcastToGroup(ctx.channel().remoteAddress().toString()+" has disconnected");
+        msgHandler.onChannelDisconnected(ctx);
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.j256.ormlite.dao.ForeignCollection;
@@ -52,6 +53,19 @@ public class MessageHandler {
             peelAndRespond(wrapper, ctx);
         }
     }
+    
+    public void onChannelDisconnected(ChannelHandlerContext ctx){
+        for(Entry<Long, SessionConnectionContext> entry : sessionConnections.entrySet()){
+            Player disconnected = entry.getValue().removeConnected(ctx);
+            if(disconnected != null){
+                disconnected.setActive(false);
+                SessionMessage sessionMsg = new SessionMessage(disconnected, entry.getValue().getSession(), disconnected.serialize());
+                MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_NOTIFICATION,
+                        NotificationFor.UserConnectionState.getAction(), sessionMsg.serialize());
+                broadcastToSessionParticipants(entry.getValue(), wrapper, Lists.newArrayList(disconnected));
+            }
+        }
+    }
 
     private boolean handleError(MessageWrapper wrapper, ChannelHandlerContext ctx) {
         return false;
@@ -74,12 +88,18 @@ public class MessageHandler {
                 break;
             case JoinSession:
                 joinSession(ctx, msg);
+                break;
+            case PlayersInLiveSession:
+                playersInLiveSession(ctx, msg);
+                break;
             default:
 
                 break;
         }
     }
 
+    // TODO : create permission check on join to session
+    
     private void joinSession(ChannelHandlerContext ctx, MessageWrapper msg) throws Exception {
         String json = msg.getPayload();
         SessionMessage sessionMsg = SessionMessage.fromJsonString(json, SessionMessage.class);
@@ -118,6 +138,24 @@ public class MessageHandler {
         MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_RESPONSE,
                 RequestFor.PlayerHandshake.getMessage(), output);
         PokerServerHandler.respond(wrapper.serialize(), ctx, false);
+    }
+    
+    // TODO : create more convenient DAO that will fetch dependencies
+    
+    private void playersInLiveSession(ChannelHandlerContext ctx, MessageWrapper msg){
+        // TODO : check if the player has permission to see players in this session
+        SessionMessage sessionMessage = SessionMessage.fromJsonString(msg.getPayload(), SessionMessage.class);
+        SessionConnectionContext sessionContext = this.sessionConnections.get(sessionMessage.getSessionId());
+        if(sessionContext != null){
+            List<Player> activePlayers = new ArrayList<Player>(sessionContext.getConnectedPlayers().keySet());
+            String output = GsonProvider.get().toJson(activePlayers, new TypeToken<ArrayList<Player>>() {}.getType());
+            MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_RESPONSE,
+                    RequestFor.PlayersInLiveSession.getMessage(), output);
+            PokerServerHandler.respond(wrapper.serialize(), ctx, false);
+        }
+        else{
+            // send no such session error message
+        }
     }
 
     private void fetchUserSession(ChannelHandlerContext ctx, MessageWrapper msg) throws Exception {
@@ -190,11 +228,17 @@ public class MessageHandler {
             SessionMessage sessionMsg = new SessionMessage(player, session, player.serialize());
             MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_NOTIFICATION,
                     NotificationFor.UserConnectionState.getAction(), sessionMsg.serialize());
-            for (Entry<Player, ChannelHandlerContext> entry : sessionCtx.getConnectedPlayers()
-                    .entrySet()) {
-                if (!entry.getKey().getId().equals(player.getId())) {
-                    PokerServerHandler.respond(wrapper.serialize(), entry.getValue(), false);
-                }
+            
+            broadcastToSessionParticipants(sessionCtx, wrapper, Lists.newArrayList(player));
+        }
+    }
+    
+    
+    private void broadcastToSessionParticipants(SessionConnectionContext session, MessageWrapper wrapper, List<Player> omit){
+        for (Entry<Player, ChannelHandlerContext> entry : session.getConnectedPlayers()
+                .entrySet()) {
+            if (!omit.contains(entry.getKey())) {
+                PokerServerHandler.respond(wrapper.serialize(), entry.getValue(), false);
             }
         }
     }

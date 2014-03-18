@@ -2,13 +2,16 @@
 package com.stxnext.management.server.planningpoker.server.dto.messaging.in;
 
 public enum RequestFor {
+    //simple data management
     CardDecks("card_decks"),
-    OngoingSession("ongoing_sessions"),
     CreateSession("create_session"),
+    //preparing for session, querying user sessions, adding user and joining
     SessionForPlayer("player_sessions"),
     PlayerHandshake("player_handshake"),
-    PlayersInSession("player_in_session"),
+    PlayersInLiveSession("player_in_live_session"),
     JoinSession("join_session"),
+    //live game messages
+    SMRequestSessionOngoing("start_session"),
     SMNewTicketRound("new_ticket_round"),
     SMSimpleVote("simple_vote"),
     SMRevealVotes("reveal_votes"),
