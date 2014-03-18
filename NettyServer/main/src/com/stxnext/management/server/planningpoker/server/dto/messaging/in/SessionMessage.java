@@ -25,6 +25,12 @@ public class SessionMessage extends AbstractMessage {
         this.sessionSubject = serializedSubject;
     }
     
+    public SessionMessage(Long playerId, Long sessionId, String serializedSubject){
+        this.playerId = playerId;
+        this.sessionId = sessionId;
+        this.sessionSubject = serializedSubject;
+    }
+    
     public Long getSessionId() {
         return sessionId;
     }

@@ -22,14 +22,22 @@ public class Vote extends AbstractMessage {
     @DatabaseField(generatedId = true, columnName = FIELD_ID)
     private Long id;
 
+    @Expose
+    @SerializedName(FIELD_CARD_ID)
     @DatabaseField(foreign = true, foreignAutoRefresh = true,columnName = FIELD_CARD_ID)
     private Card card;
     
+    @Expose
+    @SerializedName(FIELD_PLAYER_ID)
     @DatabaseField(foreign = true,foreignAutoRefresh = true, columnName = FIELD_PLAYER_ID)
     private Player player;
     
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = FIELD_TICKET_ID)
     private Ticket ticket;
+    
+    @Expose
+    @SerializedName(FIELD_TICKET_ID)
+    private Long ticketId;
 
     public Vote(){};
     
@@ -64,9 +72,23 @@ public class Vote extends AbstractMessage {
     public void setCard(Card card) {
         this.card = card;
     }
+    
+    public Long getTicketId() {
+        prepareToSerialization();
+        return ticketId;
+    }
+
+    public void setTicketId(Long ticketId) {
+        this.ticketId = ticketId;
+    }
 
     @Override
     protected void prepareToSerialization() {
+        if(ticketId == null){
+            if(ticket!=null){
+                ticketId = ticket.getId();
+            }
+        }
     }
 
 }

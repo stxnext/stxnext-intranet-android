@@ -11,12 +11,14 @@ public enum RequestFor {
     PlayersInLiveSession("player_in_live_session"),
     JoinSession("join_session"),
     //live game messages
-    SMRequestSessionOngoing("start_session"),
+    //SMRequestSessionOngoing("start_session"),
     SMNewTicketRound("new_ticket_round"),
     SMSimpleVote("simple_vote"),
     SMRevealVotes("reveal_votes"),
     SMFinishSession("finish_session");
 
+    // TODO : need ticket list fetch request to get back to any and set up another voting
+    
     private String message;
 
     RequestFor(String message) {

@@ -4,6 +4,8 @@ public enum NotificationFor {
 
     UserConnectionState("user_connection_state"),
     NextTicket("next_ticket"),
+    RevealVotes("votes_revealed"),
+    CloseSession("close_session"),
     UserVote("userVote");
 
     private String action;

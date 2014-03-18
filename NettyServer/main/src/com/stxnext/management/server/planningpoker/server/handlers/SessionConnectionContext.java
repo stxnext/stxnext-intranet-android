@@ -34,6 +34,12 @@ public class SessionConnectionContext {
         this.connectedPlayers.put(player, ctx);
     }
     
+    public void disconnectSession(){
+        for(ChannelHandlerContext ctx : connectedPlayers.values()){
+            ctx.close();
+        }
+    }
+    
     private void removePlayerAndConnection(Player player){
         ChannelHandlerContext playerContext = this.connectedPlayers.get(player);
         if(playerContext != null){

@@ -86,6 +86,13 @@ public class Session  extends AbstractMessage{
     public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
+    
+    public void addTicket(Ticket ticket){
+        if(this.jsonTickets == null)
+            this.jsonTickets = new ArrayList<Ticket>();
+        
+        this.jsonTickets.add(ticket);
+    }
 
     public long getEndTime() {
         return endTime;
