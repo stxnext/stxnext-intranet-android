@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Iterables;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.storage.sqlite.EntityMapper;
 
@@ -34,6 +35,11 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
         result = mapper.mapEntity(c);
         c.close();
         return result;
+    }
+    
+    public IntranetUser getById(Long userId){
+        Cursor cursor = db.rawQuery(BASE_USER_QUERY+" AND u."+EXTERNAL_ID+"=? limit 1", new String[]{String.valueOf(userId)});
+        return Iterables.getFirst(mapper.mapEntity(cursor), null);
     }
 
     private static final String BASE_USER_QUERY = "select u."+EXTERNAL_ID+" as _id," +

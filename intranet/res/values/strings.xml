@@ -35,7 +35,6 @@
 	<string name ="label_start_time">Start time</string>
 	<string name ="label_end_time">End time</string>
 	
-	<string name ="label_work_from_home">Work from home</string>
 	<string name ="label_explanation">Explanation...</string>
 	
 	<string name ="label_localisation">Localisation</string>
@@ -44,7 +43,6 @@
 	<string name ="notification_sync_finished">Sync finished</string>
 	<string name ="notification_confirm_exit">Are you sure you want to quit the app?</string>
 	<string name ="notification_confirm_signout">Are you sure you want to sign out?</string>
-	<string name ="notification_sync_in_progress">Sync is in progress</string>
 	<string name ="notification_sync_confirmation">Are you sure you want to sync all contacts available on the intranet with the contacts on the phone?\nPhone numbers and emails will be transferred. All numbers entered by user will not be modified.</string>
 	<string name ="notification_sync_in_progress">Sync is currently in progress</string>  
 	<string name ="label_submission_confirmation">Confirm</string> 
@@ -75,5 +73,10 @@
 	<string name="menu_main_sync">Sync contacts</string>
 	<string name="menu_main_signout">Sign out</string>
 	<string name="menu_main_signin">Sign in</string>
+	
+	<!-- POKER -->
+	
+	<string name="poker_label_master">Scrum Master</string>
+	<string name="poker_label_player">Participant</string>
 	
 </resources>
