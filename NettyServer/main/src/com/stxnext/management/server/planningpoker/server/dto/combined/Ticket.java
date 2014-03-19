@@ -87,7 +87,7 @@ public class Ticket extends AbstractMessage {
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
         if(this.votes!=null)
             this.jsonVotes = new ArrayList<Vote>(votes);
     }

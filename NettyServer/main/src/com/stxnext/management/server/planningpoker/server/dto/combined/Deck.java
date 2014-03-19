@@ -76,7 +76,7 @@ public class Deck extends AbstractMessage {
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
         if(this.cards != null)
             this.jsonCards = new ArrayList<Card>(this.cards);
     }

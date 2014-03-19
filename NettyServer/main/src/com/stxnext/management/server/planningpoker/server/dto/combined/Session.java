@@ -144,6 +144,7 @@ public class Session  extends AbstractMessage{
         this.name = name;
     }
     
+    @Override
     public void prepareToSerialization(){
         if(this.tickets !=null)
             this.jsonTickets = new ArrayList<Ticket>(this.tickets);

@@ -50,7 +50,7 @@ public class MessageWrapper extends AbstractMessage{
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
         
     }
     

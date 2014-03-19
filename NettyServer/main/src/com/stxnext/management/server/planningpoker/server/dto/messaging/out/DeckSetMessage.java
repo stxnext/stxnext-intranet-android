@@ -25,7 +25,12 @@ public class DeckSetMessage extends AbstractMessage {
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
+        if(decks!=null){
+            for(Deck deck : decks){
+                deck.prepareToSerialization();
+            }
+        }
     }
     
 }

@@ -69,7 +69,7 @@ public class Card extends AbstractMessage{
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
         //nope, no foreign collection here
     }
     

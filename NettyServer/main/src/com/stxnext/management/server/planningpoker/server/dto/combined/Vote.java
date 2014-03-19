@@ -85,7 +85,7 @@ public class Vote extends AbstractMessage {
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
         if(ticketId == null){
             if(ticket!=null){
                 ticketId = ticket.getId();

@@ -26,7 +26,7 @@ public class IncomingMessage extends AbstractMessage{
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
     }
 
 }

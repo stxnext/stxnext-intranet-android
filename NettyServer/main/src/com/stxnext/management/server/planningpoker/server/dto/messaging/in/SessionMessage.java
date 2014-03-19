@@ -56,7 +56,7 @@ public class SessionMessage extends AbstractMessage {
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
     }
 
 }

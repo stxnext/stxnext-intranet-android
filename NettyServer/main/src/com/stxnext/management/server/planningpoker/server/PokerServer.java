@@ -20,9 +20,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-/**
- * Simplistic telnet server.
- */
+
 public class PokerServer {
 
     private final int port;
@@ -53,7 +51,7 @@ public class PokerServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8080;
+            port = 8089;
         }
         new PokerServer(port).run();
     }

@@ -22,6 +22,6 @@ public abstract class AbstractMessage {
                 type);
     }
     
-    protected abstract void prepareToSerialization();
+    public abstract void prepareToSerialization();
     
 }

@@ -114,7 +114,7 @@ public class Player extends AbstractMessage {
     }
 
     @Override
-    protected void prepareToSerialization() {
+    public void prepareToSerialization() {
         // no foreign collection here
     }
     
