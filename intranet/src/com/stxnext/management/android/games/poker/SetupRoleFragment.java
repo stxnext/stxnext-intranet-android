@@ -11,8 +11,9 @@ import android.widget.TextView;
 
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.games.poker.GameSetupListener.GameRole;
+import com.stxnext.management.android.games.poker.SetupActivity.SetupActivityListener;
 
-public class SetupRoleFragment  extends Fragment  {
+public class SetupRoleFragment  extends Fragment implements SetupActivityListener {
 
     private View view;
     Button masterButton;
@@ -32,6 +33,7 @@ public class SetupRoleFragment  extends Fragment  {
         this.setRetainInstance(true);
     }
     
+    boolean viewCreated;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_role_pick, container,
@@ -41,7 +43,7 @@ public class SetupRoleFragment  extends Fragment  {
         playerButton = (Button) view.findViewById(R.id.playerButton);
         userNameView = (TextView) view.findViewById(R.id.userNameView);
         
-        userNameView.setText(this.listener.getCurrentUser().getName());
+        userNameView.setText(null);
         
         masterButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -56,7 +58,22 @@ public class SetupRoleFragment  extends Fragment  {
                 listener.onRoleChosen(GameRole.PARTICIPANT);
             }
         });
+        viewCreated = true;
+        setFormEnabled(formsEnabled);
         return view;
     }
+
     
+    boolean formsEnabled = false;
+    @Override
+    public void setFormEnabled(boolean enabled) {
+        formsEnabled = enabled;
+        if(!viewCreated)
+            return;
+        if(enabled){
+            userNameView.setText(this.listener.getCurrentUser().getName());
+        }
+        masterButton.setEnabled(enabled);
+        playerButton.setEnabled(enabled);
+    }
 }

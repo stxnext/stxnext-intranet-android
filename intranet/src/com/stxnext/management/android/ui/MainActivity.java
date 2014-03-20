@@ -44,6 +44,8 @@ import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.Lateness;
 import com.stxnext.management.android.dto.local.PresenceResult;
+import com.stxnext.management.android.dto.local.Team;
+import com.stxnext.management.android.dto.local.TeamResult;
 import com.stxnext.management.android.games.poker.BoardGameActivity;
 import com.stxnext.management.android.games.poker.SetupActivity;
 import com.stxnext.management.android.receivers.CommandReceiver;
@@ -557,6 +559,13 @@ public class MainActivity extends AbstractSimpleActivity implements
                 DAO.getInstance().getIntranetUser()
                         .persist(result.getExpectedResponse().getUsers());
             }
+            HTTPResponse<TeamResult> teams = api.getTeams(null);
+            if (teams != null && teams.getExpectedResponse() != null) {
+                DAO.getInstance().getTeam().clear();
+                DAO.getInstance().getTeam()
+                        .persist(teams.getExpectedResponse().getTeams());
+            }
+            
 
             HTTPResponse<PresenceResult> presenceResult = api.getPresences();
             if (presenceResult != null
