@@ -21,7 +21,7 @@ public class SQLiteHelperProvider {
     }
     
     private final static String DATABASE_NAME = "Intranet";
-    private final static int DATABASE_VERSION = 1;
+    private final static int DATABASE_VERSION = 2;
 
     DatabaseSchemaPopulator populator;
     SQLiteOpenHelper helper;

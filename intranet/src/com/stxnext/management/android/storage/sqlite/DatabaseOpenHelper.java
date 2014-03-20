@@ -30,7 +30,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
-            
             for (int i = (oldVersion + 1); i <= newVersion; i++) {
                 Log.e("", "upgrading database for version " + i);
                 populator.update(db, i);

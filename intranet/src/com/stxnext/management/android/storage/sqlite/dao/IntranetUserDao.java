@@ -38,17 +38,22 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
     }
     
     public IntranetUser getById(Long userId){
-        Cursor cursor = db.rawQuery(BASE_USER_QUERY+" AND u."+EXTERNAL_ID+"=? limit 1", new String[]{String.valueOf(userId)});
+        String queryString = BASE_USER_QUERY+" where u."+EXTERNAL_ID+"=?";
+        Cursor cursor = db.rawQuery(queryString, new String[]{String.valueOf(userId)});
         return Iterables.getFirst(mapper.mapEntity(cursor), null);
     }
 
     private static final String BASE_USER_QUERY = "select u."+EXTERNAL_ID+" as _id," +
     		"ab."+AbsenceColumns.END+" as "+JOIN_ABSENCE_END+", " +"ab."+AbsenceColumns.START+" as "+JOIN_ABSENCE_START+", " +"ab."+AbsenceColumns.REMARKS+" as "+JOIN_ABSENCE_REMARKS+", " +
     		"la."+LatenessColumns.END+" as "+JOIN_LATENESS_END+", " +"la."+LatenessColumns.START+" as "+JOIN_LATENESS_START+", " +"la."+LatenessColumns.EXPLANATION+" as "+JOIN_LATENESS_EXPLANATION +","+
-    		" u.* from "+TABLE+" u" +
+    		" u.* from "+TABLE+" u " +
     		" left join "+AbsenceColumns.TABLE+" ab on ab."+AbsenceColumns.USER_ID+"=u."+EXTERNAL_ID+"" +
-            " left join "+LatenessColumns.TABLE+" la on la."+LatenessColumns.USER_ID+"=u."+EXTERNAL_ID+
-    				" where u."+IS_CLIENT+"=? AND u."+IS_ACTIVE+"=? ";
+            " left join "+LatenessColumns.TABLE+" la on la."+LatenessColumns.USER_ID+"=u."+EXTERNAL_ID;
+    				
+    
+    
+    
+    private static final String FULL_USER_QUERY = BASE_USER_QUERY + " where u."+IS_CLIENT+"=? AND u."+IS_ACTIVE+"=? ";
     
     public Cursor fetchFilteredCursor(String query) {
         String[] queryParams = new String[] {
@@ -61,14 +66,14 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
                     "0", "1","%"+query+"%"
             };
         }
-        Cursor cursor = db.rawQuery(BASE_USER_QUERY+queryFilter+" group by u."+EXTERNAL_ID+" order by u."+NAME+" asc", queryParams);
+        Cursor cursor = db.rawQuery(FULL_USER_QUERY+queryFilter+" group by u."+EXTERNAL_ID+" order by u."+NAME+" asc", queryParams);
 
         return cursor;
     }
     
     
     public int getEntityCount(){
-        Cursor cursor = db.rawQuery("select count (_id) from ("+BASE_USER_QUERY+")", new String[] {
+        Cursor cursor = db.rawQuery("select count (_id) from ("+FULL_USER_QUERY+")", new String[] {
                 "0", "1"
         });
         cursor.moveToFirst();

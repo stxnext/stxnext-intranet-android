@@ -43,10 +43,11 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
 
         ArrayList<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new SetupRoleFragment(this));
+        fragments.add(new SetupSessionFragment(this));
 
         mAdapter = new SetupFragmentAdapter(this, getSupportFragmentManager(), fragments);
         mPager = (ExtendedViewPager) findViewById(R.id.pager);
-        mPager.setOffscreenPageLimit(3);
+        mPager.setOffscreenPageLimit(10);
         mPager.setAdapter(mAdapter);
 
         mPager.setPagingEnabled(false);
@@ -76,7 +77,12 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
 
     @Override
     public void onRoleChosen(GameRole role) {
-
+        if(GameRole.MASTER.equals(role)){
+            mPager.setCurrentItem(1, true);
+        }
+        else if(GameRole.PARTICIPANT.equals(role)){
+            
+        }
     }
 
     @Override

@@ -57,3 +57,18 @@ primary key(late_id)
 
 create index late_id on lateness(late_id);
 
+create table team(
+external_id integer not null,
+img text,
+name text,
+primary key(external_id)
+);
+create index team_id_index on team(external_id);
+
+create table team_user(
+team_id integer not null,
+user_id integer not null,
+primary key(team_id,user_id)
+);
+create index team_user_index on team_user(team_id,user_id);
+

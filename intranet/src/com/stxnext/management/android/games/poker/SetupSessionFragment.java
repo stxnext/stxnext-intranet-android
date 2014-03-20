@@ -15,6 +15,13 @@ public class SetupSessionFragment extends Fragment  {
     Button masterButton;
     Button playerButton;
     
+    GameSetupListener listener;
+    
+    public SetupSessionFragment(GameSetupListener listener){
+        super();
+        this.listener = listener;
+    }
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +30,8 @@ public class SetupSessionFragment extends Fragment  {
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_role_pick, container,
+        view = inflater.inflate(R.layout.fragment_setup_session, container,
                 false);
-        
-        masterButton = (Button) view.findViewById(R.id.masterButton);
-        playerButton = (Button) view.findViewById(R.id.playerButton);
         
         return view;
     }

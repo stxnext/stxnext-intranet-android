@@ -51,7 +51,7 @@ public class PokerServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8089;
+            port = 8080;
         }
         new PokerServer(port).run();
     }

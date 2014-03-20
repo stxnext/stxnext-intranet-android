@@ -60,4 +60,33 @@ public class Team extends AbstractMessage{
         return name;
     }
 
+    public void setUserIds(List<Number> userIds) {
+        this.userIds = userIds;
+    }
+    
+    public void addUserId(Long userId){
+        if(this.userIds == null){
+            this.userIds = new ArrayList<Number>();
+        }
+        this.userIds.add(userId);
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public void setId(Number id) {
+        this.id = id;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
+
 }

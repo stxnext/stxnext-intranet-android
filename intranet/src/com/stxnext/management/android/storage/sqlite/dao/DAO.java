@@ -15,17 +15,20 @@ public class DAO {
     IntranetUserDao intranetUser;
     LatenessDao late;
     AbsenceDao absence;
+    TeamDao team;
 
-    public void clearAll(){
+    public void clearAll() {
         intranetUser.clear();
         late.clear();
         absence.clear();
+        team.clear();
     }
-    
+
     private DAO() {
         intranetUser = new IntranetUserDao();
         late = new LatenessDao();
         absence = new AbsenceDao();
+        team = new TeamDao();
     }
 
     public IntranetUserDao getIntranetUser() {
@@ -38,6 +41,10 @@ public class DAO {
 
     public AbsenceDao getAbsence() {
         return absence;
+    }
+
+    public TeamDao getTeam() {
+        return team;
     }
 
 }
