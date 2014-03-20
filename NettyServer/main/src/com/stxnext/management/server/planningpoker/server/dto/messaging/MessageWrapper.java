@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class MessageWrapper extends AbstractMessage{
 
-    
     public static final String TYPE_REQUEST = "request";
     public static final String TYPE_RESPONSE = "response";
     public static final String TYPE_NOTIFICATION = "notification";
@@ -22,9 +21,9 @@ public class MessageWrapper extends AbstractMessage{
     private String action;
     @Expose
     @SerializedName(FIELD_PAYLOAD)
-    private String payload;
+    private Object payload;
     
-    public MessageWrapper(String type, String action, String payload){
+    public MessageWrapper(String type, String action, Object payload){
         this.type = type;
         this.action = action;
         this.payload = payload;
@@ -42,16 +41,18 @@ public class MessageWrapper extends AbstractMessage{
     public void setAction(String action) {
         this.action = action;
     }
-    public String getPayload() {
+    public Object getPayload() {
         return payload;
     }
-    public void setPayload(String payload) {
+    public void setPayload(Object payload) {
         this.payload = payload;
     }
 
     @Override
     public void prepareToSerialization() {
-        
+        if(payload != null && payload instanceof AbstractMessage){
+            ((AbstractMessage) payload).prepareToSerialization();
+        }
     }
     
 }

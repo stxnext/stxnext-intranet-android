@@ -21,7 +21,6 @@ import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -31,9 +30,7 @@ import java.util.Map.Entry;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import com.google.gson.JsonSyntaxException;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
-import com.stxnext.management.server.planningpoker.server.dto.messaging.in.IncomingMessage;
 import com.stxnext.management.server.planningpoker.server.handlers.MessageHandler;
 
 /**
@@ -78,7 +75,7 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
     
     @Override
     public void channelRead0(ChannelHandlerContext ctx, String request) throws Exception {
-        logger.log(Level.DEBUG, "request from " + ctx.channel().remoteAddress().toString() + ":"
+        logger.log(Level.WARN, "request from " + ctx.channel().remoteAddress().toString() + ":"
                 + request + "\r\n");
         try{
             request = request.trim();

@@ -9,7 +9,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.stxnext.management.server.planningpoker.server.ServerConfigurator;
 import com.stxnext.management.server.planningpoker.server.database.managers.DAO;
@@ -21,6 +20,7 @@ import com.stxnext.management.server.planningpoker.server.dto.combined.PlayerSes
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
 
 public class ServerTests {
 
@@ -102,6 +102,16 @@ public class ServerTests {
         querySession.setArgumentHolderValue(0, player1);
         
         List<Session> playerSessions = dao.getSessionDao().query(querySession);
+        //MessageWrapper wrapper = new MessageWrapper("dasdas", "asdasd", playerSessions.get(0).serialize());
+        
+        MessageWrapper wrapper2 = new MessageWrapper("dasdas", "asdasd", playerSessions.get(0));
+        
+        //String serial1 = wrapper.serialize();
+        String serial2 = wrapper2.serialize();
+        
+        //MessageWrapper deserial1 = MessageWrapper.fromJsonString(serial1, MessageWrapper.class);
+        
+        MessageWrapper deserial2 = MessageWrapper.fromJsonString(serial2, MessageWrapper.class);
         
         // R
         
