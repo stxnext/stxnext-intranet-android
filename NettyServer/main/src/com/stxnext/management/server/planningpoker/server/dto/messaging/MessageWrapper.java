@@ -3,7 +3,7 @@ package com.stxnext.management.server.planningpoker.server.dto.messaging;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MessageWrapper extends AbstractMessage{
+public class MessageWrapper<T> extends AbstractMessage{
 
     public static final String TYPE_REQUEST = "request";
     public static final String TYPE_RESPONSE = "response";
@@ -21,9 +21,9 @@ public class MessageWrapper extends AbstractMessage{
     private String action;
     @Expose
     @SerializedName(FIELD_PAYLOAD)
-    private Object payload;
+    private T payload;
     
-    public MessageWrapper(String type, String action, Object payload){
+    public MessageWrapper(String type, String action, T payload){
         this.type = type;
         this.action = action;
         this.payload = payload;
@@ -41,10 +41,10 @@ public class MessageWrapper extends AbstractMessage{
     public void setAction(String action) {
         this.action = action;
     }
-    public Object getPayload() {
+    public T getPayload() {
         return payload;
     }
-    public void setPayload(Object payload) {
+    public void setPayload(T payload) {
         this.payload = payload;
     }
 

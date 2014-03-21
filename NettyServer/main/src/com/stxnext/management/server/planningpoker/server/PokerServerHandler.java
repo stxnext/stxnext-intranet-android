@@ -79,8 +79,7 @@ public class PokerServerHandler extends SimpleChannelInboundHandler<String> {
                 + request + "\r\n");
         try{
             request = request.trim();
-            MessageWrapper message = MessageWrapper.fromJsonString(request, MessageWrapper.class);
-            msgHandler.handleMessage(message, ctx);
+            msgHandler.handleMessage(request, ctx);
         }
         catch(Exception jse){
             logger.log(Level.WARN, jse);

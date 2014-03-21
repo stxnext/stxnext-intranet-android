@@ -11,7 +11,6 @@ public enum RequestFor {
     PlayersInLiveSession("player_in_live_session"),
     JoinSession("join_session"),
     //live game messages
-    //SMRequestSessionOngoing("start_session"),
     SMNewTicketRound("new_ticket_round"),
     SMSimpleVote("simple_vote"),
     SMRevealVotes("reveal_votes"),

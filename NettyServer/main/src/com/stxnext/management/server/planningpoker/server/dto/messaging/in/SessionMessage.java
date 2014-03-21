@@ -6,7 +6,7 @@ import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 
-public class SessionMessage  extends AbstractMessage {
+public class SessionMessage<T>  extends AbstractMessage {
 
     @Expose
     @SerializedName("session_id")
@@ -16,15 +16,15 @@ public class SessionMessage  extends AbstractMessage {
     private Long playerId;
     @Expose
     @SerializedName("session_subject")
-    private Object sessionSubject;
+    private T sessionSubject;
 
-    public SessionMessage(Player player, Session session, Object entity){
+    public SessionMessage(Player player, Session session, T entity){
         this.playerId = player.getId();
         this.sessionId = session.getId();
         this.sessionSubject = entity;
     }
     
-    public SessionMessage(Long playerId, Long sessionId, Object entity){
+    public SessionMessage(Long playerId, Long sessionId, T entity){
         this.playerId = playerId;
         this.sessionId = sessionId;
         this.sessionSubject = entity;
@@ -46,11 +46,11 @@ public class SessionMessage  extends AbstractMessage {
         this.playerId = playerId;
     }
 
-    public Object getSessionSubject() {
+    public T getSessionSubject() {
         return sessionSubject;
     }
 
-    public void setSessionSubject(Object sessionSubject) {
+    public void setSessionSubject(T sessionSubject) {
         this.sessionSubject = sessionSubject;
     }
 
