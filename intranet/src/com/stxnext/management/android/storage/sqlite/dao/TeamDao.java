@@ -21,7 +21,7 @@ public class TeamDao extends AbstractDAO implements TeamColumns {
 
     public List<Team> fetch(){
         List<Team> result = new ArrayList<Team>();
-        Cursor c = db.query(TABLE, null, null, null, null, null, null);
+        Cursor c = db.query(TABLE, null, null, null, null, null, NAME+" asc");
         result = mapper.mapEntity(c);
         c.close();
         

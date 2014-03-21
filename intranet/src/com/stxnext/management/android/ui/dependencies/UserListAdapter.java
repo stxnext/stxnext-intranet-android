@@ -2,7 +2,6 @@
 package com.stxnext.management.android.ui.dependencies;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,6 +29,7 @@ import com.google.common.base.Strings;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.storage.sqlite.EntityMapper;
+import com.stxnext.management.android.storage.sqlite.dao.IntranetUserColumns;
 import com.stxnext.management.android.storage.sqlite.dao.IntranetUserMapper;
 import com.stxnext.management.android.web.api.HTTPResponse;
 import com.stxnext.management.android.web.api.IntranetApi;
@@ -88,8 +88,8 @@ public class UserListAdapter extends CursorAdapter {
 
     int firstVisiblePosition;
     int lastVisiblePosition;
-    
-    public UserListAdapter(Activity context, Cursor c, ListView listView) {
+
+    public UserListAdapter(Activity context, Cursor c, final ListView listView) {
         super(context, c);
         this.context = context;
         this.listView = listView;
@@ -97,8 +97,8 @@ public class UserListAdapter extends CursorAdapter {
         this.userMapper = new IntranetUserMapper();
 
         final int cacheSize = (int) (Runtime.getRuntime().maxMemory() * 0.80F);
-        
-        memoryCache = new BetterHashMapLruCache<Long, RoundedDrawable>((int) (cacheSize * 0.7),150) {
+
+        memoryCache = new BetterHashMapLruCache<Long, RoundedDrawable>((int) (cacheSize * 0.7), 150) {
             @Override
             public int sizeOf(Long key, RoundedDrawable bitmap) {
                 return (int) bitmap.getSize();
@@ -113,37 +113,41 @@ public class UserListAdapter extends CursorAdapter {
             }
         };
         cursorObjectMemoryCache = new BetterHashMapLruCache<Integer, IntranetUser>(
-                (int) (cacheSize * 0.3),150);
-        
+                (int) (cacheSize * 0.3), 150);
+
         listView.setOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                
+
             }
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                     int totalItemCount) {
                 firstVisiblePosition = firstVisibleItem;
-                lastVisiblePosition = firstVisibleItem+visibleItemCount;
-                
+                lastVisiblePosition = firstVisibleItem + visibleItemCount;
                 runTaskCleaning();
             }
         });
         firstVisiblePosition = listView.getFirstVisiblePosition();
         lastVisiblePosition = listView.getLastVisiblePosition();
+
     }
+
     Thread cleaningThread;
-    private void runTaskCleaning(){
-        if(taskIdentifiers.size()==0 || (cleaningThread!= null && cleaningThread.isAlive()))
+
+    private void runTaskCleaning() {
+        if (taskIdentifiers.size() == 0 || (cleaningThread != null && cleaningThread.isAlive()))
             return;
-        
-        final List<LoadImageTask> tasks = new ArrayList<UserListAdapter.LoadImageTask>(taskIdentifiers.values());
+
+        final List<LoadImageTask> tasks = new ArrayList<UserListAdapter.LoadImageTask>(
+                taskIdentifiers.values());
         cleaningThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 final List<Long> toRemove = new ArrayList<Long>();
-                for(LoadImageTask task : tasks){
-                    if(!(isVisible(task.position))){
+                for (LoadImageTask task : tasks) {
+                    if (!(isVisible(task.position))) {
                         toRemove.add(task.user.getId().longValue());
                         task.cancel(true);
                     }
@@ -152,7 +156,7 @@ public class UserListAdapter extends CursorAdapter {
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        for(Long id : toRemove){
+                        for (Long id : toRemove) {
                             taskIdentifiers.remove(id);
                         }
                     }
@@ -161,9 +165,7 @@ public class UserListAdapter extends CursorAdapter {
         });
         cleaningThread.start();
     }
-    
-    
-    
+
     @Override
     public Object getItem(int position) {
         return userMapper.mapEntity(getCursor(), position);
@@ -182,15 +184,30 @@ public class UserListAdapter extends CursorAdapter {
 
         private View parent;
         private Integer position;
+        public Integer getPosition() {
+            return position;
+        }
+        public void setPosition(Integer position) {
+            this.position = position;
+        }
+        public ViewHolder(Integer position){
+            this.position = position;
+        }
+    }
+    
+    @Override
+    public void notifyDataSetChanged() {
+        taskIdentifiers.clear();
+        super.notifyDataSetChanged();
     }
 
     private class LoadImageTask extends AsyncTaskExAggressive<Void, Void, RoundedDrawable> {
 
         private ViewHolder viewHolder;
         private IntranetUser user;
-        private int position;
+        private Integer position;
 
-        public LoadImageTask(ViewHolder holder, IntranetUser user, int position) {
+        public LoadImageTask(ViewHolder holder, IntranetUser user, Integer position) {
             super(Thread.MIN_PRIORITY);
             this.viewHolder = holder;
             this.user = user;
@@ -216,23 +233,30 @@ public class UserListAdapter extends CursorAdapter {
             if (result != null && !context.isFinishing()) {
                 addBitmapToMemoryCache(user.getId().longValue(), result);
                 if (!isCancelled()) {
-                    if (isVisible(position) && viewHolder.position == position) {
+                    if (isVisible(position) && position.equals(viewHolder.position)) {
                         viewHolder.userImageView.setImageDrawable(result);
                         viewHolder.userImageView.setVisibility(View.VISIBLE);
                         applyAnimation(viewHolder.userImageView);
                     }
+                    else {
+                        Log.e("", "not visible setting image for position " + position + ",vhpos:"
+                                + viewHolder.position + ",pos:" + position);
+                    }
+                }
+                else {
+                    Log.e("", "cancelled setting image for position " + position);
                 }
             }
             taskIdentifiers.remove(user.getId().longValue());
         }
     }
-    
-    private boolean isVisible(int position){
-        return position >= firstVisiblePosition-4
-                && position <= lastVisiblePosition+4;
+
+    private boolean isVisible(int position) {
+        return position >= firstVisiblePosition - 4
+                && position <= lastVisiblePosition + 4;
     }
-    
-    private synchronized RoundedDrawable getImageSync(IntranetUser user){
+
+    private synchronized RoundedDrawable getImageSync(IntranetUser user) {
         Bitmap resultBitmap = null;
         RoundedDrawable result = null;
         resultBitmap = BitmapUtils
@@ -246,14 +270,14 @@ public class UserListAdapter extends CursorAdapter {
                 resultBitmap = reponse.getExpectedResponse();
             }
         }
-        if(resultBitmap!=null){
+        if (resultBitmap != null) {
             result = new RoundedDrawable(resultBitmap);
             result.setCornerRadius(15F);
         }
         try {
             Thread.sleep(150);
         } catch (InterruptedException e) {
-            Log.e(this.getClass().getName(),"loading bitmap",e);
+            Log.e(this.getClass().getName(), "loading bitmap", e);
         }
         return result;
     }
@@ -276,7 +300,7 @@ public class UserListAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        final ViewHolder holder = new ViewHolder();
+        final ViewHolder holder = new ViewHolder(cursor.getPosition());
 
         LayoutInflater inflater = LayoutInflater.from(this.context);
 
@@ -294,12 +318,10 @@ public class UserListAdapter extends CursorAdapter {
         holder.phoneView = (TextView) parentView.findViewById(R.id.phoneView);
         holder.ircView = (TextView) parentView.findViewById(R.id.ircView);
 
-        // imageView.setCornersRadius(12F);
 
         holder.parent = parentView;
         holder.userNameView = nameView;
         holder.userImageView = imageView;
-        holder.position = cursor.getPosition();
 
         parentView.setTag(holder);
 
@@ -311,11 +333,12 @@ public class UserListAdapter extends CursorAdapter {
 
         final ViewHolder holder = (ViewHolder) view.getTag();
         int position = cursor.getPosition();
-        holder.position = position;
+        holder.setPosition(position);
 
         IntranetUser user = getCursorObjectFromMemCache(position);
         if (user == null) {
             user = userMapper.mapEntity(cursor, position);
+            
             addCursorObjectToMemoryCache(position, user);
         }
 
@@ -352,14 +375,14 @@ public class UserListAdapter extends CursorAdapter {
         holder.lateView.setVisibility(absenceDataPresent ? View.VISIBLE
                 : View.INVISIBLE);
 
-        if (user.getRoles().size() > 0) {
+        if (user.getRoles() != null && user.getRoles().size() > 0) {
             holder.roleView.setText(user.getRoles().get(0));
             holder.roleView.setVisibility(View.VISIBLE);
         } else {
             holder.roleView.setVisibility(View.INVISIBLE);
         }
 
-        if (user.getGroups().size() > 0) {
+        if (user.getGroups() != null && user.getGroups().size() > 0) {
             holder.groupView.setText(user.getGroups().get(0));
             holder.groupView.setVisibility(View.VISIBLE);
         } else {
@@ -382,5 +405,5 @@ public class UserListAdapter extends CursorAdapter {
             }
         }
     }
-    
+
 }

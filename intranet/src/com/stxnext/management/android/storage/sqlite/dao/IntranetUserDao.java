@@ -12,6 +12,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.storage.sqlite.EntityMapper;
+import com.stxnext.management.android.storage.sqlite.dao.TeamColumns.TeamUserColumns;
 
 public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns {
 
@@ -42,7 +43,8 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
         Cursor cursor = db.rawQuery(queryString, new String[]{String.valueOf(userId)});
         return Iterables.getFirst(mapper.mapEntity(cursor), null);
     }
-
+    
+    
     private static final String BASE_USER_QUERY = "select u."+EXTERNAL_ID+" as _id," +
     		"ab."+AbsenceColumns.END+" as "+JOIN_ABSENCE_END+", " +"ab."+AbsenceColumns.START+" as "+JOIN_ABSENCE_START+", " +"ab."+AbsenceColumns.REMARKS+" as "+JOIN_ABSENCE_REMARKS+", " +
     		"la."+LatenessColumns.END+" as "+JOIN_LATENESS_END+", " +"la."+LatenessColumns.START+" as "+JOIN_LATENESS_START+", " +"la."+LatenessColumns.EXPLANATION+" as "+JOIN_LATENESS_EXPLANATION +","+
@@ -51,9 +53,20 @@ public class IntranetUserDao extends AbstractDAO implements IntranetUserColumns 
             " left join "+LatenessColumns.TABLE+" la on la."+LatenessColumns.USER_ID+"=u."+EXTERNAL_ID;
     				
     
-    
-    
     private static final String FULL_USER_QUERY = BASE_USER_QUERY + " where u."+IS_CLIENT+"=? AND u."+IS_ACTIVE+"=? ";
+    
+    private static String TEAM_QUERY = "select * from "+TeamUserColumns.TABLE+" tu left join ("+FULL_USER_QUERY+") on _id=tu.user_id where tu.team_id=? and _id is not null";
+
+    public Cursor getCursorByTeamId(Long teamId){
+        String[] queryParams = new String[] {
+                "0", "1",String.valueOf(teamId)
+        };
+        String query = TEAM_QUERY+" group by "+EXTERNAL_ID+" order by "+NAME+" asc";
+        //Log.e("",query);
+        //Log.e("",queryParams.toString());
+        Cursor cursor = db.rawQuery(query, queryParams);
+        return cursor;
+    }
     
     public Cursor fetchFilteredCursor(String query) {
         String[] queryParams = new String[] {

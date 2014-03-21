@@ -87,6 +87,16 @@ public class Team extends AbstractMessage{
         this.name = name;
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if(o != null && o instanceof Team){
+            if(((Team)o).id.equals(id)){
+                return true;
+            }
+        }
+        
+        return false;
+    }
     
 
 }

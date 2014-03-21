@@ -88,7 +88,7 @@ public class NIOConnectionHandler implements ConnectionHandler{
                     MessageWrapper wrapper = MessageWrapper.fromJsonString(line,
                             MessageWrapper.class);
                     if (wrapper != null) {
-                        unwrapMessageAndPassOn(wrapper);
+                        //unwrapMessageAndPassOn(wrapper);
                     }
 
                 } catch (Exception e) {
@@ -122,6 +122,7 @@ public class NIOConnectionHandler implements ConnectionHandler{
     }
     
     private void unwrapMessageAndPassOn(MessageWrapper wrapper){
+        /*
         if(MessageWrapper.TYPE_RESPONSE.equals(wrapper.getType())){
             callbacks.onResponseReceived(RequestFor.requestForMessage(wrapper.getAction()), wrapper.getPayload());
         }
@@ -129,6 +130,8 @@ public class NIOConnectionHandler implements ConnectionHandler{
             SessionMessage msg = SessionMessage.fromJsonString(wrapper.getPayload(), SessionMessage.class);
             callbacks.onNotificationReceived(NotificationFor.requestForMessage(wrapper.getAction()), msg);
         }
+        */
+        // determine notification type and payload here and pass full wrapper
     }
     
     public interface NIOConnectionHandlerCallbacks{

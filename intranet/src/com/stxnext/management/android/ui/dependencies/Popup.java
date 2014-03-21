@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.stxnext.management.android.R;
@@ -18,7 +19,8 @@ public class Popup {
 
     private PopupWindow popupWindow;
     private OnPopupItemClickListener onPopupItemClickListener;
-    private LinearLayout rootView;
+    private ScrollView rootView;
+    private LinearLayout holderView;
     private LayoutInflater lInf;
     private TextView anchorView;
     private List<PopupItem> items;
@@ -30,7 +32,8 @@ public class Popup {
         popupWindow.setBackgroundDrawable(null);
         // popupWindow.setAnimationStyle(R.style.PopupAnimation);
         lInf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        rootView = (LinearLayout) lInf.inflate(R.layout.popup_view, null);
+        rootView = (ScrollView) lInf.inflate(R.layout.popup_view, null);
+        holderView =  (LinearLayout) rootView.findViewById(R.id.popup_slots);
     }
 
     public void addItems(List<PopupItem> items) {
@@ -67,7 +70,7 @@ public class Popup {
         item.setLayout(view);
         TextView textView = (TextView) view.findViewById(R.id.tv_popup_item);
         textView.setText(item.getTitleText());
-        rootView.addView(view);
+        holderView.addView(view);
 
         view.setOnClickListener(new OnClickListener() {
             @Override
