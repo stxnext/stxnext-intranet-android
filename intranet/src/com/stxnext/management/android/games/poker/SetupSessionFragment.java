@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,14 +22,16 @@ import com.stxnext.management.android.games.poker.SetupActivity.SetupActivityLis
 import com.stxnext.management.android.storage.sqlite.dao.DAO;
 import com.stxnext.management.android.ui.dependencies.Popup;
 import com.stxnext.management.android.ui.dependencies.Popup.OnPopupItemClickListener;
+import com.stxnext.management.android.ui.dependencies.UserListAdapter.UserAdapterListener;
 import com.stxnext.management.android.ui.dependencies.PopupItem;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
 
-public class SetupSessionFragment extends Fragment implements SetupActivityListener{
+public class SetupSessionFragment extends Fragment implements SetupActivityListener, UserAdapterListener{
 
     private View view;
     EditText sessionNameView;
     TextView teamSelector;
+    ImageView selectAllCheckbox;
     Cursor usersCursor;
     
     private Popup teamsPopup;
@@ -63,7 +66,8 @@ public class SetupSessionFragment extends Fragment implements SetupActivityListe
         
         teamsPopup = new Popup(getActivity(), teamSelector);
         teamsPopup.addItems(popupItems);
-        teamsPopup.setSelected(teams.get(0));
+        selectedTeam = teams.get(0);
+        teamsPopup.setSelected(selectedTeam);
         
         teamsPopup.setOnItemClickListener(new OnPopupItemClickListener() {
             @Override
@@ -81,6 +85,14 @@ public class SetupSessionFragment extends Fragment implements SetupActivityListe
             }
         });
         popupSetup = true;
+        setUpList();
+    }
+    
+    private boolean allSelected;
+    private void setAllSelectedState(boolean state){
+        allSelected = state;
+        participantsAdapter.setAllSelected(allSelected);
+        selectAllCheckbox.setImageLevel(allSelected?1:0);
     }
     
     boolean viewCreated;
@@ -91,6 +103,14 @@ public class SetupSessionFragment extends Fragment implements SetupActivityListe
         sessionNameView = (EditText) view.findViewById(R.id.sessionNameView);
         teamSelector = (TextView) view.findViewById(R.id.teamSelector);
         participantsListView = (ListView) view.findViewById(R.id.usersList);
+        selectAllCheckbox = (ImageView) view.findViewById(R.id.selectAllCheckbox);
+        selectAllCheckbox.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allSelected = !allSelected;
+                setAllSelectedState(allSelected);
+            }
+        });
         viewCreated = true;
         setFormEnabled(formsEnabled);
         return view;
@@ -104,9 +124,10 @@ public class SetupSessionFragment extends Fragment implements SetupActivityListe
             usersCursor = c;
             getActivity().startManagingCursor(c);
             participantsAdapter = new UserListAdapter(getActivity(), c, participantsListView);
+            participantsAdapter.setListener(this);
             participantsAdapter.setDontUseCursorCache(true);
             participantsListView.setAdapter(participantsAdapter);
-            participantsAdapter.notifyDataSetChanged();
+            participantsAdapter.setUsesSelection(true);
         }
         else{
             getActivity().stopManagingCursor(usersCursor);
@@ -127,6 +148,12 @@ public class SetupSessionFragment extends Fragment implements SetupActivityListe
         if(enabled){
             setupPopupTeams();
         }
+    }
+
+    @Override
+    public void onSelectionEdgeState(boolean allSelected) {
+        this.allSelected = allSelected;
+        setAllSelectedState(allSelected);
     }
 
     

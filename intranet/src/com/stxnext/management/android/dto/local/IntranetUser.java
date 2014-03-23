@@ -77,8 +77,6 @@ public class IntranetUser extends AbstractMessage implements Serializable{
     @Expose
     @SerializedName("groups")
     ArrayList<String> groups = new ArrayList<String>();
-    //display fields only
-    boolean selected;
     
     private AbsenceDisplayData absenceDisplayData;
     
@@ -272,12 +270,5 @@ public class IntranetUser extends AbstractMessage implements Serializable{
     }
     public void setGroups(ArrayList<String> groups) {
         this.groups = groups;
-    }
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 }

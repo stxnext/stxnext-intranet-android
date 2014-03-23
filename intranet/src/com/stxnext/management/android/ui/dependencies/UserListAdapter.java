@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -43,11 +44,17 @@ public class UserListAdapter extends CursorAdapter {
     private ListView listView;
     private IntranetApi api;
     private EntityMapper<IntranetUser> userMapper;
+    private List<Long> selectedUsers;
+    private UserAdapterListener listener;
 
     private boolean dontUseCursorCache;
 
     public void setDontUseCursorCache(boolean dontUseCursorCache) {
         this.dontUseCursorCache = dontUseCursorCache;
+    }
+    
+    public void setListener(UserAdapterListener listener) {
+        this.listener = listener;
     }
 
     public void addBitmapToMemoryCache(Long key, RoundedDrawable bitmap) {
@@ -61,6 +68,55 @@ public class UserListAdapter extends CursorAdapter {
             return memoryCache.get(key);
         }
         return null;
+    }
+
+    boolean usesSelection;
+
+    public void setUsesSelection(boolean usesSelection) {
+        this.usesSelection = usesSelection;
+        selectedUsers.clear();
+        notifyDataSetChanged();
+    }
+
+    public List<Long> getSelected() {
+        return selectedUsers;
+    }
+
+    private void addSelectedFromCursor(Cursor c){
+        selectedUsers.add(c.getLong(c.getColumnIndex(IntranetUserColumns.EXTERNAL_ID)));
+    }
+    
+    public void setAllSelected(boolean all){
+        selectedUsers.clear();
+        if(all){
+            Cursor c = getCursor();
+            c.moveToFirst();
+            addSelectedFromCursor(c);
+            while(c.moveToNext()){
+                addSelectedFromCursor(c);
+            }
+        }
+        notifyDataSetChanged();
+    }
+    
+    private boolean isUserSelected(Long userId) {
+        return selectedUsers.contains(userId);
+    }
+
+    private void setUserSelected(Long userId, boolean selected) {
+        if (selected)
+            selectedUsers.add(userId);
+        else
+            selectedUsers.remove(userId);
+        
+        if(this.listener != null){
+            if(selectedUsers.size()<=0){
+                listener.onSelectionEdgeState(false);
+            }
+            else if(selectedUsers.size() == getCursor().getCount()){
+                listener.onSelectionEdgeState(true);
+            }
+        }
     }
 
     public void addCursorObjectToMemoryCache(Integer key, IntranetUser bitmap) {
@@ -98,6 +154,7 @@ public class UserListAdapter extends CursorAdapter {
 
         final int cacheSize = (int) (Runtime.getRuntime().maxMemory() * 0.80F);
 
+        selectedUsers = new ArrayList<Long>();
         memoryCache = new BetterHashMapLruCache<Long, RoundedDrawable>((int) (cacheSize * 0.7), 150) {
             @Override
             public int sizeOf(Long key, RoundedDrawable bitmap) {
@@ -181,20 +238,26 @@ public class UserListAdapter extends CursorAdapter {
         private TextView lateView;
         private TextView phoneView;
         private TextView ircView;
+        private View checkboxArea;
+        private View roleArea;
+        private ImageView checkBox;
 
         private View parent;
         private Integer position;
+
         public Integer getPosition() {
             return position;
         }
+
         public void setPosition(Integer position) {
             this.position = position;
         }
-        public ViewHolder(Integer position){
+
+        public ViewHolder(Integer position) {
             this.position = position;
         }
     }
-    
+
     @Override
     public void notifyDataSetChanged() {
         taskIdentifiers.clear();
@@ -317,7 +380,9 @@ public class UserListAdapter extends CursorAdapter {
 
         holder.phoneView = (TextView) parentView.findViewById(R.id.phoneView);
         holder.ircView = (TextView) parentView.findViewById(R.id.ircView);
-
+        holder.checkboxArea = parentView.findViewById(R.id.checkboxArea);
+        holder.roleArea = parentView.findViewById(R.id.roleArea);
+        holder.checkBox = (ImageView) parentView.findViewById(R.id.checkmark);
 
         holder.parent = parentView;
         holder.userNameView = nameView;
@@ -335,12 +400,29 @@ public class UserListAdapter extends CursorAdapter {
         int position = cursor.getPosition();
         holder.setPosition(position);
 
-        IntranetUser user = getCursorObjectFromMemCache(position);
-        if (user == null) {
-            user = userMapper.mapEntity(cursor, position);
-            
-            addCursorObjectToMemoryCache(position, user);
+        final IntranetUser user = userMapper.mapEntity(cursor, position);// getCursorObjectFromMemCache(position);
+        // if (user == null) {
+        // user = userMapper.mapEntity(cursor, position);
+        //
+        // addCursorObjectToMemoryCache(position, user);
+        // }
+
+        holder.groupView.setVisibility(usesSelection ? View.GONE : View.VISIBLE);
+        holder.checkboxArea.setVisibility(!usesSelection ? View.GONE : View.VISIBLE);
+        if (usesSelection) {
+            holder.checkBox.setImageLevel(isUserSelected(user.getId().longValue()) ? 1 : 0);
         }
+
+        holder.parent.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (usesSelection) {
+                    boolean selectionstate = isUserSelected(user.getId().longValue());
+                    setUserSelected(user.getId().longValue(), !selectionstate);
+                    holder.checkBox.setImageLevel(!selectionstate ? 1 : 0);
+                }
+            }
+        });
 
         holder.userNameView.setText(user.getName());
         boolean taskInProgress = taskIdentifiers.get(user.getId().longValue()) != null;
@@ -404,6 +486,10 @@ public class UserListAdapter extends CursorAdapter {
                 imageTask.execute();
             }
         }
+    }
+    
+    public interface UserAdapterListener{
+        public void onSelectionEdgeState(boolean allSelected);
     }
 
 }

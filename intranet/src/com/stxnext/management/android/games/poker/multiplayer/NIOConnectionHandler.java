@@ -6,19 +6,31 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import android.os.Handler;
 import android.util.Log;
 
+import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.AbstractMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.RequestFor;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.SessionMessage;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.NotificationFor;
 
-public class NIOConnectionHandler implements ConnectionHandler{
+public class NIOConnectionHandler implements ConnectionHandler {
+
+    private static final int RESPONSE_NOTIFICATION = 1;
+    private static final int RESPONSE_REQUEST = 2;
+
+    static NIOConnectionHandler _instance;
 
     ConnectionThread connectionThread;
     Handler handler;
@@ -27,48 +39,129 @@ public class NIOConnectionHandler implements ConnectionHandler{
     PrintWriter out;
     ReadThread readThread;
     volatile boolean requestAwaitingForResponse;
-    NIOConnectionHandlerCallbacks callbacks;
-    
+    List<NIOConnectionNotificationHandlerCallbacks> notificationCallbacks;
+    List<NIOConnectionRequestHandlerCallbacks> requestCallbacks;
+
     private Queue<MessageWrapper> requestQueue;
-    // TODO : prepare queue guarding thread that checks if socket is not clogged which may happen in simultaneout both direction streaming 
+
+    public static NIOConnectionHandler getInstance() {
+        if (_instance == null) {
+            _instance = new NIOConnectionHandler();
+        }
+        return _instance;
+    }
+
+    public void addNotificationListener(NIOConnectionNotificationHandlerCallbacks listener) {
+        notificationCallbacks.add(listener);
+    }
+
+    public void addRequestListener(NIOConnectionRequestHandlerCallbacks listener) {
+        requestCallbacks.add(listener);
+    }
+
+    // TODO : prepare queue guarding thread that checks if socket is not clogged
+    // which may happen in simultaneout both direction streaming
     // also server could just don't respond
-    public NIOConnectionHandler(NIOConnectionHandlerCallbacks callbacks){
+    public NIOConnectionHandler() {
         handler = new Handler();
         requestQueue = new ArrayBlockingQueue<MessageWrapper>(200);
-        this.callbacks = callbacks;
+        requestCallbacks = new ArrayList<NIOConnectionHandler.NIOConnectionRequestHandlerCallbacks>();
+        notificationCallbacks = new ArrayList<NIOConnectionHandler.NIOConnectionNotificationHandlerCallbacks>();
     }
-    
-    public void enqueueRequest(RequestFor request, AbstractMessage message){
-        MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_REQUEST, request.getMessage(), message.serialize());
-        if(requestAwaitingForResponse){
+
+    public void publishResonse(Object response, MessageWrapper msg) {
+        if (response instanceof NotificationFor) {
+            NotificationFor notification = (NotificationFor) response;
+            for (NIOConnectionNotificationHandlerCallbacks clb : notificationCallbacks) {
+                if (clb == null)
+                    continue;
+
+                switch (notification) {
+                    case UserConnectionState:
+                        clb.onJoinSessionReceived(msg);
+                        break;
+                    case NextTicket:
+                        clb.onNewTicketRoundReceived(msg);
+                        break;
+                    case RevealVotes:
+                        clb.onRevealVotesReceived(msg);
+                        break;
+                    case UserVote:
+                        clb.onVoteReceived(msg);
+                        break;
+                    case CloseSession:
+                        clb.onFinishSessionReceived(msg);
+                        break;
+                }
+            }
+        }
+        else if (response instanceof RequestFor) {
+            RequestFor request = (RequestFor) response;
+            for (NIOConnectionRequestHandlerCallbacks clb : requestCallbacks) {
+                if (clb == null)
+                    continue;
+                switch (request) {
+                    case CardDecks:
+                        clb.onDecksReceived(msg);
+                        break;
+                    case CreateSession:
+                        clb.onCreateSessionReceived(msg);
+                        break;
+                    case SessionForPlayer:
+                        clb.onPlayerSessionReceived(msg);
+                        break;
+                    case PlayerHandshake:
+                        clb.onPlayersCreateReceived(msg);
+                        break;
+                    case PlayersInLiveSession:
+                        clb.onLivePlayersReceived(msg);
+                        break;
+                    case JoinSession:
+                        // TODO : player requesting join should also receive a
+                        // response and be omitted in notified group
+                        break;
+                }
+            }
+        }
+    }
+
+    public void publishOnNotificationReceived(NotificationFor notification,
+            SessionMessage sessionMessage) {
+
+    }
+
+    public void enqueueRequest(RequestFor request, AbstractMessage message) {
+        MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_REQUEST,
+                request.getMessage(), message.serialize());
+        if (requestAwaitingForResponse) {
             requestQueue.add(wrapper);
         }
-        else{
+        else {
             dispatchRequest(wrapper);
         }
     }
-    
-    private void dispatchRequest(MessageWrapper wrapper){
-        if(wrapper == null)
+
+    private void dispatchRequest(MessageWrapper wrapper) {
+        if (wrapper == null)
             return;
-        
+
         requestAwaitingForResponse = true;
         String outString = wrapper.serialize();
-        out.write(outString+"\r\n");
+        out.write(outString + "\r\n");
         out.flush();
     }
-    
-    public void start(){
-        if(connectionThread != null){
+
+    public void start() {
+        if (connectionThread != null) {
             connectionThread.interrupt();
         }
         connectionThread = new ConnectionThread();
         connectionThread.start();
     }
 
-    
     private class ReadThread extends Thread {
         BufferedReader in;
+
         public ReadThread(BufferedReader in) {
             this.in = in;
         }
@@ -84,13 +177,9 @@ public class NIOConnectionHandler implements ConnectionHandler{
                         continue;
                     requestAwaitingForResponse = false;
                     dispatchRequest(requestQueue.poll());
-
-                    MessageWrapper wrapper = MessageWrapper.fromJsonString(line,
-                            MessageWrapper.class);
-                    if (wrapper != null) {
-                        //unwrapMessageAndPassOn(wrapper);
+                    if (line != null) {
+                        unwrapMessageAndPassOn(line);
                     }
-
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
                 }
@@ -120,22 +209,35 @@ public class NIOConnectionHandler implements ConnectionHandler{
             }
         }
     }
-    
-    private void unwrapMessageAndPassOn(MessageWrapper wrapper){
-        /*
-        if(MessageWrapper.TYPE_RESPONSE.equals(wrapper.getType())){
-            callbacks.onResponseReceived(RequestFor.requestForMessage(wrapper.getAction()), wrapper.getPayload());
-        }
-        else if(MessageWrapper.TYPE_NOTIFICATION.equals(wrapper.getType())){
-            SessionMessage msg = SessionMessage.fromJsonString(wrapper.getPayload(), SessionMessage.class);
-            callbacks.onNotificationReceived(NotificationFor.requestForMessage(wrapper.getAction()), msg);
-        }
-        */
-        // determine notification type and payload here and pass full wrapper
+
+    private void unwrapMessageAndPassOn(String stringMessage) {
+        
+        
+        
     }
-    
-    public interface NIOConnectionHandlerCallbacks{
-        public void onResponseReceived(RequestFor request,String payload);
-        public void onNotificationReceived(NotificationFor notification, SessionMessage sessionMessage);
+
+    public interface NIOConnectionRequestHandlerCallbacks {
+        public void onDecksReceived(MessageWrapper<DeckSetMessage> msg);
+
+        public void onCreateSessionReceived(MessageWrapper<Session> msg);
+
+        public void onPlayerSessionReceived(MessageWrapper<List<Session>> msg);
+
+        public void onPlayersCreateReceived(MessageWrapper<List<Player>> msg);
+
+        public void onLivePlayersReceived(MessageWrapper<List<Player>> msg);
+    }
+
+    public interface NIOConnectionNotificationHandlerCallbacks {
+        public void onJoinSessionReceived(MessageWrapper<SessionMessage<Player>> msg);
+
+        public void onNewTicketRoundReceived(MessageWrapper<SessionMessage<Ticket>> msg);
+
+        public void onVoteReceived(MessageWrapper<SessionMessage<Vote>> msg);
+
+        public void onRevealVotesReceived(MessageWrapper<SessionMessage<Ticket>> msg);
+
+        public void onFinishSessionReceived(MessageWrapper<SessionMessage<Session>> msg);
+
     }
 }
