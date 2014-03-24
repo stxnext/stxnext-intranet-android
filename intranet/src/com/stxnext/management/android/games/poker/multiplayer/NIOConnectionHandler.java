@@ -4,7 +4,7 @@ package com.stxnext.management.android.games.poker.multiplayer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,10 @@ import java.util.concurrent.ArrayBlockingQueue;
 import android.os.Handler;
 import android.util.Log;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
@@ -69,65 +73,99 @@ public class NIOConnectionHandler implements ConnectionHandler {
         notificationCallbacks = new ArrayList<NIOConnectionHandler.NIOConnectionNotificationHandlerCallbacks>();
     }
 
-    public void publishResonse(Object response, MessageWrapper msg) {
-        if (response instanceof NotificationFor) {
-            NotificationFor notification = (NotificationFor) response;
+    public void publishResonse(String stringMsg) {
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(stringMsg);
+        JsonObject object = element.getAsJsonObject();
+        String action = object.get(MessageWrapper.FIELD_ACTION).getAsString();
+        String type = object.get(MessageWrapper.FIELD_TYPE).getAsString();
+        if (MessageWrapper.TYPE_NOTIFICATION.equals(type)) {
+            NotificationFor notification = NotificationFor.notificationForAction(action);
+            MessageWrapper msg;
             for (NIOConnectionNotificationHandlerCallbacks clb : notificationCallbacks) {
                 if (clb == null)
                     continue;
-
                 switch (notification) {
                     case UserConnectionState:
-                        clb.onJoinSessionReceived(msg);
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<SessionMessage<Player>>>() {
+                                }.getType());
+                        clb.onUserConnectionStateChanged(msg);
                         break;
                     case NextTicket:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<SessionMessage<Ticket>>>() {
+                                }.getType());
                         clb.onNewTicketRoundReceived(msg);
                         break;
                     case RevealVotes:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<SessionMessage<Ticket>>>() {
+                                }.getType());
                         clb.onRevealVotesReceived(msg);
                         break;
                     case UserVote:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<SessionMessage<Vote>>>() {
+                                }.getType());
                         clb.onVoteReceived(msg);
                         break;
                     case CloseSession:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<SessionMessage<Session>>>() {
+                                }.getType());
                         clb.onFinishSessionReceived(msg);
                         break;
                 }
             }
+            
         }
-        else if (response instanceof RequestFor) {
-            RequestFor request = (RequestFor) response;
+        else if (MessageWrapper.TYPE_RESPONSE.equals(type)) {
+            RequestFor request = RequestFor.requestForMessage(action);
+            MessageWrapper msg;
             for (NIOConnectionRequestHandlerCallbacks clb : requestCallbacks) {
                 if (clb == null)
                     continue;
                 switch (request) {
                     case CardDecks:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<DeckSetMessage>>() {
+                                }.getType());
                         clb.onDecksReceived(msg);
                         break;
                     case CreateSession:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<Session>>() {
+                                }.getType());
                         clb.onCreateSessionReceived(msg);
                         break;
                     case SessionForPlayer:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<List<Session>>>() {
+                                }.getType());
                         clb.onPlayerSessionReceived(msg);
                         break;
                     case PlayerHandshake:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<List<Player>>>() {
+                                }.getType());
                         clb.onPlayersCreateReceived(msg);
                         break;
                     case PlayersInLiveSession:
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<List<Player>>>() {
+                                }.getType());
                         clb.onLivePlayersReceived(msg);
                         break;
                     case JoinSession:
-                        // TODO : player requesting join should also receive a
-                        // response and be omitted in notified group
+                        msg = AbstractMessage.fromJsonString(stringMsg,
+                                new TypeToken<MessageWrapper<Player>>() {
+                                }.getType());
+                        clb.onJoinSessionReceived(msg);
                         break;
                 }
             }
         }
-    }
-
-    public void publishOnNotificationReceived(NotificationFor notification,
-            SessionMessage sessionMessage) {
-
     }
 
     public void enqueueRequest(RequestFor request, AbstractMessage message) {
@@ -178,7 +216,7 @@ public class NIOConnectionHandler implements ConnectionHandler {
                     requestAwaitingForResponse = false;
                     dispatchRequest(requestQueue.poll());
                     if (line != null) {
-                        unwrapMessageAndPassOn(line);
+                        publishResonse(line);
                     }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
@@ -193,10 +231,11 @@ public class NIOConnectionHandler implements ConnectionHandler {
 
         @Override
         public void run() {
-            InetAddress serverAddr;
+            InetSocketAddress serverAddr;
             try {
-                serverAddr = InetAddress.getByAddress(ADDRESS);
-                socket = new Socket(serverAddr, SERVER_PORT);
+                serverAddr = new InetSocketAddress(ADDRESS, SERVER_PORT);// InetAddress.getByAddress(ADDRESS);
+                socket = new Socket();
+                socket.connect(serverAddr, TIMEOUT);
 
                 out = new PrintWriter(socket.getOutputStream());
                 BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -210,11 +249,6 @@ public class NIOConnectionHandler implements ConnectionHandler {
         }
     }
 
-    private void unwrapMessageAndPassOn(String stringMessage) {
-        
-        
-        
-    }
 
     public interface NIOConnectionRequestHandlerCallbacks {
         public void onDecksReceived(MessageWrapper<DeckSetMessage> msg);
@@ -226,10 +260,12 @@ public class NIOConnectionHandler implements ConnectionHandler {
         public void onPlayersCreateReceived(MessageWrapper<List<Player>> msg);
 
         public void onLivePlayersReceived(MessageWrapper<List<Player>> msg);
+
+        public void onJoinSessionReceived(MessageWrapper<Player> msg);
     }
 
     public interface NIOConnectionNotificationHandlerCallbacks {
-        public void onJoinSessionReceived(MessageWrapper<SessionMessage<Player>> msg);
+        public void onUserConnectionStateChanged(MessageWrapper<SessionMessage<Player>> msg);
 
         public void onNewTicketRoundReceived(MessageWrapper<SessionMessage<Ticket>> msg);
 
