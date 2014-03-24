@@ -16,6 +16,7 @@ import com.actionbarsherlock.view.Window;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.Team;
+import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler;
 import com.stxnext.management.android.storage.prefs.StoragePrefs;
 import com.stxnext.management.android.storage.sqlite.dao.DAO;
 import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
@@ -29,13 +30,13 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
     ExtendedViewPager mPager;
     SetupRoleFragment roleFragment;
     SetupSessionFragment sessionFragment;
-    
+    JoinSessionFragment joinFragment;
+
     IntranetUser currentUser;
     List<Team> teams;
-    
+
     private static final int POSITION_ROLE = 0;
     private static final int POSITION_SESSION = 1;
-    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +44,18 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_game_setup);
 
+        GameData.getInstance().clear();
+        NIOConnectionHandler.getInstance().stop();
+
         prefs = StoragePrefs.getInstance(this);
 
         roleFragment = new SetupRoleFragment(this);
-        sessionFragment = new SetupSessionFragment(this);
-        
+        //sessionFragment = new SetupSessionFragment(this);
+        //joinFragment = new JoinSessionFragment(this);
+
         ArrayList<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(roleFragment);
-        fragments.add(sessionFragment);
+        // fragments.add(sessionFragment);
 
         mAdapter = new SetupFragmentAdapter(this, getSupportFragmentManager(), fragments);
         mPager = (ExtendedViewPager) findViewById(R.id.pager);
@@ -61,39 +66,54 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
         new LoadDataTask().execute();
     }
 
-    boolean exitRequested = false;
-
     @Override
-    public void onBackPressed() {
-        if(mPager.getCurrentItem() >0){
-            mPager.setCurrentItem(mPager.getCurrentItem()-1);
-            return;
+    public void onRoleChosen(GameRole role) {
+        if (GameRole.MASTER.equals(role)) {
+            sessionFragment = new SetupSessionFragment(this);
+            sessionFragment.setFormEnabled(true);
+            mAdapter.getFragments().add(sessionFragment);
+            mAdapter.notifyDataSetChanged();
         }
-        Builder builder = new android.app.AlertDialog.Builder(this)
-                .setTitle("Discard session setup?")
-                .setMessage("Do you wish to discard session setup?")
-                .setNegativeButton(getString(R.string.common_no),
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                .setPositiveButton(getString(R.string.common_yes),
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        });
-        builder.show();
+        else if (GameRole.PARTICIPANT.equals(role)) {
+            joinFragment = new JoinSessionFragment(this);
+            joinFragment.setFormEnabled(true);
+            mAdapter.getFragments().add(joinFragment);
+            mAdapter.notifyDataSetChanged();
+        }
+        mPager.post(new Runnable() {
+            @Override
+            public void run() {
+                mPager.setCurrentItem(POSITION_SESSION, true);
+            }
+        });
     }
 
     @Override
-    public void onRoleChosen(GameRole role) {
-        if(GameRole.MASTER.equals(role)){
-            mPager.setCurrentItem(POSITION_SESSION, true);
+    public void onBackPressed() {
+        if (mPager.getCurrentItem() > 1) {
+            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+            return;
         }
-        else if(GameRole.PARTICIPANT.equals(role)){
-            
+        else if (mPager.getCurrentItem() == 1) {
+            Builder builder = new android.app.AlertDialog.Builder(this)
+                    .setTitle("Discard session setup?")
+                    .setMessage("Do you wish to discard session setup?")
+                    .setNegativeButton(getString(R.string.common_no),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                    .setPositiveButton(getString(R.string.common_yes),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            });
+            builder.show();
+        }
+        else {
+            super.onBackPressed();
         }
     }
 
@@ -106,38 +126,40 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
     public List<Team> getTeams() {
         return teams;
     }
-    
-    public interface SetupActivityListener{
+
+    public interface SetupActivityListener {
         public void setFormEnabled(boolean enabled);
     }
-    
-    private void setLoadingData(boolean loading){
+
+    private void setLoadingData(boolean loading) {
         getSherlock().setProgressBarIndeterminateVisibility(loading);
         roleFragment.setFormEnabled(!loading);
-        sessionFragment.setFormEnabled(!loading);
+        //sessionFragment.setFormEnabled(!loading);
     }
-    
-    private class LoadDataTask extends AsyncTaskEx<Void, Void, Void>{
+
+    private class LoadDataTask extends AsyncTaskEx<Void, Void, Void> {
 
         Handler handler;
-        
-        LoadDataTask(){
+
+        LoadDataTask() {
             handler = new Handler();
         }
+
         @Override
         protected void onPreExecute() {
             setLoadingData(true);
             super.onPreExecute();
         }
-        
+
         @Override
         protected void onCancelled() {
-            //this shouldn't be cancelled
-            Toast.makeText(SetupActivity.this, "Couldn't load basic data", Toast.LENGTH_SHORT).show();
+            // this shouldn't be cancelled
+            Toast.makeText(SetupActivity.this, "Couldn't load basic data", Toast.LENGTH_SHORT)
+                    .show();
             finish();
             super.onCancelled();
         }
-        
+
         @Override
         protected Void doInBackground(Void... params) {
             Long userId = prefs.getCurrentUserId();
@@ -145,25 +167,27 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(SetupActivity.this, "Couldn't identify user", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SetupActivity.this, "Couldn't identify user",
+                                Toast.LENGTH_LONG).show();
                         finish();
                     }
                 });
             }
             currentUser = DAO.getInstance().getIntranetUser().getById(userId);
             teams = DAO.getInstance().getTeam().fetch();
-            
+            GameData.getInstance().setCurrentUser(currentUser);
+
             return null;
         }
-        
+
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            if(isFinishing())
+            if (isFinishing())
                 return;
-            
+
             setLoadingData(false);
-            
+
         }
     }
 

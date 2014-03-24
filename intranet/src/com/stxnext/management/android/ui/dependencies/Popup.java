@@ -81,6 +81,10 @@ public class Popup {
         });
 
     }
+    
+    public void dismiss(){
+        popupWindow.dismiss();
+    }
 
     public void toggle() {
 

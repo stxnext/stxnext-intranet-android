@@ -18,6 +18,10 @@ public class SetupFragmentAdapter  extends FragmentPagerAdapter implements IconP
         this.fragments = fragments;
         contentTitles = new String[]{"1","2"};
     }
+    
+    public ArrayList<Fragment> getFragments() {
+        return fragments;
+    }
 
     @Override
     public Fragment getItem(int position) {

@@ -17,6 +17,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:hint="Session name" />
+        
+        <TextView
+                android:id="@+id/deckSelector"
+                android:layout_width="fill_parent"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:text="Loading decks..."
+                android:textSize="@dimen/form_label_text_size" />
 
         <LinearLayout
             android:layout_width="fill_parent"

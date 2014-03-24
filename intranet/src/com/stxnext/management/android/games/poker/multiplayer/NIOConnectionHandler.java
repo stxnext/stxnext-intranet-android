@@ -2,6 +2,7 @@
 package com.stxnext.management.android.games.poker.multiplayer;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
@@ -29,10 +30,10 @@ import com.stxnext.management.server.planningpoker.server.dto.messaging.in.Sessi
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.NotificationFor;
 
+// we know what we are doing here: Only case where types HAS to be declared is
+// where declaring typetoken right before deserializing from json to POJO
+@SuppressWarnings({"rawtypes","unchecked"})
 public class NIOConnectionHandler implements ConnectionHandler {
-
-    private static final int RESPONSE_NOTIFICATION = 1;
-    private static final int RESPONSE_REQUEST = 2;
 
     static NIOConnectionHandler _instance;
 
@@ -41,6 +42,7 @@ public class NIOConnectionHandler implements ConnectionHandler {
     boolean connected;
     Socket socket;
     PrintWriter out;
+    BufferedReader in;
     ReadThread readThread;
     volatile boolean requestAwaitingForResponse;
     List<NIOConnectionNotificationHandlerCallbacks> notificationCallbacks;
@@ -62,6 +64,14 @@ public class NIOConnectionHandler implements ConnectionHandler {
     public void addRequestListener(NIOConnectionRequestHandlerCallbacks listener) {
         requestCallbacks.add(listener);
     }
+    
+    public void removeNotificationListener(NIOConnectionNotificationHandlerCallbacks listener){
+        notificationCallbacks.remove(listener);
+    }
+    public void removeRequestListener(NIOConnectionRequestHandlerCallbacks listener) {
+        requestCallbacks.remove(listener);
+    }
+    
 
     // TODO : prepare queue guarding thread that checks if socket is not clogged
     // which may happen in simultaneout both direction streaming
@@ -118,7 +128,7 @@ public class NIOConnectionHandler implements ConnectionHandler {
                         break;
                 }
             }
-            
+
         }
         else if (MessageWrapper.TYPE_RESPONSE.equals(type)) {
             RequestFor request = RequestFor.requestForMessage(action);
@@ -168,10 +178,10 @@ public class NIOConnectionHandler implements ConnectionHandler {
         }
     }
 
-    public void enqueueRequest(RequestFor request, AbstractMessage message) {
+    public void enqueueRequest(RequestFor request, Object message) {
         MessageWrapper wrapper = new MessageWrapper(MessageWrapper.TYPE_REQUEST,
-                request.getMessage(), message.serialize());
-        if (requestAwaitingForResponse) {
+                request.getMessage(), message);
+        if (requestAwaitingForResponse || out == null) {
             requestQueue.add(wrapper);
         }
         else {
@@ -179,29 +189,62 @@ public class NIOConnectionHandler implements ConnectionHandler {
         }
     }
 
-    private void dispatchRequest(MessageWrapper wrapper) {
+    private void dispatchRequest(final MessageWrapper wrapper) {
         if (wrapper == null)
             return;
 
         requestAwaitingForResponse = true;
-        String outString = wrapper.serialize();
-        out.write(outString + "\r\n");
-        out.flush();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String outString = wrapper.serialize();
+                out.write(outString + "\r\n");
+                out.flush();
+            }
+        }).start();
     }
 
-    public void start() {
+    public void start(boolean restartIfOpened) {
+        if(restartIfOpened){
+            if (connectionThread != null) {
+                connectionThread.interrupt();
+            }
+            connectionThread = new ConnectionThread();
+            connectionThread.start();
+        }
+        else{
+            if(connectionThread == null || socket == null){
+                connectionThread = new ConnectionThread();
+                connectionThread.start();
+            }
+        }
+    }
+
+    public void stop() {
+        if (socket != null) {
+            try {
+                socket.shutdownInput();
+                socket.shutdownOutput();
+                socket.close();
+            } catch (Exception e) {
+                Log.e("", "", e);
+            }
+            socket = null;
+            out = null;
+            in = null;
+        }
         if (connectionThread != null) {
             connectionThread.interrupt();
+            connectionThread = null;
         }
-        connectionThread = new ConnectionThread();
-        connectionThread.start();
+        if (readThread != null) {
+            readThread.interrupt();
+            readThread = null;
+        }
     }
 
     private class ReadThread extends Thread {
-        BufferedReader in;
-
-        public ReadThread(BufferedReader in) {
-            this.in = in;
+        public ReadThread() {
         }
 
         @Override
@@ -216,7 +259,12 @@ public class NIOConnectionHandler implements ConnectionHandler {
                     requestAwaitingForResponse = false;
                     dispatchRequest(requestQueue.poll());
                     if (line != null) {
-                        publishResonse(line);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                publishResonse(line);
+                            }
+                        });
                     }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
@@ -238,17 +286,17 @@ public class NIOConnectionHandler implements ConnectionHandler {
                 socket.connect(serverAddr, TIMEOUT);
 
                 out = new PrintWriter(socket.getOutputStream());
-                BufferedReader in = new BufferedReader(new InputStreamReader(
+                in = new BufferedReader(new InputStreamReader(
                         socket.getInputStream()));
-                readThread = new ReadThread(in);
+                readThread = new ReadThread();
                 readThread.start();
+                dispatchRequest(requestQueue.poll());
 
             } catch (Exception e) {
                 Log.e("", "", e);
             }
         }
     }
-
 
     public interface NIOConnectionRequestHandlerCallbacks {
         public void onDecksReceived(MessageWrapper<DeckSetMessage> msg);

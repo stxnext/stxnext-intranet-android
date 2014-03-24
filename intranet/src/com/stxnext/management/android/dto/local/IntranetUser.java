@@ -12,6 +12,7 @@ import com.google.gson.annotations.SerializedName;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.postmessage.AbstractMessage;
 import com.stxnext.management.android.dto.postmessage.GsonProvider;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 
 public class IntranetUser extends AbstractMessage implements Serializable{
 
@@ -270,5 +271,13 @@ public class IntranetUser extends AbstractMessage implements Serializable{
     }
     public void setGroups(ArrayList<String> groups) {
         this.groups = groups;
+    }
+    
+    public Player convertToPlayer(){
+        Player player = new Player();
+        player.setEmail(email);
+        player.setName(name);
+        player.setExternalId(id.longValue());
+        return player;
     }
 }

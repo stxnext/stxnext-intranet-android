@@ -78,8 +78,14 @@ public class UserListAdapter extends CursorAdapter {
         notifyDataSetChanged();
     }
 
-    public List<Long> getSelected() {
+    public List<Long> getSelectedIds() {
         return selectedUsers;
+    }
+    
+    public List<IntranetUser> getSelected(){
+        Cursor c = getCursor();
+        c.move(-1);
+        return userMapper.mapEntity(c);
     }
 
     private void addSelectedFromCursor(Cursor c){
@@ -90,8 +96,7 @@ public class UserListAdapter extends CursorAdapter {
         selectedUsers.clear();
         if(all){
             Cursor c = getCursor();
-            c.moveToFirst();
-            addSelectedFromCursor(c);
+            c.move(-1);
             while(c.moveToNext()){
                 addSelectedFromCursor(c);
             }
@@ -400,12 +405,12 @@ public class UserListAdapter extends CursorAdapter {
         int position = cursor.getPosition();
         holder.setPosition(position);
 
-        final IntranetUser user = userMapper.mapEntity(cursor, position);// getCursorObjectFromMemCache(position);
-        // if (user == null) {
-        // user = userMapper.mapEntity(cursor, position);
-        //
-        // addCursorObjectToMemoryCache(position, user);
-        // }
+        IntranetUser cachedUser = getCursorObjectFromMemCache(position);
+        
+        final IntranetUser user = cachedUser!=null?cachedUser : userMapper.mapEntity(cursor, position);
+        if(cachedUser == null){
+            addCursorObjectToMemoryCache(position, user);
+        }
 
         holder.groupView.setVisibility(usesSelection ? View.GONE : View.VISIBLE);
         holder.checkboxArea.setVisibility(!usesSelection ? View.GONE : View.VISIBLE);

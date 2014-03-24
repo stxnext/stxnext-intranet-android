@@ -1,7 +1,6 @@
 package com.stxnext.management.android.games.poker;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,11 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.games.poker.GameSetupListener.GameRole;
 import com.stxnext.management.android.games.poker.SetupActivity.SetupActivityListener;
 
-public class SetupRoleFragment  extends Fragment implements SetupActivityListener {
+public class SetupRoleFragment  extends SherlockFragment implements SetupActivityListener {
 
     private View view;
     Button masterButton;
@@ -31,6 +31,7 @@ public class SetupRoleFragment  extends Fragment implements SetupActivityListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setRetainInstance(true);
+        this.setHasOptionsMenu(true);
     }
     
     boolean viewCreated;

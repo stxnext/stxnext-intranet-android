@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="7dp" >
+
+    <TableLayout
+        android:stretchColumns="*"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/sessionNameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner:"
+                android:textColor="#000" />
+            
+            <TextView
+                android:id="@+id/sessionOwnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#000" />
+        </TableRow>
+
+        <TableRow>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Players:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/sessionPlayersCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#000" />
+        </TableRow>
+
+        <TableRow>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deck:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/sessionDeck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#000" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
