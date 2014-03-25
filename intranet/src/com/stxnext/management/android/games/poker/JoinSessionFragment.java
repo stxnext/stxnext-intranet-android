@@ -3,11 +3,14 @@ package com.stxnext.management.android.games.poker;
 
 import java.util.List;
 
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -29,7 +32,7 @@ public class JoinSessionFragment extends SherlockFragment implements SetupActivi
     View view;
     ListView sessionList;
     SessionListAdapter adapter;
-    
+
     NIOConnectionHandler nioConnectionHandler;
     GameSetupListener listener;
 
@@ -52,11 +55,12 @@ public class JoinSessionFragment extends SherlockFragment implements SetupActivi
         super.onDestroy();
     }
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        nioConnectionHandler.enqueueRequest(RequestFor.PlayerHandshake, Lists.newArrayList(listener.getCurrentUser().convertToPlayer()));
+        getSherlockActivity().setProgressBarIndeterminateVisibility(true);
+        nioConnectionHandler.enqueueRequest(RequestFor.PlayerHandshake,
+                Lists.newArrayList(listener.getCurrentUser().convertToPlayer()));
     }
 
     boolean viewCreated;
@@ -65,13 +69,43 @@ public class JoinSessionFragment extends SherlockFragment implements SetupActivi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_join, container,
                 false);
-       
+
         sessionList = (ListView) view.findViewById(R.id.sessionList);
-        
+        sessionList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Session session = (Session) adapter.getItem(position);
+                onSessionSelected(session);
+            }
+        });
         viewCreated = true;
         nioConnectionHandler.start(false);
         setFormEnabled(formsEnabled);
         return view;
+    }
+
+    private void onSessionSelected(final Session session) {
+        Builder builder = new android.app.AlertDialog.Builder(getActivity())
+                .setTitle("Join session?")
+                .setMessage("Do you wish to join session named \"" + session.getName() + "\"?")
+                .setNegativeButton(getString(R.string.common_no),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                .setPositiveButton(getString(R.string.common_yes),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                joinSession(session);
+                            }
+                        });
+        builder.show();
+    }
+
+    private void joinSession(Session session) {
+        getSherlockActivity().setProgressBarIndeterminateVisibility(true);
+        nioConnectionHandler.enqueueRequest(RequestFor.JoinSession, session);
     }
 
     boolean formsEnabled = false;
@@ -83,51 +117,53 @@ public class JoinSessionFragment extends SherlockFragment implements SetupActivi
             return;
     }
 
-    private void inflateList(List<Session> sessions){
-        if(adapter == null){
-            adapter = new SessionListAdapter(getActivity(), sessions, GameData.getInstance().getDecks());
+    private void inflateList(List<Session> sessions) {
+        if (adapter == null) {
+            adapter = new SessionListAdapter(getActivity(), sessions, GameData.getInstance()
+                    .getDecks());
             sessionList.setAdapter(adapter);
         }
-        else{
+        else {
             adapter.setList(sessions);
         }
     }
-    
 
     @Override
     public void onDecksReceived(MessageWrapper<DeckSetMessage> msg) {
         GameData.getInstance().setDecks(msg.getPayload().getDecks());
-        nioConnectionHandler.enqueueRequest(RequestFor.SessionForPlayer, GameData.getInstance().getCurrentHandshakenPlayer());
-        Log.e("request", msg.serialize());
+        nioConnectionHandler.enqueueRequest(RequestFor.SessionForPlayer, GameData.getInstance()
+                .getCurrentHandshakenPlayer());
     }
 
     @Override
     public void onCreateSessionReceived(MessageWrapper<Session> msg) {
-        Log.e("request", msg.serialize());
     }
 
     @Override
     public void onPlayerSessionReceived(MessageWrapper<List<Session>> msg) {
         GameData.getInstance().setUserSessions(msg.getPayload());
         inflateList(msg.getPayload());
-        Log.e("request", msg.serialize());
+        getSherlockActivity().setProgressBarIndeterminateVisibility(false);
     }
 
     @Override
     public void onPlayersCreateReceived(MessageWrapper<List<Player>> msg) {
         GameData.getInstance().setCurrentHandshakenPlayer(msg.getPayload().get(0));
         nioConnectionHandler.enqueueRequest(RequestFor.CardDecks, null);
-        Log.e("request", msg.serialize());
     }
 
     @Override
     public void onLivePlayersReceived(MessageWrapper<List<Player>> msg) {
-        Log.e("request", msg.serialize());
     }
 
     @Override
     public void onJoinSessionReceived(MessageWrapper<Player> msg) {
-        Log.e("request", msg.serialize());
+        // tap into the game after success
+        if (msg.getPayload() != null
+                && GameData.getInstance().getCurrentHandshakenPlayer().getId()
+                        .equals(msg.getPayload().getId())) {
+            listener.getViewPager().setCurrentItem(2, true);
+        }
     }
 
 }

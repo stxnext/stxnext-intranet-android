@@ -1,14 +1,13 @@
 
 package com.stxnext.management.android.games.poker;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -31,11 +30,12 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
     SetupRoleFragment roleFragment;
     SetupSessionFragment sessionFragment;
     JoinSessionFragment joinFragment;
+    SessionPreviewFragment sessionPreviewFragment;
+    FragmentManager fragmentManager;
 
     IntranetUser currentUser;
     List<Team> teams;
 
-    private static final int POSITION_ROLE = 0;
     private static final int POSITION_SESSION = 1;
 
     @Override
@@ -50,14 +50,9 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
         prefs = StoragePrefs.getInstance(this);
 
         roleFragment = new SetupRoleFragment(this);
-        //sessionFragment = new SetupSessionFragment(this);
-        //joinFragment = new JoinSessionFragment(this);
-
-        ArrayList<Fragment> fragments = new ArrayList<Fragment>();
-        fragments.add(roleFragment);
-        // fragments.add(sessionFragment);
-
-        mAdapter = new SetupFragmentAdapter(this, getSupportFragmentManager(), fragments);
+        fragmentManager = getSupportFragmentManager();
+        mAdapter = new SetupFragmentAdapter(this, fragmentManager);
+        mAdapter.addFragment(roleFragment);
         mPager = (ExtendedViewPager) findViewById(R.id.pager);
         mPager.setOffscreenPageLimit(10);
         mPager.setAdapter(mAdapter);
@@ -65,27 +60,28 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
         mPager.setPagingEnabled(false);
         new LoadDataTask().execute();
     }
-
+    
     @Override
     public void onRoleChosen(GameRole role) {
+
         if (GameRole.MASTER.equals(role)) {
             sessionFragment = new SetupSessionFragment(this);
             sessionFragment.setFormEnabled(true);
-            mAdapter.getFragments().add(sessionFragment);
-            mAdapter.notifyDataSetChanged();
+            mAdapter.addFragment(sessionFragment);
+            sessionPreviewFragment = new SessionPreviewFragment(this);
+            mAdapter.addFragment(sessionPreviewFragment);
         }
         else if (GameRole.PARTICIPANT.equals(role)) {
             joinFragment = new JoinSessionFragment(this);
             joinFragment.setFormEnabled(true);
-            mAdapter.getFragments().add(joinFragment);
-            mAdapter.notifyDataSetChanged();
+            mAdapter.addFragment(joinFragment);
         }
-        mPager.post(new Runnable() {
+        mPager.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mPager.setCurrentItem(POSITION_SESSION, true);
             }
-        });
+        },500);
     }
 
     @Override
@@ -189,6 +185,16 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
             setLoadingData(false);
 
         }
+    }
+
+    @Override
+    public SetupFragmentAdapter getFragmentAdapter() {
+        return mAdapter;
+    }
+
+    @Override
+    public ExtendedViewPager getViewPager() {
+        return mPager;
     }
 
 }

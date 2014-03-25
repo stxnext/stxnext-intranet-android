@@ -82,7 +82,7 @@ public class SessionListAdapter  extends BaseAdapter {
         holder.deckView.setText(decks.get(item.getDeckId()).getName());
         holder.nameView.setText(item.getName());
         holder.ownerView.setText(item.getOwner().getName());
-        holder.userCountView.setText(item.getPlayers().size());
+        holder.userCountView.setText(String.valueOf(item.getPlayers().size()));
         
         return holder.parent;
     }

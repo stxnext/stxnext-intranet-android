@@ -2,25 +2,16 @@
 package com.stxnext.management.android.ui.dependencies;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,21 +23,16 @@ import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.storage.sqlite.EntityMapper;
 import com.stxnext.management.android.storage.sqlite.dao.IntranetUserColumns;
 import com.stxnext.management.android.storage.sqlite.dao.IntranetUserMapper;
-import com.stxnext.management.android.web.api.HTTPResponse;
-import com.stxnext.management.android.web.api.IntranetApi;
 
 public class UserListAdapter extends CursorAdapter {
 
     private final Activity context;
-    private BetterHashMapLruCache<Long, RoundedDrawable> memoryCache;
     private BetterHashMapLruCache<Integer, IntranetUser> cursorObjectMemoryCache;
-    private HashMap<Long, LoadImageTask> taskIdentifiers = new HashMap<Long, LoadImageTask>();
-    private ListView listView;
-    private IntranetApi api;
     private EntityMapper<IntranetUser> userMapper;
     private List<Long> selectedUsers;
     private UserAdapterListener listener;
-
+    ImageListAdapterHandler adapterHandler;
+    
     private boolean dontUseCursorCache;
 
     public void setDontUseCursorCache(boolean dontUseCursorCache) {
@@ -56,20 +42,6 @@ public class UserListAdapter extends CursorAdapter {
     public void setListener(UserAdapterListener listener) {
         this.listener = listener;
     }
-
-    public void addBitmapToMemoryCache(Long key, RoundedDrawable bitmap) {
-        if (key != null && bitmap != null) {
-            memoryCache.put(key, bitmap);
-        }
-    }
-
-    public RoundedDrawable getBitmapFromMemCache(Long key) {
-        if (key != null) {
-            return memoryCache.get(key);
-        }
-        return null;
-    }
-
     boolean usesSelection;
 
     public void setUsesSelection(boolean usesSelection) {
@@ -143,7 +115,7 @@ public class UserListAdapter extends CursorAdapter {
     }
 
     public void clearCache() {
-        memoryCache.trimToElementsCount(0);
+        adapterHandler.clearCache();
         cursorObjectMemoryCache.trimToElementsCount(0);
     }
 
@@ -153,79 +125,14 @@ public class UserListAdapter extends CursorAdapter {
     public UserListAdapter(Activity context, Cursor c, final ListView listView) {
         super(context, c);
         this.context = context;
-        this.listView = listView;
-        this.api = IntranetApi.getInstance(context.getApplication());
+        this.adapterHandler = new ImageListAdapterHandler(listView, context);
         this.userMapper = new IntranetUserMapper();
 
-        final int cacheSize = (int) (Runtime.getRuntime().maxMemory() * 0.80F);
+        final int cacheSize = BetterHashMapLruCache.getPreperredCacheSize();
 
         selectedUsers = new ArrayList<Long>();
-        memoryCache = new BetterHashMapLruCache<Long, RoundedDrawable>((int) (cacheSize * 0.7), 150) {
-            @Override
-            public int sizeOf(Long key, RoundedDrawable bitmap) {
-                return (int) bitmap.getSize();
-            }
-
-            @Override
-            public boolean trimToSize(int arg0) {
-                long runtimeAvail = Runtime.getRuntime().freeMemory();
-                boolean runtimeNearlyDepleted = runtimeAvail < BetterHashMapLruCache.RUNTIME_AVAIL_MEM_THRESHOLD;
-                long maxMemToUse = runtimeNearlyDepleted ? 0 : cacheSize;
-                return super.trimToSize((int) (maxMemToUse));
-            }
-        };
         cursorObjectMemoryCache = new BetterHashMapLruCache<Integer, IntranetUser>(
                 (int) (cacheSize * 0.3), 150);
-
-        listView.setOnScrollListener(new OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-                    int totalItemCount) {
-                firstVisiblePosition = firstVisibleItem;
-                lastVisiblePosition = firstVisibleItem + visibleItemCount;
-                runTaskCleaning();
-            }
-        });
-        firstVisiblePosition = listView.getFirstVisiblePosition();
-        lastVisiblePosition = listView.getLastVisiblePosition();
-
-    }
-
-    Thread cleaningThread;
-
-    private void runTaskCleaning() {
-        if (taskIdentifiers.size() == 0 || (cleaningThread != null && cleaningThread.isAlive()))
-            return;
-
-        final List<LoadImageTask> tasks = new ArrayList<UserListAdapter.LoadImageTask>(
-                taskIdentifiers.values());
-        cleaningThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final List<Long> toRemove = new ArrayList<Long>();
-                for (LoadImageTask task : tasks) {
-                    if (!(isVisible(task.position))) {
-                        toRemove.add(task.user.getId().longValue());
-                        task.cancel(true);
-                    }
-                }
-
-                context.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (Long id : toRemove) {
-                            taskIdentifiers.remove(id);
-                        }
-                    }
-                });
-            }
-        });
-        cleaningThread.start();
     }
 
     @Override
@@ -233,9 +140,8 @@ public class UserListAdapter extends CursorAdapter {
         return userMapper.mapEntity(getCursor(), position);
     }
 
-    public class ViewHolder implements Cloneable {
+    public class ViewHolder extends HandlerViewHolder implements Cloneable {
         private TextView userNameView;
-        private ImageView userImageView;
         private View phoneRow;
         private View ircRow;
         private TextView roleView;
@@ -248,122 +154,17 @@ public class UserListAdapter extends CursorAdapter {
         private ImageView checkBox;
 
         private View parent;
-        private Integer position;
-
-        public Integer getPosition() {
-            return position;
-        }
-
-        public void setPosition(Integer position) {
-            this.position = position;
-        }
 
         public ViewHolder(Integer position) {
+            super();
             this.position = position;
         }
     }
 
     @Override
     public void notifyDataSetChanged() {
-        taskIdentifiers.clear();
+        adapterHandler.clearTasks();
         super.notifyDataSetChanged();
-    }
-
-    private class LoadImageTask extends AsyncTaskExAggressive<Void, Void, RoundedDrawable> {
-
-        private ViewHolder viewHolder;
-        private IntranetUser user;
-        private Integer position;
-
-        public LoadImageTask(ViewHolder holder, IntranetUser user, Integer position) {
-            super(Thread.MIN_PRIORITY);
-            this.viewHolder = holder;
-            this.user = user;
-            this.position = position;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            if (!this.isCancelled()) {
-                viewHolder.userImageView.setVisibility(View.INVISIBLE);
-            }
-            super.onPreExecute();
-        }
-
-        @Override
-        protected RoundedDrawable doInBackground(Void... params) {
-            return getImageSync(user);
-        }
-
-        @Override
-        protected void onPostExecute(RoundedDrawable result) {
-            super.onPostExecute(result);
-            if (result != null && !context.isFinishing()) {
-                addBitmapToMemoryCache(user.getId().longValue(), result);
-                if (!isCancelled()) {
-                    if (isVisible(position) && position.equals(viewHolder.position)) {
-                        viewHolder.userImageView.setImageDrawable(result);
-                        viewHolder.userImageView.setVisibility(View.VISIBLE);
-                        applyAnimation(viewHolder.userImageView);
-                    }
-                    else {
-                        Log.e("", "not visible setting image for position " + position + ",vhpos:"
-                                + viewHolder.position + ",pos:" + position);
-                    }
-                }
-                else {
-                    Log.e("", "cancelled setting image for position " + position);
-                }
-            }
-            taskIdentifiers.remove(user.getId().longValue());
-        }
-    }
-
-    private boolean isVisible(int position) {
-        return position >= firstVisiblePosition - 4
-                && position <= lastVisiblePosition + 4;
-    }
-
-    private synchronized RoundedDrawable getImageSync(IntranetUser user) {
-        Bitmap resultBitmap = null;
-        RoundedDrawable result = null;
-        resultBitmap = BitmapUtils
-                .getTempBitmap(context, user.getId().toString());
-        if (resultBitmap == null) {
-            HTTPResponse<Bitmap> reponse = api.downloadBitmap("https://intranet.stxnext.pl"
-                    + user.getImageUrl());
-            if (reponse != null && reponse.getExpectedResponse() != null) {
-                BitmapUtils.saveTempBitmap(context, reponse.getExpectedResponse(), user.getId()
-                        .toString());
-                resultBitmap = reponse.getExpectedResponse();
-            }
-        }
-        if (resultBitmap != null) {
-            result = new RoundedDrawable(resultBitmap);
-            result.setCornerRadius(15F);
-        }
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            Log.e(this.getClass().getName(), "loading bitmap", e);
-        }
-        return result;
-    }
-
-    private void applyAnimation(final ImageView view) {
-        view.clearAnimation();
-        if (view.getAnimation() != null) {
-            view.getAnimation().reset();
-        } else {
-            Animation fadeIn = new AlphaAnimation(0, 1);
-            fadeIn.setInterpolator(new DecelerateInterpolator());
-            fadeIn.setDuration(850);
-
-            AnimationSet animation = new AnimationSet(false);
-            animation.addAnimation(fadeIn);
-            view.setAnimation(animation);
-        }
-        view.getAnimation().startNow();
     }
 
     @Override
@@ -391,7 +192,7 @@ public class UserListAdapter extends CursorAdapter {
 
         holder.parent = parentView;
         holder.userNameView = nameView;
-        holder.userImageView = imageView;
+        holder.imageview = imageView;
 
         parentView.setTag(holder);
 
@@ -403,7 +204,7 @@ public class UserListAdapter extends CursorAdapter {
 
         final ViewHolder holder = (ViewHolder) view.getTag();
         int position = cursor.getPosition();
-        holder.setPosition(position);
+        holder.position = position;
 
         IntranetUser cachedUser = getCursorObjectFromMemCache(position);
         
@@ -430,7 +231,6 @@ public class UserListAdapter extends CursorAdapter {
         });
 
         holder.userNameView.setText(user.getName());
-        boolean taskInProgress = taskIdentifiers.get(user.getId().longValue()) != null;
 
         if (!Strings.isNullOrEmpty(user.getPhone())) {
             holder.phoneView.setText(user.getPhone());
@@ -475,22 +275,9 @@ public class UserListAdapter extends CursorAdapter {
         } else {
             holder.groupView.setVisibility(View.INVISIBLE);
         }
-
-        holder.userImageView.setImageBitmap(null);
-        holder.userImageView.setVisibility(View.INVISIBLE);
-        if (!taskInProgress) {
-            holder.userImageView.setVisibility(View.INVISIBLE);
-            RoundedDrawable bmp = getBitmapFromMemCache(user.getId().longValue());
-            if (bmp != null) {
-                holder.userImageView.setImageDrawable(bmp);
-                holder.userImageView.setVisibility(View.VISIBLE);
-            } else {
-                LoadImageTask imageTask = new LoadImageTask(holder, user,
-                        position);
-                taskIdentifiers.put(user.getId().longValue(), imageTask);
-                imageTask.execute();
-            }
-        }
+        
+        
+        adapterHandler.onGetView(holder, user.getId().longValue(), user.getImageUrl(), position);
     }
     
     public interface UserAdapterListener{

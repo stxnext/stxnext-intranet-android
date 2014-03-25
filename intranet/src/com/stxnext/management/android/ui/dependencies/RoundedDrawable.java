@@ -21,7 +21,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.util.Log;
 import android.widget.ImageView.ScaleType;
 
-public class RoundedDrawable extends Drawable {
+public class RoundedDrawable extends Drawable implements SizedEntity{
 
     public static final String TAG = "RoundedDrawable";
     public static final int DEFAULT_BORDER_COLOR = Color.BLACK;
@@ -67,10 +67,11 @@ public class RoundedDrawable extends Drawable {
         mBorderPaint.setStrokeWidth(mBorderWidth);
     }
 
+    @Override
     public long getSize() {
         return size;
     }
-
+    
     public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();

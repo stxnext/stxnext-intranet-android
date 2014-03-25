@@ -277,6 +277,7 @@ public class IntranetUser extends AbstractMessage implements Serializable{
         Player player = new Player();
         player.setEmail(email);
         player.setName(name);
+        player.setImageUrl(imageUrl);
         player.setExternalId(id.longValue());
         return player;
     }

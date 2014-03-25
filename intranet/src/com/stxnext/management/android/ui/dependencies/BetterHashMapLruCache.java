@@ -18,6 +18,29 @@ public class BetterHashMapLruCache<K, V> {
     private int hitCount;
     private int missCount;
 
+    public static int getPreperredCacheSize(){
+        return (int) (Runtime.getRuntime().maxMemory() * 0.80F);
+    }
+    
+    public static <K,V extends SizedEntity> BetterHashMapLruCache<K,V> getConfiguredInstance(Class<K> keyClass, Class<V> valueClass){
+        final int cacheSize = BetterHashMapLruCache.getPreperredCacheSize();
+        BetterHashMapLruCache<K,V> cache = new BetterHashMapLruCache<K, V>((int) (cacheSize * 0.7), 150) {
+            @Override
+            public int sizeOf(K key, V bitmap) {
+                return (int) bitmap.getSize();
+            }
+
+            @Override
+            public boolean trimToSize(int arg0) {
+                long runtimeAvail = Runtime.getRuntime().freeMemory();
+                boolean runtimeNearlyDepleted = runtimeAvail < BetterHashMapLruCache.RUNTIME_AVAIL_MEM_THRESHOLD;
+                long maxMemToUse = runtimeNearlyDepleted ? 0 : cacheSize;
+                return super.trimToSize((int) (maxMemToUse));
+            }
+        };
+        return cache;
+    }
+    
     /**
      * @param maxSize for caches that do not override {@link #sizeOf}, this is
      *     the maximum number of entries in the cache. For all other caches,

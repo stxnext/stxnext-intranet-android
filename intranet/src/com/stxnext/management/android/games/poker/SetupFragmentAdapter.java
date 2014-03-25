@@ -10,17 +10,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.viewpagerindicator.IconPagerAdapter;
 
 public class SetupFragmentAdapter  extends FragmentPagerAdapter implements IconPagerAdapter {
-    protected String[] contentTitles;
     private ArrayList<Fragment> fragments;
 
-    public SetupFragmentAdapter(Context context,FragmentManager fm, ArrayList<Fragment> fragments) {
+    FragmentManager manager;
+    public SetupFragmentAdapter(Context context,FragmentManager fm) {
         super(fm);
-        this.fragments = fragments;
-        contentTitles = new String[]{"1","2"};
+        this.fragments = new ArrayList<Fragment>();
+        this.manager = fm;
     }
     
-    public ArrayList<Fragment> getFragments() {
-        return fragments;
+    public void addFragment(Fragment fragment){
+        this.fragments.add(fragment);
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -31,11 +32,6 @@ public class SetupFragmentAdapter  extends FragmentPagerAdapter implements IconP
     @Override
     public int getCount() {
         return fragments.size();
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-      return contentTitles[position % contentTitles.length];
     }
 
     @Override
