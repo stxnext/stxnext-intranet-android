@@ -34,6 +34,7 @@ public class SetupRoleFragment  extends SherlockFragment implements SetupActivit
         this.setHasOptionsMenu(true);
     }
     
+    
     boolean viewCreated;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -2,6 +2,7 @@
 package com.stxnext.management.android.games.poker;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.andengine.audio.sound.Sound;
@@ -25,17 +26,36 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.opengl.view.RenderSurfaceView;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.ease.EaseCubicInOut;
 
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.Display;
+import android.view.LayoutInflater;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.stxnext.management.android.R;
 import com.stxnext.management.android.games.poker.DeckFactory.DeckType;
 import com.stxnext.management.android.games.poker.OSDMenu.OSDMenuListener;
+import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler;
+import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler.NIOConnectionNotificationHandlerCallbacks;
+import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler.NIOConnectionRequestHandlerCallbacks;
+import com.stxnext.management.android.ui.dependencies.SimplePlayersGridAdapter;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Vote;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.in.SessionMessage;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 
-public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenuListener {
+public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenuListener,
+        NIOConnectionNotificationHandlerCallbacks, NIOConnectionRequestHandlerCallbacks {
     // ===========================================================
     // Constants
     // ===========================================================
@@ -60,6 +80,18 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     private OSDMenu osdMenu;
     private CardSprite draggedCardSprite;
     private CardSprite cardOnTheTable;
+    
+    // main native views
+    private LinearLayout rootView;
+    private LinearLayout gameDashboLayout;
+    
+    // dashboard views
+    private SimplePlayersGridAdapter playerGridAdapter;
+    private TextView gameStatusInfo;
+    private GridView playersGrid;
+
+    private NIOConnectionHandler nioHandler;
+    private GameData gameData;
 
     // ===========================================================
     // Constructors
@@ -73,14 +105,78 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     // Methods for/from SuperClass/Interfaces
     // ===========================================================
 
+    @Override
+    protected synchronized void onResume() {
+        nioHandler.addNotificationListener(this);
+        nioHandler.addRequestListener(this);
+        super.onResume();
+    }
     
-    @SuppressWarnings("deprecation")//need to support gingerbread
+    @Override
+    protected void onPause() {
+        nioHandler.removeNotificationListener(this);
+        nioHandler.removeRequestListener(this);
+        super.onPause();
+    }
+    
+    @Override
+    protected void onCreate(Bundle pSavedInstanceState) {
+        super.onCreate(pSavedInstanceState);
+        nioHandler = NIOConnectionHandler.getInstance();
+        gameData = GameData.getInstance();
+        
+        gameStatusInfo = (TextView) rootView.findViewById(R.id.gameStatusInfo);
+        playersGrid = (GridView) rootView.findViewById(R.id.playersGrid);
+        playerGridAdapter = new SimplePlayersGridAdapter(this, new ArrayList<Player>(), playersGrid);
+        playersGrid.setAdapter(playerGridAdapter);
+        
+        //just a mockup for now
+        playerGridAdapter.setList(gameData.getSessionIamIn().getPlayers());
+        
+        if(gameData.amiGameMaster()){
+            prepareMasterLayout();
+        }
+        else{
+            prepareParticipantLayout();
+        }
+    }
+    
+    private void prepareMasterLayout(){
+        
+    }
+    
+    private void prepareParticipantLayout(){
+        
+    }
+    
+    @Override
+    protected void onSetContentView() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        rootView = (LinearLayout) inflater.inflate(R.layout.game_main, null);
+        gameDashboLayout = (LinearLayout) rootView.findViewById(R.id.gameDashboard);
+        LinearLayout gameContainer = (LinearLayout) rootView.findViewById(R.id.gameContainer);
+        final LinearLayout.LayoutParams rootLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, 1f);
+        rootLayoutParams.setLayoutDirection(LinearLayout.VERTICAL);
+        final LinearLayout.LayoutParams surfaceViewLayoutParams = new LinearLayout.LayoutParams(
+                super.createSurfaceViewLayoutParams());
+
+        this.mRenderSurfaceView = new RenderSurfaceView(this);
+        this.mRenderSurfaceView.setRenderer(this.mEngine, this);
+
+        gameContainer.addView(this.mRenderSurfaceView, surfaceViewLayoutParams);
+
+        this.setContentView(rootView, rootLayoutParams);
+    }
+
+    @SuppressWarnings("deprecation")
+    // need to support gingerbread
     @Override
     public EngineOptions onCreateEngineOptions() {
 
         Display display = getWindowManager().getDefaultDisplay();
         CAMERA_WIDTH = display.getWidth();
-        CAMERA_HEIGHT = display.getHeight();
+        CAMERA_HEIGHT = (int) (display.getHeight() * 0.80);
 
         this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 
@@ -98,12 +194,12 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     // kind of complicated and not encapsulated, please refactor that later
     public void setDraggedCardSprite(CardSprite draggedSprite) {
 
-        if(draggedSprite == null && this.draggedCardSprite != null){
+        if (draggedSprite == null && this.draggedCardSprite != null) {
             if (this.draggedCardSprite.collidesWith(deskSprite)) {
-                if(this.cardOnTheTable != null){
+                if (this.cardOnTheTable != null) {
                     this.cardOnTheTable.backToOriginalPosition(false);
                     resetZIndexes();
-                    //mScene.sortChildren();
+                    // mScene.sortChildren();
                 }
                 this.cardOnTheTable = this.draggedCardSprite;
                 float movetoX = deskSprite.getX() + (deskSprite.getWidth() / 2)
@@ -115,10 +211,10 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
                         movetoY, EaseCubicInOut.getInstance()));
             }
         }
-        else if(draggedSprite!=null && draggedSprite.equals(this.cardOnTheTable)){
+        else if (draggedSprite != null && draggedSprite.equals(this.cardOnTheTable)) {
             this.cardOnTheTable = null;
         }
-        
+
         this.draggedCardSprite = draggedSprite;
     }
 
@@ -254,13 +350,13 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         this.mScene.registerTouchArea(sprite);
     }
 
-    private void resetZIndexes(){
+    private void resetZIndexes() {
         for (CardSprite card : cards) {
             card.resetZIndex();
         }
         mScene.sortChildren();
     }
-    
+
     public void clearCardsZIndex() {
         for (CardSprite card : cards) {
             card.setZIndex(0);
@@ -269,14 +365,76 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
     @Override
     public void onAlignDeck() {
-        for(CardSprite card : cards){
+        for (CardSprite card : cards) {
             card.backToOriginalPosition(false);
         }
         mScene.sortChildren();
         sceneUpdateHandler.reset();
     }
 
-    // ===========================================================
-    // Inner and Anonymous Classes
-    // ===========================================================
+    @Override
+    public void onDecksReceived(MessageWrapper<DeckSetMessage> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onCreateSessionReceived(MessageWrapper<Session> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onPlayerSessionReceived(MessageWrapper<List<Session>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onPlayersCreateReceived(MessageWrapper<List<Player>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onLivePlayersReceived(MessageWrapper<List<Player>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onJoinSessionReceived(MessageWrapper<Player> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onUserConnectionStateChanged(MessageWrapper<SessionMessage<Player>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onNewTicketRoundReceived(MessageWrapper<SessionMessage<Ticket>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onVoteReceived(MessageWrapper<SessionMessage<Vote>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onRevealVotesReceived(MessageWrapper<SessionMessage<Ticket>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onFinishSessionReceived(MessageWrapper<SessionMessage<Session>> msg) {
+        // TODO Auto-generated method stub
+        
+    }
 }

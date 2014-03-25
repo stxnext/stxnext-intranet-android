@@ -81,7 +81,7 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.actionbar_buttons, menu);
+        inflater.inflate(R.menu.actionbar_setup_session, menu);
     }
 
     @Override

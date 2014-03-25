@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <LinearLayout
+        android:id="@+id/gameContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="@dimen/game_surface_heigth" />
+
+    <LinearLayout
+        android:id="@+id/gameDashboard"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="@dimen/game_dashboard_heigth"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/gameStatusArea"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.6"
+            android:orientation="vertical"
+            android:gravity="top" >
+
+            <TextView
+                android:id="@+id/gameStatusInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Players currently picking" />
+
+            <GridView
+                android:id="@+id/playersGrid"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchMode="columnWidth"
+                android:numColumns="@integer/players_grid_rows"
+                android:layout_gravity="top" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/gameOptionsArea"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.4" >
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

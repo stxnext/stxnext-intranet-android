@@ -106,7 +106,7 @@ public class JoinSessionFragment extends SherlockFragment implements SetupActivi
 
     private void joinSession(Session session) {
         getSherlockActivity().setProgressBarIndeterminateVisibility(true);
-        GameData.getInstance().setSessionToJoin(session);
+        GameData.getInstance().setSessionIamIn(session);
         nioConnectionHandler.enqueueRequest(RequestFor.JoinSession, new SessionMessage<Object>(
                 GameData.getInstance().getCurrentHandshakenPlayer(), session, null));
     }

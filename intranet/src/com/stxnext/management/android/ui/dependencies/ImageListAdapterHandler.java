@@ -24,14 +24,14 @@ public class ImageListAdapterHandler {
 
     private BetterHashMapLruCache<Long, RoundedDrawable> memoryCache;
     private HashMap<Long, LoadImageTask> taskIdentifiers = new HashMap<Long, LoadImageTask>();
-    private ListView listView;
+    private AbsListView listView;
     private IntranetApi api;
     int firstVisiblePosition;
     int lastVisiblePosition;
     private String baseImageUrl="https://intranet.stxnext.pl";
     private Activity activity;
     
-    public ImageListAdapterHandler(ListView listView, Activity activity){
+    public ImageListAdapterHandler(AbsListView listView, Activity activity){
         this.api = IntranetApi.getInstance(activity.getApplication());
         this.activity = activity;
         memoryCache = BetterHashMapLruCache.getConfiguredInstance(Long.class, RoundedDrawable.class);

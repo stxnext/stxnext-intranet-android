@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.stxnext.management.android.R;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 
-public class PlayerListAdapter  extends BaseAdapter {
+public class PlayerListAdapter extends BaseAdapter {
 
     private final Activity context;
     private List<Player> playerList;

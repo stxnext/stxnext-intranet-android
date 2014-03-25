@@ -26,7 +26,7 @@ public class GameData {
     Session sessionToCreate;
     IntranetUser currentUser;
     Player currentHandshakenPlayer;
-    Session sessionToJoin;
+    Session sessionIamIn;
     List<Deck> decks;
 
     public void clear() {
@@ -76,14 +76,18 @@ public class GameData {
         this.currentHandshakenPlayer = currentHandshakenPlayer;
     }
 
-    public Session getSessionToJoin() {
-        return sessionToJoin;
+    public Session getSessionIamIn() {
+        return sessionIamIn;
     }
 
-    public void setSessionToJoin(Session sessionToJoin) {
-        this.sessionToJoin = sessionToJoin;
+    public void setSessionIamIn(Session sessionToJoin) {
+        this.sessionIamIn = sessionToJoin;
     }
-    
-    
-    
+
+    public boolean amiGameMaster() {
+        return (sessionIamIn != null && currentHandshakenPlayer != null
+                && sessionIamIn.getOwner() != null && currentHandshakenPlayer.getId() == sessionIamIn
+                .getOwner().getId());
+    }
+
 }

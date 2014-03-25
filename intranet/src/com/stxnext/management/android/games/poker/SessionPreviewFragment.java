@@ -6,26 +6,25 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.google.common.collect.Lists;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.games.poker.SetupActivity.SetupActivityListener;
 import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler;
 import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler.NIOConnectionNotificationHandlerCallbacks;
 import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler.NIOConnectionRequestHandlerCallbacks;
 import com.stxnext.management.android.ui.dependencies.PlayerListAdapter;
-import com.stxnext.management.android.ui.dependencies.SessionListAdapter;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
@@ -67,8 +66,9 @@ public class SessionPreviewFragment extends SherlockFragment implements SetupAct
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setRetainInstance(true);
+        this.setHasOptionsMenu(true);
     }
-
+    
     @Override
     public void onDestroy() {
         nioConnectionHandler.removeNotificationListener(this);
@@ -81,7 +81,20 @@ public class SessionPreviewFragment extends SherlockFragment implements SetupAct
         super.onActivityCreated(savedInstanceState);
         getSherlockActivity().setProgressBarIndeterminateVisibility(true);
         nioConnectionHandler.enqueueRequest(RequestFor.PlayersInLiveSession,
-                new SessionMessage<Object>(GameData.getInstance().getCurrentHandshakenPlayer(),GameData.getInstance().getSessionToJoin(),null));
+                new SessionMessage<Object>(GameData.getInstance().getCurrentHandshakenPlayer(),GameData.getInstance().getSessionIamIn(),null));
+    }
+    
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.actionbar_session_preview, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.go_into_session) {
+            startActivity(new Intent(getActivity(), BoardGameActivity.class));
+        }
+        return true;
     }
 
     boolean viewCreated;
