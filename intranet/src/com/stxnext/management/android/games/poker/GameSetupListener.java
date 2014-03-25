@@ -6,9 +6,11 @@ import java.util.List;
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.Team;
 import com.stxnext.management.android.ui.dependencies.ExtendedViewPager;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 
 public interface GameSetupListener {
     public void onRoleChosen(GameRole role);
+    public void onSessionJoin();
     public IntranetUser getCurrentUser();
     public List<Team> getTeams();
     public SetupFragmentAdapter getFragmentAdapter();

@@ -60,37 +60,16 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
         mPager.setPagingEnabled(false);
         new LoadDataTask().execute();
     }
-    
-    @Override
-    public void onRoleChosen(GameRole role) {
 
-        if (GameRole.MASTER.equals(role)) {
-            sessionFragment = new SetupSessionFragment(this);
-            sessionFragment.setFormEnabled(true);
-            mAdapter.addFragment(sessionFragment);
-            sessionPreviewFragment = new SessionPreviewFragment(this);
-            mAdapter.addFragment(sessionPreviewFragment);
-        }
-        else if (GameRole.PARTICIPANT.equals(role)) {
-            joinFragment = new JoinSessionFragment(this);
-            joinFragment.setFormEnabled(true);
-            mAdapter.addFragment(joinFragment);
-        }
-        mPager.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPager.setCurrentItem(POSITION_SESSION, true);
-            }
-        },500);
+    @Override
+    public void finish() {
+        // NIOConnectionHandler.getInstance().stop();
+        super.finish();
     }
 
     @Override
     public void onBackPressed() {
-        if (mPager.getCurrentItem() > 1) {
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-            return;
-        }
-        else if (mPager.getCurrentItem() == 1) {
+        if (mPager.getCurrentItem() == 1) {
             Builder builder = new android.app.AlertDialog.Builder(this)
                     .setTitle("Discard session setup?")
                     .setMessage("Do you wish to discard session setup?")
@@ -107,6 +86,29 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
                                 }
                             });
             builder.show();
+        }
+        else if (mPager.getCurrentItem() == 2) {
+            Builder builder = new android.app.AlertDialog.Builder(this)
+                    .setTitle("Quit session?")
+                    .setMessage("Do you wish to quit session you're currently in?")
+                    .setNegativeButton(getString(R.string.common_no),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                    .setPositiveButton(getString(R.string.common_yes),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    NIOConnectionHandler.getInstance().reset();
+                                    finish();
+                                }
+                            });
+            builder.show();
+        }
+        else if (mPager.getCurrentItem() > 1) {
+            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+            return;
         }
         else {
             super.onBackPressed();
@@ -130,7 +132,7 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
     private void setLoadingData(boolean loading) {
         getSherlock().setProgressBarIndeterminateVisibility(loading);
         roleFragment.setFormEnabled(!loading);
-        //sessionFragment.setFormEnabled(!loading);
+        // sessionFragment.setFormEnabled(!loading);
     }
 
     private class LoadDataTask extends AsyncTaskEx<Void, Void, Void> {
@@ -195,6 +197,42 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
     @Override
     public ExtendedViewPager getViewPager() {
         return mPager;
+    }
+
+    @Override
+    public void onRoleChosen(GameRole role) {
+        getSherlock().setProgressBarIndeterminateVisibility(true);
+        if (GameRole.MASTER.equals(role)) {
+            sessionFragment = new SetupSessionFragment(this);
+            sessionFragment.setFormEnabled(true);
+            mAdapter.addFragment(sessionFragment);
+        }
+        else if (GameRole.PARTICIPANT.equals(role)) {
+            joinFragment = new JoinSessionFragment(this);
+            joinFragment.setFormEnabled(true);
+            mAdapter.addFragment(joinFragment);
+        }
+        mPager.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getSherlock().setProgressBarIndeterminateVisibility(false);
+                mPager.setCurrentItem(POSITION_SESSION, true);
+            }
+        }, 700);
+    }
+
+    @Override
+    public void onSessionJoin() {
+        getSherlock().setProgressBarIndeterminateVisibility(true);
+        sessionPreviewFragment = new SessionPreviewFragment(this);
+        mAdapter.addFragment(sessionPreviewFragment);
+        mPager.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getSherlock().setProgressBarIndeterminateVisibility(false);
+                mPager.setCurrentItem(2, true);
+            }
+        }, 700);
     }
 
 }

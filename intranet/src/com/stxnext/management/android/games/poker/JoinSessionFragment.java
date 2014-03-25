@@ -24,6 +24,7 @@ import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.RequestFor;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.in.SessionMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 
 public class JoinSessionFragment extends SherlockFragment implements SetupActivityListener,
@@ -105,7 +106,9 @@ public class JoinSessionFragment extends SherlockFragment implements SetupActivi
 
     private void joinSession(Session session) {
         getSherlockActivity().setProgressBarIndeterminateVisibility(true);
-        nioConnectionHandler.enqueueRequest(RequestFor.JoinSession, session);
+        GameData.getInstance().setSessionToJoin(session);
+        nioConnectionHandler.enqueueRequest(RequestFor.JoinSession, new SessionMessage<Object>(
+                GameData.getInstance().getCurrentHandshakenPlayer(), session, null));
     }
 
     boolean formsEnabled = false;
@@ -156,13 +159,18 @@ public class JoinSessionFragment extends SherlockFragment implements SetupActivi
     public void onLivePlayersReceived(MessageWrapper<List<Player>> msg) {
     }
 
+    private boolean joinedSession;
+
     @Override
     public void onJoinSessionReceived(MessageWrapper<Player> msg) {
         // tap into the game after success
+        if (joinedSession)
+            return;
         if (msg.getPayload() != null
                 && GameData.getInstance().getCurrentHandshakenPlayer().getId()
                         .equals(msg.getPayload().getId())) {
-            listener.getViewPager().setCurrentItem(2, true);
+            listener.onSessionJoin();
+            joinedSession = true;
         }
     }
 

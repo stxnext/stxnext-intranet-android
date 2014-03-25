@@ -55,9 +55,18 @@ public class UserListAdapter extends CursorAdapter {
     }
     
     public List<IntranetUser> getSelected(){
+        List<IntranetUser> users = new ArrayList<IntranetUser>();
         Cursor c = getCursor();
-        c.move(-1);
-        return userMapper.mapEntity(c);
+        c.moveToFirst();
+        IntranetUser user = userMapper.mapEntity(c,c.getPosition());
+        if(selectedUsers.contains(user.getId().longValue()))
+            users.add(user);
+        while(c.moveToNext()){
+            user = userMapper.mapEntity(c,c.getPosition());
+            if(selectedUsers.contains(user.getId().longValue()))
+                users.add(user);
+        }
+        return users;
     }
 
     private void addSelectedFromCursor(Cursor c){
@@ -68,7 +77,8 @@ public class UserListAdapter extends CursorAdapter {
         selectedUsers.clear();
         if(all){
             Cursor c = getCursor();
-            c.move(-1);
+            c.moveToFirst();
+            addSelectedFromCursor(c);
             while(c.moveToNext()){
                 addSelectedFromCursor(c);
             }

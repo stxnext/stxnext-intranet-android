@@ -26,6 +26,7 @@ public class GameData {
     Session sessionToCreate;
     IntranetUser currentUser;
     Player currentHandshakenPlayer;
+    Session sessionToJoin;
     List<Deck> decks;
 
     public void clear() {
@@ -73,6 +74,14 @@ public class GameData {
 
     public void setCurrentHandshakenPlayer(Player currentHandshakenPlayer) {
         this.currentHandshakenPlayer = currentHandshakenPlayer;
+    }
+
+    public Session getSessionToJoin() {
+        return sessionToJoin;
+    }
+
+    public void setSessionToJoin(Session sessionToJoin) {
+        this.sessionToJoin = sessionToJoin;
     }
     
     

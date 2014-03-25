@@ -219,8 +219,14 @@ public class NIOConnectionHandler implements ConnectionHandler {
             }
         }
     }
+    
+    public void reset(){
+        stop();
+        start(false);
+    }
 
     public void stop() {
+        requestQueue.clear();
         if (socket != null) {
             try {
                 socket.shutdownInput();
