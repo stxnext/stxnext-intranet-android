@@ -31,7 +31,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:gravity="fill_horizontal|center_vertical"
+            android:gravity="right|center_vertical"
             android:orientation="horizontal"
             android:weightSum="1" >
 
@@ -43,14 +43,23 @@
                 android:layout_gravity="left|center_vertical"
                 android:text="Select Team"
                 android:textSize="@dimen/form_label_text_size" />
+            
+            <com.stxnext.management.android.ui.dependencies.TouchResistantEditText 
+                android:id="@+id/teamSelectorError"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@null"
+                />
 
             <ImageView
                 android:id="@+id/selectAllCheckbox"
                 android:layout_width="0dip"
                 android:layout_weight="0.3"
-                android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:layout_height="wrap_content"
+                android:scaleType="fitEnd"
                 android:src="@drawable/checkbox_levels" />
+            
         </LinearLayout>
 
         <ListView

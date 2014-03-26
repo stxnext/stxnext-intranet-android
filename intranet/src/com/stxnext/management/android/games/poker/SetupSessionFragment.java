@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +18,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.stxnext.management.android.R;
 import com.stxnext.management.android.dto.local.IntranetUser;
@@ -39,6 +43,7 @@ import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.MessageWrapper;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.in.RequestFor;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.in.SessionMessage;
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 
 public class SetupSessionFragment extends SherlockFragment implements SetupActivityListener,
@@ -48,6 +53,7 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
     EditText sessionNameView;
     TextView teamSelector;
     TextView deckSelector;
+    EditText teamErrorView;
     ImageView selectAllCheckbox;
     Cursor usersCursor;
     NIOConnectionHandler nioConnectionHandler;
@@ -84,9 +90,33 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
         inflater.inflate(R.menu.actionbar_setup_session, menu);
     }
 
+    private boolean validateForm(){
+        boolean valid = true;
+        sessionNameView.setError(null);
+        teamErrorView.setError(null);
+        int selectedSize = participantsAdapter.getSelectedIds().size();
+        String sessionName = sessionNameView.getText().toString().trim();
+        if(Strings.isNullOrEmpty(sessionName)){
+            valid = false;
+            sessionNameView.setError("Session name required!");
+        }
+        
+        if(selectedSize<=1){
+            valid = false;
+            teamErrorView.setError("Select at least 2 participants");
+            teamErrorView.requestFocus();
+        }
+        
+        return valid;
+    }
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_item_start_session) {
+            if(!validateForm())
+                return true;
+            
+            getSherlockActivity().setProgressBarIndeterminateVisibility(true);
             sessionToCreate.setName(sessionNameView.getText().toString().trim());
             sessionToCreate.setDeckId(selectedDeck.getId());
             sessionToCreate.setOwner(GameData.getInstance().getCurrentHandshakenPlayer());
@@ -196,6 +226,7 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
         participantsListView = (ListView) view.findViewById(R.id.usersList);
         selectAllCheckbox = (ImageView) view.findViewById(R.id.selectAllCheckbox);
         deckSelector = (TextView) view.findViewById(R.id.deckSelector);
+        teamErrorView = (EditText) view.findViewById(R.id.teamSelectorError);
         selectAllCheckbox.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,10 +238,12 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
         nioConnectionHandler.start(false);
         
         setFormEnabled(formsEnabled);
-//        if (deckResponse != null) {
-//            setupDeckPopup(deckResponse);
-//        }
         return view;
+    }
+    
+    private void setLoading(boolean loading){
+        getSherlockActivity().setProgressBarIndeterminateVisibility(loading);
+        setFormEnabled(!loading);
     }
 
     private void setUpList() {
@@ -266,8 +299,32 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
     }
 
     @Override
-    public void onCreateSessionReceived(MessageWrapper<Session> msg) {
+    public void onCreateSessionReceived(final MessageWrapper<Session> msg) {
         Log.e("request", msg.serialize());
+        setFormEnabled(true);
+        Builder builder = new android.app.AlertDialog.Builder(getActivity())
+        .setTitle("Session created")
+        .setMessage("Do you wish to join session named \"" + msg.getPayload().getName() + "\"?")
+        .setNegativeButton(getString(R.string.common_no),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        getActivity().finish();
+                    }
+                })
+        .setPositiveButton(getString(R.string.common_yes),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        joinSession(msg.getPayload());
+                    }
+                });
+        builder.show();
+    }
+    
+    private void joinSession(Session session) {
+        setLoading(true);
+        GameData.getInstance().setSessionIamIn(session);
+        nioConnectionHandler.enqueueRequest(RequestFor.JoinSession, new SessionMessage<Object>(
+                GameData.getInstance().getCurrentHandshakenPlayer(), session, null));
     }
 
     @Override
@@ -287,9 +344,19 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
         Log.e("request", msg.serialize());
     }
 
+    private boolean joinedSession;
     @Override
     public void onJoinSessionReceived(MessageWrapper<Player> msg) {
+        setLoading(false);
         Log.e("request", msg.serialize());
+        if (joinedSession)
+            return;
+        if (msg.getPayload() != null
+                && GameData.getInstance().getCurrentHandshakenPlayer().getId()
+                        .equals(msg.getPayload().getId())) {
+            listener.onSessionJoin();
+            joinedSession = true;
+        }
     }
 
 }

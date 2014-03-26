@@ -157,14 +157,14 @@
                 android:id="@+id/checkboxArea"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center"
+                android:gravity="right"
                 android:visibility="gone" >
 
                 <ImageView
                     android:id="@+id/checkmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical|right"
                     android:src="@drawable/checkbox_levels" />
             </LinearLayout>
 
@@ -172,6 +172,8 @@
                 android:id="@+id/roleArea"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:visibility="visible" >
 
                 <TextView
