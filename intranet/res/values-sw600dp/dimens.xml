@@ -17,7 +17,10 @@
 
     <integer name="players_grid_rows">5</integer>
 
-    <item name="game_surface_heigth" format="float" type="dimen">0.8</item>
-    <item name="game_dashboard_heigth" format="float" type="dimen">0.2</item>
+    <item name="game_surface_heigth" format="float" type="dimen">0.7</item>
+    <item name="game_dashboard_heigth" format="float" type="dimen">0.3</item>
+    
+    <item name="game_dash_left_pane_width" format="float" type="dimen">0.55</item>
+	<item name="game_dash_right_pane_width" format="float" type="dimen">0.45</item>
 
 </resources>

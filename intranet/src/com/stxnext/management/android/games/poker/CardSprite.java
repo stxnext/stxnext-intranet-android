@@ -20,6 +20,8 @@ import org.andengine.util.modifier.ease.EaseLinear;
 import org.andengine.util.modifier.ease.EaseStrongIn;
 import org.andengine.util.modifier.ease.EaseStrongOut;
 
+import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
+
 public class CardSprite extends Sprite {
 
     private static Font font;
@@ -33,7 +35,7 @@ public class CardSprite extends Sprite {
     ScaleModifier scaleModifier;
     private BoardGameActivity gameActivity;
     boolean mGrabbed = false;
-    Float value;
+    Long externalId;
     String displayValue;
     int originalZIndex;
 
@@ -62,7 +64,7 @@ public class CardSprite extends Sprite {
         setZIndex(originalZIndex);
     }
 
-    public void prepare(String displayValue, Float value) {
+    public void prepare(String displayValue, Long id) {
         final VertexBufferObjectManager vertexBufferObjectManager = gameActivity
                 .getVertexBufferObjectManager();
         final Text centerText = new Text(0, 0, font, displayValue, new TextOptions(
@@ -98,7 +100,7 @@ public class CardSprite extends Sprite {
         rightBottomText.setScale(0.6f);
         attachChild(rightBottomText);
 
-        this.value = value;
+        this.externalId = id;
     }
 
     @Override
@@ -150,10 +152,6 @@ public class CardSprite extends Sprite {
         CardSprite.font = font;
     }
 
-    public Float getValue() {
-        return value;
-    }
-
     public float getOriginalX() {
         return originalX;
     }
@@ -162,13 +160,17 @@ public class CardSprite extends Sprite {
         return originalY;
     }
     
+    public Long getExternalId() {
+        return externalId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if(o == null)
             return false;
         if(o instanceof CardSprite){
             CardSprite toCompare = (CardSprite) o;
-            return this.value.equals(toCompare.getValue()); 
+            return this.externalId.equals(toCompare.getExternalId()); 
         }
         else{
             return false;

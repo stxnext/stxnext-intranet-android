@@ -5,41 +5,29 @@ import java.util.List;
 
 import org.andengine.opengl.texture.region.TextureRegion;
 
+import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
+
 public class DeckFactory {
 
-    public enum DeckType{
-        DEFAULT,
-        FIBONACCI
-    }
-    
-    
-   public static List<CardSprite> produce(DeckType type, TextureRegion texture, BoardGameActivity activity){
+   public static List<CardSprite> produce(Deck deck, TextureRegion texture, BoardGameActivity activity){
        List<CardSprite> result = new ArrayList<CardSprite>();
        int cardOffset = BoardGameActivity.CAMERA_WIDTH/12;
        int cardY = (int) (BoardGameActivity.CAMERA_HEIGHT - (CardSprite.CARD_HEIGHT));
        int cardPos = 0;
        int cardIndex = 0;
        
-       result.add(createCard(cardPos, cardY, texture, activity, "0", 0f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "1/2", 0.5f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "1", 1f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "2", 2f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "3", 3f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "5", 5f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "8", 8f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "13", 13f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "20", 20f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "40", 40f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "100", 100f,cardIndex++));
-       result.add(createCard(cardPos+=cardOffset, cardY, texture, activity, "?", -1f,cardIndex++));
-       
+       for(Card card : deck.getCards()){
+           result.add(createCard(cardPos, cardY, texture, activity, card.getName(),card.getId(),cardIndex++));
+           cardPos+=cardOffset;
+       }
        return result;
    }
    
-   private static CardSprite createCard(float x, float y, TextureRegion texture, BoardGameActivity activity, String displayValue, Float value, int cardIndex){
+   private static CardSprite createCard(float x, float y, TextureRegion texture, BoardGameActivity activity, String displayValue, Long externalId, int cardIndex){
        final CardSprite sprite = new CardSprite(x, y, texture,
                activity.getVertexBufferObjectManager(),activity, cardIndex);
-       sprite.prepare(displayValue, value);
+       sprite.prepare(displayValue, externalId);
        return sprite;
    }
     

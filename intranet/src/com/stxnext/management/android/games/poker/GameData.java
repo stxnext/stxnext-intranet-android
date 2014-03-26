@@ -1,12 +1,15 @@
 
 package com.stxnext.management.android.games.poker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Ticket;
+import com.stxnext.management.server.planningpoker.server.dto.messaging.in.SessionMessage;
 
 public class GameData {
 
@@ -27,13 +30,24 @@ public class GameData {
     IntranetUser currentUser;
     Player currentHandshakenPlayer;
     Session sessionIamIn;
+    Ticket ticketBeingConsidered;
     List<Deck> decks;
+    List<Player> livePlayers = new ArrayList<Player>();
 
     public void clear() {
         userSessions = null;
         sessionToCreate = null;
         currentUser = null;
         decks = null;
+    }
+    
+    public Deck getCurrentSessionDeck(){
+        for(Deck deck : decks){
+            if(sessionIamIn.getDeckId().equals(deck.getId())){
+                return deck;
+            }
+        }
+        return null;
     }
 
     public List<Session> getUserSessions() {
@@ -83,6 +97,10 @@ public class GameData {
     public void setSessionIamIn(Session sessionToJoin) {
         this.sessionIamIn = sessionToJoin;
     }
+    
+    public <T> SessionMessage<T> getSessionMessageInstance(T subject){
+        return new SessionMessage<T>(currentHandshakenPlayer.getId(), sessionIamIn.getId(), subject);
+    }
 
     public boolean amiGameMaster() {
         return (sessionIamIn != null && currentHandshakenPlayer != null
@@ -90,4 +108,31 @@ public class GameData {
                 .getOwner().getId());
     }
 
+    public List<Player> getLivePlayers() {
+        return livePlayers;
+    }
+
+    public void setLivePlayers(List<Player> livePlayers) {
+        this.livePlayers = livePlayers;
+    }
+    
+    public void manageLivePlayer(Player player){
+        if(player.isActive()){
+            if(!livePlayers.contains(player))
+                livePlayers.add(player);
+        }
+        else{
+            livePlayers.remove(player);
+        }
+    }
+
+    public Ticket getTicketBeingConsidered() {
+        return ticketBeingConsidered;
+    }
+
+    public void setTicketBeingConsidered(Ticket ticketBeingConsidered) {
+        this.ticketBeingConsidered = ticketBeingConsidered;
+    }
+    
+    
 }

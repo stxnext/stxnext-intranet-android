@@ -94,6 +94,7 @@ public class SessionPreviewFragment extends SherlockFragment implements SetupAct
         if (item.getItemId() == R.id.go_into_session) {
             startActivity(new Intent(getActivity(), BoardGameActivity.class));
         }
+        getActivity().finish();
         return true;
     }
 
