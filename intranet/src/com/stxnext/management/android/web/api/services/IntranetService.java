@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import android.graphics.Bitmap;
@@ -145,7 +146,7 @@ public class IntranetService extends AbstractService {
         setContentType(request, RequestHeader.JSON);
         
         String jsonString = messagge.serialize();
-        StringEntity postEntity = new StringEntity(jsonString);
+        StringEntity postEntity = new StringEntity(jsonString, HTTP.UTF_8);
         request.setEntity(postEntity);
 
         HttpResponse response = executeRequestAndParseError(request, result);
@@ -165,7 +166,7 @@ public class IntranetService extends AbstractService {
         HttpPost request = postRequest("api/absence", null);
         setContentType(request, RequestHeader.JSON);
         String jsonString = messagge.serialize();
-        StringEntity postEntity = new StringEntity(jsonString);
+        StringEntity postEntity = new StringEntity(jsonString, HTTP.UTF_8);
         request.setEntity(postEntity);
 
         HttpResponse response = executeRequestAndParseError(request, result);
