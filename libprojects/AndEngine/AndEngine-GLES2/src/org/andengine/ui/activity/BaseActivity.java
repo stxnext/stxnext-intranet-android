@@ -6,9 +6,9 @@ import org.andengine.util.call.Callable;
 import org.andengine.util.call.Callback;
 import org.andengine.util.progress.ProgressCallable;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Looper;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 /**
@@ -18,7 +18,7 @@ import android.widget.Toast;
  * @author Nicolas Gramlich
  * @since 18:35:28 - 29.08.2009
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
 	// ===========================================================
 	// Constants
 	// ===========================================================

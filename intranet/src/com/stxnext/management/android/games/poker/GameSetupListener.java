@@ -13,7 +13,7 @@ public interface GameSetupListener {
     public void onSessionJoin();
     public IntranetUser getCurrentUser();
     public List<Team> getTeams();
-    public SetupFragmentAdapter getFragmentAdapter();
+    public SimpleFragmentAdapter getFragmentAdapter();
     public ExtendedViewPager getViewPager();
     
     public enum GameRole{

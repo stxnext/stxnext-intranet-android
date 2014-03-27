@@ -18,16 +18,16 @@ public class DeckFactory {
        int cardIndex = 0;
        
        for(Card card : deck.getCards()){
-           result.add(createCard(cardPos, cardY, texture, activity, card.getName(),card.getId(),cardIndex++));
+           result.add(createCard(cardPos, cardY, texture, activity, card.getName(),card,cardIndex++));
            cardPos+=cardOffset;
        }
        return result;
    }
    
-   private static CardSprite createCard(float x, float y, TextureRegion texture, BoardGameActivity activity, String displayValue, Long externalId, int cardIndex){
+   private static CardSprite createCard(float x, float y, TextureRegion texture, BoardGameActivity activity, String displayValue, Card externalCard, int cardIndex){
        final CardSprite sprite = new CardSprite(x, y, texture,
                activity.getVertexBufferObjectManager(),activity, cardIndex);
-       sprite.prepare(displayValue, externalId);
+       sprite.prepare(displayValue, externalCard);
        return sprite;
    }
     

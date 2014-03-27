@@ -9,7 +9,8 @@
         android:id="@+id/gameContainer"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="@dimen/game_surface_heigth" />
+        android:layout_weight="@dimen/game_surface_heigth"
+        android:orientation="vertical" />
 
     <LinearLayout
         android:id="@+id/gameDashboard"
@@ -19,43 +20,10 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <LinearLayout
-            android:id="@+id/gameStatusArea"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="@dimen/game_dash_left_pane_width"
-            android:gravity="top"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/gameStatusInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Players in game:" />
-
-            <GridView
-                android:id="@+id/playersGrid"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:numColumns="@integer/players_grid_rows"
-                android:stretchMode="columnWidth" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/gameOptionsArea"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="@dimen/game_dash_right_pane_width" >
-
-            <include
-                android:id="@+id/masterPanel"
-                layout="@layout/game_master_panel" />
-
-            <include
-                android:id="@+id/participantPanel"
-                layout="@layout/game_participant_panel" />
-        </LinearLayout>
+        <com.stxnext.management.android.ui.dependencies.ExtendedViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.stxnext.management.android.ui.dependencies;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -17,12 +18,14 @@ public class SimplePlayersGridAdapter extends BaseAdapter {
 
     private final Activity context;
     private List<Player> playerList;
+    private List<Long> votedIds;
     ImageListAdapterHandler adapterHandler;
     
     public SimplePlayersGridAdapter(Activity context, List<Player> playerList,final GridView gridView) {
         this.context = context;
         this.playerList = playerList;
         this.adapterHandler = new ImageListAdapterHandler(gridView, context);
+        this.votedIds = new ArrayList<Long>();
     }
 
     @Override
@@ -33,6 +36,16 @@ public class SimplePlayersGridAdapter extends BaseAdapter {
     
     public void setList(List<Player> playerList) {
         this.playerList = playerList;
+        notifyDataSetChanged();
+    }
+    
+    public void setPlayerVoted(Player player){
+        this.votedIds.add(player.getId());
+        notifyDataSetChanged();
+    }
+    
+    public void clearVotes(){
+        this.votedIds.clear();
         notifyDataSetChanged();
     }
 
@@ -64,6 +77,7 @@ public class SimplePlayersGridAdapter extends BaseAdapter {
             holder.parent = convertView;
             holder.imageview = (ImageView) convertView
                     .findViewById(R.id.userImage);
+            holder.checkImageView = (ImageView)convertView.findViewById(R.id.checkedImage);
             convertView.setTag(holder);
         }
         else {
@@ -77,10 +91,12 @@ public class SimplePlayersGridAdapter extends BaseAdapter {
             final ViewHolder holder) {
         holder.position = position;
         adapterHandler.onGetView(holder, item.getExternalId(), item.getImageUrl(), position);
+        holder.checkImageView.setVisibility(votedIds.contains(item.getId())?View.VISIBLE:View.INVISIBLE);
         return holder.parent;
     }
 
     public class ViewHolder extends HandlerViewHolder implements Cloneable {
         View parent;
+        ImageView checkImageView;
     }
 }

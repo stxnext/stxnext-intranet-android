@@ -37,6 +37,7 @@ import org.andengine.util.debug.Debug;
 import org.andengine.util.modifier.ease.EaseCubicInOut;
 
 import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -50,13 +51,16 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.common.base.Strings;
 import com.stxnext.management.android.R;
+import com.stxnext.management.android.games.poker.GameDashboardFragment.GameDashboardListener;
 import com.stxnext.management.android.games.poker.OSDMenu.OSDMenuListener;
 import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler;
 import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler.NIOConnectionNotificationHandlerCallbacks;
 import com.stxnext.management.android.games.poker.multiplayer.NIOConnectionHandler.NIOConnectionRequestHandlerCallbacks;
+import com.stxnext.management.android.ui.dependencies.ExtendedViewPager;
 import com.stxnext.management.android.ui.dependencies.SimplePlayersGridAdapter;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Player;
 import com.stxnext.management.server.planningpoker.server.dto.combined.Session;
@@ -68,17 +72,9 @@ import com.stxnext.management.server.planningpoker.server.dto.messaging.in.Sessi
 import com.stxnext.management.server.planningpoker.server.dto.messaging.out.DeckSetMessage;
 
 public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenuListener,
-        NIOConnectionNotificationHandlerCallbacks, NIOConnectionRequestHandlerCallbacks {
-    // ===========================================================
-    // Constants
-    // ===========================================================
-
+        NIOConnectionNotificationHandlerCallbacks, NIOConnectionRequestHandlerCallbacks, GameDashboardListener {
     public static int CAMERA_HEIGHT = 720;
     public static int CAMERA_WIDTH = 480;
-
-    // ===========================================================
-    // Fields
-    // ===========================================================
 
     private Camera mCamera;
     private Scene mScene;
@@ -96,38 +92,18 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     private OSDMenu osdMenu;
     private CardSprite draggedCardSprite;
     private CardSprite cardOnTheTable;
+    ProgressDialog progressDialog;
+    SimpleFragmentAdapter fragmentAdapter;
+    ExtendedViewPager viewPager;
 
     // main native views
     private LinearLayout rootView;
-    private LinearLayout gameDashboLayout;
-
-    // dashboard views
-    private SimplePlayersGridAdapter playerGridAdapter;
-    private TextView gameStatusInfo;
-    private GridView playersGrid;
 
     private NIOConnectionHandler nioHandler;
     private GameData gameData;
-    private View submitTicketArea;
-    private EditText ticketNameInput;
-    private Button pushTicketButton;
-    private View revealArea;
-    private Button revealVotesButton;
-    private View masterPanel;
-    private View participantPanel;
-    private Button voteButton;
-
-    // ===========================================================
-    // Constructors
-    // ===========================================================
-
-    // ===========================================================
-    // Getter & Setter
-    // ===========================================================
-
-    // ===========================================================
-    // Methods for/from SuperClass/Interfaces
-    // ===========================================================
+    VoteResultFragment voteResultFragment;
+    GameDashboardFragment gameDashBoardFragment;
+    
 
     @Override
     protected synchronized void onResume() {
@@ -149,70 +125,17 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         nioHandler = NIOConnectionHandler.getInstance();
         gameData = GameData.getInstance();
 
-        gameStatusInfo = (TextView) rootView.findViewById(R.id.gameStatusInfo);
-        playersGrid = (GridView) rootView.findViewById(R.id.playersGrid);
-
-        masterPanel = rootView.findViewById(R.id.masterPanel);
-
-        submitTicketArea = rootView.findViewById(R.id.submitTicketArea);
-        ticketNameInput = (EditText) rootView.findViewById(R.id.ticketNameInput);
-        pushTicketButton = (Button) rootView.findViewById(R.id.pushTicketButton);
-        revealArea = rootView.findViewById(R.id.revealArea);
-        revealVotesButton = (Button) rootView.findViewById(R.id.revealVotesButton);
-
-        participantPanel = rootView.findViewById(R.id.participantPanel);
-        voteButton = (Button) rootView.findViewById(R.id.voteButton);
-
-        playerGridAdapter = new SimplePlayersGridAdapter(this, new ArrayList<Player>(), playersGrid);
-        playersGrid.setAdapter(playerGridAdapter);
-
-        pushTicketButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ticketNameInput.setError(null);
-                String ticketName = ticketNameInput.getText().toString().trim();
-                if (!Strings.isNullOrEmpty(ticketName)) {
-                    Ticket ticket = new Ticket();
-                    ticket.setDisplayValue(ticketName);
-                    ticket.setSessionId(gameData.sessionIamIn.getId());
-                    nioHandler.enqueueRequest(RequestFor.SMNewTicketRound,
-                            gameData.getSessionMessageInstance(ticket));
-                    setSubjectText("Adding ticket...");
-                }
-                else {
-                    ticketNameInput.setError("Set ticket name!");
-                }
-            }
-        });
-
-        revealVotesButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Builder builder = new android.app.AlertDialog.Builder(BoardGameActivity.this)
-                        .setTitle("Reveal")
-                        .setMessage("Are you sure you want to reveal votes now?")
-                        .setNegativeButton(getString(R.string.common_no),
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                })
-                        .setPositiveButton(getString(R.string.common_yes),
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        nioHandler.enqueueRequest(
-                                                RequestFor.SMRevealVotes,
-                                                gameData.getSessionMessageInstance(gameData.ticketBeingConsidered
-                                                        .getId()));
-                                        setSubjectText("Revealing votes...");
-                                    }
-                                });
-                builder.show();
-            }
-        });
-
-        masterPanel.setVisibility(gameData.amiGameMaster() ? View.VISIBLE : View.GONE);
-        participantPanel.setVisibility(gameData.amiGameMaster() ? View.GONE : View.VISIBLE);
+        
+        
+        gameDashBoardFragment = new GameDashboardFragment(this);
+        voteResultFragment = new VoteResultFragment();
+        fragmentAdapter = new SimpleFragmentAdapter(this, getSupportFragmentManager());
+        fragmentAdapter.addFragment(gameDashBoardFragment);
+        fragmentAdapter.addFragment(voteResultFragment);
+        viewPager = (ExtendedViewPager) rootView.findViewById(R.id.pager);
+        viewPager.setOffscreenPageLimit(10);
+        viewPager.setAdapter(fragmentAdapter);
+        viewPager.setPagingEnabled(false);
 
         nioHandler.enqueueRequest(RequestFor.PlayersInLiveSession,
                 gameData.getSessionMessageInstance(null));
@@ -227,7 +150,7 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     protected void onSetContentView() {
         LayoutInflater inflater = LayoutInflater.from(this);
         rootView = (LinearLayout) inflater.inflate(R.layout.game_main, null);
-        gameDashboLayout = (LinearLayout) rootView.findViewById(R.id.gameDashboard);
+        
         LinearLayout gameContainer = (LinearLayout) rootView.findViewById(R.id.gameContainer);
         final LinearLayout.LayoutParams rootLayoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, 1f);
@@ -261,9 +184,9 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         final EngineOptions engineOptions = new EngineOptions(true,
                 ScreenOrientation.PORTRAIT_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH,
                         CAMERA_HEIGHT), this.mCamera);
-        // engineOptions.getRenderOptions().setMultiSampling(true);
+        engineOptions.getRenderOptions().setMultiSampling(true);
         engineOptions.getAudioOptions().setNeedsSound(true);
-        // engineOptions.getRenderOptions().setDithering(true);
+        engineOptions.getRenderOptions().setDithering(true);
         engineOptions.getTouchOptions().setNeedsMultiTouch(false);
 
         return engineOptions;
@@ -300,7 +223,8 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         return mEngine;
     }
 
-    private void setSubjectText(String text) {
+    @Override
+    public void setSubjectText(String text) {
         if (text == null)
             text = "";
 
@@ -316,6 +240,11 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
     @Override
     public void onBackPressed() {
+        if(viewPager.getCurrentItem()>0){
+            viewPager.setCurrentItem(viewPager.getCurrentItem()-1,true);
+            return;
+        }
+        
         String title = gameData.amiGameMaster() ? "Finish session" : "Leave session";
         String content = gameData.amiGameMaster() ? "Do you want to finish that session? It will also drop other players from it."
                 : "Do you really want to flee from this gathering ;) ?";
@@ -407,19 +336,40 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
                     setLoading(true);
                     setSubjectText("Waiting for players votes on "
                             + gameData.getTicketBeingConsidered().getDisplayValue() + "...");
-                    revealArea.setVisibility(View.VISIBLE);
-                    submitTicketArea.setVisibility(View.GONE);
+                    gameDashBoardFragment.setRevealAreaVisible(true);
+                    gameDashBoardFragment.setSubmitTicketAreaVisible(false);
+                    //revealArea.setVisibility(View.VISIBLE);
+                    //submitTicketArea.setVisibility(View.GONE);
+
                 }
                 else {
-                    setSubjectText("Voting for "+gameData.ticketBeingConsidered.getDisplayValue());
+                    gameDashBoardFragment.setVotingAnabled(true);
+                    setSubjectText("Voting for " + gameData.ticketBeingConsidered.getDisplayValue());
                     prepareVotingScene();
                 }
                 break;
             case WaitingForVoting:
-
+                if (!gameData.amiGameMaster()) {
+                    hideAllOnScene();
+                    setLoading(true);
+                    setSubjectText("Waiting for other players votes on "
+                            + gameData.getTicketBeingConsidered().getDisplayValue() + "...");
+                    gameDashBoardFragment.setVotingAnabled(false);
+                    //voteButton.setEnabled(false);
+                    cardOnTheTable.setVisible(true);
+                    cardOnTheTable.setX(CAMERA_WIDTH / 2 - cardOnTheTable.getWidth() / 2);
+                    cardOnTheTable.setY(CAMERA_HEIGHT / 2 - cardOnTheTable.getHeight() / 2);
+                    cardOnTheTable.registerEntityModifier(new ScaleModifier(1.5f, 1f, 4f,
+                            EaseCubicInOut.getInstance()));
+                }
                 break;
             case VotesRevealed:
-
+                gameDashBoardFragment.getPlayerGridAdapter().clearVotes();
+                hideAllOnScene();
+                voteResultFragment.setVotes(gameData.getTicketBeingConsidered().getVotes());
+                viewPager.setCurrentItem(1, true);
+                gameDashBoardFragment.setRevealAreaVisible(false);
+                gameDashBoardFragment.setSubmitTicketAreaVisible(true);
                 break;
 
             case MasterDisconnected:
@@ -430,8 +380,10 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
                     hideAllOnScene();
                     setLoading(true);
                     setSubjectText("Add new ticket");
-                    revealArea.setVisibility(View.GONE);
-                    submitTicketArea.setVisibility(View.VISIBLE);
+                    gameDashBoardFragment.setRevealAreaVisible(false);
+                    gameDashBoardFragment.setSubmitTicketAreaVisible(true);
+//                    revealArea.setVisibility(View.GONE);
+//                    submitTicketArea.setVisibility(View.VISIBLE);
                 }
                 else {
                     hideAllOnScene();
@@ -449,8 +401,9 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
             card.setVisible(false);
         }
     }
-    private void prepareVotingScene(){
-        for(CardSprite card : cards){
+
+    private void prepareVotingScene() {
+        for (CardSprite card : cards) {
             card.setVisible(true);
         }
         this.osdMenu.setVisible(true);
@@ -467,7 +420,8 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
         mScene.setBackground(new Background(0.45f, 0.77f, 0.72f, 1f));
         this.mScene.setOnAreaTouchTraversalFrontToBack();
 
-        this.cards = DeckFactory.produce(gameData.getCurrentSessionDeck(), mCardTextureRegion, this);
+        this.cards = DeckFactory
+                .produce(gameData.getCurrentSessionDeck(), mCardTextureRegion, this);
         for (CardSprite sprite : this.cards) {
             addCard(sprite);
         }
@@ -525,10 +479,6 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
             setColliding(draggedCardSprite.collidesWith(deskSprite));
         }
     };
-
-    // ===========================================================
-    // Methods
-    // ===========================================================
 
     private List<CardSprite> cards;
 
@@ -594,7 +544,7 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     @Override
     public void onLivePlayersReceived(MessageWrapper<List<Player>> msg) {
         gameData.setLivePlayers(msg.getPayload());
-        playerGridAdapter.setList(gameData.getLivePlayers());
+        gameDashBoardFragment.getPlayerGridAdapter().setList(gameData.getLivePlayers());
     }
 
     @Override
@@ -605,8 +555,21 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
     @Override
     public void onUserConnectionStateChanged(MessageWrapper<SessionMessage<Player>> msg) {
-        gameData.manageLivePlayer(msg.getPayload().getSessionSubject());
-        playerGridAdapter.setList(gameData.getLivePlayers());
+        Player player = msg.getPayload().getSessionSubject();
+        gameData.manageLivePlayer(player);
+        gameDashBoardFragment.getPlayerGridAdapter().setList(gameData.getLivePlayers());
+        if (player.equals(gameData.sessionIamIn.getOwner()) && !gameData.amiGameMaster()) {
+            if (!player.isActive()) {
+                progressDialog = new ProgressDialog(BoardGameActivity.this);
+                progressDialog.setTitle("Game master disconnected!");
+                progressDialog.setMessage("Please wait until game master reconnects...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+            else if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+        }
     }
 
     @Override
@@ -617,12 +580,18 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
 
     @Override
     public void onVoteReceived(MessageWrapper<SessionMessage<Vote>> msg) {
-        // TODO Auto-generated method stub
-
+        Player player = msg.getPayload().getSessionSubject().getPlayer();
+        gameDashBoardFragment.getPlayerGridAdapter().setPlayerVoted(player);
+        if (gameData.getCurrentHandshakenPlayer().equals(player)) {
+            updateSceneType(SceneType.WaitingForVoting);
+        }
+        // gameData.setTicketBeingConsidered(msg.getPayload().getSessionSubject());
     }
 
     @Override
     public void onRevealVotesReceived(MessageWrapper<SessionMessage<Ticket>> msg) {
+        gameData.setTicketBeingConsidered(msg.getPayload().getSessionSubject());
+        updateSceneType(SceneType.VotesRevealed);
         setLoading(false);
     }
 
@@ -630,5 +599,11 @@ public class BoardGameActivity extends SimpleBaseGameActivity implements OSDMenu
     public void onFinishSessionReceived(MessageWrapper<SessionMessage<Session>> msg) {
         // TODO Auto-generated method stub
 
+    }
+
+
+    @Override
+    public CardSprite getCardOnTheTable() {
+        return cardOnTheTable;
     }
 }

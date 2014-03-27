@@ -148,7 +148,6 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
             popupItems.add(new PopupItem(team.getName(), team));
         }
 
-        teamsPopup = new Popup(getActivity(), teamSelector);
         teamsPopup.addItems(popupItems);
         selectedTeam = teams.get(0);
         teamsPopup.setSelected(selectedTeam);
@@ -186,7 +185,6 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
             deckItems.add(new PopupItem(deck.getName(), deck));
         }
 
-        decksPopup = new Popup(getActivity(), deckSelector);
         decksPopup.addItems(deckItems);
         selectedDeck = msg.getDecks().get(0);
         decksPopup.setSelected(selectedDeck);
@@ -234,6 +232,8 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
                 setAllSelectedState(allSelected);
             }
         });
+        teamsPopup = new Popup(getActivity(), teamSelector);
+        decksPopup = new Popup(getActivity(), deckSelector);
         viewCreated = true;
         nioConnectionHandler.start(false);
         
@@ -357,6 +357,10 @@ public class SetupSessionFragment extends SherlockFragment implements SetupActiv
             listener.onSessionJoin();
             joinedSession = true;
         }
+    }
+
+    @Override
+    public void onItemClick(int position, IntranetUser user) {
     }
 
 }

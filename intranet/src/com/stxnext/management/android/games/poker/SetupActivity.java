@@ -25,7 +25,7 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
 
     private StoragePrefs prefs;
 
-    SetupFragmentAdapter mAdapter;
+    SimpleFragmentAdapter mAdapter;
     ExtendedViewPager mPager;
     SetupRoleFragment roleFragment;
     SetupSessionFragment sessionFragment;
@@ -51,7 +51,7 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
 
         roleFragment = new SetupRoleFragment(this);
         fragmentManager = getSupportFragmentManager();
-        mAdapter = new SetupFragmentAdapter(this, fragmentManager);
+        mAdapter = new SimpleFragmentAdapter(this, fragmentManager);
         mAdapter.addFragment(roleFragment);
         mPager = (ExtendedViewPager) findViewById(R.id.pager);
         mPager.setOffscreenPageLimit(10);
@@ -172,6 +172,7 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
                 });
             }
             currentUser = DAO.getInstance().getIntranetUser().getById(userId);
+            //currentUser = DAO.getInstance().getIntranetUser().getById(124L);
             teams = DAO.getInstance().getTeam().fetch();
             GameData.getInstance().setCurrentUser(currentUser);
 
@@ -190,7 +191,7 @@ public class SetupActivity extends SherlockFragmentActivity implements GameSetup
     }
 
     @Override
-    public SetupFragmentAdapter getFragmentAdapter() {
+    public SimpleFragmentAdapter getFragmentAdapter() {
         return mAdapter;
     }
 

@@ -12,15 +12,11 @@ import org.andengine.opengl.font.Font;
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.HorizontalAlign;
-import org.andengine.util.modifier.ease.EaseBackInOut;
 import org.andengine.util.modifier.ease.EaseCubicInOut;
-import org.andengine.util.modifier.ease.EaseElasticIn;
-import org.andengine.util.modifier.ease.EaseElasticInOut;
 import org.andengine.util.modifier.ease.EaseLinear;
-import org.andengine.util.modifier.ease.EaseStrongIn;
 import org.andengine.util.modifier.ease.EaseStrongOut;
 
-import com.stxnext.management.server.planningpoker.server.dto.combined.Deck;
+import com.stxnext.management.server.planningpoker.server.dto.combined.Card;
 
 public class CardSprite extends Sprite {
 
@@ -35,7 +31,7 @@ public class CardSprite extends Sprite {
     ScaleModifier scaleModifier;
     private BoardGameActivity gameActivity;
     boolean mGrabbed = false;
-    Long externalId;
+    Card externalCard;
     String displayValue;
     int originalZIndex;
 
@@ -64,7 +60,7 @@ public class CardSprite extends Sprite {
         setZIndex(originalZIndex);
     }
 
-    public void prepare(String displayValue, Long id) {
+    public void prepare(String displayValue, Card externalCard) {
         final VertexBufferObjectManager vertexBufferObjectManager = gameActivity
                 .getVertexBufferObjectManager();
         final Text centerText = new Text(0, 0, font, displayValue, new TextOptions(
@@ -100,7 +96,7 @@ public class CardSprite extends Sprite {
         rightBottomText.setScale(0.6f);
         attachChild(rightBottomText);
 
-        this.externalId = id;
+        this.externalCard = externalCard;
     }
 
     @Override
@@ -159,9 +155,9 @@ public class CardSprite extends Sprite {
     public float getOriginalY() {
         return originalY;
     }
-    
-    public Long getExternalId() {
-        return externalId;
+
+    public Card getExternalCard() {
+        return externalCard;
     }
 
     @Override
@@ -170,7 +166,9 @@ public class CardSprite extends Sprite {
             return false;
         if(o instanceof CardSprite){
             CardSprite toCompare = (CardSprite) o;
-            return this.externalId.equals(toCompare.getExternalId()); 
+            if(externalCard == null)
+                return false;
+            return this.externalCard.getId() == toCompare.getExternalCard().getId(); 
         }
         else{
             return false;

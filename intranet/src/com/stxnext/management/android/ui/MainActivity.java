@@ -16,7 +16,6 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -44,9 +43,7 @@ import com.stxnext.management.android.dto.local.IntranetUser;
 import com.stxnext.management.android.dto.local.IntranetUsersResult;
 import com.stxnext.management.android.dto.local.Lateness;
 import com.stxnext.management.android.dto.local.PresenceResult;
-import com.stxnext.management.android.dto.local.Team;
 import com.stxnext.management.android.dto.local.TeamResult;
-import com.stxnext.management.android.games.poker.BoardGameActivity;
 import com.stxnext.management.android.games.poker.SetupActivity;
 import com.stxnext.management.android.receivers.CommandReceiver;
 import com.stxnext.management.android.receivers.CommandReceiver.CommandReceiverListener;
@@ -57,10 +54,11 @@ import com.stxnext.management.android.ui.dependencies.AsyncTaskEx;
 import com.stxnext.management.android.ui.dependencies.BitmapUtils;
 import com.stxnext.management.android.ui.dependencies.LatenessListAdapter;
 import com.stxnext.management.android.ui.dependencies.UserListAdapter;
+import com.stxnext.management.android.ui.dependencies.UserListAdapter.UserAdapterListener;
 import com.stxnext.management.android.web.api.HTTPResponse;
 
 public class MainActivity extends AbstractSimpleActivity implements
-        CommandReceiverListener {
+        CommandReceiverListener, UserAdapterListener {
 
     private static int REQUEST_LOGIN = 2;
     ListView userList;
@@ -99,12 +97,6 @@ public class MainActivity extends AbstractSimpleActivity implements
         super.onDestroy();
     }
 
-    // @Override
-    // public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu)
-    // {
-    // return true;
-    // }
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
@@ -139,9 +131,6 @@ public class MainActivity extends AbstractSimpleActivity implements
             public boolean onQueryTextChange(String newText) {
                 if (newText != null) {
                     setSearchQuery(new String(newText));
-                    // Cursor dbEntities = DAO.getInstance().getIntranetUser()
-                    // .fetchFilteredCursor(searchQuery);
-                    // fillListWithData(dbEntities, false);
                     updateList();
                 }
                 return false;
@@ -196,9 +185,6 @@ public class MainActivity extends AbstractSimpleActivity implements
     protected void onNewIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             searchQuery = intent.getStringExtra(SearchManager.QUERY);
-            // Cursor dbEntities = DAO.getInstance().getIntranetUser()
-            // .fetchFilteredCursor(searchQuery);
-            // fillListWithData(dbEntities, false);
             updateList();
         }
     }
@@ -243,7 +229,7 @@ public class MainActivity extends AbstractSimpleActivity implements
                     Toast.LENGTH_SHORT).show();
         }
     };
-    
+
     private OnItemClickListener absenceClickAdapter = new OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -265,7 +251,8 @@ public class MainActivity extends AbstractSimpleActivity implements
             drawerLayout.openDrawer(GravityCompat.END);
             drawerLayout.closeDrawer(GravityCompat.START);
         } else if (item.getItemId() == R.id.action_signout) {
-            displayDialogBox(getString(R.string.common_signing_in), getString(R.string.notification_confirm_signout),
+            displayDialogBox(getString(R.string.common_signing_in),
+                    getString(R.string.notification_confirm_signout),
                     signOutAction);
         } else if (item.getItemId() == R.id.action_signin) {
             onSignInAction();
@@ -333,20 +320,6 @@ public class MainActivity extends AbstractSimpleActivity implements
                             PullToRefreshBase<ListView> refreshView) {
                     }
                 });
-
-        userList.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
-
-                IntranetUser user = (IntranetUser) adapter
-                        .getItem(position - 1);
-                Intent intent = new Intent(MainActivity.this,
-                        UserDetailsActivity.class);
-                intent.putExtra(UserDetailsActivity.EXTRA_USER, user);
-                startActivity(intent);
-            }
-        });
 
         if (!isUserSignedIn()) {
             onSignInAction();
@@ -420,6 +393,7 @@ public class MainActivity extends AbstractSimpleActivity implements
                 // use loaders next time
                 startManagingCursor(c);
                 adapter = new UserListAdapter(this, c, userList);
+                adapter.setListener(this);
                 userList.setAdapter(adapter);
             } else {
                 stopManagingCursor(usersCursor);
@@ -565,7 +539,6 @@ public class MainActivity extends AbstractSimpleActivity implements
                 DAO.getInstance().getTeam()
                         .persist(teams.getExpectedResponse().getTeams());
             }
-            
 
             HTTPResponse<PresenceResult> presenceResult = api.getPresences();
             if (presenceResult != null
@@ -614,12 +587,10 @@ public class MainActivity extends AbstractSimpleActivity implements
 
     @Override
     public void onOffline() {
-        // Toast.makeText(this, "onOffline", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onOnline() {
-        // Toast.makeText(this, "onOnline", Toast.LENGTH_SHORT).show();
         if (!isUserSignedIn()) {
             onSignInAction();
         } else {
@@ -631,13 +602,23 @@ public class MainActivity extends AbstractSimpleActivity implements
     public void onLostSession() {
         api.signOut();
         onSignInAction();
-        // Toast.makeText(this, "onLostSession", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onSyncStateChanged(boolean started) {
-        // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void onSelectionEdgeState(boolean allSelected) {
+    }
+
+    @Override
+    public void onItemClick(int position, IntranetUser user) {
+        Intent intent = new Intent(MainActivity.this,
+                UserDetailsActivity.class);
+        intent.putExtra(UserDetailsActivity.EXTRA_USER, user);
+        startActivity(intent);
     }
 
 }

@@ -32,16 +32,17 @@ public class UserListAdapter extends CursorAdapter {
     private List<Long> selectedUsers;
     private UserAdapterListener listener;
     ImageListAdapterHandler adapterHandler;
-    
+
     private boolean dontUseCursorCache;
 
     public void setDontUseCursorCache(boolean dontUseCursorCache) {
         this.dontUseCursorCache = dontUseCursorCache;
     }
-    
+
     public void setListener(UserAdapterListener listener) {
         this.listener = listener;
     }
+
     boolean usesSelection;
 
     public void setUsesSelection(boolean usesSelection) {
@@ -53,39 +54,39 @@ public class UserListAdapter extends CursorAdapter {
     public List<Long> getSelectedIds() {
         return selectedUsers;
     }
-    
-    public List<IntranetUser> getSelected(){
+
+    public List<IntranetUser> getSelected() {
         List<IntranetUser> users = new ArrayList<IntranetUser>();
         Cursor c = getCursor();
         c.moveToFirst();
-        IntranetUser user = userMapper.mapEntity(c,c.getPosition());
-        if(selectedUsers.contains(user.getId().longValue()))
+        IntranetUser user = userMapper.mapEntity(c, c.getPosition());
+        if (selectedUsers.contains(user.getId().longValue()))
             users.add(user);
-        while(c.moveToNext()){
-            user = userMapper.mapEntity(c,c.getPosition());
-            if(selectedUsers.contains(user.getId().longValue()))
+        while (c.moveToNext()) {
+            user = userMapper.mapEntity(c, c.getPosition());
+            if (selectedUsers.contains(user.getId().longValue()))
                 users.add(user);
         }
         return users;
     }
 
-    private void addSelectedFromCursor(Cursor c){
+    private void addSelectedFromCursor(Cursor c) {
         selectedUsers.add(c.getLong(c.getColumnIndex(IntranetUserColumns.EXTERNAL_ID)));
     }
-    
-    public void setAllSelected(boolean all){
+
+    public void setAllSelected(boolean all) {
         selectedUsers.clear();
-        if(all){
+        if (all) {
             Cursor c = getCursor();
             c.moveToFirst();
             addSelectedFromCursor(c);
-            while(c.moveToNext()){
+            while (c.moveToNext()) {
                 addSelectedFromCursor(c);
             }
         }
         notifyDataSetChanged();
     }
-    
+
     private boolean isUserSelected(Long userId) {
         return selectedUsers.contains(userId);
     }
@@ -95,12 +96,12 @@ public class UserListAdapter extends CursorAdapter {
             selectedUsers.add(userId);
         else
             selectedUsers.remove(userId);
-        
-        if(this.listener != null){
-            if(selectedUsers.size()<=0){
+
+        if (this.listener != null) {
+            if (selectedUsers.size() <= 0) {
                 listener.onSelectionEdgeState(false);
             }
-            else if(selectedUsers.size() == getCursor().getCount()){
+            else if (selectedUsers.size() == getCursor().getCount()) {
                 listener.onSelectionEdgeState(true);
             }
         }
@@ -213,13 +214,14 @@ public class UserListAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
 
         final ViewHolder holder = (ViewHolder) view.getTag();
-        int position = cursor.getPosition();
+        final int position = cursor.getPosition();
         holder.position = position;
 
         IntranetUser cachedUser = getCursorObjectFromMemCache(position);
-        
-        final IntranetUser user = cachedUser!=null?cachedUser : userMapper.mapEntity(cursor, position);
-        if(cachedUser == null){
+
+        final IntranetUser user = cachedUser != null ? cachedUser : userMapper.mapEntity(cursor,
+                position);
+        if (cachedUser == null) {
             addCursorObjectToMemoryCache(position, user);
         }
 
@@ -228,17 +230,27 @@ public class UserListAdapter extends CursorAdapter {
         if (usesSelection) {
             holder.checkBox.setImageLevel(isUserSelected(user.getId().longValue()) ? 1 : 0);
         }
-
-        holder.parent.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (usesSelection) {
+        
+        
+        if(usesSelection){
+            holder.parent.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     boolean selectionstate = isUserSelected(user.getId().longValue());
                     setUserSelected(user.getId().longValue(), !selectionstate);
                     holder.checkBox.setImageLevel(!selectionstate ? 1 : 0);
                 }
-            }
-        });
+            });
+        }
+        else{
+            holder.parent.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null)
+                        listener.onItemClick(position, user);
+                }
+            });
+        }
 
         holder.userNameView.setText(user.getName());
 
@@ -285,13 +297,13 @@ public class UserListAdapter extends CursorAdapter {
         } else {
             holder.groupView.setVisibility(View.INVISIBLE);
         }
-        
-        
+
         adapterHandler.onGetView(holder, user.getId().longValue(), user.getImageUrl(), position);
     }
-    
-    public interface UserAdapterListener{
+
+    public interface UserAdapterListener {
         public void onSelectionEdgeState(boolean allSelected);
+        public void onItemClick(int position, IntranetUser user);
     }
 
 }
