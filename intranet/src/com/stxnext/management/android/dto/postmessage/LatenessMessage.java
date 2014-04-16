@@ -20,8 +20,11 @@ public class LatenessMessage extends AbstractMessage{
     @SerializedName("popup_date")
     String submissionDate;
     
+    /* workaround for custom way of bool handling in json messages by api */
     @Expose
     @SerializedName("work_from_home")
+    String jsonWorkFromHome;
+    
     Boolean workFromHome;
     
     @Expose
@@ -42,6 +45,8 @@ public class LatenessMessage extends AbstractMessage{
 
     public void setWorkFromHome(Boolean workFromHome) {
         this.workFromHome = workFromHome;
+        
+        this.jsonWorkFromHome = workFromHome ? "true" : "false";
     }
 
     public void setExplanation(String explanation) {
